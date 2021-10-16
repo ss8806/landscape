@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,10 @@ use Inertia\Inertia;
 |
 */
 
+// Route::get('/user',[App\Http\Controllers\UserController::class, 'index'])->name('user');
+
+Route::get('/user', [UserController::class, 'index'])->name('user');
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -26,6 +32,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['verified'])->name('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
