@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\User::factory(10)->create();
+        // 外部キーがあるためシードする順番に注意
+        $this->call(UserSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(ArticleSeeder::class);
     }
 }

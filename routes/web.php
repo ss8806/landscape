@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ArticleController;
 
 
 /*
@@ -17,11 +18,16 @@ use App\Http\Controllers\UserController;
 |
 */
 
-// Route::get('/user',[App\Http\Controllers\UserController::class, 'index'])->name('user');
+Route::get('/', [ArticleController::class, 'index'])->name('articles');
 
-Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::middleware('auth')
+    ->group(function () {
+        Route::get('/mypage', [UserController::class, 'index'])->name('mypage');
+        Route::get('/profile', [UserController::class, 'show'])->name('profile');   
+        Route::post('/editName', [UserController::class, 'editName'])->name('edit.name');
+    });
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -32,7 +38,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
-})->middleware(['verified'])->name('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+// })->middleware(['verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';

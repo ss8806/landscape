@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 interface Props {
     type?: string;
+    id?: string;
     name: string;
     value: string;
     className?: string;
+    placeholder?: string;
     autoComplete?: string | undefined;
     required?: boolean;
     isFocused?: boolean;
@@ -12,7 +14,9 @@ interface Props {
 }
 
 const Input: React.FC<Props> = ({
-    type = 'text',
+    type = "text",
+    id,
+    placeholder,
     name,
     value,
     className,
@@ -33,7 +37,9 @@ const Input: React.FC<Props> = ({
         <div className="flex flex-col items-start">
             <input
                 type={type}
+                id={id}
                 name={name}
+                placeholder={placeholder}
                 value={value}
                 className={
                     `border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ` +
@@ -46,6 +52,6 @@ const Input: React.FC<Props> = ({
             />
         </div>
     );
-}
+};
 
 export default Input;
