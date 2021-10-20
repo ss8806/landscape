@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
-
+use App\Http\Requests\EditRequest;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -21,15 +26,63 @@ class UserController extends Controller
         return Inertia::render('Mypage/profile',['user' => Auth::user()]);   
     }
 
-    public function editName(Request $request)
+    public function editAvatar(Request $request)
+    {
+        $user = Auth::user();
+         
+         if ($request->has('editicon')) { 
+             $fileName = $this->saveIcon($request->file('editicon')); //アップロードされた画像の情報を取得
+             $user->icon = $fileName; // ファイル名をDBに保存
+         }
+
+         $user->save();
+ 
+         return redirect()->back()
+             ->with('status', 'プロフィールを変更しました。');
+    }
+
+    public function editIcon(Request $request)
+    {
+        $user = Auth::user();
+        // $file_base64 = $request->editIcon;
+
+        // Base64文字列をデコードしてバイナリに変換
+        // list(, $fileData) = explode(';', $file_base64);
+        // list(, $fileData) = explode(',', $fileData);
+        // $fileData = base64_decode($fileData);
+
+        // ランダムなファイル名 + 拡張子
+        //$fileName = Str::random(20).'.jpg';
+
+        // 保存するパスを決める
+        //$path = 'mydata/'.$fileName; 
+
+        // AWS S3 に保存する
+        //Storage::disk('s3')->put($path, $fileData, 'public');
+        // DBに保存
+        $user->icon = $request->input('editIcon');
+        $user->save();
+        //User::where('id', $request->id)->update(['icon' => $fileName]);
+        return redirect()->route('profile');
+    }
+
+    public function editName(EditRequest $request)
     {
         $user = Auth::user();
         $user->name = $request->input('editName');
         $user->save();
 
         // return Redirect::route('profile',['status' => '名前を変更']);
-
         return redirect()->route('profile');
+    }
     
-    }    
+    public function editEmail(EditRequest $request)
+    {
+        $user = Auth::user();
+        $user->email = $request->input('editEmail'); 
+        $user->save();
+ 
+        return redirect()->back()
+            ->with('status', 'メールアドレスを変更しました。');
+    }
 }

@@ -10,11 +10,12 @@ interface Props {
     autoComplete?: string | undefined;
     required?: boolean;
     isFocused?: boolean;
+    accept?: string;
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 const Input: React.FC<Props> = ({
-    type = "text",
+    type,
     id,
     placeholder,
     name,
@@ -22,6 +23,7 @@ const Input: React.FC<Props> = ({
     className,
     autoComplete,
     required,
+    accept,
     isFocused,
     handleChange,
 }) => {
@@ -45,6 +47,7 @@ const Input: React.FC<Props> = ({
                     `border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ` +
                     className
                 }
+                accept={accept}
                 ref={input}
                 autoComplete={autoComplete}
                 required={required}

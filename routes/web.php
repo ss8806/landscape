@@ -24,7 +24,9 @@ Route::middleware('auth')
     ->group(function () {
         Route::get('/mypage', [UserController::class, 'index'])->name('mypage');
         Route::get('/profile', [UserController::class, 'show'])->name('profile');   
-        Route::post('/editName', [UserController::class, 'editName'])->name('edit.name');
+        Route::put('/editName', [UserController::class, 'editName'])->name('editName');
+        Route::put('/editEmail', [UserController::class, 'editEmail'])->name('editEmail');
+        Route::post('/editIcon', [UserController::class, 'editIcon'])->name('editIcon');
     });
 
 Route::get('/welcome', function () {

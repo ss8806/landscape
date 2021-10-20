@@ -10,12 +10,16 @@ export default function Mypage({ user }: Props) {
         <>
             <p className="text-center">{user.name}のマイページ</p>
             <div className="text-center">
-                <img
-                    src="/images/avatar-default.svg"
-                    className="d-block mx-auto"
-                />
+                {user.icon ? (
+                    user.icon
+                ) : (
+                    <img
+                        src="/images/avatar-default.svg"
+                        className="d-block mx-auto"
+                    />
+                )}
             </div>
-            <div className="text-center">
+            <div className="text-center blue">
                 <InertiaLink href="/profile">プロフィール編集</InertiaLink>
             </div>
             <p className="text-center">投稿した記事</p>
