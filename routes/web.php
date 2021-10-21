@@ -27,6 +27,7 @@ Route::middleware('auth')
         Route::put('/editName', [UserController::class, 'editName'])->name('editName');
         Route::put('/editEmail', [UserController::class, 'editEmail'])->name('editEmail');
         Route::post('/editIcon', [UserController::class, 'editIcon'])->name('editIcon');
+        Route::put('/editPassword', [UserController::class, 'editPassword'])->name('editPassword');
     });
 
 Route::get('/welcome', function () {

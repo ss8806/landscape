@@ -5,42 +5,42 @@ import ValidationErrors from "@/Components/ValidationErrors";
 import Button from "@/Components/Button";
 
 type Props = {
-    email: string;
+    password: string;
 };
 
-export default function EditEmail({ email }: Props) {
+export default function EditPassword({ password }: Props) {
     const { data, setData, put, processing, errors } = useForm({
-        editEmail: email,
+        editPassword: password,
     });
 
-    const onHandleChangeEmail = (
+    const onHandleChangePassword = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        setData("editEmail", event.target.value);
+        setData("editPassword", event.target.value);
     };
 
-    const handleSubmitEmail = async (e: SyntheticEvent) => {
+    const handleSubmitPassword = async (e: SyntheticEvent) => {
         e.preventDefault();
-        put("/editEmail");
+        put("/editPassword");
     };
     return (
         <section className="text-center">
             <ValidationErrors errors={errors} />
-            <form onSubmit={handleSubmitEmail}>
-                <label htmlFor="inputEmail">email</label>
+            <form onSubmit={handleSubmitPassword}>
+                <label htmlFor="inputPassword">パスワード</label>
                 <Input
-                    id="inputEmail"
-                    type="email"
-                    name="editEmail"
+                    id="inputPassword"
+                    type="password"
+                    name="editPassword"
                     className="mt-1 block mx-auto"
-                    placeholder="メールアドレス"
-                    value={data.editEmail}
+                    placeholder="パスワード"
+                    value={data.editPassword}
                     required
                     isFocused={true}
-                    handleChange={onHandleChangeEmail}
+                    handleChange={onHandleChangePassword}
                 />
                 <Button className="ml-4" processing={processing}>
-                    メールアドレスを編集
+                    パスワードを編集
                 </Button>
             </form>
         </section>

@@ -44,26 +44,26 @@ class UserController extends Controller
     public function editIcon(Request $request)
     {
         $user = Auth::user();
-        // $file_base64 = $request->editIcon;
+        $file_base64 = $request->input('icon');
 
         // Base64文字列をデコードしてバイナリに変換
-        // list(, $fileData) = explode(';', $file_base64);
-        // list(, $fileData) = explode(',', $fileData);
-        // $fileData = base64_decode($fileData);
+        list(, $fileData) = explode(';', $file_base64);
+        list(, $fileData) = explode(',', $fileData);
+        $fileData = base64_decode($fileData);
 
         // ランダムなファイル名 + 拡張子
-        //$fileName = Str::random(20).'.jpg';
+        $fileName = Str::random(20).'.jpg';
 
         // 保存するパスを決める
-        //$path = 'mydata/'.$fileName; 
+        // $path = 'mydata/'.$fileName; 
 
         // AWS S3 に保存する
         //Storage::disk('s3')->put($path, $fileData, 'public');
         // DBに保存
-        $user->icon = $request->input('editIcon');
+        $user->icon = $fileName;
         $user->save();
         //User::where('id', $request->id)->update(['icon' => $fileName]);
-        return redirect()->route('profile');
+        return redirect()->back();
     }
 
     public function editName(EditRequest $request)
@@ -73,7 +73,7 @@ class UserController extends Controller
         $user->save();
 
         // return Redirect::route('profile',['status' => '名前を変更']);
-        return redirect()->route('profile');
+        return redirect()->back()->with('status', 'プロフィールを変更しました。');
     }
     
     public function editEmail(EditRequest $request)
@@ -82,7 +82,14 @@ class UserController extends Controller
         $user->email = $request->input('editEmail'); 
         $user->save();
  
-        return redirect()->back()
-            ->with('status', 'メールアドレスを変更しました。');
+        return redirect()->back()->with('status', 'プロフィールを変更しました。');
+    }
+    public function editPassword(Request $request)
+    {
+        $user = Auth::user();
+        $user->password = Hash::make($request->input('editPassword'));
+        $user->save();
+ 
+        return redirect()->back()->with('status', 'パスワードを変更しました。');
     }
 }

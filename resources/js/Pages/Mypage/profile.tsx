@@ -4,6 +4,7 @@ import Guest from "@/Layouts/Guest";
 import EditName from "./editName";
 import EditEmail from "./editEmail";
 import EditIcon from "./editIcon";
+import EditPassword from "./editPassword";
 
 type Props = {
     user: any;
@@ -12,7 +13,7 @@ type Props = {
 };
 
 export default function Profile({ user, status }: Props) {
-    const { name, email, icon } = user;
+    const { name, email, icon, password } = user;
 
     return (
         <Guest>
@@ -24,6 +25,7 @@ export default function Profile({ user, status }: Props) {
             <EditIcon icon={icon}></EditIcon>
             <EditName name={name}></EditName>
             <EditEmail email={email}></EditEmail>
+            <EditPassword password={password}></EditPassword>
         </Guest>
     );
 }
