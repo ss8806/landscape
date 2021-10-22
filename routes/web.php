@@ -19,11 +19,12 @@ use App\Http\Controllers\ArticleController;
 */
 
 Route::get('/', [ArticleController::class, 'index'])->name('articles');
+Route::get('/article', [ArticleController::class, 'showArticle'])->name('showArticle');
 
 Route::middleware('auth')
     ->group(function () {
         Route::get('/mypage', [UserController::class, 'index'])->name('mypage');
-        Route::get('/profile', [UserController::class, 'show'])->name('profile');   
+        Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');   
         Route::put('/editName', [UserController::class, 'editName'])->name('editName');
         Route::put('/editEmail', [UserController::class, 'editEmail'])->name('editEmail');
         Route::post('/editIcon', [UserController::class, 'editIcon'])->name('editIcon');

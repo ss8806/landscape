@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState, useEffect } from "react";
 import { InertiaLink } from "@inertiajs/inertia-react";
-import Guest from "@/Layouts/Guest";
+import Header from "@/Layouts/Header";
 import EditName from "./editName";
 import EditEmail from "./editEmail";
 import EditIcon from "./editIcon";
@@ -16,16 +16,18 @@ export default function Profile({ user, status }: Props) {
     const { name, email, icon, password } = user;
 
     return (
-        <Guest>
-            {status && (
-                <div className="mb-4 font-medium text-sm text-green-600">
-                    {status}
-                </div>
-            )}
-            <EditIcon icon={icon}></EditIcon>
-            <EditName name={name}></EditName>
-            <EditEmail email={email}></EditEmail>
-            <EditPassword password={password}></EditPassword>
-        </Guest>
+        <Header>
+            <section className="pt-6">
+                {status && (
+                    <div className="mb-4 font-medium text-sm text-green-600">
+                        {status}
+                    </div>
+                )}
+                <EditIcon icon={icon}></EditIcon>
+                <EditName name={name}></EditName>
+                <EditEmail email={email}></EditEmail>
+                <EditPassword password={password}></EditPassword>
+            </section>
+        </Header>
     );
 }

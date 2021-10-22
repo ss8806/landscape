@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+
 
 class ArticleController extends Controller
 {
@@ -15,7 +19,6 @@ class ArticleController extends Controller
      */
     public function index()
     {
-                                // tsx, [api]
         return Inertia::render('Article/index',['articles' => Article::all()]);
     }
 
@@ -24,9 +27,12 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function create()
     {
-        //
+        $categories = Category::orderBy('sort_no')->get();
+
+        return Inertia::render('Article/create',['user' => Auth::user(), 'category'=> $categories]);  
     }
 
     /**
@@ -46,9 +52,9 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function showArticle(Article $article)
     {
-        //
+        return Inertia::render('Article/showArticle',['article' => $article]);
     }
 
     /**

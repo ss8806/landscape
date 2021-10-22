@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -21,7 +20,7 @@ class UserController extends Controller
         return Inertia::render('Mypage/index',['user' => Auth::user()]);   
     }
 
-    public function show()
+    public function showProfile()
     {
         return Inertia::render('Mypage/profile',['user' => Auth::user()]);   
     }

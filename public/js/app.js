@@ -6868,7 +6868,7 @@ var Button = function Button(_a) {
       children = _a.children;
   return react_1["default"].createElement("button", {
     type: type,
-    className: "inline-flex items-center px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 " + (processing && "opacity-25") + " " + className,
+    className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 " + (processing && "opacity-25") + " " + className,
     disabled: processing
   }, children);
 };
@@ -7080,6 +7080,42 @@ exports.default = Object.assign(Dropdown, {
   Content: Content,
   Link: Link
 });
+
+/***/ }),
+
+/***/ "./resources/js/Components/HeaderLogo.tsx":
+/*!************************************************!*\
+  !*** ./resources/js/Components/HeaderLogo.tsx ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+function HeaderLogo(_a) {
+  var className = _a.className;
+  return react_1["default"].createElement("svg", {
+    className: className,
+    viewBox: "0 0 316 316",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, react_1["default"].createElement("path", {
+    d: "M305.8 81.125C305.77 80.995 305.69 80.885 305.65 80.755C305.56 80.525 305.49 80.285 305.37 80.075C305.29 79.935 305.17 79.815 305.07 79.685C304.94 79.515 304.83 79.325 304.68 79.175C304.55 79.045 304.39 78.955 304.25 78.845C304.09 78.715 303.95 78.575 303.77 78.475L251.32 48.275C249.97 47.495 248.31 47.495 246.96 48.275L194.51 78.475C194.33 78.575 194.19 78.725 194.03 78.845C193.89 78.955 193.73 79.045 193.6 79.175C193.45 79.325 193.34 79.515 193.21 79.685C193.11 79.815 192.99 79.935 192.91 80.075C192.79 80.285 192.71 80.525 192.63 80.755C192.58 80.875 192.51 80.995 192.48 81.125C192.38 81.495 192.33 81.875 192.33 82.265V139.625L148.62 164.795V52.575C148.62 52.185 148.57 51.805 148.47 51.435C148.44 51.305 148.36 51.195 148.32 51.065C148.23 50.835 148.16 50.595 148.04 50.385C147.96 50.245 147.84 50.125 147.74 49.995C147.61 49.825 147.5 49.635 147.35 49.485C147.22 49.355 147.06 49.265 146.92 49.155C146.76 49.025 146.62 48.885 146.44 48.785L93.99 18.585C92.64 17.805 90.98 17.805 89.63 18.585L37.18 48.785C37 48.885 36.86 49.035 36.7 49.155C36.56 49.265 36.4 49.355 36.27 49.485C36.12 49.635 36.01 49.825 35.88 49.995C35.78 50.125 35.66 50.245 35.58 50.385C35.46 50.595 35.38 50.835 35.3 51.065C35.25 51.185 35.18 51.305 35.15 51.435C35.05 51.805 35 52.185 35 52.575V232.235C35 233.795 35.84 235.245 37.19 236.025L142.1 296.425C142.33 296.555 142.58 296.635 142.82 296.725C142.93 296.765 143.04 296.835 143.16 296.865C143.53 296.965 143.9 297.015 144.28 297.015C144.66 297.015 145.03 296.965 145.4 296.865C145.5 296.835 145.59 296.775 145.69 296.745C145.95 296.655 146.21 296.565 146.45 296.435L251.36 236.035C252.72 235.255 253.55 233.815 253.55 232.245V174.885L303.81 145.945C305.17 145.165 306 143.725 306 142.155V82.265C305.95 81.875 305.89 81.495 305.8 81.125ZM144.2 227.205L100.57 202.515L146.39 176.135L196.66 147.195L240.33 172.335L208.29 190.625L144.2 227.205ZM244.75 114.995V164.795L226.39 154.225L201.03 139.625V89.825L219.39 100.395L244.75 114.995ZM249.12 57.105L292.81 82.265L249.12 107.425L205.43 82.265L249.12 57.105ZM114.49 184.425L96.13 194.995V85.305L121.49 70.705L139.85 60.135V169.815L114.49 184.425ZM91.76 27.425L135.45 52.585L91.76 77.745L48.07 52.585L91.76 27.425ZM43.67 60.135L62.03 70.705L87.39 85.305V202.545V202.555V202.565C87.39 202.735 87.44 202.895 87.46 203.055C87.49 203.265 87.49 203.485 87.55 203.695V203.705C87.6 203.875 87.69 204.035 87.76 204.195C87.84 204.375 87.89 204.575 87.99 204.745C87.99 204.745 87.99 204.755 88 204.755C88.09 204.905 88.22 205.035 88.33 205.175C88.45 205.335 88.55 205.495 88.69 205.635L88.7 205.645C88.82 205.765 88.98 205.855 89.12 205.965C89.28 206.085 89.42 206.225 89.59 206.325C89.6 206.325 89.6 206.325 89.61 206.335C89.62 206.335 89.62 206.345 89.63 206.345L139.87 234.775V285.065L43.67 229.705V60.135ZM244.75 229.705L148.58 285.075V234.775L219.8 194.115L244.75 179.875V229.705ZM297.2 139.625L253.49 164.795V114.995L278.85 100.395L297.21 89.825V139.625H297.2Z"
+  }));
+}
+
+exports.default = HeaderLogo;
 
 /***/ }),
 
@@ -7555,10 +7591,52 @@ exports.default = Guest;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Article/detail.tsx":
-/*!***********************************************!*\
-  !*** ./resources/js/Pages/Article/detail.tsx ***!
-  \***********************************************/
+/***/ "./resources/js/Layouts/Header.tsx":
+/*!*****************************************!*\
+  !*** ./resources/js/Layouts/Header.tsx ***!
+  \*****************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var HeaderLogo_1 = __importDefault(__webpack_require__(/*! ../Components/HeaderLogo */ "./resources/js/Components/HeaderLogo.tsx"));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+function Header(_a) {
+  var children = _a.children;
+  return react_1["default"].createElement("div", {
+    className: "min-h-screen flex flex-col  pt-6 sm:pt-0 bg-gray-100"
+  }, react_1["default"].createElement("div", null, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    href: "/"
+  }, react_1["default"].createElement(HeaderLogo_1["default"], {
+    className: "w-20 h-20 fill-current text-gray-500"
+  }))), react_1["default"].createElement("div", {
+    className: "w-full min-h-screen sm:max-w-fullmt bg-white shadow-md overflow-hidden"
+  }, children));
+}
+
+exports.default = Header;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Article/createArticle.tsx":
+/*!******************************************************!*\
+  !*** ./resources/js/Pages/Article/createArticle.tsx ***!
+  \******************************************************/
 /***/ (() => {
 
 "use strict";
@@ -7587,20 +7665,88 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
+var Header_1 = __importDefault(__webpack_require__(/*! @/Layouts/Header */ "./resources/js/Layouts/Header.tsx"));
+
+var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+
 function Article(_a) {
   var articles = _a.articles;
-  return react_1["default"].createElement("section", {
-    className: "flex flex-wrap"
+  return react_1["default"].createElement(Header_1["default"], null, react_1["default"].createElement("section", {
+    className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("h1", {
+    className: "text-4xl uppercase font-bold from-current mb-8"
+  }, "Articles"), react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
   }, articles.map(function (article) {
     return react_1["default"].createElement("div", {
       key: article.id,
-      className: "flex-initial"
-    }, react_1["default"].createElement("div", {
+      className: ""
+    }, react_1["default"].createElement("img", {
+      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
+      src: "https://i.imgur.com/lmYYa2s.png"
+    }), react_1["default"].createElement("div", {
       className: ""
     }, article.category_id), react_1["default"].createElement("div", {
       className: ""
-    }, article.title));
-  }));
+    }, article.title), react_1["default"].createElement(Button_1["default"], {
+      processing: false
+    }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      href: ziggy_js_1["default"]("showArticle"),
+      method: "get",
+      data: {
+        articleId: article.id,
+        article: article
+      }
+    }, "show")));
+  })))));
+}
+
+exports.default = Article;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Article/showArticle.tsx":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Article/showArticle.tsx ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Header_1 = __importDefault(__webpack_require__(/*! @/Layouts/Header */ "./resources/js/Layouts/Header.tsx"));
+
+function Article(_a) {
+  var props = _a.props;
+  return react_1["default"].createElement(Header_1["default"], null, react_1["default"].createElement("section", {
+    className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("h1", {
+    className: "text-4xl uppercase font-bold from-current mb-8"
+  }, "Articles"), react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
+  }, react_1["default"].createElement("div", {
+    className: ""
+  }, props)))));
 }
 
 exports.default = Article;
@@ -8859,7 +9005,7 @@ function EditIcon(_a) {
 
   return react_1["default"].createElement("section", {
     className: "text-center"
-  }, icon && react_1["default"].createElement("img", {
+  }, react_1["default"].createElement("div", null, icon && react_1["default"].createElement("img", {
     id: "preview",
     src: "icon",
     className: "d-block mx-auto"
@@ -8867,7 +9013,7 @@ function EditIcon(_a) {
     id: "preview",
     src: "/images/avatar-default.svg",
     className: "d-block mx-auto"
-  }), react_1["default"].createElement("form", {
+  })), react_1["default"].createElement("form", {
     onSubmit: handleSubmitIcon
   }, react_1["default"].createElement("input", {
     name: "icon",
@@ -8875,10 +9021,10 @@ function EditIcon(_a) {
     className: "submitIcon",
     accept: "image/png, image/jpeg, image/gif",
     onChange: imageHander
-  }), react_1["default"].createElement(Button_1["default"], {
+  }), react_1["default"].createElement("div", null, react_1["default"].createElement(Button_1["default"], {
     processing: processing,
     type: "submit"
-  }, "\u30A2\u30A4\u30B3\u30F3\u3092\u7DE8\u96C6")));
+  }, "\u30A2\u30A4\u30B3\u30F3\u3092\u7DE8\u96C6"))));
 }
 
 exports.default = EditIcon;
@@ -9371,11 +9517,13 @@ var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./nod
 
 var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
 
+var Header_1 = __importDefault(__webpack_require__(/*! @/Layouts/Header */ "./resources/js/Layouts/Header.tsx"));
+
 function Mypage(_a) {
   var user = _a.user;
   var processing = inertia_react_1.useForm({}).processing;
-  return react_1["default"].createElement("section", {
-    className: "text-center"
+  return react_1["default"].createElement(Header_1["default"], null, react_1["default"].createElement("section", {
+    className: "pt-6 text-center"
   }, react_1["default"].createElement("p", {
     className: "text-center"
   }, user.name, "\u306E\u30DE\u30A4\u30DA\u30FC\u30B8"), react_1["default"].createElement("div", {
@@ -9391,7 +9539,7 @@ function Mypage(_a) {
     className: "text-center"
   }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("p", {
     className: "text-center"
-  }, "\u304A\u6C17\u306B\u5165\u308A"));
+  }, "\u304A\u6C17\u306B\u5165\u308A")));
 }
 
 exports.default = Mypage;
@@ -9419,7 +9567,7 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var Guest_1 = __importDefault(__webpack_require__(/*! @/Layouts/Guest */ "./resources/js/Layouts/Guest.tsx"));
+var Header_1 = __importDefault(__webpack_require__(/*! @/Layouts/Header */ "./resources/js/Layouts/Header.tsx"));
 
 var editName_1 = __importDefault(__webpack_require__(/*! ./editName */ "./resources/js/Pages/Mypage/editName.tsx"));
 
@@ -9436,7 +9584,9 @@ function Profile(_a) {
       email = user.email,
       icon = user.icon,
       password = user.password;
-  return react_1["default"].createElement(Guest_1["default"], null, status && react_1["default"].createElement("div", {
+  return react_1["default"].createElement(Header_1["default"], null, react_1["default"].createElement("section", {
+    className: "pt-6"
+  }, status && react_1["default"].createElement("div", {
     className: "mb-4 font-medium text-sm text-green-600"
   }, status), react_1["default"].createElement(editIcon_1["default"], {
     icon: icon
@@ -9446,7 +9596,7 @@ function Profile(_a) {
     email: email
   }), react_1["default"].createElement(editPassword_1["default"], {
     password: password
-  }));
+  })));
 }
 
 exports.default = Profile;
@@ -60977,10 +61127,12 @@ module.exports = function getSideChannel() {
 var map = {
 	"./Article": "./resources/js/Pages/Article/index.tsx",
 	"./Article/": "./resources/js/Pages/Article/index.tsx",
-	"./Article/detail": "./resources/js/Pages/Article/detail.tsx",
-	"./Article/detail.tsx": "./resources/js/Pages/Article/detail.tsx",
+	"./Article/createArticle": "./resources/js/Pages/Article/createArticle.tsx",
+	"./Article/createArticle.tsx": "./resources/js/Pages/Article/createArticle.tsx",
 	"./Article/index": "./resources/js/Pages/Article/index.tsx",
 	"./Article/index.tsx": "./resources/js/Pages/Article/index.tsx",
+	"./Article/showArticle": "./resources/js/Pages/Article/showArticle.tsx",
+	"./Article/showArticle.tsx": "./resources/js/Pages/Article/showArticle.tsx",
 	"./Auth/ConfirmPassword": "./resources/js/Pages/Auth/ConfirmPassword.tsx",
 	"./Auth/ConfirmPassword.tsx": "./resources/js/Pages/Auth/ConfirmPassword.tsx",
 	"./Auth/ForgotPassword": "./resources/js/Pages/Auth/ForgotPassword.tsx",

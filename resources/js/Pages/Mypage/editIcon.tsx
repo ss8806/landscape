@@ -45,15 +45,21 @@ export default function EditIcon({ icon }: Props) {
     };
     return (
         <section className="text-center">
-            {(icon && (
-                <img id="preview" src="icon" className="d-block mx-auto"></img>
-            )) || (
-                <img
-                    id="preview"
-                    src="/images/avatar-default.svg"
-                    className="d-block mx-auto"
-                />
-            )}
+            <div>
+                {(icon && (
+                    <img
+                        id="preview"
+                        src="icon"
+                        className="d-block mx-auto"
+                    ></img>
+                )) || (
+                    <img
+                        id="preview"
+                        src="/images/avatar-default.svg"
+                        className="d-block mx-auto"
+                    />
+                )}
+            </div>
             <form onSubmit={handleSubmitIcon}>
                 <input
                     name="icon"
@@ -62,9 +68,11 @@ export default function EditIcon({ icon }: Props) {
                     accept="image/png, image/jpeg, image/gif"
                     onChange={imageHander}
                 />
-                <Button processing={processing} type="submit">
-                    アイコンを編集
-                </Button>
+                <div>
+                    <Button processing={processing} type="submit">
+                        アイコンを編集
+                    </Button>
+                </div>
             </form>
         </section>
     );
