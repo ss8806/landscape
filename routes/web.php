@@ -19,7 +19,7 @@ use App\Http\Controllers\ArticleController;
 */
 
 Route::get('/', [ArticleController::class, 'index'])->name('articles');
-Route::get('/article', [ArticleController::class, 'showArticle'])->name('showArticle');
+Route::get('/{article}/show', [ArticleController::class, 'showArticle'])->name('showArticle');
 
 Route::middleware('auth')
     ->group(function () {

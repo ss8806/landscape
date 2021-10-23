@@ -1,6 +1,6 @@
-import ApplicationLogo from '../Components/ApplicationLogo';
-import React from 'react';
-import { InertiaLink } from '@inertiajs/inertia-react';
+import ApplicationLogo from "../Components/ApplicationLogo";
+import React from "react";
+import { InertiaLink } from "@inertiajs/inertia-react";
 
 interface Props {
     children: React.ReactNode;

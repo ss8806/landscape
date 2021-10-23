@@ -11,6 +11,7 @@ type Props = {
 type Article = {
     id: number;
     title: string;
+    show_url: string;
     category_id: number;
     pic1: string;
 };
@@ -35,18 +36,13 @@ export default function Article({ articles }: Props) {
                                         {article.category_id}
                                     </div>
                                     <div className="">{article.title}</div>
-                                    <Button processing={false}>
-                                        <InertiaLink
-                                            href={route("showArticle")}
-                                            method="get"
-                                            data={{
-                                                articleId: article.id,
-                                                article: article,
-                                            }}
-                                        >
-                                            show
-                                        </InertiaLink>
-                                    </Button>
+
+                                    <InertiaLink
+                                        as="button"
+                                        href={route("showArticle", article.id)}
+                                    >
+                                        詳細を見る
+                                    </InertiaLink>
                                 </div>
                             );
                         })}

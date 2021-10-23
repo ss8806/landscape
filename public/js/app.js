@@ -7623,7 +7623,7 @@ function Header(_a) {
   }, react_1["default"].createElement("div", null, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: "/"
   }, react_1["default"].createElement(HeaderLogo_1["default"], {
-    className: "w-20 h-20 fill-current text-gray-500"
+    className: "w-20 h-20 ml-10 fill-current text-gray-500"
   }))), react_1["default"].createElement("div", {
     className: "w-full min-h-screen sm:max-w-fullmt bg-white shadow-md overflow-hidden"
   }, children));
@@ -7667,8 +7667,6 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 var Header_1 = __importDefault(__webpack_require__(/*! @/Layouts/Header */ "./resources/js/Layouts/Header.tsx"));
 
-var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
-
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
 var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
@@ -7694,16 +7692,10 @@ function Article(_a) {
       className: ""
     }, article.category_id), react_1["default"].createElement("div", {
       className: ""
-    }, article.title), react_1["default"].createElement(Button_1["default"], {
-      processing: false
-    }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-      href: ziggy_js_1["default"]("showArticle"),
-      method: "get",
-      data: {
-        articleId: article.id,
-        article: article
-      }
-    }, "show")));
+    }, article.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      as: "button",
+      href: ziggy_js_1["default"]("showArticle", article.id)
+    }, "\u8A73\u7D30\u3092\u898B\u308B"));
   })))));
 }
 
@@ -7735,18 +7727,16 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 var Header_1 = __importDefault(__webpack_require__(/*! @/Layouts/Header */ "./resources/js/Layouts/Header.tsx"));
 
 function Article(_a) {
-  var props = _a.props;
+  var article = _a.article;
   return react_1["default"].createElement(Header_1["default"], null, react_1["default"].createElement("section", {
     className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
   }, react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("h1", {
     className: "text-4xl uppercase font-bold from-current mb-8"
-  }, "Articles"), react_1["default"].createElement("div", {
+  }, react_1["default"].createElement("p", null, article.pic1), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", article.title), react_1["default"].createElement("p", null, "\u672C\u6587:", article.body)), react_1["default"].createElement("div", {
     className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
-  }, react_1["default"].createElement("div", {
-    className: ""
-  }, props)))));
+  }))));
 }
 
 exports.default = Article;
