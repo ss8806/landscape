@@ -70,7 +70,7 @@ export default function EditIcon({ icon }: Props) {
                 />
                 <div>
                     <Button processing={processing} type="submit">
-                        アイコンを編集
+                        アイコンを変更
                     </Button>
                 </div>
             </form>

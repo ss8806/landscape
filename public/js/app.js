@@ -7449,7 +7449,7 @@ function Authenticated(_a) {
 
   return react_1["default"].createElement("div", {
     className: "min-h-screen bg-gray-100"
-  }, react_1["default"].createElement("nav", {
+  }, auth.user ? react_1["default"].createElement("nav", {
     className: "bg-white border-b border-gray-100"
   }, react_1["default"].createElement("div", {
     className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -7466,8 +7466,8 @@ function Authenticated(_a) {
   }))), react_1["default"].createElement("div", {
     className: "hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
   }, react_1["default"].createElement(NavLink_1["default"], {
-    href: ziggy_js_1["default"]('dashboard'),
-    active: ziggy_js_1["default"]().current('dashboard')
+    href: ziggy_js_1["default"]("dashboard"),
+    active: ziggy_js_1["default"]().current("dashboard")
   }, "Dashboard"))), react_1["default"].createElement("div", {
     className: "hidden sm:flex sm:items-center sm:ml-6"
   }, react_1["default"].createElement("div", {
@@ -7487,7 +7487,7 @@ function Authenticated(_a) {
     d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
     clipRule: "evenodd"
   }))))), react_1["default"].createElement(Dropdown_1["default"].Content, null, react_1["default"].createElement(Dropdown_1["default"].Link, {
-    href: ziggy_js_1["default"]('logout'),
+    href: ziggy_js_1["default"]("logout"),
     method: "post",
     as: "button"
   }, "Log Out"))))), react_1["default"].createElement("div", {
@@ -7505,25 +7505,25 @@ function Authenticated(_a) {
     fill: "none",
     viewBox: "0 0 24 24"
   }, react_1["default"].createElement("path", {
-    className: !showingNavigationDropdown ? 'inline-flex' : 'hidden',
+    className: !showingNavigationDropdown ? "inline-flex" : "hidden",
     strokeLinecap: "round",
     strokeLinejoin: "round",
     strokeWidth: "2",
     d: "M4 6h16M4 12h16M4 18h16"
   }), react_1["default"].createElement("path", {
-    className: showingNavigationDropdown ? 'inline-flex' : 'hidden',
+    className: showingNavigationDropdown ? "inline-flex" : "hidden",
     strokeLinecap: "round",
     strokeLinejoin: "round",
     strokeWidth: "2",
     d: "M6 18L18 6M6 6l12 12"
   })))))), react_1["default"].createElement("div", {
-    className: (showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'
+    className: (showingNavigationDropdown ? "block" : "hidden") + " sm:hidden"
   }, react_1["default"].createElement("div", {
     className: "pt-2 pb-3 space-y-1"
   }, react_1["default"].createElement(ResponsiveNavLink_1["default"], {
     method: "post",
-    href: ziggy_js_1["default"]('dashboard'),
-    active: ziggy_js_1["default"]().current('dashboard')
+    href: ziggy_js_1["default"]("dashboard"),
+    active: ziggy_js_1["default"]().current("dashboard")
   }, "Dashboard")), react_1["default"].createElement("div", {
     className: "pt-4 pb-1 border-t border-gray-200"
   }, react_1["default"].createElement("div", {
@@ -7536,9 +7536,97 @@ function Authenticated(_a) {
     className: "mt-3 space-y-1"
   }, react_1["default"].createElement(ResponsiveNavLink_1["default"], {
     method: "post",
-    href: ziggy_js_1["default"]('logout'),
+    href: ziggy_js_1["default"]("logout"),
     as: "button"
-  }, "Log Out"))))), header && react_1["default"].createElement("header", {
+  }, "Log Out"))))) : // ログインしてない
+  react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("nav", {
+    className: "bg-white border-b border-gray-100"
+  }, react_1["default"].createElement("div", {
+    className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+  }, react_1["default"].createElement("div", {
+    className: "flex justify-between h-16"
+  }, react_1["default"].createElement("div", {
+    className: "flex"
+  }, react_1["default"].createElement("div", {
+    className: "flex-shrink-0 flex items-center"
+  }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    href: "/"
+  }, react_1["default"].createElement(ApplicationLogo_1["default"], {
+    className: "block h-9 w-auto text-gray-500"
+  }))), react_1["default"].createElement("div", {
+    className: "hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
+  }, react_1["default"].createElement(NavLink_1["default"], {
+    href: ziggy_js_1["default"]("dashboard"),
+    active: ziggy_js_1["default"]().current("dashboard")
+  }, "Dashboard"))), react_1["default"].createElement("div", {
+    className: "hidden sm:flex sm:items-center sm:ml-6"
+  }, react_1["default"].createElement("div", {
+    className: "ml-3 relative"
+  }, react_1["default"].createElement(Dropdown_1["default"], null, react_1["default"].createElement(Dropdown_1["default"].Trigger, null, react_1["default"].createElement("span", {
+    className: "inline-flex rounded-md"
+  }, react_1["default"].createElement("button", {
+    type: "button",
+    className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+  }, "guest", react_1["default"].createElement("svg", {
+    className: "ml-2 -mr-0.5 h-4 w-4",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 20 20",
+    fill: "currentColor"
+  }, react_1["default"].createElement("path", {
+    fillRule: "evenodd",
+    d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+    clipRule: "evenodd"
+  }))))), react_1["default"].createElement(Dropdown_1["default"].Content, null, react_1["default"].createElement(Dropdown_1["default"].Link, {
+    href: ziggy_js_1["default"]("login"),
+    method: "get",
+    as: "button"
+  }, "Login"))))), react_1["default"].createElement("div", {
+    className: "-mr-2 flex items-center sm:hidden"
+  }, react_1["default"].createElement("button", {
+    onClick: function onClick() {
+      return setShowingNavigationDropdown(function (previousState) {
+        return !previousState;
+      });
+    },
+    className: "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+  }, react_1["default"].createElement("svg", {
+    className: "h-6 w-6",
+    stroke: "currentColor",
+    fill: "none",
+    viewBox: "0 0 24 24"
+  }, react_1["default"].createElement("path", {
+    className: !showingNavigationDropdown ? "inline-flex" : "hidden",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "2",
+    d: "M4 6h16M4 12h16M4 18h16"
+  }), react_1["default"].createElement("path", {
+    className: showingNavigationDropdown ? "inline-flex" : "hidden",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "2",
+    d: "M6 18L18 6M6 6l12 12"
+  })))))), react_1["default"].createElement("div", {
+    className: (showingNavigationDropdown ? "block" : "hidden") + " sm:hidden"
+  }, react_1["default"].createElement("div", {
+    className: "pt-2 pb-3 space-y-1"
+  }, react_1["default"].createElement(ResponsiveNavLink_1["default"], {
+    method: "post",
+    href: ziggy_js_1["default"]("dashboard"),
+    active: ziggy_js_1["default"]().current("dashboard")
+  }, "Dashboard")), react_1["default"].createElement("div", {
+    className: "pt-4 pb-1 border-t border-gray-200"
+  }, react_1["default"].createElement("div", {
+    className: "px-4"
+  }, react_1["default"].createElement("div", {
+    className: "font-medium text-base text-gray-800"
+  }, "guest")), react_1["default"].createElement("div", {
+    className: "mt-3 space-y-1"
+  }, react_1["default"].createElement(ResponsiveNavLink_1["default"], {
+    method: "post",
+    href: ziggy_js_1["default"]("login"),
+    as: "button"
+  }, "Login")))))), header && react_1["default"].createElement("header", {
     className: "bg-white shadow"
   }, react_1["default"].createElement("div", {
     className: "max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
@@ -7617,9 +7705,8 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
 function Header(_a) {
-  var children = _a.children;
   return react_1["default"].createElement("div", {
-    className: "min-h-screen flex flex-col  pt-6 sm:pt-0 bg-gray-100"
+    className: "w-full h-20 flex flex-row justify-between  sm:pt-0 bg-gray-100"
   }, react_1["default"].createElement("div", null, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: "/"
   }, react_1["default"].createElement(HeaderLogo_1["default"], {
@@ -7628,9 +7715,7 @@ function Header(_a) {
     href: "/mypage"
   }, react_1["default"].createElement("p", {
     className: "w-20 h-20 ml-10 fill-current text-gray-500"
-  }, "Mypage"))), react_1["default"].createElement("div", {
-    className: "w-full min-h-screen sm:max-w-fullmt bg-white shadow-md overflow-hidden"
-  }, children));
+  }, "Mypage"))));
 }
 
 exports.default = Header;
@@ -7677,7 +7762,7 @@ var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_mod
 
 function Article(_a) {
   var articles = _a.articles;
-  return react_1["default"].createElement(Header_1["default"], null, react_1["default"].createElement("section", {
+  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement("section", {
     className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
   }, react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
@@ -9022,7 +9107,7 @@ function EditIcon(_a) {
   }), react_1["default"].createElement("div", null, react_1["default"].createElement(Button_1["default"], {
     processing: processing,
     type: "submit"
-  }, "\u30A2\u30A4\u30B3\u30F3\u3092\u7DE8\u96C6"))));
+  }, "\u30A2\u30A4\u30B3\u30F3\u3092\u5909\u66F4"))));
 }
 
 exports.default = EditIcon;
