@@ -36,11 +36,10 @@ export default function EditEmail({ email }: Props) {
                     placeholder="メールアドレス"
                     value={data.editEmail}
                     required
-                    isFocused={true}
                     handleChange={onHandleChangeEmail}
                 />
                 <Button className="ml-4" processing={processing}>
-                    メールアドレスを編集
+                    メールアドレスを変更
                 </Button>
             </form>
         </section>

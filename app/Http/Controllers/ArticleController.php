@@ -41,9 +41,11 @@ class ArticleController extends Controller
             'articles' => Article::all()->map(function ($article) {
                 return [
                     'id' => $article->id,
-                    'pic1' => $article->pic1,
                     'title' => $article->title,
                     'body' => $article->body,
+                    'pic1' => $article->pic1,
+                    'user_id' => $article->user_id,
+                    'category_id' => $article->category_id,
                     'show_url' => URL::route('showArticle', $article),
                 ];
             }),
@@ -83,14 +85,16 @@ class ArticleController extends Controller
      */
     public function showArticle(Article $article)
     {
-        //return Inertia::render('Article/showArticle',['article' => $article]);
-        return Inertia::render('Article/showArticle', [
-            'article' => [
-                'id' => $article->id,
-                'title' => $article->title,
-                'body' => $article->body,
-            ],
-        ]);
+        return Inertia::render('Article/showArticle',['article' => $article]);
+        // return Inertia::render('Article/showArticle', [
+        //     'article' => [
+        //         'title' => $article->title,
+        //         'body' => $article->body,
+        //         'pic1' => $article->pic1,
+        //         'user_id' => $article->user_id,
+        //         'category_id' => $article->category_id,
+        //     ],
+        // ]);
     }
 
     /**

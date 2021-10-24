@@ -36,11 +36,10 @@ export default function EditPassword({ password }: Props) {
                     placeholder="パスワード"
                     value={data.editPassword}
                     required
-                    isFocused={true}
                     handleChange={onHandleChangePassword}
                 />
                 <Button className="ml-4" processing={processing}>
-                    パスワードを編集
+                    パスワードを変更
                 </Button>
             </form>
         </section>

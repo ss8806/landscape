@@ -7624,7 +7624,11 @@ function Header(_a) {
     href: "/"
   }, react_1["default"].createElement(HeaderLogo_1["default"], {
     className: "w-20 h-20 ml-10 fill-current text-gray-500"
-  }))), react_1["default"].createElement("div", {
+  }))), react_1["default"].createElement("div", null, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    href: "/mypage"
+  }, react_1["default"].createElement("p", {
+    className: "w-20 h-20 ml-10 fill-current text-gray-500"
+  }, "Mypage"))), react_1["default"].createElement("div", {
     className: "w-full min-h-screen sm:max-w-fullmt bg-white shadow-md overflow-hidden"
   }, children));
 }
@@ -7728,13 +7732,18 @@ var Header_1 = __importDefault(__webpack_require__(/*! @/Layouts/Header */ "./re
 
 function Article(_a) {
   var article = _a.article;
+  var title = article.title,
+      body = article.body,
+      pic1 = article.pic1,
+      user_id = article.user_id,
+      category_id = article.category_id;
   return react_1["default"].createElement(Header_1["default"], null, react_1["default"].createElement("section", {
     className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
   }, react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("h1", {
     className: "text-4xl uppercase font-bold from-current mb-8"
-  }, react_1["default"].createElement("p", null, article.pic1), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", article.title), react_1["default"].createElement("p", null, "\u672C\u6587:", article.body)), react_1["default"].createElement("div", {
+  }, react_1["default"].createElement("p", null, pic1), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u672C\u6587:", body), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user_id), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id)), react_1["default"].createElement("div", {
     className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
   }))));
 }
@@ -8755,12 +8764,11 @@ function EditEmail(_a) {
     placeholder: "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9",
     value: data.editEmail,
     required: true,
-    isFocused: true,
     handleChange: onHandleChangeEmail
   }), react_1["default"].createElement(Button_1["default"], {
     className: "ml-4",
     processing: processing
-  }, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\u3092\u7DE8\u96C6")));
+  }, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\u3092\u5909\u66F4")));
 }
 
 exports.default = EditEmail;
@@ -9240,12 +9248,12 @@ function EditName(_a) {
     placeholder: "\u304A\u540D\u524D",
     value: data.editName,
     required: true,
-    isFocused: true,
+    // isFocused={true}
     handleChange: onHandleChangeName
   }), react_1["default"].createElement(Button_1["default"], {
     className: "ml-4",
     processing: processing
-  }, "\u540D\u524D\u3092\u7DE8\u96C6")));
+  }, "\u540D\u524D\u3092\u5909\u66F4")));
 }
 
 exports.default = EditName;
@@ -9470,12 +9478,11 @@ function EditPassword(_a) {
     placeholder: "\u30D1\u30B9\u30EF\u30FC\u30C9",
     value: data.editPassword,
     required: true,
-    isFocused: true,
     handleChange: onHandleChangePassword
   }), react_1["default"].createElement(Button_1["default"], {
     className: "ml-4",
     processing: processing
-  }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u7DE8\u96C6")));
+  }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5909\u66F4")));
 }
 
 exports.default = EditPassword;

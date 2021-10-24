@@ -15,6 +15,14 @@ export default function Header({ children }: Props) {
                 </InertiaLink>
             </div>
 
+            <div>
+                <InertiaLink href="/mypage">
+                    <p className="w-20 h-20 ml-10 fill-current text-gray-500">
+                        Mypage
+                    </p>
+                </InertiaLink>
+            </div>
+
             <div className="w-full min-h-screen sm:max-w-fullmt bg-white shadow-md overflow-hidden">
                 {children}
             </div>

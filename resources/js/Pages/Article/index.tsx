@@ -12,6 +12,7 @@ type Article = {
     id: number;
     title: string;
     show_url: string;
+    user_id: number;
     category_id: number;
     pic1: string;
 };

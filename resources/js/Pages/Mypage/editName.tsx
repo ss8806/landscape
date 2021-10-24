@@ -34,11 +34,11 @@ export default function EditName({ name }: Props) {
                     placeholder="お名前"
                     value={data.editName}
                     required
-                    isFocused={true}
+                    // isFocused={true}
                     handleChange={onHandleChangeName}
                 />
                 <Button className="ml-4" processing={processing}>
-                    名前を編集
+                    名前を変更
                 </Button>
             </form>
         </section>
