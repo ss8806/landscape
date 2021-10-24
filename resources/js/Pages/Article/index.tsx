@@ -1,10 +1,11 @@
 import React from "react";
-import Header from "@/Layouts/Header";
+import Auth from "@/Layouts/Auth";
 import Button from "@/Components/Button";
 import { InertiaLink, useForm } from "@inertiajs/inertia-react";
 import route from "ziggy-js";
 
 type Props = {
+    auth: any;
     articles: any;
 };
 
@@ -17,10 +18,9 @@ type Article = {
     pic1: string;
 };
 
-export default function Article({ articles }: Props) {
+export default function Article({ auth, articles }: Props) {
     return (
-        <>
-            <Header></Header>
+        <Auth auth={auth}>
             <section className="min-h-screen bg-yellow-400 flex justify-center items-center py-20">
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
                     <h1 className="text-4xl uppercase font-bold from-current mb-8">
@@ -51,6 +51,6 @@ export default function Article({ articles }: Props) {
                     </div>
                 </div>
             </section>
-        </>
+        </Auth>
     );
 }

@@ -1,7 +1,8 @@
 import React from "react";
-import Header from "@/Layouts/Header";
+import Auth from "@/Layouts/Auth";
 
 type Props = {
+    auth: any;
     article: any;
 };
 
@@ -12,10 +13,10 @@ type Article = {
     category_id: number;
 };
 
-export default function Article({ article }: Props) {
+export default function Article({ auth, article }: Props) {
     const { title, body, pic1, user_id, category_id } = article;
     return (
-        <Header>
+        <Auth auth={auth}>
             <section className="min-h-screen bg-yellow-400 flex justify-center items-center py-20">
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
                     <h1 className="text-4xl uppercase font-bold from-current mb-8">
@@ -28,6 +29,6 @@ export default function Article({ article }: Props) {
                     <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"></div>
                 </div>
             </section>
-        </Header>
+        </Auth>
     );
 }

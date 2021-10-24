@@ -1,16 +1,17 @@
 import React, { SyntheticEvent, useState } from "react";
 import { InertiaLink, useForm } from "@inertiajs/inertia-react";
 import Button from "@/Components/Button";
-import Header from "@/Layouts/Header";
+import Auth from "@/Layouts/Auth";
 
 type Props = {
+    auth: any;
     user: any;
 };
 
-export default function Mypage({ user }: Props) {
+export default function Mypage({ auth, user }: Props) {
     const { processing } = useForm({});
     return (
-        <Header>
+        <Auth auth={auth}>
             <section className="pt-6 text-center">
                 <p className="text-center">{user.name}のマイページ</p>
                 <div className="text-center">
@@ -29,6 +30,6 @@ export default function Mypage({ user }: Props) {
                 <p className="text-center">投稿した記事</p>
                 <p className="text-center">お気に入り</p>
             </section>
-        </Header>
+        </Auth>
     );
 }

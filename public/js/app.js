@@ -7083,42 +7083,6 @@ exports.default = Object.assign(Dropdown, {
 
 /***/ }),
 
-/***/ "./resources/js/Components/HeaderLogo.tsx":
-/*!************************************************!*\
-  !*** ./resources/js/Components/HeaderLogo.tsx ***!
-  \************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-function HeaderLogo(_a) {
-  var className = _a.className;
-  return react_1["default"].createElement("svg", {
-    className: className,
-    viewBox: "0 0 316 316",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, react_1["default"].createElement("path", {
-    d: "M305.8 81.125C305.77 80.995 305.69 80.885 305.65 80.755C305.56 80.525 305.49 80.285 305.37 80.075C305.29 79.935 305.17 79.815 305.07 79.685C304.94 79.515 304.83 79.325 304.68 79.175C304.55 79.045 304.39 78.955 304.25 78.845C304.09 78.715 303.95 78.575 303.77 78.475L251.32 48.275C249.97 47.495 248.31 47.495 246.96 48.275L194.51 78.475C194.33 78.575 194.19 78.725 194.03 78.845C193.89 78.955 193.73 79.045 193.6 79.175C193.45 79.325 193.34 79.515 193.21 79.685C193.11 79.815 192.99 79.935 192.91 80.075C192.79 80.285 192.71 80.525 192.63 80.755C192.58 80.875 192.51 80.995 192.48 81.125C192.38 81.495 192.33 81.875 192.33 82.265V139.625L148.62 164.795V52.575C148.62 52.185 148.57 51.805 148.47 51.435C148.44 51.305 148.36 51.195 148.32 51.065C148.23 50.835 148.16 50.595 148.04 50.385C147.96 50.245 147.84 50.125 147.74 49.995C147.61 49.825 147.5 49.635 147.35 49.485C147.22 49.355 147.06 49.265 146.92 49.155C146.76 49.025 146.62 48.885 146.44 48.785L93.99 18.585C92.64 17.805 90.98 17.805 89.63 18.585L37.18 48.785C37 48.885 36.86 49.035 36.7 49.155C36.56 49.265 36.4 49.355 36.27 49.485C36.12 49.635 36.01 49.825 35.88 49.995C35.78 50.125 35.66 50.245 35.58 50.385C35.46 50.595 35.38 50.835 35.3 51.065C35.25 51.185 35.18 51.305 35.15 51.435C35.05 51.805 35 52.185 35 52.575V232.235C35 233.795 35.84 235.245 37.19 236.025L142.1 296.425C142.33 296.555 142.58 296.635 142.82 296.725C142.93 296.765 143.04 296.835 143.16 296.865C143.53 296.965 143.9 297.015 144.28 297.015C144.66 297.015 145.03 296.965 145.4 296.865C145.5 296.835 145.59 296.775 145.69 296.745C145.95 296.655 146.21 296.565 146.45 296.435L251.36 236.035C252.72 235.255 253.55 233.815 253.55 232.245V174.885L303.81 145.945C305.17 145.165 306 143.725 306 142.155V82.265C305.95 81.875 305.89 81.495 305.8 81.125ZM144.2 227.205L100.57 202.515L146.39 176.135L196.66 147.195L240.33 172.335L208.29 190.625L144.2 227.205ZM244.75 114.995V164.795L226.39 154.225L201.03 139.625V89.825L219.39 100.395L244.75 114.995ZM249.12 57.105L292.81 82.265L249.12 107.425L205.43 82.265L249.12 57.105ZM114.49 184.425L96.13 194.995V85.305L121.49 70.705L139.85 60.135V169.815L114.49 184.425ZM91.76 27.425L135.45 52.585L91.76 77.745L48.07 52.585L91.76 27.425ZM43.67 60.135L62.03 70.705L87.39 85.305V202.545V202.555V202.565C87.39 202.735 87.44 202.895 87.46 203.055C87.49 203.265 87.49 203.485 87.55 203.695V203.705C87.6 203.875 87.69 204.035 87.76 204.195C87.84 204.375 87.89 204.575 87.99 204.745C87.99 204.745 87.99 204.755 88 204.755C88.09 204.905 88.22 205.035 88.33 205.175C88.45 205.335 88.55 205.495 88.69 205.635L88.7 205.645C88.82 205.765 88.98 205.855 89.12 205.965C89.28 206.085 89.42 206.225 89.59 206.325C89.6 206.325 89.6 206.325 89.61 206.335C89.62 206.335 89.62 206.345 89.63 206.345L139.87 234.775V285.065L43.67 229.705V60.135ZM244.75 229.705L148.58 285.075V234.775L219.8 194.115L244.75 179.875V229.705ZM297.2 139.625L253.49 164.795V114.995L278.85 100.395L297.21 89.825V139.625H297.2Z"
-  }));
-}
-
-exports.default = HeaderLogo;
-
-/***/ }),
-
 /***/ "./resources/js/Components/Input.tsx":
 /*!*******************************************!*\
   !*** ./resources/js/Components/Input.tsx ***!
@@ -7371,6 +7335,245 @@ exports.default = ValidationErrors;
 
 /***/ }),
 
+/***/ "./resources/js/Layouts/Auth.tsx":
+/*!***************************************!*\
+  !*** ./resources/js/Layouts/Auth.tsx ***!
+  \***************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var ApplicationLogo_1 = __importDefault(__webpack_require__(/*! ../Components/ApplicationLogo */ "./resources/js/Components/ApplicationLogo.tsx"));
+
+var Dropdown_1 = __importDefault(__webpack_require__(/*! ../Components/Dropdown */ "./resources/js/Components/Dropdown.tsx"));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var ResponsiveNavLink_1 = __importDefault(__webpack_require__(/*! ../Components/ResponsiveNavLink */ "./resources/js/Components/ResponsiveNavLink.tsx"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+
+function Auth(_a) {
+  var auth = _a.auth,
+      children = _a.children;
+
+  var _b = react_1.useState(false),
+      showingNavigationDropdown = _b[0],
+      setShowingNavigationDropdown = _b[1];
+
+  return react_1["default"].createElement("div", {
+    className: "min-h-screen bg-gray-100"
+  }, auth.user ? react_1["default"].createElement("nav", {
+    className: "bg-white border-b border-gray-100"
+  }, react_1["default"].createElement("div", {
+    className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+  }, react_1["default"].createElement("div", {
+    className: "flex justify-between h-16"
+  }, react_1["default"].createElement("div", {
+    className: "flex"
+  }, react_1["default"].createElement("div", {
+    className: "flex-shrink-0 flex items-center"
+  }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    href: "/"
+  }, react_1["default"].createElement(ApplicationLogo_1["default"], {
+    className: "block h-9 w-auto text-gray-500"
+  })))), react_1["default"].createElement("div", {
+    className: "hidden sm:flex sm:items-center sm:ml-6"
+  }, react_1["default"].createElement("div", {
+    className: "ml-3 relative"
+  }, react_1["default"].createElement(Dropdown_1["default"], null, react_1["default"].createElement(Dropdown_1["default"].Trigger, null, react_1["default"].createElement("span", {
+    className: "inline-flex rounded-md"
+  }, react_1["default"].createElement("button", {
+    type: "button",
+    className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+  }, auth.user.name, react_1["default"].createElement("svg", {
+    className: "ml-2 -mr-0.5 h-4 w-4",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 20 20",
+    fill: "currentColor"
+  }, react_1["default"].createElement("path", {
+    fillRule: "evenodd",
+    d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+    clipRule: "evenodd"
+  }))))), react_1["default"].createElement(Dropdown_1["default"].Content, null, react_1["default"].createElement(Dropdown_1["default"].Link, {
+    href: ziggy_js_1["default"]("mypage"),
+    method: "get",
+    as: "button"
+  }, "Mypage"), react_1["default"].createElement(Dropdown_1["default"].Link, {
+    href: ziggy_js_1["default"]("logout"),
+    method: "post",
+    as: "button"
+  }, "Log Out"))))), react_1["default"].createElement("div", {
+    className: "-mr-2 flex items-center sm:hidden"
+  }, react_1["default"].createElement("button", {
+    onClick: function onClick() {
+      return setShowingNavigationDropdown(function (previousState) {
+        return !previousState;
+      });
+    },
+    className: "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+  }, react_1["default"].createElement("svg", {
+    className: "h-6 w-6",
+    stroke: "currentColor",
+    fill: "none",
+    viewBox: "0 0 24 24"
+  }, react_1["default"].createElement("path", {
+    className: !showingNavigationDropdown ? "inline-flex" : "hidden",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "2",
+    d: "M4 6h16M4 12h16M4 18h16"
+  }), react_1["default"].createElement("path", {
+    className: showingNavigationDropdown ? "inline-flex" : "hidden",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "2",
+    d: "M6 18L18 6M6 6l12 12"
+  })))))), react_1["default"].createElement("div", {
+    className: (showingNavigationDropdown ? "block" : "hidden") + " sm:hidden"
+  }, react_1["default"].createElement("div", {
+    className: "pt-4 pb-1 border-t border-gray-200"
+  }, react_1["default"].createElement("div", {
+    className: "px-4"
+  }, react_1["default"].createElement("div", {
+    className: "font-medium text-base text-gray-800"
+  }, auth.user.name)), react_1["default"].createElement("div", {
+    className: "mt-3 space-y-1"
+  }, react_1["default"].createElement(ResponsiveNavLink_1["default"], {
+    method: "post",
+    href: ziggy_js_1["default"]("logout"),
+    as: "button"
+  }, "Log Out"))))) : // ログインしてない場合
+  react_1["default"].createElement("nav", {
+    className: "bg-white border-b border-gray-100"
+  }, react_1["default"].createElement("div", {
+    className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+  }, react_1["default"].createElement("div", {
+    className: "flex justify-between h-16"
+  }, react_1["default"].createElement("div", {
+    className: "flex"
+  }, react_1["default"].createElement("div", {
+    className: "flex-shrink-0 flex items-center"
+  }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    href: "/"
+  }, react_1["default"].createElement(ApplicationLogo_1["default"], {
+    className: "block h-9 w-auto text-gray-500"
+  })))), react_1["default"].createElement("div", {
+    className: "hidden sm:flex sm:items-center sm:ml-6"
+  }, react_1["default"].createElement("div", {
+    className: "ml-3 relative"
+  }, react_1["default"].createElement(Dropdown_1["default"], null, react_1["default"].createElement(Dropdown_1["default"].Trigger, null, react_1["default"].createElement("span", {
+    className: "inline-flex rounded-md"
+  }, react_1["default"].createElement("button", {
+    type: "button",
+    className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+  }, "guest", react_1["default"].createElement("svg", {
+    className: "ml-2 -mr-0.5 h-4 w-4",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 20 20",
+    fill: "currentColor"
+  }, react_1["default"].createElement("path", {
+    fillRule: "evenodd",
+    d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+    clipRule: "evenodd"
+  }))))), react_1["default"].createElement(Dropdown_1["default"].Content, null, react_1["default"].createElement(Dropdown_1["default"].Link, {
+    href: ziggy_js_1["default"]("login"),
+    method: "get",
+    as: "button"
+  }, "Login"))))), react_1["default"].createElement("div", {
+    className: "-mr-2 flex items-center sm:hidden"
+  }, react_1["default"].createElement("button", {
+    onClick: function onClick() {
+      return setShowingNavigationDropdown(function (previousState) {
+        return !previousState;
+      });
+    },
+    className: "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+  }, react_1["default"].createElement("svg", {
+    className: "h-6 w-6",
+    stroke: "currentColor",
+    fill: "none",
+    viewBox: "0 0 24 24"
+  }, react_1["default"].createElement("path", {
+    className: !showingNavigationDropdown ? "inline-flex" : "hidden",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "2",
+    d: "M4 6h16M4 12h16M4 18h16"
+  }), react_1["default"].createElement("path", {
+    className: showingNavigationDropdown ? "inline-flex" : "hidden",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "2",
+    d: "M6 18L18 6M6 6l12 12"
+  })))))), react_1["default"].createElement("div", {
+    className: (showingNavigationDropdown ? "block" : "hidden") + " sm:hidden"
+  }, react_1["default"].createElement("div", {
+    className: "pt-4 pb-1 border-t border-gray-200"
+  }, react_1["default"].createElement("div", {
+    className: "px-4"
+  }, react_1["default"].createElement("div", {
+    className: "font-medium text-base text-gray-800"
+  }, "guest")), react_1["default"].createElement("div", {
+    className: "mt-3 space-y-1"
+  }, react_1["default"].createElement(ResponsiveNavLink_1["default"], {
+    method: "get",
+    href: ziggy_js_1["default"]("login"),
+    as: "button"
+  }, "Login"))))), react_1["default"].createElement("main", null, children));
+}
+
+exports.default = Auth;
+
+/***/ }),
+
 /***/ "./resources/js/Layouts/Authenticated.tsx":
 /*!************************************************!*\
   !*** ./resources/js/Layouts/Authenticated.tsx ***!
@@ -7449,7 +7652,7 @@ function Authenticated(_a) {
 
   return react_1["default"].createElement("div", {
     className: "min-h-screen bg-gray-100"
-  }, auth.user ? react_1["default"].createElement("nav", {
+  }, react_1["default"].createElement("nav", {
     className: "bg-white border-b border-gray-100"
   }, react_1["default"].createElement("div", {
     className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -7538,95 +7741,7 @@ function Authenticated(_a) {
     method: "post",
     href: ziggy_js_1["default"]("logout"),
     as: "button"
-  }, "Log Out"))))) : // ログインしてない
-  react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("nav", {
-    className: "bg-white border-b border-gray-100"
-  }, react_1["default"].createElement("div", {
-    className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-  }, react_1["default"].createElement("div", {
-    className: "flex justify-between h-16"
-  }, react_1["default"].createElement("div", {
-    className: "flex"
-  }, react_1["default"].createElement("div", {
-    className: "flex-shrink-0 flex items-center"
-  }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-    href: "/"
-  }, react_1["default"].createElement(ApplicationLogo_1["default"], {
-    className: "block h-9 w-auto text-gray-500"
-  }))), react_1["default"].createElement("div", {
-    className: "hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
-  }, react_1["default"].createElement(NavLink_1["default"], {
-    href: ziggy_js_1["default"]("dashboard"),
-    active: ziggy_js_1["default"]().current("dashboard")
-  }, "Dashboard"))), react_1["default"].createElement("div", {
-    className: "hidden sm:flex sm:items-center sm:ml-6"
-  }, react_1["default"].createElement("div", {
-    className: "ml-3 relative"
-  }, react_1["default"].createElement(Dropdown_1["default"], null, react_1["default"].createElement(Dropdown_1["default"].Trigger, null, react_1["default"].createElement("span", {
-    className: "inline-flex rounded-md"
-  }, react_1["default"].createElement("button", {
-    type: "button",
-    className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-  }, "guest", react_1["default"].createElement("svg", {
-    className: "ml-2 -mr-0.5 h-4 w-4",
-    xmlns: "http://www.w3.org/2000/svg",
-    viewBox: "0 0 20 20",
-    fill: "currentColor"
-  }, react_1["default"].createElement("path", {
-    fillRule: "evenodd",
-    d: "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-    clipRule: "evenodd"
-  }))))), react_1["default"].createElement(Dropdown_1["default"].Content, null, react_1["default"].createElement(Dropdown_1["default"].Link, {
-    href: ziggy_js_1["default"]("login"),
-    method: "get",
-    as: "button"
-  }, "Login"))))), react_1["default"].createElement("div", {
-    className: "-mr-2 flex items-center sm:hidden"
-  }, react_1["default"].createElement("button", {
-    onClick: function onClick() {
-      return setShowingNavigationDropdown(function (previousState) {
-        return !previousState;
-      });
-    },
-    className: "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
-  }, react_1["default"].createElement("svg", {
-    className: "h-6 w-6",
-    stroke: "currentColor",
-    fill: "none",
-    viewBox: "0 0 24 24"
-  }, react_1["default"].createElement("path", {
-    className: !showingNavigationDropdown ? "inline-flex" : "hidden",
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "2",
-    d: "M4 6h16M4 12h16M4 18h16"
-  }), react_1["default"].createElement("path", {
-    className: showingNavigationDropdown ? "inline-flex" : "hidden",
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    strokeWidth: "2",
-    d: "M6 18L18 6M6 6l12 12"
-  })))))), react_1["default"].createElement("div", {
-    className: (showingNavigationDropdown ? "block" : "hidden") + " sm:hidden"
-  }, react_1["default"].createElement("div", {
-    className: "pt-2 pb-3 space-y-1"
-  }, react_1["default"].createElement(ResponsiveNavLink_1["default"], {
-    method: "post",
-    href: ziggy_js_1["default"]("dashboard"),
-    active: ziggy_js_1["default"]().current("dashboard")
-  }, "Dashboard")), react_1["default"].createElement("div", {
-    className: "pt-4 pb-1 border-t border-gray-200"
-  }, react_1["default"].createElement("div", {
-    className: "px-4"
-  }, react_1["default"].createElement("div", {
-    className: "font-medium text-base text-gray-800"
-  }, "guest")), react_1["default"].createElement("div", {
-    className: "mt-3 space-y-1"
-  }, react_1["default"].createElement(ResponsiveNavLink_1["default"], {
-    method: "post",
-    href: ziggy_js_1["default"]("login"),
-    as: "button"
-  }, "Login")))))), header && react_1["default"].createElement("header", {
+  }, "Log Out"))))), header && react_1["default"].createElement("header", {
     className: "bg-white shadow"
   }, react_1["default"].createElement("div", {
     className: "max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8"
@@ -7679,49 +7794,6 @@ exports.default = Guest;
 
 /***/ }),
 
-/***/ "./resources/js/Layouts/Header.tsx":
-/*!*****************************************!*\
-  !*** ./resources/js/Layouts/Header.tsx ***!
-  \*****************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var HeaderLogo_1 = __importDefault(__webpack_require__(/*! ../Components/HeaderLogo */ "./resources/js/Components/HeaderLogo.tsx"));
-
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-
-function Header(_a) {
-  return react_1["default"].createElement("div", {
-    className: "w-full h-20 flex flex-row justify-between  sm:pt-0 bg-gray-100"
-  }, react_1["default"].createElement("div", null, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-    href: "/"
-  }, react_1["default"].createElement(HeaderLogo_1["default"], {
-    className: "w-20 h-20 ml-10 fill-current text-gray-500"
-  }))), react_1["default"].createElement("div", null, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-    href: "/mypage"
-  }, react_1["default"].createElement("p", {
-    className: "w-20 h-20 ml-10 fill-current text-gray-500"
-  }, "Mypage"))));
-}
-
-exports.default = Header;
-
-/***/ }),
-
 /***/ "./resources/js/Pages/Article/createArticle.tsx":
 /*!******************************************************!*\
   !*** ./resources/js/Pages/Article/createArticle.tsx ***!
@@ -7754,15 +7826,18 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var Header_1 = __importDefault(__webpack_require__(/*! @/Layouts/Header */ "./resources/js/Layouts/Header.tsx"));
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
 var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
 
 function Article(_a) {
-  var articles = _a.articles;
-  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(Header_1["default"], null), react_1["default"].createElement("section", {
+  var auth = _a.auth,
+      articles = _a.articles;
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
     className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
   }, react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
@@ -7813,16 +7888,19 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var Header_1 = __importDefault(__webpack_require__(/*! @/Layouts/Header */ "./resources/js/Layouts/Header.tsx"));
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
 function Article(_a) {
-  var article = _a.article;
+  var auth = _a.auth,
+      article = _a.article;
   var title = article.title,
       body = article.body,
       pic1 = article.pic1,
       user_id = article.user_id,
       category_id = article.category_id;
-  return react_1["default"].createElement(Header_1["default"], null, react_1["default"].createElement("section", {
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
     className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
   }, react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
@@ -9599,12 +9677,15 @@ var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./nod
 
 var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
 
-var Header_1 = __importDefault(__webpack_require__(/*! @/Layouts/Header */ "./resources/js/Layouts/Header.tsx"));
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
 function Mypage(_a) {
-  var user = _a.user;
+  var auth = _a.auth,
+      user = _a.user;
   var processing = inertia_react_1.useForm({}).processing;
-  return react_1["default"].createElement(Header_1["default"], null, react_1["default"].createElement("section", {
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
     className: "pt-6 text-center"
   }, react_1["default"].createElement("p", {
     className: "text-center"
@@ -9649,7 +9730,7 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var Header_1 = __importDefault(__webpack_require__(/*! @/Layouts/Header */ "./resources/js/Layouts/Header.tsx"));
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
 var editName_1 = __importDefault(__webpack_require__(/*! ./editName */ "./resources/js/Pages/Mypage/editName.tsx"));
 
@@ -9661,12 +9742,15 @@ var editPassword_1 = __importDefault(__webpack_require__(/*! ./editPassword */ "
 
 function Profile(_a) {
   var user = _a.user,
+      auth = _a.auth,
       status = _a.status;
   var name = user.name,
       email = user.email,
       icon = user.icon,
       password = user.password;
-  return react_1["default"].createElement(Header_1["default"], null, react_1["default"].createElement("section", {
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
     className: "pt-6"
   }, status && react_1["default"].createElement("div", {
     className: "mb-4 font-medium text-sm text-green-600"
