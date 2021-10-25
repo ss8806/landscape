@@ -7450,7 +7450,7 @@ function Auth(_a) {
     href: ziggy_js_1["default"]("logout"),
     method: "post",
     as: "button"
-  }, "Log Out"))))), react_1["default"].createElement("div", {
+  }, "\u30ED\u30B0\u30A2\u30A6\u30C8"))))), react_1["default"].createElement("div", {
     className: "-mr-2 flex items-center sm:hidden"
   }, react_1["default"].createElement("button", {
     onClick: function onClick() {
@@ -7490,7 +7490,7 @@ function Auth(_a) {
     method: "post",
     href: ziggy_js_1["default"]("logout"),
     as: "button"
-  }, "Log Out"))))) : // ログインしてない場合
+  }, "\u30ED\u30B0\u30A2\u30A6\u30C8"))))) : // ログインしてない場合
   react_1["default"].createElement("nav", {
     className: "bg-white border-b border-gray-100"
   }, react_1["default"].createElement("div", {
@@ -7502,10 +7502,17 @@ function Auth(_a) {
   }, react_1["default"].createElement("div", {
     className: "flex-shrink-0 flex items-center"
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    href: "/",
+    className: "font-body"
+  }, "Articles"))), react_1["default"].createElement("div", {
+    className: "flex justify-between h-16"
+  }, react_1["default"].createElement("div", {
+    className: "flex"
+  }, react_1["default"].createElement("div", {
+    className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+  }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: "/"
-  }, react_1["default"].createElement(ApplicationLogo_1["default"], {
-    className: "block h-9 w-auto text-gray-500"
-  })))), react_1["default"].createElement("div", {
+  }, "\u8A18\u4E8B\u3092\u6295\u7A3F\u3059\u308B"))), react_1["default"].createElement("div", {
     className: "hidden sm:flex sm:items-center sm:ml-6"
   }, react_1["default"].createElement("div", {
     className: "ml-3 relative"
@@ -7514,7 +7521,7 @@ function Auth(_a) {
   }, react_1["default"].createElement("button", {
     type: "button",
     className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-  }, "guest", react_1["default"].createElement("svg", {
+  }, "\u30B2\u30B9\u30C8", react_1["default"].createElement("svg", {
     className: "ml-2 -mr-0.5 h-4 w-4",
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 20 20",
@@ -7527,7 +7534,7 @@ function Auth(_a) {
     href: ziggy_js_1["default"]("login"),
     method: "get",
     as: "button"
-  }, "Login"))))), react_1["default"].createElement("div", {
+  }, "\u30ED\u30B0\u30A4\u30F3"))))), react_1["default"].createElement("div", {
     className: "-mr-2 flex items-center sm:hidden"
   }, react_1["default"].createElement("button", {
     onClick: function onClick() {
@@ -7553,7 +7560,7 @@ function Auth(_a) {
     strokeLinejoin: "round",
     strokeWidth: "2",
     d: "M6 18L18 6M6 6l12 12"
-  })))))), react_1["default"].createElement("div", {
+  }))))))), react_1["default"].createElement("div", {
     className: (showingNavigationDropdown ? "block" : "hidden") + " sm:hidden"
   }, react_1["default"].createElement("div", {
     className: "pt-4 pb-1 border-t border-gray-200"
@@ -7561,13 +7568,23 @@ function Auth(_a) {
     className: "px-4"
   }, react_1["default"].createElement("div", {
     className: "font-medium text-base text-gray-800"
-  }, "guest")), react_1["default"].createElement("div", {
+  }, "\u30B2\u30B9\u30C8")), react_1["default"].createElement("div", {
     className: "mt-3 space-y-1"
   }, react_1["default"].createElement(ResponsiveNavLink_1["default"], {
     method: "get",
     href: ziggy_js_1["default"]("login"),
     as: "button"
-  }, "Login"))))), react_1["default"].createElement("main", null, children));
+  }, "\u30ED\u30B0\u30A4\u30F3"))))), react_1["default"].createElement("main", null, children), react_1["default"].createElement("footer", {
+    className: "bg-white border-b border-gray-100"
+  }, react_1["default"].createElement("div", {
+    className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+  }, react_1["default"].createElement("div", {
+    className: "flex justify-end h-16"
+  }, react_1["default"].createElement("div", {
+    className: "flex"
+  }, react_1["default"].createElement("div", {
+    className: "flex-shrink-0 flex items-center"
+  }, "\xA9 2021. All rights reserved."))))));
 }
 
 exports.default = Auth;
@@ -7841,9 +7858,7 @@ function Article(_a) {
     className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
   }, react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
-  }, react_1["default"].createElement("h1", {
-    className: "text-4xl uppercase font-bold from-current mb-8"
-  }, "Articles"), react_1["default"].createElement("div", {
+  }, react_1["default"].createElement("div", {
     className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
   }, articles.map(function (article) {
     return react_1["default"].createElement("div", {

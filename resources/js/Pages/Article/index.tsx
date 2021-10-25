@@ -23,9 +23,6 @@ export default function Article({ auth, articles }: Props) {
         <Auth auth={auth}>
             <section className="min-h-screen bg-yellow-400 flex justify-center items-center py-20">
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
-                    <h1 className="text-4xl uppercase font-bold from-current mb-8">
-                        Articles
-                    </h1>
                     <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0">
                         {articles.map((article: Article) => {
                             return (

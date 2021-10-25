@@ -68,7 +68,7 @@ export default function Auth({ auth, children }: Props) {
                                                 method="post"
                                                 as="button"
                                             >
-                                                Log Out
+                                                ログアウト
                                             </Dropdown.Link>
                                         </Dropdown.Content>
                                     </Dropdown>
@@ -137,7 +137,7 @@ export default function Auth({ auth, children }: Props) {
                                     href={route("logout")}
                                     as="button"
                                 >
-                                    Log Out
+                                    ログアウト
                                 </ResponsiveNavLink>
                             </div>
                         </div>
@@ -146,95 +146,106 @@ export default function Auth({ auth, children }: Props) {
             ) : (
                 // ログインしてない場合
                 <nav className="bg-white border-b border-gray-100">
-                    {/* ロゴ */}
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex justify-between h-16">
+                            {/* ロゴ */}
                             <div className="flex">
                                 <div className="flex-shrink-0 flex items-center">
-                                    <InertiaLink href="/">
-                                        <ApplicationLogo className="block h-9 w-auto text-gray-500" />
+                                    <InertiaLink href="/" className="font-body">
+                                        Articles
                                     </InertiaLink>
                                 </div>
                             </div>
-
-                            <div className="hidden sm:flex sm:items-center sm:ml-6">
-                                <div className="ml-3 relative">
-                                    <Dropdown>
-                                        <Dropdown.Trigger>
-                                            <span className="inline-flex rounded-md">
-                                                <button
-                                                    type="button"
-                                                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
-                                                >
-                                                    guest
-                                                    <svg
-                                                        className="ml-2 -mr-0.5 h-4 w-4"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        viewBox="0 0 20 20"
-                                                        fill="currentColor"
-                                                    >
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                            clipRule="evenodd"
-                                                        />
-                                                    </svg>
-                                                </button>
-                                            </span>
-                                        </Dropdown.Trigger>
-
-                                        <Dropdown.Content>
-                                            <Dropdown.Link
-                                                href={route("login")}
-                                                method="get"
-                                                as="button"
-                                            >
-                                                Login
-                                            </Dropdown.Link>
-                                        </Dropdown.Content>
-                                    </Dropdown>
+                            {/* 入れ子で flex between */}
+                            <div className="flex justify-between h-16">
+                                <div className="flex">
+                                    <div className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                        <InertiaLink href="/">
+                                            記事を投稿する
+                                        </InertiaLink>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="-mr-2 flex items-center sm:hidden">
-                                <button
-                                    onClick={() =>
-                                        setShowingNavigationDropdown(
-                                            (previousState) => !previousState
-                                        )
-                                    }
-                                    className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
-                                >
-                                    <svg
-                                        className="h-6 w-6"
-                                        stroke="currentColor"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
+                                <div className="hidden sm:flex sm:items-center sm:ml-6">
+                                    <div className="ml-3 relative">
+                                        <Dropdown>
+                                            <Dropdown.Trigger>
+                                                <span className="inline-flex rounded-md">
+                                                    <button
+                                                        type="button"
+                                                        className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                                    >
+                                                        ゲスト
+                                                        <svg
+                                                            className="ml-2 -mr-0.5 h-4 w-4"
+                                                            xmlns="http://www.w3.org/2000/svg"
+                                                            viewBox="0 0 20 20"
+                                                            fill="currentColor"
+                                                        >
+                                                            <path
+                                                                fillRule="evenodd"
+                                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                                clipRule="evenodd"
+                                                            />
+                                                        </svg>
+                                                    </button>
+                                                </span>
+                                            </Dropdown.Trigger>
+
+                                            <Dropdown.Content>
+                                                <Dropdown.Link
+                                                    href={route("login")}
+                                                    method="get"
+                                                    as="button"
+                                                >
+                                                    ログイン
+                                                </Dropdown.Link>
+                                            </Dropdown.Content>
+                                        </Dropdown>
+                                    </div>
+                                </div>
+
+                                <div className="-mr-2 flex items-center sm:hidden">
+                                    <button
+                                        onClick={() =>
+                                            setShowingNavigationDropdown(
+                                                (previousState) =>
+                                                    !previousState
+                                            )
+                                        }
+                                        className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
                                     >
-                                        <path
-                                            className={
-                                                !showingNavigationDropdown
-                                                    ? "inline-flex"
-                                                    : "hidden"
-                                            }
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M4 6h16M4 12h16M4 18h16"
-                                        />
-                                        <path
-                                            className={
-                                                showingNavigationDropdown
-                                                    ? "inline-flex"
-                                                    : "hidden"
-                                            }
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth="2"
-                                            d="M6 18L18 6M6 6l12 12"
-                                        />
-                                    </svg>
-                                </button>
+                                        <svg
+                                            className="h-6 w-6"
+                                            stroke="currentColor"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                className={
+                                                    !showingNavigationDropdown
+                                                        ? "inline-flex"
+                                                        : "hidden"
+                                                }
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M4 6h16M4 12h16M4 18h16"
+                                            />
+                                            <path
+                                                className={
+                                                    showingNavigationDropdown
+                                                        ? "inline-flex"
+                                                        : "hidden"
+                                                }
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth="2"
+                                                d="M6 18L18 6M6 6l12 12"
+                                            />
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -248,7 +259,7 @@ export default function Auth({ auth, children }: Props) {
                         <div className="pt-4 pb-1 border-t border-gray-200">
                             <div className="px-4">
                                 <div className="font-medium text-base text-gray-800">
-                                    guest
+                                    ゲスト
                                 </div>
                             </div>
 
@@ -258,7 +269,7 @@ export default function Auth({ auth, children }: Props) {
                                     href={route("login")}
                                     as="button"
                                 >
-                                    Login
+                                    ログイン
                                 </ResponsiveNavLink>
                             </div>
                         </div>
@@ -266,6 +277,17 @@ export default function Auth({ auth, children }: Props) {
                 </nav>
             )}
             <main>{children}</main>
+            <footer className="bg-white border-b border-gray-100">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex justify-end h-16">
+                        <div className="flex">
+                            <div className="flex-shrink-0 flex items-center">
+                                © 2021. All rights reserved.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     );
 }
