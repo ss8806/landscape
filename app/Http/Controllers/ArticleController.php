@@ -37,15 +37,20 @@ class ArticleController extends Controller
 
     public function index()
     {
+       
         return Inertia::render('Article/index', [
             'articles' => Article::all()->map(function ($article) {
+                $user = $article->user()->get();
+                $category = $article->category()->get();
                 return [
                     'id' => $article->id,
                     'title' => $article->title,
                     'body' => $article->body,
                     'pic1' => $article->pic1,
-                    'user_id' => $article->user_id,
-                    'category_id' => $article->category_id,
+                    // 'user_id' => $article->user_id,
+                    'user_id' => $article->user()->get(),
+                    // 'category_id' => $article->category_id,
+                    'category_id' => $article->category()->get(),
                     'show_url' => URL::route('showArticle', $article),
                 ];
             }),
@@ -85,16 +90,21 @@ class ArticleController extends Controller
      */
     public function showArticle(Article $article)
     {
-        return Inertia::render('Article/showArticle',['article' => $article]);
-        // return Inertia::render('Article/showArticle', [
-        //     'article' => [
-        //         'title' => $article->title,
-        //         'body' => $article->body,
-        //         'pic1' => $article->pic1,
-        //         'user_id' => $article->user_id,
-        //         'category_id' => $article->category_id,
-        //     ],
-        // ]);
+        $user = $article->user()->get();
+        $category = $article->category()->get();
+
+        //return Inertia::render('Article/showArticle',['article' => $article]);
+        return Inertia::render('Article/showArticle', [
+            'article' => [
+                'title' => $article->title,
+                'body' => $article->body,
+                'pic1' => $article->pic1,
+                // 'user_id' => $article->user_id,
+                'user_id' => $user,
+                // 'category_id' => $article->category_id,
+                'category_id' => $category,
+            ],
+        ]);
     }
 
     /**

@@ -2,8 +2,6 @@
 
 namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,9 +9,16 @@ class Article extends Model
 {
     use HasFactory;
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+        // return $this->belongsTo('App\Models\Category');
+    }
+
     public function category(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo(Category::class);
+        // return $this->belongsTo('App\Models\Category');
     }
 
     public function scopeOrderById($query)

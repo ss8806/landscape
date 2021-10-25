@@ -7388,8 +7388,6 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var ApplicationLogo_1 = __importDefault(__webpack_require__(/*! ../Components/ApplicationLogo */ "./resources/js/Components/ApplicationLogo.tsx"));
-
 var Dropdown_1 = __importDefault(__webpack_require__(/*! ../Components/Dropdown */ "./resources/js/Components/Dropdown.tsx"));
 
 var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
@@ -7421,10 +7419,17 @@ function Auth(_a) {
   }, react_1["default"].createElement("div", {
     className: "flex-shrink-0 flex items-center"
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    href: "/",
+    className: "font-serif text-2xl"
+  }, "Articles"))), react_1["default"].createElement("div", {
+    className: "flex justify-between h-16"
+  }, react_1["default"].createElement("div", {
+    className: "flex"
+  }, react_1["default"].createElement("div", {
+    className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+  }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: "/"
-  }, react_1["default"].createElement(ApplicationLogo_1["default"], {
-    className: "block h-9 w-auto text-gray-500"
-  })))), react_1["default"].createElement("div", {
+  }, "\u8A18\u4E8B\u3092\u6295\u7A3F\u3059\u308B"))), react_1["default"].createElement("div", {
     className: "hidden sm:flex sm:items-center sm:ml-6"
   }, react_1["default"].createElement("div", {
     className: "ml-3 relative"
@@ -7450,7 +7455,7 @@ function Auth(_a) {
     href: ziggy_js_1["default"]("logout"),
     method: "post",
     as: "button"
-  }, "\u30ED\u30B0\u30A2\u30A6\u30C8"))))), react_1["default"].createElement("div", {
+  }, "\u30ED\u30B0\u30A2\u30A6\u30C8")))))), react_1["default"].createElement("div", {
     className: "-mr-2 flex items-center sm:hidden"
   }, react_1["default"].createElement("button", {
     onClick: function onClick() {
@@ -7503,7 +7508,7 @@ function Auth(_a) {
     className: "flex-shrink-0 flex items-center"
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: "/",
-    className: "font-body"
+    className: "font-serif text-2xl"
   }, "Articles"))), react_1["default"].createElement("div", {
     className: "flex justify-between h-16"
   }, react_1["default"].createElement("div", {
@@ -7574,7 +7579,9 @@ function Auth(_a) {
     method: "get",
     href: ziggy_js_1["default"]("login"),
     as: "button"
-  }, "\u30ED\u30B0\u30A4\u30F3"))))), react_1["default"].createElement("main", null, children), react_1["default"].createElement("footer", {
+  }, "\u30ED\u30B0\u30A4\u30F3"))))), react_1["default"].createElement("main", {
+    className: "min-h-80"
+  }, children), react_1["default"].createElement("footer", {
     className: "bg-white border-b border-gray-100"
   }, react_1["default"].createElement("div", {
     className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -7869,7 +7876,7 @@ function Article(_a) {
       src: "https://i.imgur.com/lmYYa2s.png"
     }), react_1["default"].createElement("div", {
       className: ""
-    }, article.category_id), react_1["default"].createElement("div", {
+    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", article.category_id[0].name), react_1["default"].createElement("div", {
       className: ""
     }, article.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
       as: "button",
@@ -7921,7 +7928,7 @@ function Article(_a) {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("h1", {
     className: "text-4xl uppercase font-bold from-current mb-8"
-  }, react_1["default"].createElement("p", null, pic1), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u672C\u6587:", body), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user_id), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id)), react_1["default"].createElement("div", {
+  }, react_1["default"].createElement("p", null, pic1), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u672C\u6587:", body), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user_id[0].name), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name)), react_1["default"].createElement("div", {
     className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
   }))));
 }

@@ -12,8 +12,13 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans],
-                body: ["serif"],
+                serif: ["serif"],
             },
+        },
+        minHeight: {
+            0: "0",
+            80: "80vh",
+            100: "100vh",
         },
     },
 

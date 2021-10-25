@@ -6,7 +6,6 @@ use Inertia\Inertia;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes

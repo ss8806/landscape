@@ -10,7 +10,8 @@ type Article = {
     id: number;
     title: string;
     pic1: string;
-    category_id: number;
+    user_id: string;
+    category_id: string;
 };
 
 export default function Article({ auth, article }: Props) {
@@ -23,8 +24,8 @@ export default function Article({ auth, article }: Props) {
                         <p>{pic1}</p>
                         <p>タイトル：{title}</p>
                         <p>本文:{body}</p>
-                        <p>投稿者:{user_id}</p>
-                        <p>カテゴリー:{category_id}</p>
+                        <p>投稿者:{user_id[0].name}</p>
+                        <p>カテゴリー:{category_id[0].name}</p>
                     </h1>
                     <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"></div>
                 </div>

@@ -6711,14 +6711,14 @@ select {
 }
 
 .min-h-0 {
-  min-height: 0px;
+  min-height: 0;
 }
 
-.min-h-full {
-  min-height: 100%;
+.min-h-80 {
+  min-height: 80vh;
 }
 
-.min-h-screen {
+.min-h-100 {
   min-height: 100vh;
 }
 
@@ -22513,15 +22513,11 @@ select {
 }
 
 .font-serif {
-  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: serif;
 }
 
 .font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
-.font-body {
-  font-family: serif;
 }
 
 .text-xs {
@@ -38081,14 +38077,14 @@ select {
   }
 
   .sm\:min-h-0 {
-    min-height: 0px;
+    min-height: 0;
   }
 
-  .sm\:min-h-full {
-    min-height: 100%;
+  .sm\:min-h-80 {
+    min-height: 80vh;
   }
 
-  .sm\:min-h-screen {
+  .sm\:min-h-100 {
     min-height: 100vh;
   }
 
@@ -53817,15 +53813,11 @@ select {
   }
 
   .sm\:font-serif {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: serif;
   }
 
   .sm\:font-mono {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  }
-
-  .sm\:font-body {
-    font-family: serif;
   }
 
   .sm\:text-xs {
@@ -69373,14 +69365,14 @@ select {
   }
 
   .md\:min-h-0 {
-    min-height: 0px;
+    min-height: 0;
   }
 
-  .md\:min-h-full {
-    min-height: 100%;
+  .md\:min-h-80 {
+    min-height: 80vh;
   }
 
-  .md\:min-h-screen {
+  .md\:min-h-100 {
     min-height: 100vh;
   }
 
@@ -85109,15 +85101,11 @@ select {
   }
 
   .md\:font-serif {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: serif;
   }
 
   .md\:font-mono {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  }
-
-  .md\:font-body {
-    font-family: serif;
   }
 
   .md\:text-xs {
@@ -100665,14 +100653,14 @@ select {
   }
 
   .lg\:min-h-0 {
-    min-height: 0px;
+    min-height: 0;
   }
 
-  .lg\:min-h-full {
-    min-height: 100%;
+  .lg\:min-h-80 {
+    min-height: 80vh;
   }
 
-  .lg\:min-h-screen {
+  .lg\:min-h-100 {
     min-height: 100vh;
   }
 
@@ -116401,15 +116389,11 @@ select {
   }
 
   .lg\:font-serif {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: serif;
   }
 
   .lg\:font-mono {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  }
-
-  .lg\:font-body {
-    font-family: serif;
   }
 
   .lg\:text-xs {
@@ -131957,14 +131941,14 @@ select {
   }
 
   .xl\:min-h-0 {
-    min-height: 0px;
+    min-height: 0;
   }
 
-  .xl\:min-h-full {
-    min-height: 100%;
+  .xl\:min-h-80 {
+    min-height: 80vh;
   }
 
-  .xl\:min-h-screen {
+  .xl\:min-h-100 {
     min-height: 100vh;
   }
 
@@ -147693,15 +147677,11 @@ select {
   }
 
   .xl\:font-serif {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: serif;
   }
 
   .xl\:font-mono {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  }
-
-  .xl\:font-body {
-    font-family: serif;
   }
 
   .xl\:text-xs {
@@ -163249,14 +163229,14 @@ select {
   }
 
   .\32xl\:min-h-0 {
-    min-height: 0px;
+    min-height: 0;
   }
 
-  .\32xl\:min-h-full {
-    min-height: 100%;
+  .\32xl\:min-h-80 {
+    min-height: 80vh;
   }
 
-  .\32xl\:min-h-screen {
+  .\32xl\:min-h-100 {
     min-height: 100vh;
   }
 
@@ -178985,15 +178965,11 @@ select {
   }
 
   .\32xl\:font-serif {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: serif;
   }
 
   .\32xl\:font-mono {
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  }
-
-  .\32xl\:font-body {
-    font-family: serif;
   }
 
   .\32xl\:text-xs {

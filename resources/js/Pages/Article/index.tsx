@@ -13,8 +13,7 @@ type Article = {
     id: number;
     title: string;
     show_url: string;
-    user_id: number;
-    category_id: number;
+    category_id: any;
     pic1: string;
 };
 
@@ -32,7 +31,8 @@ export default function Article({ auth, articles }: Props) {
                                         src="https://i.imgur.com/lmYYa2s.png"
                                     />
                                     <div className="">
-                                        {article.category_id}
+                                        カテゴリー：
+                                        {article.category_id[0].name}
                                     </div>
                                     <div className="">{article.title}</div>
 
