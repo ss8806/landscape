@@ -38,7 +38,7 @@ export default function Article({ auth, articles }: Props) {
 
                                     <InertiaLink
                                         as="button"
-                                        href={route("showArticle", article.id)}
+                                        href={route("show", article.id)}
                                     >
                                         詳細を見る
                                     </InertiaLink>

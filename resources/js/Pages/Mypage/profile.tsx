@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState, useEffect } from "react";
+import React, { SyntheticEvent } from "react";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import Auth from "@/Layouts/Auth";
 import EditName from "./editName";

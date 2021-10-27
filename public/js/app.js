@@ -6968,7 +6968,8 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
-var react_2 = __webpack_require__(/*! @headlessui/react */ "./node_modules/@headlessui/react/dist/headlessui.esm.js");
+var react_2 = __webpack_require__(/*! @headlessui/react */ "./node_modules/@headlessui/react/dist/headlessui.esm.js"); // コンテキスト生成
+
 
 var DropDownContext = react_1["default"].createContext({});
 
@@ -7016,29 +7017,29 @@ var Trigger = function Trigger(_a) {
 
 var Content = function Content(_a) {
   var _b = _a.align,
-      align = _b === void 0 ? 'right' : _b,
+      align = _b === void 0 ? "right" : _b,
       _c = _a.width,
-      width = _c === void 0 ? '48' : _c,
+      width = _c === void 0 ? "48" : _c,
       _d = _a.contentClasses,
-      contentClasses = _d === void 0 ? 'py-1 bg-white' : _d,
+      contentClasses = _d === void 0 ? "py-1 bg-white" : _d,
       children = _a.children;
 
   var _e = react_1.useContext(DropDownContext),
       open = _e.open,
       setOpen = _e.setOpen;
 
-  var alignmentClasses = 'origin-top';
+  var alignmentClasses = "origin-top";
 
-  if (align === 'left') {
-    alignmentClasses = 'origin-top-left left-0';
-  } else if (align === 'right') {
-    alignmentClasses = 'origin-top-right right-0';
+  if (align === "left") {
+    alignmentClasses = "origin-top-left left-0";
+  } else if (align === "right") {
+    alignmentClasses = "origin-top-right right-0";
   }
 
-  var widthClasses = '';
+  var widthClasses = "";
 
-  if (width === '48') {
-    widthClasses = 'w-48';
+  if (width === "48") {
+    widthClasses = "w-48";
   }
 
   return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(react_2.Transition, {
@@ -7061,11 +7062,11 @@ var Content = function Content(_a) {
 
 var Link = function Link(_a) {
   var _b = _a.href,
-      href = _b === void 0 ? '' : _b,
+      href = _b === void 0 ? "" : _b,
       _c = _a.method,
-      method = _c === void 0 ? 'post' : _c,
+      method = _c === void 0 ? "post" : _c,
       _d = _a.as,
-      as = _d === void 0 ? 'a' : _d,
+      as = _d === void 0 ? "a" : _d,
       children = _a.children;
   return react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: href,
@@ -7295,6 +7296,182 @@ exports.default = ResponsiveNavLink;
 
 /***/ }),
 
+/***/ "./resources/js/Components/Selectbox.tsx":
+/*!***********************************************!*\
+  !*** ./resources/js/Components/Selectbox.tsx ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Selectbox = function Selectbox(_a) {
+  var id = _a.id,
+      placeholder = _a.placeholder,
+      name = _a.name,
+      value = _a.value,
+      className = _a.className,
+      autoComplete = _a.autoComplete,
+      required = _a.required,
+      isFocused = _a.isFocused,
+      children = _a.children,
+      handleChange = _a.handleChange;
+  var select = react_1.useRef(null);
+  react_1.useEffect(function () {
+    var _a;
+
+    if (isFocused) {
+      (_a = select.current) === null || _a === void 0 ? void 0 : _a.focus();
+    }
+  }, []);
+  return react_1["default"].createElement("div", {
+    className: "flex flex-col items-start"
+  }, react_1["default"].createElement("select", {
+    id: id,
+    name: name,
+    placeholder: placeholder,
+    value: value,
+    className: "border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm " + className,
+    autoComplete: autoComplete,
+    required: required,
+    onChange: function onChange(e) {
+      return handleChange(e);
+    }
+  }, children));
+};
+
+exports.default = Selectbox;
+
+/***/ }),
+
+/***/ "./resources/js/Components/Textarea.tsx":
+/*!**********************************************!*\
+  !*** ./resources/js/Components/Textarea.tsx ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Textarea = function Textarea(_a) {
+  var id = _a.id,
+      placeholder = _a.placeholder,
+      name = _a.name,
+      value = _a.value,
+      className = _a.className,
+      autoComplete = _a.autoComplete,
+      required = _a.required,
+      isFocused = _a.isFocused,
+      handleChange = _a.handleChange;
+  var textarea = react_1.useRef(null);
+  react_1.useEffect(function () {
+    var _a;
+
+    if (isFocused) {
+      (_a = textarea.current) === null || _a === void 0 ? void 0 : _a.focus();
+    }
+  }, []);
+  return react_1["default"].createElement("div", {
+    className: "flex flex-col items-start"
+  }, react_1["default"].createElement("textarea", {
+    id: id,
+    name: name,
+    placeholder: placeholder,
+    value: value,
+    className: "border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm " + className,
+    ref: textarea,
+    autoComplete: autoComplete,
+    required: required,
+    onChange: function onChange(e) {
+      return handleChange(e);
+    }
+  }));
+};
+
+exports.default = Textarea;
+
+/***/ }),
+
 /***/ "./resources/js/Components/ValidationErrors.tsx":
 /*!******************************************************!*\
   !*** ./resources/js/Components/ValidationErrors.tsx ***!
@@ -7428,7 +7605,7 @@ function Auth(_a) {
   }, react_1["default"].createElement("div", {
     className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-    href: "/"
+    href: "/create"
   }, "\u8A18\u4E8B\u3092\u6295\u7A3F\u3059\u308B"))), react_1["default"].createElement("div", {
     className: "hidden sm:flex sm:items-center sm:ml-6"
   }, react_1["default"].createElement("div", {
@@ -7516,7 +7693,7 @@ function Auth(_a) {
   }, react_1["default"].createElement("div", {
     className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-    href: "/"
+    href: "/create"
   }, "\u8A18\u4E8B\u3092\u6295\u7A3F\u3059\u308B"))), react_1["default"].createElement("div", {
     className: "hidden sm:flex sm:items-center sm:ml-6"
   }, react_1["default"].createElement("div", {
@@ -7795,8 +7972,6 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var ApplicationLogo_1 = __importDefault(__webpack_require__(/*! ../Components/ApplicationLogo */ "./resources/js/Components/ApplicationLogo.tsx"));
-
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
@@ -7804,12 +7979,11 @@ var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./nod
 function Guest(_a) {
   var children = _a.children;
   return react_1["default"].createElement("div", {
-    className: "min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100"
+    className: "min-h-100 flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100"
   }, react_1["default"].createElement("div", null, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-    href: "/"
-  }, react_1["default"].createElement(ApplicationLogo_1["default"], {
-    className: "w-20 h-20 fill-current text-gray-500"
-  }))), react_1["default"].createElement("div", {
+    href: "/",
+    className: "font-serif text-4xl"
+  }, "Articles")), react_1["default"].createElement("div", {
     className: "w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"
   }, children));
 }
@@ -7818,14 +7992,556 @@ exports.default = Guest;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Article/createArticle.tsx":
-/*!******************************************************!*\
-  !*** ./resources/js/Pages/Article/createArticle.tsx ***!
-  \******************************************************/
-/***/ (() => {
+/***/ "./resources/js/Pages/Article/create.tsx":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Article/create.tsx ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
+
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+var __generator = this && this.__generator || function (thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function sent() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  },
+      f,
+      y,
+      t,
+      g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+    return this;
+  }), g;
+
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
+
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
+
+          case 7:
+            op = _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
+      }
+    }
+
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var Input_1 = __importDefault(__webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.tsx"));
+
+var Textarea_1 = __importDefault(__webpack_require__(/*! @/Components/Textarea */ "./resources/js/Components/Textarea.tsx"));
+
+var ValidationErrors_1 = __importDefault(__webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.tsx"));
+
+var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
+
+var Selectbox_1 = __importDefault(__webpack_require__(/*! @/Components/Selectbox */ "./resources/js/Components/Selectbox.tsx")); // type Article = {
+//     id: number;
+//     title: string;
+//     category_id: any;
+//     pic1: string;
+// };
+
+
+function createArticle(_a) {
+  var _this = this;
+
+  var auth = _a.auth,
+      categories = _a.categories;
+
+  var _b = inertia_react_1.useForm({
+    title: "",
+    body: "",
+    category_id: ""
+  }),
+      data = _b.data,
+      setData = _b.setData,
+      post = _b.post,
+      processing = _b.processing,
+      errors = _b.errors;
+
+  var onHandleChange = function onHandleChange(event) {
+    setData(event.target.name, event.target.value);
+  };
+
+  var handleSubmit = function handleSubmit(e) {
+    return __awaiter(_this, void 0, void 0, function () {
+      return __generator(this, function (_a) {
+        e.preventDefault();
+        post("/store");
+        return [2
+        /*return*/
+        ];
+      });
+    });
+  };
+
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
+    className: "min-h-screen bg-yellow-400 py-20"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("div", {
+    className: "text-center"
+  }, react_1["default"].createElement(ValidationErrors_1["default"], {
+    errors: errors
+  }), react_1["default"].createElement("form", {
+    onSubmit: handleSubmit
+  }, react_1["default"].createElement("label", {
+    htmlFor: "inputTitle"
+  }, "\u30BF\u30A4\u30C8\u30EB"), react_1["default"].createElement(Input_1["default"], {
+    id: "inputTitle",
+    type: "text",
+    name: "title",
+    className: "w-3/4 mt-1 mb-1 block mx-auto",
+    placeholder: "\u30BF\u30A4\u30C8\u30EB",
+    value: data.title,
+    required: true,
+    handleChange: onHandleChange
+  }), react_1["default"].createElement("label", {
+    htmlFor: "inputTitle"
+  }, "\u30AB\u30C6\u30B4\u30EA\u30FC"), react_1["default"].createElement(Selectbox_1["default"], {
+    id: "inputTitle",
+    name: "category_id",
+    className: "w-3/4 mt-1 mb-1 block mx-auto",
+    value: data.category_id,
+    required: true,
+    handleChange: onHandleChange
+  }, react_1["default"].createElement("option", {
+    value: "",
+    className: "hidden"
+  }, "\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044"), categories.map(function (category) {
+    return react_1["default"].createElement("option", {
+      key: category.id,
+      value: category.id
+    }, category.name);
+  })), react_1["default"].createElement("label", {
+    htmlFor: "inputBody"
+  }, "\u672C\u6587"), react_1["default"].createElement(Textarea_1["default"], {
+    id: "inputBody",
+    name: "body",
+    className: "w-3/4 h-64 mt-1 mb-1 block mx-auto",
+    placeholder: "\u672C\u6587",
+    value: data.body,
+    required: true,
+    handleChange: onHandleChange
+  }), react_1["default"].createElement(Button_1["default"], {
+    className: "ml-4",
+    processing: processing
+  }, "\u6295\u7A3F\u3059\u308B"))))));
+}
+
+exports.default = createArticle;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Article/edit.tsx":
+/*!*********************************************!*\
+  !*** ./resources/js/Pages/Article/edit.tsx ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+var __generator = this && this.__generator || function (thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function sent() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  },
+      f,
+      y,
+      t,
+      g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+    return this;
+  }), g;
+
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
+
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
+
+          case 7:
+            op = _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
+      }
+    }
+
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var Input_1 = __importDefault(__webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.tsx"));
+
+var Textarea_1 = __importDefault(__webpack_require__(/*! @/Components/Textarea */ "./resources/js/Components/Textarea.tsx"));
+
+var ValidationErrors_1 = __importDefault(__webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.tsx"));
+
+var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
+
+var Selectbox_1 = __importDefault(__webpack_require__(/*! @/Components/Selectbox */ "./resources/js/Components/Selectbox.tsx"));
+
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+
+function editArticle(_a) {
+  var _this = this;
+
+  var auth = _a.auth,
+      article = _a.article,
+      categories = _a.categories;
+  var title = article.title,
+      body = article.body,
+      category_id = article.category_id;
+
+  var _b = inertia_react_1.useForm({
+    title: title,
+    body: body,
+    category_id: category_id
+  }),
+      data = _b.data,
+      setData = _b.setData,
+      put = _b.put,
+      processing = _b.processing,
+      errors = _b.errors;
+
+  var onHandleChange = function onHandleChange(event) {
+    setData(event.target.name, event.target.value);
+  };
+
+  var handleSubmit = function handleSubmit(e) {
+    return __awaiter(_this, void 0, void 0, function () {
+      return __generator(this, function (_a) {
+        e.preventDefault();
+        put(ziggy_js_1["default"]("update"));
+        return [2
+        /*return*/
+        ];
+      });
+    });
+  };
+
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
+    className: "min-h-screen bg-yellow-400 py-20"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("div", {
+    className: "text-center"
+  }, react_1["default"].createElement(ValidationErrors_1["default"], {
+    errors: errors
+  }), react_1["default"].createElement("form", {
+    onSubmit: handleSubmit
+  }, react_1["default"].createElement("label", {
+    htmlFor: "inputTitle"
+  }, "\u30BF\u30A4\u30C8\u30EB"), react_1["default"].createElement(Input_1["default"], {
+    id: "inputTitle",
+    type: "text",
+    name: "title",
+    className: "w-3/4 mt-1 mb-1 block mx-auto",
+    placeholder: "\u30BF\u30A4\u30C8\u30EB",
+    value: data.title,
+    required: true,
+    handleChange: onHandleChange
+  }), react_1["default"].createElement("label", {
+    htmlFor: "inputTitle"
+  }, "\u30AB\u30C6\u30B4\u30EA\u30FC"), react_1["default"].createElement(Selectbox_1["default"], {
+    id: "inputTitle",
+    name: "category_id",
+    className: "w-3/4 mt-1 mb-1 block mx-auto",
+    value: data.category_id,
+    required: true,
+    handleChange: onHandleChange
+  }, react_1["default"].createElement("option", {
+    value: "{category_id[0].name}"
+  }, category_id[0].name), categories.map(function (category) {
+    return react_1["default"].createElement("option", {
+      key: category.id,
+      value: category.id
+    }, category.name);
+  })), react_1["default"].createElement("label", {
+    htmlFor: "inputBody"
+  }, "\u672C\u6587"), react_1["default"].createElement(Textarea_1["default"], {
+    id: "inputBody",
+    name: "body",
+    className: "w-3/4 h-64 mt-1 mb-1 block mx-auto",
+    placeholder: "\u672C\u6587",
+    value: data.body,
+    required: true,
+    handleChange: onHandleChange
+  }), react_1["default"].createElement(Button_1["default"], {
+    className: "ml-4",
+    processing: processing
+  }, "\u7DE8\u96C6\u3059\u308B"))))));
+}
+
+exports.default = editArticle;
 
 /***/ }),
 
@@ -7880,7 +8596,7 @@ function Article(_a) {
       className: ""
     }, article.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
       as: "button",
-      href: ziggy_js_1["default"]("showArticle", article.id)
+      href: ziggy_js_1["default"]("show", article.id)
     }, "\u8A73\u7D30\u3092\u898B\u308B"));
   })))));
 }
@@ -7889,10 +8605,10 @@ exports.default = Article;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Article/showArticle.tsx":
-/*!****************************************************!*\
-  !*** ./resources/js/Pages/Article/showArticle.tsx ***!
-  \****************************************************/
+/***/ "./resources/js/Pages/Article/show.tsx":
+/*!*********************************************!*\
+  !*** ./resources/js/Pages/Article/show.tsx ***!
+  \*********************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -7910,9 +8626,16 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
-var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx")); // type Article = {
+//     id: number;
+//     title: string;
+//     pic1: string;
+//     user_id: string;
+//     category_id: string;
+// };
 
-function Article(_a) {
+
+function showArticle(_a) {
   var auth = _a.auth,
       article = _a.article;
   var title = article.title,
@@ -7927,13 +8650,13 @@ function Article(_a) {
   }, react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("h1", {
-    className: "text-4xl uppercase font-bold from-current mb-8"
-  }, react_1["default"].createElement("p", null, pic1), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u672C\u6587:", body), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user_id[0].name), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name)), react_1["default"].createElement("div", {
+    className: "text-4xl font-bold from-current mb-8"
+  }, react_1["default"].createElement("p", null, pic1), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user_id[0].name), react_1["default"].createElement("p", null, body)), react_1["default"].createElement("div", {
     className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
   }))));
 }
 
-exports.default = Article;
+exports.default = showArticle;
 
 /***/ }),
 
@@ -8221,9 +8944,9 @@ function Login(_a) {
       canResetPassword = _a.canResetPassword;
 
   var _b = inertia_react_2.useForm({
-    email: '',
-    password: '',
-    remember: ''
+    email: "",
+    password: "",
+    remember: ""
   }),
       data = _b.data,
       setData = _b.setData,
@@ -8234,17 +8957,17 @@ function Login(_a) {
 
   react_1.useEffect(function () {
     return function () {
-      reset('password');
+      reset("password");
     };
   }, []);
 
   var onHandleChange = function onHandleChange(event) {
-    setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked + '' : event.target.value);
+    setData(event.target.name, event.target.type === "checkbox" ? event.target.checked + "" : event.target.value);
   };
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(ziggy_js_1["default"]('login'));
+    post(ziggy_js_1["default"]("login"));
   };
 
   return react_1["default"].createElement(Guest_1["default"], null, status && react_1["default"].createElement("div", {
@@ -8289,7 +9012,7 @@ function Login(_a) {
   }, "Remember me"))), react_1["default"].createElement("div", {
     className: "flex items-center justify-end mt-4"
   }, canResetPassword && react_1["default"].createElement(inertia_react_1.InertiaLink, {
-    href: ziggy_js_1["default"]('password.request'),
+    href: ziggy_js_1["default"]("password.request"),
     className: "underline text-sm text-gray-600 hover:text-gray-900"
   }, "Forgot your password?"), react_1["default"].createElement(Button_1["default"], {
     className: "ml-4",
@@ -61315,12 +62038,14 @@ module.exports = function getSideChannel() {
 var map = {
 	"./Article": "./resources/js/Pages/Article/index.tsx",
 	"./Article/": "./resources/js/Pages/Article/index.tsx",
-	"./Article/createArticle": "./resources/js/Pages/Article/createArticle.tsx",
-	"./Article/createArticle.tsx": "./resources/js/Pages/Article/createArticle.tsx",
+	"./Article/create": "./resources/js/Pages/Article/create.tsx",
+	"./Article/create.tsx": "./resources/js/Pages/Article/create.tsx",
+	"./Article/edit": "./resources/js/Pages/Article/edit.tsx",
+	"./Article/edit.tsx": "./resources/js/Pages/Article/edit.tsx",
 	"./Article/index": "./resources/js/Pages/Article/index.tsx",
 	"./Article/index.tsx": "./resources/js/Pages/Article/index.tsx",
-	"./Article/showArticle": "./resources/js/Pages/Article/showArticle.tsx",
-	"./Article/showArticle.tsx": "./resources/js/Pages/Article/showArticle.tsx",
+	"./Article/show": "./resources/js/Pages/Article/show.tsx",
+	"./Article/show.tsx": "./resources/js/Pages/Article/show.tsx",
 	"./Auth/ConfirmPassword": "./resources/js/Pages/Auth/ConfirmPassword.tsx",
 	"./Auth/ConfirmPassword.tsx": "./resources/js/Pages/Auth/ConfirmPassword.tsx",
 	"./Auth/ForgotPassword": "./resources/js/Pages/Auth/ForgotPassword.tsx",

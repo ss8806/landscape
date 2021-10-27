@@ -8,10 +8,10 @@ interface Props {
 
 export default function Guest({ children }: Props) {
     return (
-        <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+        <div className="min-h-100 flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div>
-                <InertiaLink href="/">
-                    <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
+                <InertiaLink href="/" className="font-serif text-4xl">
+                    Articles
                 </InertiaLink>
             </div>
 
