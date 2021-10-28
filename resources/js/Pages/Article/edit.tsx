@@ -3,12 +3,14 @@ import Auth from "@/Layouts/Auth";
 import { useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
 import Textarea from "@/Components/Textarea";
+import { Inertia } from "@inertiajs/inertia";
 import ValidationErrors from "@/Components/ValidationErrors";
 import Button from "@/Components/Button";
 import Selectbox from "@/Components/Selectbox";
 import Option from "@/Components/Option";
 import { OperationCanceledException, SelectionRange } from "typescript";
 import route from "ziggy-js";
+import axios from "axios";
 
 type Props = {
     auth: any;
@@ -22,26 +24,28 @@ type Category = {
     category_id: number;
 };
 
-type Article = {
-    id: number;
-    title: string;
-    body: string;
-    category_id: any;
-    pic1: string;
-};
-
 export default function editArticle({ auth, article, categories }: Props) {
     const {
         id,
         title,
         body,
+        c_id,
         category_id,
-    }: { id: any; title: string; body: string; category_id: any } = article;
+    }: {
+        id: any;
+        title: string;
+        body: string;
+        c_id: number;
+        category_id: any;
+    } = article;
+
     const { data, setData, put, processing, errors } = useForm({
         id: id,
         title: title,
         body: body,
-        category_id: category_id,
+        c_id: c_id,
+        category_id: "category_id",
+        categories: "",
     });
 
     const onHandleChange = (
@@ -50,15 +54,32 @@ export default function editArticle({ auth, article, categories }: Props) {
         >
     ) => {
         setData(
-            event.target.name as "title" | "body" | "category_id",
+            event.target.name as "title" | "body" | "category_id" | "c_id",
             event.target.value
         );
     };
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        //put("/article/{id}/update", id);
-        put(route("update", id));
+        // Inertia.put("/article/{id}/update", [id]);
+        // put(route("update", { id: id }));
+
+        await axios;
+        put(
+            route("update", {
+                id: id,
+                title: title,
+                category_id: category_id[0].id,
+                body: body,
+            })
+        );
+        // .then(function (response) {
+        //     console.log(response);
+        // })
+        // .catch(function (response) {
+        //     console.log(response);
+        // }
+        // );
     };
     return (
         <Auth auth={auth}>
@@ -78,18 +99,22 @@ export default function editArticle({ auth, article, categories }: Props) {
                                 required
                                 handleChange={onHandleChange}
                             />
-                            <label htmlFor="inputTitle">カテゴリー</label>
+                            <label htmlFor="inputCategory">カテゴリー</label>
                             <Selectbox
-                                id="inputTitle"
+                                id="inputCategory"
                                 name="category_id"
                                 className="w-3/4 mt-1 mb-1 block mx-auto"
-                                value={data.category_id}
+                                // value={data.category_id[0].id}
                                 required
                                 multiple={false}
                                 handleChange={onHandleChange}
                             >
+                                {/* <option value="" className="hidden">
+                                    選択してください
+                                </option> */}
+
                                 <option
-                                    value="{category_id[0].id}"
+                                    value="data.category_id[0].id"
                                     className="hidden"
                                 >
                                     {category_id[0].name}

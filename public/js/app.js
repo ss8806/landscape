@@ -8451,6 +8451,8 @@ var Selectbox_1 = __importDefault(__webpack_require__(/*! @/Components/Selectbox
 
 var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
 
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
 function editArticle(_a) {
   var _this = this;
 
@@ -8460,13 +8462,16 @@ function editArticle(_a) {
   var id = article.id,
       title = article.title,
       body = article.body,
+      c_id = article.c_id,
       category_id = article.category_id;
 
   var _b = inertia_react_1.useForm({
     id: id,
     title: title,
     body: body,
-    category_id: category_id
+    c_id: c_id,
+    category_id: "category_id",
+    categories: ""
   }),
       data = _b.data,
       setData = _b.setData,
@@ -8481,12 +8486,30 @@ function editArticle(_a) {
   var handleSubmit = function handleSubmit(e) {
     return __awaiter(_this, void 0, void 0, function () {
       return __generator(this, function (_a) {
-        e.preventDefault(); //put("/article/{id}/update", id);
+        switch (_a.label) {
+          case 0:
+            e.preventDefault(); // Inertia.put("/article/{id}/update", [id]);
+            // put(route("update", { id: id }));
 
-        put(ziggy_js_1["default"]("update", id));
-        return [2
-        /*return*/
-        ];
+            return [4
+            /*yield*/
+            , axios_1["default"]];
+
+          case 1:
+            // Inertia.put("/article/{id}/update", [id]);
+            // put(route("update", { id: id }));
+            _a.sent();
+
+            put(ziggy_js_1["default"]("update", {
+              id: id,
+              title: title,
+              category_id: category_id[0].id,
+              body: body
+            }));
+            return [2
+            /*return*/
+            ];
+        }
       });
     });
   };
@@ -8515,17 +8538,17 @@ function editArticle(_a) {
     required: true,
     handleChange: onHandleChange
   }), react_1["default"].createElement("label", {
-    htmlFor: "inputTitle"
+    htmlFor: "inputCategory"
   }, "\u30AB\u30C6\u30B4\u30EA\u30FC"), react_1["default"].createElement(Selectbox_1["default"], {
-    id: "inputTitle",
+    id: "inputCategory",
     name: "category_id",
     className: "w-3/4 mt-1 mb-1 block mx-auto",
-    value: data.category_id,
+    // value={data.category_id[0].id}
     required: true,
     multiple: false,
     handleChange: onHandleChange
   }, react_1["default"].createElement("option", {
-    value: "{category_id[0].id}",
+    value: "data.category_id[0].id",
     className: "hidden"
   }, category_id[0].name), categories.map(function (category) {
     return react_1["default"].createElement("option", {

@@ -127,6 +127,7 @@ class ArticleController extends Controller
                 'body' => $article->body,
                 'pic1' => $article->pic1,
                 'user_id' => $user_id,
+                'c_id' => $article->category_id,
                 'category_id' => $category_id,
             ],
             'categories' => $categories
@@ -144,11 +145,11 @@ class ArticleController extends Controller
     {
         $article = Article::find($id);
         // dd($article);
-
-        $article->fill($request->all())->save();
-
+        $article->fill($request->all())->update();
+        return redirect()->back()->with('flash_message', __('Registered.'));
+        
         // articles()->save($article->fill($request->all()));
-        return redirect('/mypage')->with('flash_message', __('Registered.'));
+        // return redirect('/')->with('flash_message', __('Registered.'));
     }
 
     /**

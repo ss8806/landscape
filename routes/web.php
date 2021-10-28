@@ -33,8 +33,8 @@ Route::middleware('auth')
         Route::get('/article/create', [ArticleController::class, 'create'])->name('create');
         Route::post('/article/store', [ArticleController::class, 'store'])->name('store');
         Route::get('/article/{id}/edit', [ArticleController::class, 'edit'])->name('edit');
-        // Route::put('/article/{id}/edit', [ArticleController::class, 'update'])->name('update');
         Route::put('/article/{id}/update', [ArticleController::class, 'update'])->name('update');
+       // Route::put('/article/{id}/update', [ArticleController::class, 'update'])->name('update');
         Route::delete('/article/{id}/delete',  [ArticleController::class, 'destroy'])->name('delete');
     });
 
