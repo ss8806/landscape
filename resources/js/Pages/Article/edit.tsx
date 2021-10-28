@@ -32,11 +32,13 @@ type Article = {
 
 export default function editArticle({ auth, article, categories }: Props) {
     const {
+        id,
         title,
         body,
         category_id,
-    }: { title: string; body: string; category_id: any } = article;
+    }: { id: any; title: string; body: string; category_id: any } = article;
     const { data, setData, put, processing, errors } = useForm({
+        id: id,
         title: title,
         body: body,
         category_id: category_id,
@@ -55,7 +57,8 @@ export default function editArticle({ auth, article, categories }: Props) {
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        put(route("update"));
+        //put("/article/{id}/update", id);
+        put(route("update", id));
     };
     return (
         <Auth auth={auth}>
@@ -82,11 +85,12 @@ export default function editArticle({ auth, article, categories }: Props) {
                                 className="w-3/4 mt-1 mb-1 block mx-auto"
                                 value={data.category_id}
                                 required
+                                multiple={false}
                                 handleChange={onHandleChange}
                             >
                                 <option
-                                    value="{category_id[0].name}"
-                                    // className="hidden"
+                                    value="{category_id[0].id}"
+                                    className="hidden"
                                 >
                                     {category_id[0].name}
                                 </option>

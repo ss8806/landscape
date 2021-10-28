@@ -47,7 +47,7 @@ export default function createArticle({ auth, categories }: Props) {
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        post("/store");
+        post("/article/store");
     };
     return (
         <Auth auth={auth}>

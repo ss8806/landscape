@@ -50,7 +50,7 @@ class ArticleController extends Controller
                     'pic1' => $article->pic1,
                     //'user_id' => $article->user()->get(),
                     'category_id' => $article->category()->get(),
-                    'show_url' => URL::route('show', $article),
+                    'show_url' => URL::route('show', $article->id),
                 ];
             }),
         ]);
@@ -87,10 +87,12 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show(Article $article, $id)
     {
+        $article = Article::find($id);
         $user_id = $article->user()->get();
         $category_id = $article->category()->get();
+        //dd($article);
 
         //return Inertia::render('Article/show',['article' => $article]);
         return Inertia::render('Article/show', [
@@ -110,14 +112,17 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit(Article $article, $id)
     {
+        $article = Article::find($id);
         $user_id = $article->user()->get();
         $category_id = $article->category()->get();
         $categories = Category::orderBy('sort_no')->get();
+        //dd($article);
 
         return Inertia::render('Article/edit',[
             'article' => [
+                'id' => $article->id,
                 'title' => $article->title,
                 'body' => $article->body,
                 'pic1' => $article->pic1,
@@ -135,14 +140,15 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article, $id)
+    public function update(Request $request, $id)
     {
         $article = Article::find($id);
-        Auth::user()->articles()->save($article->fill($request->all() ));
+        // dd($article);
 
-        //$article->fill($request->all())->save();
+        $article->fill($request->all())->save();
 
-        return redirect('/')->with('flash_message', __('Registered.'));
+        // articles()->save($article->fill($request->all()));
+        return redirect('/mypage')->with('flash_message', __('Registered.'));
     }
 
     /**
@@ -151,8 +157,9 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy(Article $article, $id)
     {
-        //
+        Article::find($id)->delete();
+        return redirect('/mypage')->with('flash_message', __('Deleted.'));
     }
 }

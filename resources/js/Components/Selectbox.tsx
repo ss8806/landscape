@@ -10,6 +10,7 @@ interface Props {
     autoComplete?: string | undefined;
     required?: boolean;
     isFocused?: boolean;
+    multiple?: boolean;
     children?: React.ReactNode;
     handleChange: React.ChangeEventHandler<HTMLSelectElement>;
 }
@@ -23,6 +24,7 @@ const Selectbox: React.FC<Props> = ({
     autoComplete,
     required,
     isFocused,
+    multiple,
     children,
     handleChange,
 }) => {
@@ -47,6 +49,7 @@ const Selectbox: React.FC<Props> = ({
                 }
                 autoComplete={autoComplete}
                 required={required}
+                multiple={multiple}
                 onChange={(e) => handleChange(e)}
             >
                 {children}

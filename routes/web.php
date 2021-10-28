@@ -18,7 +18,7 @@ use App\Http\Controllers\ArticleController;
 */
 
 Route::get('/', [ArticleController::class, 'index'])->name('articles');
-Route::get('/{article}/show', [ArticleController::class, 'show'])->name('show');
+Route::get('/article/{id}/show', [ArticleController::class, 'show'])->name('show');
 
 Route::middleware('auth')
     ->group(function () {
@@ -30,10 +30,12 @@ Route::middleware('auth')
         Route::post('/editIcon', [UserController::class, 'editIcon'])->name('editIcon');
         Route::put('/editPassword', [UserController::class, 'editPassword'])->name('editPassword');
         // article
-        Route::get('/create', [ArticleController::class, 'create'])->name('create');
-        Route::post('/store', [ArticleController::class, 'store'])->name('store');
-        Route::get('/{article}/edit', [ArticleController::class, 'edit'])->name('edit');
-        Route::put('/{article}/update', [ArticleController::class, 'edit'])->name('update');
+        Route::get('/article/create', [ArticleController::class, 'create'])->name('create');
+        Route::post('/article/store', [ArticleController::class, 'store'])->name('store');
+        Route::get('/article/{id}/edit', [ArticleController::class, 'edit'])->name('edit');
+        // Route::put('/article/{id}/edit', [ArticleController::class, 'update'])->name('update');
+        Route::put('/article/{id}/update', [ArticleController::class, 'update'])->name('update');
+        Route::delete('/article/{id}/delete',  [ArticleController::class, 'destroy'])->name('delete');
     });
 
 Route::get('/welcome', function () {

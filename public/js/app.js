@@ -7354,6 +7354,7 @@ var Selectbox = function Selectbox(_a) {
       autoComplete = _a.autoComplete,
       required = _a.required,
       isFocused = _a.isFocused,
+      multiple = _a.multiple,
       children = _a.children,
       handleChange = _a.handleChange;
   var select = react_1.useRef(null);
@@ -7374,6 +7375,7 @@ var Selectbox = function Selectbox(_a) {
     className: "border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm " + className,
     autoComplete: autoComplete,
     required: required,
+    multiple: multiple,
     onChange: function onChange(e) {
       return handleChange(e);
     }
@@ -7605,7 +7607,7 @@ function Auth(_a) {
   }, react_1["default"].createElement("div", {
     className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-    href: "/create"
+    href: "/article/create"
   }, "\u8A18\u4E8B\u3092\u6295\u7A3F\u3059\u308B"))), react_1["default"].createElement("div", {
     className: "hidden sm:flex sm:items-center sm:ml-6"
   }, react_1["default"].createElement("div", {
@@ -7693,7 +7695,7 @@ function Auth(_a) {
   }, react_1["default"].createElement("div", {
     className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-    href: "/create"
+    href: "/article/create"
   }, "\u8A18\u4E8B\u3092\u6295\u7A3F\u3059\u308B"))), react_1["default"].createElement("div", {
     className: "hidden sm:flex sm:items-center sm:ml-6"
   }, react_1["default"].createElement("div", {
@@ -8201,7 +8203,7 @@ function createArticle(_a) {
     return __awaiter(_this, void 0, void 0, function () {
       return __generator(this, function (_a) {
         e.preventDefault();
-        post("/store");
+        post("/article/store");
         return [2
         /*return*/
         ];
@@ -8455,11 +8457,13 @@ function editArticle(_a) {
   var auth = _a.auth,
       article = _a.article,
       categories = _a.categories;
-  var title = article.title,
+  var id = article.id,
+      title = article.title,
       body = article.body,
       category_id = article.category_id;
 
   var _b = inertia_react_1.useForm({
+    id: id,
     title: title,
     body: body,
     category_id: category_id
@@ -8477,8 +8481,9 @@ function editArticle(_a) {
   var handleSubmit = function handleSubmit(e) {
     return __awaiter(_this, void 0, void 0, function () {
       return __generator(this, function (_a) {
-        e.preventDefault();
-        put(ziggy_js_1["default"]("update"));
+        e.preventDefault(); //put("/article/{id}/update", id);
+
+        put(ziggy_js_1["default"]("update", id));
         return [2
         /*return*/
         ];
@@ -8517,9 +8522,11 @@ function editArticle(_a) {
     className: "w-3/4 mt-1 mb-1 block mx-auto",
     value: data.category_id,
     required: true,
+    multiple: false,
     handleChange: onHandleChange
   }, react_1["default"].createElement("option", {
-    value: "{category_id[0].name}"
+    value: "{category_id[0].id}",
+    className: "hidden"
   }, category_id[0].name), categories.map(function (category) {
     return react_1["default"].createElement("option", {
       key: category.id,
