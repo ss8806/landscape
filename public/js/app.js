@@ -8443,6 +8443,8 @@ var Input_1 = __importDefault(__webpack_require__(/*! @/Components/Input */ "./r
 
 var Textarea_1 = __importDefault(__webpack_require__(/*! @/Components/Textarea */ "./resources/js/Components/Textarea.tsx"));
 
+var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
 var ValidationErrors_1 = __importDefault(__webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.tsx"));
 
 var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
@@ -8514,6 +8516,19 @@ function editArticle(_a) {
     });
   };
 
+  var handleSubmitDelete = function handleSubmitDelete(e) {
+    return __awaiter(_this, void 0, void 0, function () {
+      return __generator(this, function (_a) {
+        e.preventDefault(); // Inertia.put("/article/{id}/update", [id]);
+
+        inertia_1.Inertia["delete"](ziggy_js_1["default"]("delete", id));
+        return [2
+        /*return*/
+        ];
+      });
+    });
+  };
+
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
@@ -8543,14 +8558,14 @@ function editArticle(_a) {
     id: "inputCategory",
     name: "category_id",
     className: "w-3/4 mt-1 mb-1 block mx-auto",
-    // value={data.category_id[0].id}
+    // value={data.c_id}
     required: true,
     multiple: false,
     handleChange: onHandleChange
   }, react_1["default"].createElement("option", {
-    value: "data.category_id[0].id",
+    value: "",
     className: "hidden"
-  }, category_id[0].name), categories.map(function (category) {
+  }, "\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044"), categories.map(function (category) {
     return react_1["default"].createElement("option", {
       key: category.id,
       value: category.id
@@ -8568,7 +8583,12 @@ function editArticle(_a) {
   }), react_1["default"].createElement(Button_1["default"], {
     className: "ml-4",
     processing: processing
-  }, "\u7DE8\u96C6\u3059\u308B"))))));
+  }, "\u7DE8\u96C6\u3059\u308B")), react_1["default"].createElement("form", {
+    onSubmit: handleSubmitDelete
+  }, react_1["default"].createElement(Button_1["default"], {
+    className: "ml-4",
+    processing: processing
+  }, "\u524A\u9664\u3059\u308B"))))));
 }
 
 exports.default = editArticle;
@@ -10454,9 +10474,12 @@ var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ ".
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+
 function Mypage(_a) {
   var auth = _a.auth,
-      user = _a.user;
+      user = _a.user,
+      posts = _a.posts;
   var processing = inertia_react_1.useForm({}).processing;
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
@@ -10475,7 +10498,24 @@ function Mypage(_a) {
     href: "/profile"
   }, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u7DE8\u96C6")), react_1["default"].createElement("p", {
     className: "text-center"
-  }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("p", {
+  }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
+  }, posts.map(function (post) {
+    return react_1["default"].createElement("div", {
+      key: post.id,
+      className: ""
+    }, react_1["default"].createElement("img", {
+      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
+      src: "https://i.imgur.com/lmYYa2s.png"
+    }), react_1["default"].createElement("div", {
+      className: ""
+    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", post.category_id[0].name), react_1["default"].createElement("div", {
+      className: ""
+    }, post.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      as: "button",
+      href: ziggy_js_1["default"]("edit", post.id)
+    }, "\u7DE8\u96C6\u3059\u308B"));
+  })), react_1["default"].createElement("p", {
     className: "text-center"
   }, "\u304A\u6C17\u306B\u5165\u308A")));
 }

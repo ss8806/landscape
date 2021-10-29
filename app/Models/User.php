@@ -47,4 +47,10 @@ class User extends Authenticatable
         return $this->hasMany(Article::class);
         // return $this->hasMany('App\Models\Article');
     }
+
+    public function postIdeas()
+    {
+    //第二引数には多側のキー(外部キー)であるuser_idを指定,これによりpostIdeasメソッドで投稿したアイデアを取得できる。
+        return $this->hasMany(Article::class, 'user_id');
+    }
 }

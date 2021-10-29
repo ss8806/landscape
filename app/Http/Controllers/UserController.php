@@ -12,12 +12,27 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\URL;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Mypage/index',['user' => Auth::user()]);   
+        $user = Auth::user();
+        $posts = $user->postIdeas()->orderBy('id', 'DESC')->take(5)->get();
+
+        return Inertia::render('Mypage/index',[ 'user' => Auth::user(),
+            'posts' => $posts->map(function ($post) {
+                return [
+                    'id' => $post->id,
+                    'title' => $post->title,
+                    'pic1' => $post->pic1,
+                    //'user_id' => $article->user()->get(),
+                    'category_id' => $post->category()->get(),
+                    'show_url' => URL::route('edit', $post->id),
+                ];
+            }),
+        ]);
     }
 
     public function showProfile()

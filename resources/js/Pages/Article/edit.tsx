@@ -81,6 +81,13 @@ export default function editArticle({ auth, article, categories }: Props) {
         // }
         // );
     };
+
+    const handleSubmitDelete = async (e: SyntheticEvent) => {
+        e.preventDefault();
+        // Inertia.put("/article/{id}/update", [id]);
+        Inertia.delete(route("delete", id));
+    };
+
     return (
         <Auth auth={auth}>
             <section className="min-h-screen bg-yellow-400 py-20">
@@ -104,21 +111,21 @@ export default function editArticle({ auth, article, categories }: Props) {
                                 id="inputCategory"
                                 name="category_id"
                                 className="w-3/4 mt-1 mb-1 block mx-auto"
-                                // value={data.category_id[0].id}
+                                // value={data.c_id}
                                 required
                                 multiple={false}
                                 handleChange={onHandleChange}
                             >
-                                {/* <option value="" className="hidden">
+                                <option value="" className="hidden">
                                     選択してください
-                                </option> */}
+                                </option>
 
-                                <option
-                                    value="data.category_id[0].id"
+                                {/* <option
+                                    value={category_id[0].id}
                                     className="hidden"
                                 >
                                     {category_id[0].name}
-                                </option>
+                                </option> */}
                                 {categories.map((category: Category) => {
                                     return (
                                         <option
@@ -142,6 +149,11 @@ export default function editArticle({ auth, article, categories }: Props) {
                             />
                             <Button className="ml-4" processing={processing}>
                                 編集する
+                            </Button>
+                        </form>
+                        <form onSubmit={handleSubmitDelete}>
+                            <Button className="ml-4" processing={processing}>
+                                削除する
                             </Button>
                         </form>
                     </div>

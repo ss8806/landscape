@@ -20,12 +20,12 @@ class CreateArticlesTable extends Migration
             $table->string('pic1')->nullable();
             $table->string('pic2')->nullable();
             $table->string('pic3')->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('category_id');
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('category_id')->references('id')->on('categories');
+            //$table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

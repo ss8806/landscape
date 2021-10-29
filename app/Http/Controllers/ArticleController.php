@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use App\Models\User;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Redirect;
 // use Illuminate\Support\Facades\Request;
@@ -146,7 +145,7 @@ class ArticleController extends Controller
         $article = Article::find($id);
         // dd($article);
         $article->fill($request->all())->update();
-        return redirect()->back()->with('flash_message', __('Registered.'));
+        return redirect('/mypage')->with('flash_message', __('Registered.'));
         
         // articles()->save($article->fill($request->all()));
         // return redirect('/')->with('flash_message', __('Registered.'));
@@ -161,6 +160,8 @@ class ArticleController extends Controller
     public function destroy(Article $article, $id)
     {
         Article::find($id)->delete();
-        return redirect('/mypage')->with('flash_message', __('Deleted.'));
+        // localhost3000の場合はクロスオリジンエラーがでるので注意
+        return Redirect::route('mypage');
+        // return redirect()->back()->with('flash_message', __('Deleted.'));
     }
 }
