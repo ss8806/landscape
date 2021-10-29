@@ -21,7 +21,9 @@ export default function showArticle({ auth, article }: Props) {
             <section className="min-h-screen bg-yellow-400 flex justify-center items-center py-20">
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
                     <h1 className="text-4xl font-bold from-current mb-8">
-                        <p>{pic1}</p>
+                        <p className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6">
+                            {pic1}
+                        </p>
                         <p>タイトル：{title}</p>
                         <p>カテゴリー:{category_id[0].name}</p>
                         <p>投稿者:{user_id[0].name}</p>

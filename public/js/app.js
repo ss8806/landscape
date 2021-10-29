@@ -8641,13 +8641,16 @@ function Article(_a) {
       className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
       src: "https://i.imgur.com/lmYYa2s.png"
     }), react_1["default"].createElement("div", {
-      className: ""
+      className: "text-center"
     }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", article.category_id[0].name), react_1["default"].createElement("div", {
-      className: ""
-    }, article.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      className: "text-center"
+    }, article.title), react_1["default"].createElement("div", {
+      className: "text-center"
+    }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
       as: "button",
+      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
       href: ziggy_js_1["default"]("show", article.id)
-    }, "\u8A73\u7D30\u3092\u898B\u308B"));
+    }, "\u8A73\u7D30\u3092\u898B\u308B")));
   })))));
 }
 
@@ -8701,7 +8704,9 @@ function showArticle(_a) {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("h1", {
     className: "text-4xl font-bold from-current mb-8"
-  }, react_1["default"].createElement("p", null, pic1), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user_id[0].name), react_1["default"].createElement("p", null, body)), react_1["default"].createElement("div", {
+  }, react_1["default"].createElement("p", {
+    className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
+  }, pic1), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user_id[0].name), react_1["default"].createElement("p", null, body)), react_1["default"].createElement("div", {
     className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
   }))));
 }
@@ -10486,18 +10491,18 @@ function Mypage(_a) {
   }, react_1["default"].createElement("section", {
     className: "pt-6 text-center"
   }, react_1["default"].createElement("p", {
-    className: "text-center"
+    className: "text-center m-5 text-2xl"
   }, user.name, "\u306E\u30DE\u30A4\u30DA\u30FC\u30B8"), react_1["default"].createElement("div", {
     className: "text-center"
   }, user.icon ? user.icon : react_1["default"].createElement("img", {
     src: "/images/avatar-default.svg",
-    className: "d-block mx-auto"
+    className: "d-block mx-auto g:h-60 xl:h-56"
   })), react_1["default"].createElement(Button_1["default"], {
     processing: processing
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: "/profile"
   }, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u7DE8\u96C6")), react_1["default"].createElement("p", {
-    className: "text-center"
+    className: "text-center m-5 text-2xl"
   }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("div", {
     className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
   }, posts.map(function (post) {
@@ -10513,11 +10518,79 @@ function Mypage(_a) {
       className: ""
     }, post.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
       as: "button",
+      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
       href: ziggy_js_1["default"]("edit", post.id)
     }, "\u7DE8\u96C6\u3059\u308B"));
-  })), react_1["default"].createElement("p", {
-    className: "text-center"
+  }), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    as: "button",
+    className: "text-2xl text-blue-600 im-2 px-4 py-2 border border-transparent font-semibold tracking-widest",
+    href: "/posts"
+  }, "\u6295\u7A3F\u4E00\u89A7\u3078")), react_1["default"].createElement("p", {
+    className: "text-center m-5 text-2xl"
   }, "\u304A\u6C17\u306B\u5165\u308A")));
+}
+
+exports.default = Mypage;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Mypage/posts.tsx":
+/*!*********************************************!*\
+  !*** ./resources/js/Pages/Mypage/posts.tsx ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+
+function Mypage(_a) {
+  var auth = _a.auth,
+      user = _a.user,
+      posts = _a.posts;
+  var processing = inertia_react_1.useForm({}).processing;
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
+    className: "pt-6 text-center"
+  }, react_1["default"].createElement("h1", {
+    className: "text-2xl mb-6"
+  }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
+  }, posts.map(function (post) {
+    return react_1["default"].createElement("div", {
+      key: post.id,
+      className: ""
+    }, react_1["default"].createElement("img", {
+      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
+      src: "https://i.imgur.com/lmYYa2s.png"
+    }), react_1["default"].createElement("div", {
+      className: ""
+    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", post.category_id[0].name), react_1["default"].createElement("div", {
+      className: ""
+    }, post.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      as: "button",
+      className: "`inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
+      href: ziggy_js_1["default"]("edit", post.id)
+    }, "\u7DE8\u96C6\u3059\u308B"));
+  }))));
 }
 
 exports.default = Mypage;
@@ -62142,6 +62215,8 @@ var map = {
 	"./Mypage/editPassword.tsx": "./resources/js/Pages/Mypage/editPassword.tsx",
 	"./Mypage/index": "./resources/js/Pages/Mypage/index.tsx",
 	"./Mypage/index.tsx": "./resources/js/Pages/Mypage/index.tsx",
+	"./Mypage/posts": "./resources/js/Pages/Mypage/posts.tsx",
+	"./Mypage/posts.tsx": "./resources/js/Pages/Mypage/posts.tsx",
 	"./Mypage/profile": "./resources/js/Pages/Mypage/profile.tsx",
 	"./Mypage/profile.tsx": "./resources/js/Pages/Mypage/profile.tsx",
 	"./Welcome": "./resources/js/Pages/Welcome.tsx",

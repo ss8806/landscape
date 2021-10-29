@@ -24,6 +24,7 @@ Route::middleware('auth')
     ->group(function () {
         // profile
         Route::get('/mypage', [UserController::class, 'index'])->name('mypage');
+        Route::get('/posts', [UserController::class, 'showPosts'])->name('posts');
         Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');   
         Route::put('/editName', [UserController::class, 'editName'])->name('editName');
         Route::put('/editEmail', [UserController::class, 'editEmail'])->name('editEmail');
@@ -34,8 +35,8 @@ Route::middleware('auth')
         Route::post('/article/store', [ArticleController::class, 'store'])->name('store');
         Route::get('/article/{id}/edit', [ArticleController::class, 'edit'])->name('edit');
         Route::put('/article/{id}/update', [ArticleController::class, 'update'])->name('update');
-       // Route::put('/article/{id}/update', [ArticleController::class, 'update'])->name('update');
         Route::delete('/article/{id}/delete',  [ArticleController::class, 'destroy'])->name('delete');
+        Route::get('/like', 'LikesIdeasController@showlikesIdeas')->name('like');
     });
 
 Route::get('/welcome', function () {

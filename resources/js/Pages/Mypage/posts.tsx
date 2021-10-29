@@ -15,23 +15,7 @@ export default function Mypage({ auth, user, posts }: Props) {
     return (
         <Auth auth={auth}>
             <section className="pt-6 text-center">
-                <p className="text-center m-5 text-2xl">
-                    {user.name}のマイページ
-                </p>
-                <div className="text-center">
-                    {user.icon ? (
-                        user.icon
-                    ) : (
-                        <img
-                            src="/images/avatar-default.svg"
-                            className="d-block mx-auto g:h-60 xl:h-56"
-                        />
-                    )}
-                </div>
-                <Button processing={processing}>
-                    <InertiaLink href="/profile">プロフィール編集</InertiaLink>
-                </Button>
-                <p className="text-center m-5 text-2xl">投稿した記事</p>
+                <h1 className="text-2xl mb-6">投稿した記事</h1>
                 <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0">
                     {posts.map((post: any) => {
                         return (
@@ -48,7 +32,7 @@ export default function Mypage({ auth, user, posts }: Props) {
 
                                 <InertiaLink
                                     as="button"
-                                    className="inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150"
+                                    className="`inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150"
                                     href={route("edit", post.id)}
                                 >
                                     編集する
@@ -56,15 +40,7 @@ export default function Mypage({ auth, user, posts }: Props) {
                             </div>
                         );
                     })}
-                    <InertiaLink
-                        as="button"
-                        className="text-2xl text-blue-600 im-2 px-4 py-2 border border-transparent font-semibold tracking-widest"
-                        href="/posts"
-                    >
-                        投稿一覧へ
-                    </InertiaLink>
                 </div>
-                <p className="text-center m-5 text-2xl">お気に入り</p>
             </section>
         </Auth>
     );

@@ -30,18 +30,22 @@ export default function Article({ auth, articles }: Props) {
                                         className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
                                         src="https://i.imgur.com/lmYYa2s.png"
                                     />
-                                    <div className="">
+                                    <div className="text-center">
                                         カテゴリー：
                                         {article.category_id[0].name}
                                     </div>
-                                    <div className="">{article.title}</div>
-
-                                    <InertiaLink
-                                        as="button"
-                                        href={route("show", article.id)}
-                                    >
-                                        詳細を見る
-                                    </InertiaLink>
+                                    <div className="text-center">
+                                        {article.title}
+                                    </div>
+                                    <div className="text-center">
+                                        <InertiaLink
+                                            as="button"
+                                            className="inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150"
+                                            href={route("show", article.id)}
+                                        >
+                                            詳細を見る
+                                        </InertiaLink>
+                                    </div>
                                 </div>
                             );
                         })}

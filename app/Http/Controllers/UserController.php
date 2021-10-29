@@ -35,6 +35,25 @@ class UserController extends Controller
         ]);
     }
 
+    public function showPosts()
+    {
+        $user = Auth::user();
+        $posts = $user->postIdeas()->orderBy('id', 'DESC')->get();
+
+        return Inertia::render('Mypage/posts',[ 'user' => Auth::user(),
+            'posts' => $posts->map(function ($post) {
+                return [
+                    'id' => $post->id,
+                    'title' => $post->title,
+                    'pic1' => $post->pic1,
+                    //'user_id' => $article->user()->get(),
+                    'category_id' => $post->category()->get(),
+                    'show_url' => URL::route('edit', $post->id),
+                ];
+            }),
+        ]);
+    }
+
     public function showProfile()
     {
         return Inertia::render('Mypage/profile',['user' => Auth::user()]);   
