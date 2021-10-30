@@ -7223,6 +7223,40 @@ exports.default = Label;
 "use strict";
 
 
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
 var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve) {
@@ -7376,7 +7410,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
@@ -7387,7 +7421,10 @@ function LikeButton(_a) {
       article = _a.article,
       initial_is_liked = _a.initial_is_liked,
       endpoint = _a.endpoint;
-  var isLiked = initial_is_liked;
+
+  var _b = react_1.useState(initial_is_liked),
+      isLiked = _b[0],
+      setLiked = _b[1];
 
   var handleLike = function handleLike(e) {
     return __awaiter(_this, void 0, void 0, function () {
@@ -7402,13 +7439,13 @@ function LikeButton(_a) {
 
           case 1:
             // web.phpよりarticle/{article}/like ルートパラメータに注意
-            _a.sent(); // await axios.put("like", {
+            _a.sent(); // 以下でも良い
+            // await axios.put("like", {
             //     article: article,
             // });
 
 
-            isLiked = true; // ハートを赤くする
-
+            setLiked(!isLiked);
             alert("気になるリストに登録しました");
             return [2
             /*return*/
@@ -7431,8 +7468,7 @@ function LikeButton(_a) {
           case 1:
             _a.sent();
 
-            isLiked = false; // ハートを赤くする
-
+            setLiked(!isLiked);
             alert("気になるリストから削除しました");
             return [2
             /*return*/
@@ -7447,7 +7483,7 @@ function LikeButton(_a) {
     type: "button",
     className: "c-btn c-btn__like ",
     onClick: handleClickLike
-  }, react_1["default"].createElement("div", null, " ", isLiked ? "解除" : "気になる"), react_1["default"].createElement("div", null, isLiked ? react_1["default"].createElement("svg", {
+  }, react_1["default"].createElement("div", null, isLiked ? react_1["default"].createElement("svg", {
     className: "fill-current h-8 w-8 text-red-500",
     fill: "none",
     viewBox: "0 0 24 24",

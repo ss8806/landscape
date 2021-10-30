@@ -18,23 +18,24 @@ export default function LikeButton({
     initial_is_liked,
     endpoint,
 }: Props) {
-    let isLiked = initial_is_liked;
+    let [isLiked, setLiked] = useState(initial_is_liked);
 
     const handleLike = async (e: SyntheticEvent) => {
         e.preventDefault();
         // web.phpよりarticle/{article}/like ルートパラメータに注意
         await axios.put(endpoint);
+        // 以下でも良い
         // await axios.put("like", {
         //     article: article,
         // });
-        isLiked = true; // ハートを赤くする
+        setLiked(!isLiked);
         alert("気になるリストに登録しました");
     };
 
     const handleUnLike = async (e: SyntheticEvent) => {
         e.preventDefault();
         await axios.delete(endpoint);
-        isLiked = false; // ハートを赤くする
+        setLiked(!isLiked);
         alert("気になるリストから削除しました");
     };
 
@@ -46,7 +47,7 @@ export default function LikeButton({
             className="c-btn c-btn__like "
             onClick={handleClickLike}
         >
-            <div> {isLiked ? "解除" : "気になる"}</div>
+            {/* <div> {isLiked ? "解除" : "気になる"}</div> */}
             <div>
                 {isLiked ? (
                     <svg
