@@ -22,10 +22,11 @@ export default function LikeButton({
 
     const handleLike = async (e: SyntheticEvent) => {
         e.preventDefault();
-        // await axios.put(endpoint);
-        await axios.put("like", {
-            article: article.id,
-        });
+        // web.phpよりarticle/{article}/like ルートパラメータに注意
+        await axios.put(endpoint);
+        // await axios.put("like", {
+        //     article: article,
+        // });
         isLiked = true; // ハートを赤くする
         alert("気になるリストに登録しました");
     };

@@ -175,8 +175,8 @@ class ArticleController extends Controller
      public function like(Request $request, Article $article)
     {
         //モデルを結びつけている中間テーブルにレコードを削除する。 
-        $article->likes()->detach($request->user()->id);
-        // モデルを結びつけている中間テーブルにレコードを挿入する。 
+        //$article->likes()->detach($request->user()->id);
+        // モデルを結びつけている中間テーブルにレコードを挿入する。
         $article->likes()->attach($request->user()->id);
 
         return [

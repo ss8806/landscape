@@ -60,8 +60,8 @@ class User extends Authenticatable
         return $this->hasMany(Like::class, 'user_id');
     }
 
-    public function likes(): BelongsToMany // 中間テーブルを作成
-    {
-        return $this->belongsToMany('App\Models\Article', 'likes')->withTimestamps();
-    }
+    // public function likes(): BelongsToMany // 中間テーブルを作成
+    // {
+    //     return $this->belongsToMany('App\Models\Article', 'likes')->withTimestamps();
+    // }
 }

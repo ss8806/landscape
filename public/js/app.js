@@ -7394,17 +7394,18 @@ function LikeButton(_a) {
       return __generator(this, function (_a) {
         switch (_a.label) {
           case 0:
-            e.preventDefault(); // await axios.put(endpoint);
+            e.preventDefault(); // web.phpよりarticle/{article}/like ルートパラメータに注意
 
             return [4
             /*yield*/
-            , axios_1["default"].put("like", {
-              article: article.id
-            })];
+            , axios_1["default"].put(endpoint)];
 
           case 1:
-            // await axios.put(endpoint);
-            _a.sent();
+            // web.phpよりarticle/{article}/like ルートパラメータに注意
+            _a.sent(); // await axios.put("like", {
+            //     article: article,
+            // });
+
 
             isLiked = true; // ハートを赤くする
 
