@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 // class User extends Authenticatable implements MustVerifyEmail
 class User extends Authenticatable
@@ -48,9 +49,19 @@ class User extends Authenticatable
         // return $this->hasMany('App\Models\Article');
     }
 
-    public function postIdeas()
+    public function postArticles()
     {
-    //第二引数には多側のキー(外部キー)であるuser_idを指定,これによりpostIdeasメソッドで投稿したアイデアを取得できる。
+    //第二引数には多側のキー(外部キー)であるuser_idを指定,これによりpostArticlesメソッドで投稿したアイデアを取得できる。
         return $this->hasMany(Article::class, 'user_id');
+    }
+
+    public function likeArticles()
+    {
+        return $this->hasMany(Like::class, 'user_id');
+    }
+
+    public function likes(): BelongsToMany // 中間テーブルを作成
+    {
+        return $this->belongsToMany('App\Models\Article', 'likes')->withTimestamps();
     }
 }

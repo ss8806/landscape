@@ -1,5 +1,6 @@
 import React from "react";
 import Auth from "@/Layouts/Auth";
+import LikeButton from "@/Components/LikeButton";
 
 type Props = {
     auth: any;
@@ -15,7 +16,15 @@ type Props = {
 // };
 
 export default function showArticle({ auth, article }: Props) {
-    const { title, body, pic1, user_id, category_id } = article;
+    const {
+        title,
+        body,
+        pic1,
+        user_id,
+        category_id,
+        initial_is_liked,
+        endpoint,
+    } = article;
     return (
         <Auth auth={auth}>
             <section className="min-h-screen bg-yellow-400 flex justify-center items-center py-20">
@@ -28,6 +37,16 @@ export default function showArticle({ auth, article }: Props) {
                         <p>カテゴリー:{category_id[0].name}</p>
                         <p>投稿者:{user_id[0].name}</p>
                         <p>{body}</p>
+                        {auth.user ? (
+                            <LikeButton
+                                article={article}
+                                auth={auth}
+                                initial_is_liked={initial_is_liked}
+                                endpoint={endpoint}
+                            />
+                        ) : (
+                            ""
+                        )}
                     </h1>
                     <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"></div>
                 </div>

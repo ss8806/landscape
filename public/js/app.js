@@ -7214,6 +7214,265 @@ exports.default = Label;
 
 /***/ }),
 
+/***/ "./resources/js/Components/LikeButton.tsx":
+/*!************************************************!*\
+  !*** ./resources/js/Components/LikeButton.tsx ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+var __generator = this && this.__generator || function (thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function sent() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  },
+      f,
+      y,
+      t,
+      g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+    return this;
+  }), g;
+
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
+
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
+
+          case 7:
+            op = _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
+      }
+    }
+
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+function LikeButton(_a) {
+  var _this = this;
+
+  var auth = _a.auth,
+      article = _a.article,
+      initial_is_liked = _a.initial_is_liked,
+      endpoint = _a.endpoint;
+  var isLiked = initial_is_liked;
+
+  var handleLike = function handleLike(e) {
+    return __awaiter(_this, void 0, void 0, function () {
+      return __generator(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            e.preventDefault(); // await axios.put(endpoint);
+
+            return [4
+            /*yield*/
+            , axios_1["default"].put("like", {
+              article: article.id
+            })];
+
+          case 1:
+            // await axios.put(endpoint);
+            _a.sent();
+
+            isLiked = true; // ハートを赤くする
+
+            alert("気になるリストに登録しました");
+            return [2
+            /*return*/
+            ];
+        }
+      });
+    });
+  };
+
+  var handleUnLike = function handleUnLike(e) {
+    return __awaiter(_this, void 0, void 0, function () {
+      return __generator(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            e.preventDefault();
+            return [4
+            /*yield*/
+            , axios_1["default"]["delete"](endpoint)];
+
+          case 1:
+            _a.sent();
+
+            isLiked = false; // ハートを赤くする
+
+            alert("気になるリストから削除しました");
+            return [2
+            /*return*/
+            ];
+        }
+      });
+    });
+  };
+
+  var handleClickLike = isLiked ? handleUnLike : handleLike;
+  return react_1["default"].createElement("button", {
+    type: "button",
+    className: "c-btn c-btn__like ",
+    onClick: handleClickLike
+  }, react_1["default"].createElement("div", null, " ", isLiked ? "解除" : "気になる"), react_1["default"].createElement("div", null, isLiked ? react_1["default"].createElement("svg", {
+    className: "fill-current h-8 w-8 text-red-500",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    stroke: "currentColor"
+  }, react_1["default"].createElement("path", {
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "stroke-width": "2",
+    d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+  })) : react_1["default"].createElement("svg", {
+    className: "h-8 w-8 text-red-500",
+    fill: "none",
+    viewBox: "0 0 24 24",
+    stroke: "currentColor"
+  }, react_1["default"].createElement("path", {
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "stroke-width": "2",
+    d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+  }))));
+}
+
+exports.default = LikeButton;
+
+/***/ }),
+
 /***/ "./resources/js/Components/NavLink.tsx":
 /*!*********************************************!*\
   !*** ./resources/js/Components/NavLink.tsx ***!
@@ -7994,9 +8253,9 @@ exports.default = Guest;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Article/create.tsx":
+/***/ "./resources/js/Pages/Article/Create.tsx":
 /*!***********************************************!*\
-  !*** ./resources/js/Pages/Article/create.tsx ***!
+  !*** ./resources/js/Pages/Article/Create.tsx ***!
   \***********************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -8271,9 +8530,9 @@ exports.default = createArticle;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Article/edit.tsx":
+/***/ "./resources/js/Pages/Article/Edit.tsx":
 /*!*********************************************!*\
-  !*** ./resources/js/Pages/Article/edit.tsx ***!
+  !*** ./resources/js/Pages/Article/Edit.tsx ***!
   \*********************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -8595,6 +8854,72 @@ exports.default = editArticle;
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Article/Show.tsx":
+/*!*********************************************!*\
+  !*** ./resources/js/Pages/Article/Show.tsx ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+
+var LikeButton_1 = __importDefault(__webpack_require__(/*! @/Components/LikeButton */ "./resources/js/Components/LikeButton.tsx")); // type Article = {
+//     id: number;
+//     title: string;
+//     pic1: string;
+//     user_id: string;
+//     category_id: string;
+// };
+
+
+function showArticle(_a) {
+  var auth = _a.auth,
+      article = _a.article;
+  var title = article.title,
+      body = article.body,
+      pic1 = article.pic1,
+      user_id = article.user_id,
+      category_id = article.category_id,
+      initial_is_liked = article.initial_is_liked,
+      endpoint = article.endpoint;
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
+    className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("h1", {
+    className: "text-4xl font-bold from-current mb-8"
+  }, react_1["default"].createElement("p", {
+    className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
+  }, pic1), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user_id[0].name), react_1["default"].createElement("p", null, body), auth.user ? react_1["default"].createElement(LikeButton_1["default"], {
+    article: article,
+    auth: auth,
+    initial_is_liked: initial_is_liked,
+    endpoint: endpoint
+  }) : ""), react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
+  }))));
+}
+
+exports.default = showArticle;
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Article/index.tsx":
 /*!**********************************************!*\
   !*** ./resources/js/Pages/Article/index.tsx ***!
@@ -8655,63 +8980,6 @@ function Article(_a) {
 }
 
 exports.default = Article;
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Article/show.tsx":
-/*!*********************************************!*\
-  !*** ./resources/js/Pages/Article/show.tsx ***!
-  \*********************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx")); // type Article = {
-//     id: number;
-//     title: string;
-//     pic1: string;
-//     user_id: string;
-//     category_id: string;
-// };
-
-
-function showArticle(_a) {
-  var auth = _a.auth,
-      article = _a.article;
-  var title = article.title,
-      body = article.body,
-      pic1 = article.pic1,
-      user_id = article.user_id,
-      category_id = article.category_id;
-  return react_1["default"].createElement(Auth_1["default"], {
-    auth: auth
-  }, react_1["default"].createElement("section", {
-    className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
-  }, react_1["default"].createElement("div", {
-    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
-  }, react_1["default"].createElement("h1", {
-    className: "text-4xl font-bold from-current mb-8"
-  }, react_1["default"].createElement("p", {
-    className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
-  }, pic1), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user_id[0].name), react_1["default"].createElement("p", null, body)), react_1["default"].createElement("div", {
-    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
-  }))));
-}
-
-exports.default = showArticle;
 
 /***/ }),
 
@@ -9509,9 +9777,9 @@ exports.default = Dashboard;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Mypage/editEmail.tsx":
+/***/ "./resources/js/Pages/Mypage/EditEmail.tsx":
 /*!*************************************************!*\
-  !*** ./resources/js/Pages/Mypage/editEmail.tsx ***!
+  !*** ./resources/js/Pages/Mypage/EditEmail.tsx ***!
   \*************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -9738,9 +10006,9 @@ exports.default = EditEmail;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Mypage/editIcon.tsx":
+/***/ "./resources/js/Pages/Mypage/EditIcon.tsx":
 /*!************************************************!*\
-  !*** ./resources/js/Pages/Mypage/editIcon.tsx ***!
+  !*** ./resources/js/Pages/Mypage/EditIcon.tsx ***!
   \************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -9992,9 +10260,9 @@ exports.default = EditIcon;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Mypage/editName.tsx":
+/***/ "./resources/js/Pages/Mypage/EditName.tsx":
 /*!************************************************!*\
-  !*** ./resources/js/Pages/Mypage/editName.tsx ***!
+  !*** ./resources/js/Pages/Mypage/EditName.tsx ***!
   \************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -10223,9 +10491,9 @@ exports.default = EditName;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Mypage/editPassword.tsx":
+/***/ "./resources/js/Pages/Mypage/EditPassword.tsx":
 /*!****************************************************!*\
-  !*** ./resources/js/Pages/Mypage/editPassword.tsx ***!
+  !*** ./resources/js/Pages/Mypage/EditPassword.tsx ***!
   \****************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -10452,91 +10720,9 @@ exports.default = EditPassword;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Mypage/index.tsx":
+/***/ "./resources/js/Pages/Mypage/Posts.tsx":
 /*!*********************************************!*\
-  !*** ./resources/js/Pages/Mypage/index.tsx ***!
-  \*********************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-
-var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
-
-var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
-
-var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
-
-function Mypage(_a) {
-  var auth = _a.auth,
-      user = _a.user,
-      posts = _a.posts;
-  var processing = inertia_react_1.useForm({}).processing;
-  return react_1["default"].createElement(Auth_1["default"], {
-    auth: auth
-  }, react_1["default"].createElement("section", {
-    className: "pt-6 text-center"
-  }, react_1["default"].createElement("p", {
-    className: "text-center m-5 text-2xl"
-  }, user.name, "\u306E\u30DE\u30A4\u30DA\u30FC\u30B8"), react_1["default"].createElement("div", {
-    className: "text-center"
-  }, user.icon ? user.icon : react_1["default"].createElement("img", {
-    src: "/images/avatar-default.svg",
-    className: "d-block mx-auto g:h-60 xl:h-56"
-  })), react_1["default"].createElement(Button_1["default"], {
-    processing: processing
-  }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-    href: "/profile"
-  }, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u7DE8\u96C6")), react_1["default"].createElement("p", {
-    className: "text-center m-5 text-2xl"
-  }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("div", {
-    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
-  }, posts.map(function (post) {
-    return react_1["default"].createElement("div", {
-      key: post.id,
-      className: ""
-    }, react_1["default"].createElement("img", {
-      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
-      src: "https://i.imgur.com/lmYYa2s.png"
-    }), react_1["default"].createElement("div", {
-      className: ""
-    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", post.category_id[0].name), react_1["default"].createElement("div", {
-      className: ""
-    }, post.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
-      as: "button",
-      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
-      href: ziggy_js_1["default"]("edit", post.id)
-    }, "\u7DE8\u96C6\u3059\u308B"));
-  }), react_1["default"].createElement(inertia_react_1.InertiaLink, {
-    as: "button",
-    className: "text-2xl text-blue-600 im-2 px-4 py-2 border border-transparent font-semibold tracking-widest",
-    href: "/posts"
-  }, "\u6295\u7A3F\u4E00\u89A7\u3078")), react_1["default"].createElement("p", {
-    className: "text-center m-5 text-2xl"
-  }, "\u304A\u6C17\u306B\u5165\u308A")));
-}
-
-exports.default = Mypage;
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Mypage/posts.tsx":
-/*!*********************************************!*\
-  !*** ./resources/js/Pages/Mypage/posts.tsx ***!
+  !*** ./resources/js/Pages/Mypage/Posts.tsx ***!
   \*********************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -10597,9 +10783,9 @@ exports.default = Mypage;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Mypage/profile.tsx":
+/***/ "./resources/js/Pages/Mypage/Profile.tsx":
 /*!***********************************************!*\
-  !*** ./resources/js/Pages/Mypage/profile.tsx ***!
+  !*** ./resources/js/Pages/Mypage/Profile.tsx ***!
   \***********************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
@@ -10620,13 +10806,13 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
-var editName_1 = __importDefault(__webpack_require__(/*! ./editName */ "./resources/js/Pages/Mypage/editName.tsx"));
+var EditName_1 = __importDefault(__webpack_require__(/*! ./EditName */ "./resources/js/Pages/Mypage/EditName.tsx"));
 
-var editEmail_1 = __importDefault(__webpack_require__(/*! ./editEmail */ "./resources/js/Pages/Mypage/editEmail.tsx"));
+var EditEmail_1 = __importDefault(__webpack_require__(/*! ./EditEmail */ "./resources/js/Pages/Mypage/EditEmail.tsx"));
 
-var editIcon_1 = __importDefault(__webpack_require__(/*! ./editIcon */ "./resources/js/Pages/Mypage/editIcon.tsx"));
+var EditIcon_1 = __importDefault(__webpack_require__(/*! ./EditIcon */ "./resources/js/Pages/Mypage/EditIcon.tsx"));
 
-var editPassword_1 = __importDefault(__webpack_require__(/*! ./editPassword */ "./resources/js/Pages/Mypage/editPassword.tsx"));
+var EditPassword_1 = __importDefault(__webpack_require__(/*! ./EditPassword */ "./resources/js/Pages/Mypage/EditPassword.tsx"));
 
 function Profile(_a) {
   var user = _a.user,
@@ -10642,18 +10828,100 @@ function Profile(_a) {
     className: "pt-6"
   }, status && react_1["default"].createElement("div", {
     className: "mb-4 font-medium text-sm text-green-600"
-  }, status), react_1["default"].createElement(editIcon_1["default"], {
+  }, status), react_1["default"].createElement(EditIcon_1["default"], {
     icon: icon
-  }), react_1["default"].createElement(editName_1["default"], {
+  }), react_1["default"].createElement(EditName_1["default"], {
     name: name
-  }), react_1["default"].createElement(editEmail_1["default"], {
+  }), react_1["default"].createElement(EditEmail_1["default"], {
     email: email
-  }), react_1["default"].createElement(editPassword_1["default"], {
+  }), react_1["default"].createElement(EditPassword_1["default"], {
     password: password
   })));
 }
 
 exports.default = Profile;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Mypage/index.tsx":
+/*!*********************************************!*\
+  !*** ./resources/js/Pages/Mypage/index.tsx ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
+
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+
+function Mypage(_a) {
+  var auth = _a.auth,
+      user = _a.user,
+      posts = _a.posts;
+  var processing = inertia_react_1.useForm({}).processing;
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
+    className: "pt-6 text-center"
+  }, react_1["default"].createElement("p", {
+    className: "text-center m-5 text-2xl"
+  }, user.name, "\u306E\u30DE\u30A4\u30DA\u30FC\u30B8"), react_1["default"].createElement("div", {
+    className: "text-center"
+  }, user.icon ? user.icon : react_1["default"].createElement("img", {
+    src: "/images/avatar-default.svg",
+    className: "d-block mx-auto h-60 h-56"
+  })), react_1["default"].createElement(Button_1["default"], {
+    processing: processing
+  }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    href: "/profile"
+  }, "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u7DE8\u96C6")), react_1["default"].createElement("p", {
+    className: "text-center m-5 text-2xl"
+  }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
+  }, posts.map(function (post) {
+    return react_1["default"].createElement("div", {
+      key: post.id,
+      className: ""
+    }, react_1["default"].createElement("img", {
+      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
+      src: "https://i.imgur.com/lmYYa2s.png"
+    }), react_1["default"].createElement("div", {
+      className: ""
+    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", post.category_id[0].name), react_1["default"].createElement("div", {
+      className: ""
+    }, post.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      as: "button",
+      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
+      href: ziggy_js_1["default"]("edit", post.id)
+    }, "\u7DE8\u96C6\u3059\u308B"));
+  }), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    as: "button",
+    className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 text-2xl text-blue-600 im-2 px-4 py-2 border border-transparent font-semibold ",
+    href: "/posts"
+  }, "\u6295\u7A3F\u4E00\u89A7\u3078")), react_1["default"].createElement("p", {
+    className: "text-center m-5 text-2xl"
+  }, "\u304A\u6C17\u306B\u5165\u308A")));
+}
+
+exports.default = Mypage;
 
 /***/ }),
 
@@ -62181,14 +62449,14 @@ module.exports = function getSideChannel() {
 var map = {
 	"./Article": "./resources/js/Pages/Article/index.tsx",
 	"./Article/": "./resources/js/Pages/Article/index.tsx",
-	"./Article/create": "./resources/js/Pages/Article/create.tsx",
-	"./Article/create.tsx": "./resources/js/Pages/Article/create.tsx",
-	"./Article/edit": "./resources/js/Pages/Article/edit.tsx",
-	"./Article/edit.tsx": "./resources/js/Pages/Article/edit.tsx",
+	"./Article/Create": "./resources/js/Pages/Article/Create.tsx",
+	"./Article/Create.tsx": "./resources/js/Pages/Article/Create.tsx",
+	"./Article/Edit": "./resources/js/Pages/Article/Edit.tsx",
+	"./Article/Edit.tsx": "./resources/js/Pages/Article/Edit.tsx",
+	"./Article/Show": "./resources/js/Pages/Article/Show.tsx",
+	"./Article/Show.tsx": "./resources/js/Pages/Article/Show.tsx",
 	"./Article/index": "./resources/js/Pages/Article/index.tsx",
 	"./Article/index.tsx": "./resources/js/Pages/Article/index.tsx",
-	"./Article/show": "./resources/js/Pages/Article/show.tsx",
-	"./Article/show.tsx": "./resources/js/Pages/Article/show.tsx",
 	"./Auth/ConfirmPassword": "./resources/js/Pages/Auth/ConfirmPassword.tsx",
 	"./Auth/ConfirmPassword.tsx": "./resources/js/Pages/Auth/ConfirmPassword.tsx",
 	"./Auth/ForgotPassword": "./resources/js/Pages/Auth/ForgotPassword.tsx",
@@ -62205,20 +62473,20 @@ var map = {
 	"./Dashboard.tsx": "./resources/js/Pages/Dashboard.tsx",
 	"./Mypage": "./resources/js/Pages/Mypage/index.tsx",
 	"./Mypage/": "./resources/js/Pages/Mypage/index.tsx",
-	"./Mypage/editEmail": "./resources/js/Pages/Mypage/editEmail.tsx",
-	"./Mypage/editEmail.tsx": "./resources/js/Pages/Mypage/editEmail.tsx",
-	"./Mypage/editIcon": "./resources/js/Pages/Mypage/editIcon.tsx",
-	"./Mypage/editIcon.tsx": "./resources/js/Pages/Mypage/editIcon.tsx",
-	"./Mypage/editName": "./resources/js/Pages/Mypage/editName.tsx",
-	"./Mypage/editName.tsx": "./resources/js/Pages/Mypage/editName.tsx",
-	"./Mypage/editPassword": "./resources/js/Pages/Mypage/editPassword.tsx",
-	"./Mypage/editPassword.tsx": "./resources/js/Pages/Mypage/editPassword.tsx",
+	"./Mypage/EditEmail": "./resources/js/Pages/Mypage/EditEmail.tsx",
+	"./Mypage/EditEmail.tsx": "./resources/js/Pages/Mypage/EditEmail.tsx",
+	"./Mypage/EditIcon": "./resources/js/Pages/Mypage/EditIcon.tsx",
+	"./Mypage/EditIcon.tsx": "./resources/js/Pages/Mypage/EditIcon.tsx",
+	"./Mypage/EditName": "./resources/js/Pages/Mypage/EditName.tsx",
+	"./Mypage/EditName.tsx": "./resources/js/Pages/Mypage/EditName.tsx",
+	"./Mypage/EditPassword": "./resources/js/Pages/Mypage/EditPassword.tsx",
+	"./Mypage/EditPassword.tsx": "./resources/js/Pages/Mypage/EditPassword.tsx",
+	"./Mypage/Posts": "./resources/js/Pages/Mypage/Posts.tsx",
+	"./Mypage/Posts.tsx": "./resources/js/Pages/Mypage/Posts.tsx",
+	"./Mypage/Profile": "./resources/js/Pages/Mypage/Profile.tsx",
+	"./Mypage/Profile.tsx": "./resources/js/Pages/Mypage/Profile.tsx",
 	"./Mypage/index": "./resources/js/Pages/Mypage/index.tsx",
 	"./Mypage/index.tsx": "./resources/js/Pages/Mypage/index.tsx",
-	"./Mypage/posts": "./resources/js/Pages/Mypage/posts.tsx",
-	"./Mypage/posts.tsx": "./resources/js/Pages/Mypage/posts.tsx",
-	"./Mypage/profile": "./resources/js/Pages/Mypage/profile.tsx",
-	"./Mypage/profile.tsx": "./resources/js/Pages/Mypage/profile.tsx",
 	"./Welcome": "./resources/js/Pages/Welcome.tsx",
 	"./Welcome.tsx": "./resources/js/Pages/Welcome.tsx"
 };

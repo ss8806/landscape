@@ -19,7 +19,7 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $posts = $user->postIdeas()->orderBy('id', 'DESC')->take(5)->get();
+        $posts = $user->postArticles()->orderBy('id', 'DESC')->take(5)->get();
 
         return Inertia::render('Mypage/index',[ 'user' => Auth::user(),
             'posts' => $posts->map(function ($post) {
@@ -38,10 +38,10 @@ class UserController extends Controller
     public function showPosts()
     {
         $user = Auth::user();
-        $posts = $user->postIdeas()->orderBy('id', 'DESC')->get();
+        $posts = $user->postArticles()->orderBy('id', 'DESC')->get();
 
         return Inertia::render('Mypage/posts',[ 'user' => Auth::user(),
-            'posts' => $posts->map(function ($post) {
+            'likes' => $posts->map(function ($post) {
                 return [
                     'id' => $post->id,
                     'title' => $post->title,
@@ -49,6 +49,25 @@ class UserController extends Controller
                     //'user_id' => $article->user()->get(),
                     'category_id' => $post->category()->get(),
                     'show_url' => URL::route('edit', $post->id),
+                ];
+            }),
+        ]);
+    }
+
+    public function showLikes()
+    {
+        $user = Auth::user();
+        $likes = $user->likeArticles()->orderBy('id', 'DESC')->get();
+
+        return Inertia::render('Mypage/posts',[ 'user' => Auth::user(),
+            'likes' => $likes->map(function ($like) {
+                return [
+                    'id' => $like->id,
+                    'title' => $like->title,
+                    'pic1' => $like->pic1,
+                    //'user_id' => $article->user()->get(),
+                    'category_id' => $like->category()->get(),
+                    'show_url' => URL::route('like', $like->id),
                 ];
             }),
         ]);

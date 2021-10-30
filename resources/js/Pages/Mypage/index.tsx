@@ -24,7 +24,7 @@ export default function Mypage({ auth, user, posts }: Props) {
                     ) : (
                         <img
                             src="/images/avatar-default.svg"
-                            className="d-block mx-auto g:h-60 xl:h-56"
+                            className="d-block mx-auto h-60 h-56"
                         />
                     )}
                 </div>
@@ -58,7 +58,7 @@ export default function Mypage({ auth, user, posts }: Props) {
                     })}
                     <InertiaLink
                         as="button"
-                        className="text-2xl text-blue-600 im-2 px-4 py-2 border border-transparent font-semibold tracking-widest"
+                        className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 text-2xl text-blue-600 im-2 px-4 py-2 border border-transparent font-semibold "
                         href="/posts"
                     >
                         投稿一覧へ

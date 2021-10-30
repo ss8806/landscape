@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\LikeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,19 +26,22 @@ Route::middleware('auth')
     ->group(function () {
         // profile
         Route::get('/mypage', [UserController::class, 'index'])->name('mypage');
-        Route::get('/posts', [UserController::class, 'showPosts'])->name('posts');
         Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');   
         Route::put('/editName', [UserController::class, 'editName'])->name('editName');
         Route::put('/editEmail', [UserController::class, 'editEmail'])->name('editEmail');
         Route::post('/editIcon', [UserController::class, 'editIcon'])->name('editIcon');
         Route::put('/editPassword', [UserController::class, 'editPassword'])->name('editPassword');
+        Route::get('/posts', [UserController::class, 'showPosts'])->name('posts');
+        Route::get('/likes',  [LikeController::class, 'showLikes'])->name('likes');
         // article
         Route::get('/article/create', [ArticleController::class, 'create'])->name('create');
         Route::post('/article/store', [ArticleController::class, 'store'])->name('store');
         Route::get('/article/{id}/edit', [ArticleController::class, 'edit'])->name('edit');
         Route::put('/article/{id}/update', [ArticleController::class, 'update'])->name('update');
         Route::delete('/article/{id}/delete',  [ArticleController::class, 'destroy'])->name('delete');
-        Route::get('/like', 'LikesIdeasController@showlikesIdeas')->name('like');
+        // like
+        Route::put('article/{id}/like', [ArticleController::class, 'like'])->name('like');
+        Route::delete('article/{id}/like', [ArticleController::class, 'unlike'])->name('unlike');
     });
 
 Route::get('/welcome', function () {

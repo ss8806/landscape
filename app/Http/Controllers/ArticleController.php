@@ -64,7 +64,7 @@ class ArticleController extends Controller
     public function create()
     {
         $categories = Category::orderBy('sort_no')->get();
-        return Inertia::render('Article/create',['categories' => $categories]);  
+        return Inertia::render('Article/Create',['categories' => $categories]);  
     }
 
     /**
@@ -91,16 +91,23 @@ class ArticleController extends Controller
         $article = Article::find($id);
         $user_id = $article->user()->get();
         $category_id = $article->category()->get();
-        //dd($article);
+        $initial_is_liked= $article->isLiked(Auth::user());
+        $endpoint = route('like', $article);
+        //dd($initial_is_liked);
+        //dd($endpoint);
+
 
         //return Inertia::render('Article/show',['article' => $article]);
-        return Inertia::render('Article/show', [
+        return Inertia::render('Article/Show', [
             'article' => [
+                'id' => $article->id,
                 'title' => $article->title,
                 'body' => $article->body,
                 'pic1' => $article->pic1,
                 'user_id' => $user_id,
                 'category_id' => $category_id,
+                'initial_is_liked' => $initial_is_liked,
+                'endpoint' => $endpoint,
             ],
         ]);
     }
@@ -119,7 +126,7 @@ class ArticleController extends Controller
         $categories = Category::orderBy('sort_no')->get();
         //dd($article);
 
-        return Inertia::render('Article/edit',[
+        return Inertia::render('Article/Edit',[
             'article' => [
                 'id' => $article->id,
                 'title' => $article->title,
@@ -164,4 +171,28 @@ class ArticleController extends Controller
         return Redirect::route('mypage');
         // return redirect()->back()->with('flash_message', __('Deleted.'));
     }
+
+     public function like(Request $request, Article $article)
+    {
+        //モデルを結びつけている中間テーブルにレコードを削除する。 
+        $article->likes()->detach($request->user()->id);
+        // モデルを結びつけている中間テーブルにレコードを挿入する。 
+        $article->likes()->attach($request->user()->id);
+
+        return [
+            'id' => $article->id,
+        ];
+    }
+
+    // 気になるリストから削除する処理
+    public function unlike(Request $request, Article $article)
+    {
+        $article->likes()->detach($request->user()->id);
+
+        return [
+            'id' => $article->id,
+        ];
+    } 
+
+    
 }

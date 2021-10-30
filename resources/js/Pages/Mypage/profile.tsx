@@ -1,10 +1,10 @@
 import React, { SyntheticEvent } from "react";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import Auth from "@/Layouts/Auth";
-import EditName from "./editName";
-import EditEmail from "./editEmail";
-import EditIcon from "./editIcon";
-import EditPassword from "./editPassword";
+import EditName from "./EditName";
+import EditEmail from "./EditEmail";
+import EditIcon from "./EditIcon";
+import EditPassword from "./EditPassword";
 
 type Props = {
     auth: any;
