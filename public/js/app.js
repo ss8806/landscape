@@ -10907,12 +10907,11 @@ var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ ".
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
-var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
-
 function Mypage(_a) {
   var auth = _a.auth,
       user = _a.user,
-      posts = _a.posts;
+      posts = _a.posts,
+      likes = _a.likes;
   var processing = inertia_react_1.useForm({}).processing;
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
@@ -10947,7 +10946,8 @@ function Mypage(_a) {
     }, post.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
       as: "button",
       className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
-      href: ziggy_js_1["default"]("edit", post.id)
+      // href={route("edit", post.id)}
+      href: post.show_url
     }, "\u7DE8\u96C6\u3059\u308B"));
   }), react_1["default"].createElement(inertia_react_1.InertiaLink, {
     as: "button",
@@ -10955,7 +10955,30 @@ function Mypage(_a) {
     href: "/posts"
   }, "\u6295\u7A3F\u4E00\u89A7\u3078")), react_1["default"].createElement("p", {
     className: "text-center m-5 text-2xl"
-  }, "\u304A\u6C17\u306B\u5165\u308A")));
+  }, "\u304A\u6C17\u306B\u5165\u308A"), react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
+  }, likes.map(function (like) {
+    return react_1["default"].createElement("div", {
+      key: like.id,
+      className: ""
+    }, react_1["default"].createElement("img", {
+      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
+      src: "https://i.imgur.com/lmYYa2s.png"
+    }), react_1["default"].createElement("div", {
+      className: ""
+    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", like.category_id[0].name), react_1["default"].createElement("div", {
+      className: ""
+    }, like.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      as: "button",
+      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
+      // href={route("show", like.article_id)}
+      href: like.show_url
+    }, "\u8A73\u7D30\u3092\u307F\u308B"));
+  }), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    as: "button",
+    className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 text-2xl text-blue-600 im-2 px-4 py-2 border border-transparent font-semibold ",
+    href: "/"
+  }, "\u304A\u6C17\u306B\u5165\u308A\u4E00\u89A7\u3078"))));
 }
 
 exports.default = Mypage;
