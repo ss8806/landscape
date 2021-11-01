@@ -8288,6 +8288,63 @@ exports.default = Guest;
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Article/Articles.tsx":
+/*!*************************************************!*\
+  !*** ./resources/js/Pages/Article/Articles.tsx ***!
+  \*************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+
+function Article(_a) {
+  var auth = _a.auth,
+      articles = _a.articles;
+  return react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
+  }, articles.map(function (article) {
+    return react_1["default"].createElement("div", {
+      key: article.id,
+      className: ""
+    }, react_1["default"].createElement("img", {
+      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
+      src: "https://i.imgur.com/lmYYa2s.png"
+    }), react_1["default"].createElement("div", {
+      className: "text-center"
+    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", article.category_id[0].name), react_1["default"].createElement("div", {
+      className: "text-center"
+    }, article.title), react_1["default"].createElement("div", {
+      className: "text-center"
+    }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      as: "button",
+      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
+      href: ziggy_js_1["default"]("show", article.id)
+    }, "\u8A73\u7D30\u3092\u898B\u308B")));
+  })));
+}
+
+exports.default = Article;
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Article/Create.tsx":
 /*!***********************************************!*\
   !*** ./resources/js/Pages/Article/Create.tsx ***!
@@ -8889,6 +8946,25 @@ exports.default = editArticle;
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Article/Search.tsx":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Article/Search.tsx ***!
+  \***********************************************/
+/***/ (() => {
+
+"use strict";
+ // import React, { SyntheticEvent, useState, useEffect, useMemo } from "react";
+// import { TextField, ListItem, ListItemText } from "@material-ui/core/";
+// type Props = {
+//     articles: any;
+//     cate: any;
+// };
+// export default function Search({ articles, cate }: Props) {
+//
+// }
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Article/Show.tsx":
 /*!*********************************************!*\
   !*** ./resources/js/Pages/Article/Show.tsx ***!
@@ -8978,9 +9054,7 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
-var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-
-var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+var Articles_1 = __importDefault(__webpack_require__(/*! ./Articles */ "./resources/js/Pages/Article/Articles.tsx"));
 
 function Article(_a) {
   var auth = _a.auth,
@@ -8988,30 +9062,11 @@ function Article(_a) {
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
-    className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
-  }, react_1["default"].createElement("div", {
-    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
-  }, react_1["default"].createElement("div", {
-    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
-  }, articles.map(function (article) {
-    return react_1["default"].createElement("div", {
-      key: article.id,
-      className: ""
-    }, react_1["default"].createElement("img", {
-      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
-      src: "https://i.imgur.com/lmYYa2s.png"
-    }), react_1["default"].createElement("div", {
-      className: "text-center"
-    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", article.category_id[0].name), react_1["default"].createElement("div", {
-      className: "text-center"
-    }, article.title), react_1["default"].createElement("div", {
-      className: "text-center"
-    }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-      as: "button",
-      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
-      href: ziggy_js_1["default"]("show", article.id)
-    }, "\u8A73\u7D30\u3092\u898B\u308B")));
-  })))));
+    className: "min-h-screen bg-yellow-400 text-center p-5"
+  }, "aaaa", react_1["default"].createElement(Articles_1["default"], {
+    auth: auth,
+    articles: articles
+  })));
 }
 
 exports.default = Article;
@@ -62550,10 +62605,14 @@ module.exports = function getSideChannel() {
 var map = {
 	"./Article": "./resources/js/Pages/Article/index.tsx",
 	"./Article/": "./resources/js/Pages/Article/index.tsx",
+	"./Article/Articles": "./resources/js/Pages/Article/Articles.tsx",
+	"./Article/Articles.tsx": "./resources/js/Pages/Article/Articles.tsx",
 	"./Article/Create": "./resources/js/Pages/Article/Create.tsx",
 	"./Article/Create.tsx": "./resources/js/Pages/Article/Create.tsx",
 	"./Article/Edit": "./resources/js/Pages/Article/Edit.tsx",
 	"./Article/Edit.tsx": "./resources/js/Pages/Article/Edit.tsx",
+	"./Article/Search": "./resources/js/Pages/Article/Search.tsx",
+	"./Article/Search.tsx": "./resources/js/Pages/Article/Search.tsx",
 	"./Article/Show": "./resources/js/Pages/Article/Show.tsx",
 	"./Article/Show.tsx": "./resources/js/Pages/Article/Show.tsx",
 	"./Article/index": "./resources/js/Pages/Article/index.tsx",
