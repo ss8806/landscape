@@ -95,7 +95,7 @@ export default function Mypage({ auth, user, posts, likes }: Props) {
                     <InertiaLink
                         as="button"
                         className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 text-2xl text-blue-600 im-2 px-4 py-2 border border-transparent font-semibold "
-                        href="/"
+                        href="/likes"
                     >
                         お気に入り一覧へ
                     </InertiaLink>

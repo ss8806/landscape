@@ -20,8 +20,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $posts = $user->postArticles()->orderBy('id', 'DESC')->take(5)->get();
-        //$likes = $user->likeArticles()->orderBy('id', 'DESC')->take(5)->get();
-        $likes = $user->likeArticles()->get();
+        $likes = $user->likeArticles()->orderBy('id', 'DESC')->take(5)->get();
 
         return Inertia::render('Mypage/index',[ 'user' => Auth::user(),
             'posts' => $posts->map(function ($post) {
@@ -38,6 +37,7 @@ class UserController extends Controller
                     // 'like' => $like,
                     'id' => $like->id,
                     'title' => $like->title,
+                    'pic1' => $like->pic1,
                     'category_id' => $like->category()->get(),
                     'show_url' => URL::route('show', $like->id),
                 ];
@@ -50,8 +50,8 @@ class UserController extends Controller
         $user = Auth::user();
         $posts = $user->postArticles()->orderBy('id', 'DESC')->get();
 
-        return Inertia::render('Mypage/posts',[ 'user' => Auth::user(),
-            'likes' => $posts->map(function ($post) {
+        return Inertia::render('Mypage/Posts',[ 'user' => Auth::user(),
+            'posts' => $posts->map(function ($post) {
                 return [
                     'id' => $post->id,
                     'title' => $post->title,
@@ -64,23 +64,23 @@ class UserController extends Controller
         ]);
     }
 
-    // public function showLikes()
-    // {
-    //     $user = Auth::user();
-    //     $likes = $user->likeArticles()->orderBy('id', 'DESC')->get();
+    public function showLikes()
+    {
+        $user = Auth::user();
+        $likes = $user->likeArticles()->orderBy('id', 'DESC')->get();
 
-    //     return Inertia::render('Mypage/posts',[ 'user' => Auth::user(),
-    //         'likes' => $likes->map(function ($like) {
-    //             return [
-    //                 'id' => $like->id,
-    //                 'title' => $like->title,
-    //                 'pic1' => $like->pic1,
-    //                 'category_id' => $like->category()->get(),
-    //                 'show_url' => URL::route('show', $like->article_id),
-    //             ];
-    //         }),
-    //     ]);
-    // }
+        return Inertia::render('Mypage/Likes',[ 'user' => Auth::user(),
+            'likes' => $likes->map(function ($like) {
+                return [
+                    'id' => $like->id,
+                    'title' => $like->title,
+                    'pic1' => $like->pic1,
+                    'category_id' => $like->category()->get(),
+                    'show_url' => URL::route('show', $like->id),
+                ];
+            }),
+        ]);
+    }
 
     public function showProfile()
     {

@@ -32,7 +32,7 @@ Route::middleware('auth')
         Route::post('/editIcon', [UserController::class, 'editIcon'])->name('editIcon');
         Route::put('/editPassword', [UserController::class, 'editPassword'])->name('editPassword');
         Route::get('/posts', [UserController::class, 'showPosts'])->name('posts');
-        Route::get('/likes',  [LikeController::class, 'showLikes'])->name('likes');
+        Route::get('/likes',  [UserController::class, 'showLikes'])->name('likes');
         // article
         Route::get('/article/create', [ArticleController::class, 'create'])->name('create');
         Route::post('/article/store', [ArticleController::class, 'store'])->name('store');
