@@ -7417,9 +7417,7 @@ var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/a
 function LikeButton(_a) {
   var _this = this;
 
-  var auth = _a.auth,
-      article = _a.article,
-      initial_is_liked = _a.initial_is_liked,
+  var initial_is_liked = _a.initial_is_liked,
       endpoint = _a.endpoint;
 
   var _b = react_1.useState(initial_is_liked),
@@ -7489,9 +7487,9 @@ function LikeButton(_a) {
     viewBox: "0 0 24 24",
     stroke: "currentColor"
   }, react_1["default"].createElement("path", {
-    "stroke-linecap": "round",
-    "stroke-linejoin": "round",
-    "stroke-width": "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "2",
     d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
   })) : react_1["default"].createElement("svg", {
     className: "h-8 w-8 text-red-500",
@@ -7499,9 +7497,9 @@ function LikeButton(_a) {
     viewBox: "0 0 24 24",
     stroke: "currentColor"
   }, react_1["default"].createElement("path", {
-    "stroke-linecap": "round",
-    "stroke-linejoin": "round",
-    "stroke-width": "2",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "2",
     d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
   }))));
 }

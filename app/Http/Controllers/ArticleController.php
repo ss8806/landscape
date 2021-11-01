@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 
-
-
 class ArticleController extends Controller
 {
     /**
@@ -38,8 +36,7 @@ class ArticleController extends Controller
     // }
 
     public function index()
-    {
-       
+    {  
         return Inertia::render('Article/index', [
             'articles' => Article::all()->map(function ($article) {
                 return [
@@ -47,7 +44,6 @@ class ArticleController extends Controller
                     'title' => $article->title,
                     'body' => $article->body,
                     'pic1' => $article->pic1,
-                    //'user_id' => $article->user()->get(),
                     'category_id' => $article->category()->get(),
                     'show_url' => URL::route('show', $article->id),
                 ];
@@ -89,10 +85,12 @@ class ArticleController extends Controller
     public function show(Article $article, $id)
     {
         $article = Article::find($id);
+        $id = $article->id;
         $user_id = $article->user()->get();
         $category_id = $article->category()->get();
         $initial_is_liked= $article->isLiked(Auth::user());
-        $endpoint = route('like', $article);
+        // $endpoint = route('like', $article);
+        $endpoint = route('like', $id); // ルートパラメータをid に統一するため
         //dd($initial_is_liked);
         //dd($endpoint);
 
@@ -192,7 +190,5 @@ class ArticleController extends Controller
         return [
             'id' => $article->id,
         ];
-    } 
-
-    
+    }   
 }

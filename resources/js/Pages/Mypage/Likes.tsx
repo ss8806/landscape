@@ -1,6 +1,5 @@
 import React, { SyntheticEvent, useState } from "react";
 import { InertiaLink, useForm } from "@inertiajs/inertia-react";
-import Button from "@/Components/Button";
 import Auth from "@/Layouts/Auth";
 import route from "ziggy-js";
 

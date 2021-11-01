@@ -1,8 +1,4 @@
 import React, { SyntheticEvent, useState } from "react";
-import { InertiaLink, useForm } from "@inertiajs/inertia-react";
-import Button from "@/Components/Button";
-import Auth from "@/Layouts/Auth";
-import route from "ziggy-js";
 import axios from "axios";
 
 type Props = {
@@ -12,12 +8,7 @@ type Props = {
     endpoint: string;
 };
 
-export default function LikeButton({
-    auth,
-    article,
-    initial_is_liked,
-    endpoint,
-}: Props) {
+export default function LikeButton({ initial_is_liked, endpoint }: Props) {
     let [isLiked, setLiked] = useState(initial_is_liked);
 
     const handleLike = async (e: SyntheticEvent) => {
@@ -57,9 +48,9 @@ export default function LikeButton({
                         stroke="currentColor"
                     >
                         <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                         />
                     </svg>
@@ -71,9 +62,9 @@ export default function LikeButton({
                         stroke="currentColor"
                     >
                         <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                         />
                     </svg>

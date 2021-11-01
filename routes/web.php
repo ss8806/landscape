@@ -40,8 +40,8 @@ Route::middleware('auth')
         Route::put('/article/{id}/update', [ArticleController::class, 'update'])->name('update');
         Route::delete('/article/{id}/delete',  [ArticleController::class, 'destroy'])->name('delete');
         // like
-        Route::put('article/{article}/like', [ArticleController::class, 'like'])->name('like');
-        Route::delete('article/{article}/like', [ArticleController::class, 'unlike'])->name('unlike');
+        Route::put('article/{id}/like', [ArticleController::class, 'like'])->name('like');
+        Route::delete('article/{id}/like', [ArticleController::class, 'unlike'])->name('unlike');
     });
 
 Route::get('/welcome', function () {
