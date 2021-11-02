@@ -37,14 +37,19 @@ class ArticleController extends Controller
 
     public function index()
     {  
-        return Inertia::render('Article/index', [
+        $categories = Category::orderBy('sort_no')->get();
+
+        return Inertia::render('Article/index',
+        [  
+            'categories' => $categories,
             'articles' => Article::all()->map(function ($article) {
                 return [
                     'id' => $article->id,
                     'title' => $article->title,
                     'body' => $article->body,
                     'pic1' => $article->pic1,
-                    'category_id' => $article->category()->get(),
+                    'c_id' => $article->category_id,
+                    'c_name' => $article->category()->get(),
                     'show_url' => URL::route('show', $article->id),
                 ];
             }),

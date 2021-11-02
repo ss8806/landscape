@@ -84,7 +84,7 @@ class UserController extends Controller
 
     public function showProfile()
     {
-        return Inertia::render('Mypage/profile',['user' => Auth::user()]);   
+        return Inertia::render('Mypage/Profile',['user' => Auth::user()]);   
     }
 
     public function editAvatar(Request $request)

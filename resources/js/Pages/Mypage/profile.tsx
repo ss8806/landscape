@@ -18,16 +18,18 @@ export default function Profile({ user, auth, status }: Props) {
 
     return (
         <Auth auth={auth}>
-            <section className="pt-6">
-                {status && (
-                    <div className="mb-4 font-medium text-sm text-green-600">
-                        {status}
-                    </div>
-                )}
-                <EditIcon icon={icon}></EditIcon>
-                <EditName name={name}></EditName>
-                <EditEmail email={email}></EditEmail>
-                <EditPassword password={password}></EditPassword>
+            <section className="p-10">
+                <div className="container bg-gray-100 rounded-xl">
+                    {status && (
+                        <div className="mb-4 font-medium text-sm text-green-600">
+                            {status}
+                        </div>
+                    )}
+                    <EditIcon icon={icon}></EditIcon>
+                    <EditName name={name}></EditName>
+                    <EditEmail email={email}></EditEmail>
+                    <EditPassword password={password}></EditPassword>
+                </div>
             </section>
         </Auth>
     );

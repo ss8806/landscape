@@ -292,7 +292,7 @@ export default function Auth({ auth, children }: Props) {
                     </div>
                 </nav>
             )}
-            <main className="min-h-80">{children}</main>
+            <main className="min-h-80 bg-yellow-400">{children}</main>
             <footer className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-end h-16">

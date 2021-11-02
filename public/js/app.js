@@ -8053,7 +8053,7 @@ function Auth(_a) {
     href: ziggy_js_1["default"]("login"),
     as: "button"
   }, "\u30ED\u30B0\u30A4\u30F3"))))), react_1["default"].createElement("main", {
-    className: "min-h-80"
+    className: "min-h-80 bg-yellow-400"
   }, children), react_1["default"].createElement("footer", {
     className: "bg-white border-b border-gray-100"
   }, react_1["default"].createElement("div", {
@@ -8292,56 +8292,57 @@ exports.default = Guest;
 /*!*************************************************!*\
   !*** ./resources/js/Pages/Article/Articles.tsx ***!
   \*************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ (() => {
 
 "use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-
-var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
-
-function Article(_a) {
-  var auth = _a.auth,
-      articles = _a.articles;
-  return react_1["default"].createElement("div", {
-    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
-  }, react_1["default"].createElement("div", {
-    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
-  }, articles.map(function (article) {
-    return react_1["default"].createElement("div", {
-      key: article.id,
-      className: ""
-    }, react_1["default"].createElement("img", {
-      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
-      src: "https://i.imgur.com/lmYYa2s.png"
-    }), react_1["default"].createElement("div", {
-      className: "text-center"
-    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", article.category_id[0].name), react_1["default"].createElement("div", {
-      className: "text-center"
-    }, article.title), react_1["default"].createElement("div", {
-      className: "text-center"
-    }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-      as: "button",
-      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
-      href: ziggy_js_1["default"]("show", article.id)
-    }, "\u8A73\u7D30\u3092\u898B\u308B")));
-  })));
-}
-
-exports.default = Article;
+ // import React from "react";
+// import Auth from "@/Layouts/Auth";
+// import Button from "@/Components/Button";
+// import { InertiaLink, useForm } from "@inertiajs/inertia-react";
+// import route from "ziggy-js";
+// type Props = {
+//     auth: any;
+//     articles: any;
+// };
+// type Article = {
+//     id: number;
+//     title: string;
+//     show_url: string;
+//     category_id: any;
+//     pic1: string;
+// };
+// export default function Article({ auth, articles }: Props) {
+//     return (
+//         <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
+//             <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0">
+//                 {articles.map((article: Article) => {
+//                     return (
+//                         <div key={article.id} className="">
+//                             <img
+//                                 className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
+//                                 src="https://i.imgur.com/lmYYa2s.png"
+//                             />
+//                             <div className="text-center">
+//                                 カテゴリー：
+//                                 {article.category_id[0].name}
+//                             </div>
+//                             <div className="text-center">{article.title}</div>
+//                             <div className="text-center">
+//                                 <InertiaLink
+//                                     as="button"
+//                                     className="inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150"
+//                                     href={route("show", article.id)}
+//                                 >
+//                                     詳細を見る
+//                                 </InertiaLink>
+//                             </div>
+//                         </div>
+//                     );
+//                 })}
+//             </div>
+//         </div>
+//     );
+// }
 
 /***/ }),
 
@@ -9040,6 +9041,56 @@ exports.default = showArticle;
 "use strict";
 
 
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -9050,7 +9101,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
@@ -9058,42 +9109,120 @@ var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./nod
 
 var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
 
-var escape_string_regexp_1 = __importDefault(__webpack_require__(/*! escape-string-regexp */ "./node_modules/escape-string-regexp/index.js"));
-
 function Article(_a) {
+  // ユーザーの入力キーワードをState化する
+  // const [searchKeyword, updateSearchKeyword] = React.useState("");
   var auth = _a.auth,
-      articles = _a.articles; // ユーザーの入力キーワードをState化する
+      articles = _a.articles,
+      categories = _a.categories; // // 入力イベントに反応してStateを更新する
+  // const onInput = (event: React.FormEvent<HTMLInputElement>) => {
+  //     // 入力キーワードをstateに格納する
+  //     updateSearchKeyword(event.currentTarget.value);
+  // };
+  // const filteredList = articles.filter((item: any) => {
+  //     // ユーザー入力を安全に正規表現にする（このときすべて小文字化で正規化する）
+  //     const escapedText = escapeStringRegexp(searchKeyword.toLowerCase());
+  //     // 小文字で比較して部分一致するものだけを残す
+  //     return new RegExp(escapedText).test(item.title.toLowerCase());
+  // });
+  // タスク
 
-  var _b = react_1["default"].useState(""),
-      searchKeyword = _b[0],
-      updateSearchKeyword = _b[1]; // 入力イベントに反応してStateを更新する
+  var _b = react_1.useState(articles),
+      tasks = _b[0],
+      setTasks = _b[1]; // カテゴリー
 
 
-  var onInput = function onInput(event) {
-    // 入力キーワードをstateに格納する
-    updateSearchKeyword(event.currentTarget.value);
-  };
+  var _c = react_1.useState(categories),
+      cates = _c[0],
+      setCategories = _c[1]; // 検索条件
 
-  var filteredList = articles.filter(function (item) {
-    // ユーザー入力を安全に正規表現にする（このときすべて小文字化で正規化する）
-    var escapedText = escape_string_regexp_1["default"](searchKeyword.toLowerCase()); // 小文字で比較して部分一致するものだけを残す
 
-    return new RegExp(escapedText).test(item.title.toLowerCase());
-  });
+  var _d = react_1.useState({}),
+      filterQuery = _d[0],
+      setFilterQuery = _d[1]; // ソート条件
+
+
+  var _e = react_1.useState({}),
+      sort = _e[0],
+      setSort = _e[1];
+
+  var filteredTask = react_1.useMemo(function () {
+    var tmpTasks = tasks; // 入力した文字は小文字にする
+
+    var filterTitle = filterQuery.title && filterQuery.title.toLowerCase(); // 絞り込み検索
+
+    tmpTasks = tmpTasks.filter(function (row) {
+      // タイトルで絞り込み
+      if (filterQuery.title && String(row.title).toLowerCase().indexOf(filterTitle) === -1) {
+        return false;
+      } // カテゴリーで絞り込み
+
+
+      if (filterQuery.c_id && row.c_id !== parseInt(filterQuery.c_id)) {
+        return false;
+      }
+
+      return row;
+    }); // ソート
+
+    if (sort.key) {
+      tmpTasks = tmpTasks.sort(function (a, b) {
+        a = a[sort.key];
+        b = b[sort.key];
+        return (a === b ? 0 : a > b ? 1 : -1) * sort.order;
+      });
+    }
+
+    return tmpTasks; //第2引数の配列を指定することで、この変数の変化がある度にこの部分の処理が実行されます。
+  }, [filterQuery, sort, tasks]); // 入力した情報をfilterQueryに入れる
+
+  var handleFilter = function handleFilter(e) {
+    var _a;
+
+    var _b = e.target,
+        name = _b.name,
+        value = _b.value;
+    setFilterQuery(__assign(__assign({}, filterQuery), (_a = {}, _a[name] = value, _a)));
+  }; // 選択したカラムをSortに入れる
+  // const handleSort = (column: any) => {
+  //     if (sort.key === column) {
+  //         setSort({ ...sort, order: -sort.order });
+  //     } else {
+  //         setSort({
+  //             key: column,
+  //             order: 1,
+  //         });
+  //     }
+  // };
+
+
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
     className: "min-h-screen bg-yellow-400 text-center p-10"
   }, react_1["default"].createElement("input", {
-    id: "search-keyword",
     type: "text",
-    onInput: onInput,
-    placeholder: "キーワード検索"
-  }), react_1["default"].createElement("div", {
+    name: "title",
+    className: "form-input",
+    placeholder: "\u30BF\u30A4\u30C8\u30EB",
+    value: filterQuery.title || "",
+    onChange: handleFilter
+  }), react_1["default"].createElement("select", {
+    name: "c_id",
+    value: filterQuery.c_id,
+    onChange: handleFilter
+  }, react_1["default"].createElement("option", {
+    value: ""
+  }, "\u30AB\u30C6\u30B4\u30EA\u30FC\u9078\u629E"), cates.map(function (cate) {
+    return react_1["default"].createElement("option", {
+      key: cate.id,
+      value: cate.id
+    }, cate.name);
+  })), react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("div", {
     className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
-  }, filteredList.length ? filteredList.map(function (article) {
+  }, filteredTask.length ? filteredTask.map(function (article) {
     return react_1["default"].createElement("div", {
       key: article.id,
       className: ""
@@ -9102,7 +9231,7 @@ function Article(_a) {
       src: "https://i.imgur.com/lmYYa2s.png"
     }), react_1["default"].createElement("div", {
       className: "text-center"
-    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", article.category_id[0].name), react_1["default"].createElement("div", {
+    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", article.c_name[0].name), react_1["default"].createElement("div", {
       className: "text-center"
     }, article.title), react_1["default"].createElement("div", {
       className: "text-center"
@@ -11003,7 +11132,9 @@ function Profile(_a) {
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
-    className: "pt-6"
+    className: "p-10"
+  }, react_1["default"].createElement("div", {
+    className: "container bg-gray-100 rounded-xl"
   }, status && react_1["default"].createElement("div", {
     className: "mb-4 font-medium text-sm text-green-600"
   }, status), react_1["default"].createElement(EditIcon_1["default"], {
@@ -11014,7 +11145,7 @@ function Profile(_a) {
     email: email
   }), react_1["default"].createElement(EditPassword_1["default"], {
     password: password
-  })));
+  }))));
 }
 
 exports.default = Profile;
@@ -11057,7 +11188,9 @@ function Mypage(_a) {
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
-    className: "pt-6 text-center"
+    className: "p-10 text-center"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("p", {
     className: "text-center m-5 text-2xl"
   }, user.name, "\u306E\u30DE\u30A4\u30DA\u30FC\u30B8"), react_1["default"].createElement("div", {
@@ -11119,7 +11252,7 @@ function Mypage(_a) {
     as: "button",
     className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 text-2xl text-blue-600 im-2 px-4 py-2 border border-transparent font-semibold ",
     href: "/likes"
-  }, "\u304A\u6C17\u306B\u5165\u308A\u4E00\u89A7\u3078"))));
+  }, "\u304A\u6C17\u306B\u5165\u308A\u4E00\u89A7\u3078")))));
 }
 
 exports.default = Mypage;
@@ -11634,32 +11767,6 @@ deepmerge.all = function deepmergeAll(array, options) {
 var deepmerge_1 = deepmerge;
 
 module.exports = deepmerge_1;
-
-
-/***/ }),
-
-/***/ "./node_modules/escape-string-regexp/index.js":
-/*!****************************************************!*\
-  !*** ./node_modules/escape-string-regexp/index.js ***!
-  \****************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ escapeStringRegexp)
-/* harmony export */ });
-function escapeStringRegexp(string) {
-	if (typeof string !== 'string') {
-		throw new TypeError('Expected a string');
-	}
-
-	// Escape characters with special meaning either inside or outside character sets.
-	// Use a simple backslash escape when it’s always valid, and a `\xnn` escape when the simpler form would be disallowed by Unicode patterns’ stricter grammar.
-	return string
-		.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
-		.replace(/-/g, '\\x2d');
-}
 
 
 /***/ }),
