@@ -8950,69 +8950,16 @@ exports.default = editArticle;
 /*!***********************************************!*\
   !*** ./resources/js/Pages/Article/Search.tsx ***!
   \***********************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
 
-
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
 
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-function Search() {
-  var _a = react_1.useState(""),
-      val = _a[0],
-      setVal = _a[1];
-
-  var handleChange = function handleChange(e) {
-    e.preventDefault();
-    setVal(e.target.value); //callBackSearch(e.target.value);
-  };
-
-  return react_1["default"].createElement("input", {
-    type: "text",
-    className: "searchBox__input",
-    onChange: handleChange,
-    value: val,
-    placeholder: "somothing keyword"
-  });
-}
+function Search() {}
 
 exports.default = Search;
 
@@ -9107,78 +9054,67 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+
 var escape_string_regexp_1 = __importDefault(__webpack_require__(/*! escape-string-regexp */ "./node_modules/escape-string-regexp/index.js"));
 
 function Article(_a) {
-  // // 入力キーワード
-  // const [keyword, setKeyword] = useState("");
-  // // itemsのListを表示・非表示を切替。onClick で true を渡して表示させる
-  // const [showLists, setShowLists] = useState(false);
-  // // List 形式で表示するデータ。初期値では検索キーワードを入力していないので上で定義した
-  // // products を全件渡している
-  // const [filteredProducts, setFilteredProducts] = useState(articles);
   var auth = _a.auth,
-      articles = _a.articles; // useEffect(() => {
-  //     if (keyword === "") {
-  //         setFilteredProducts(articles);
-  //         return;
-  //     }
-  //     const searchKeywords = keyword
-  //         .trim()
-  //         .toLowerCase()
-  //         .match(/[^\s]+/g);
-  //     //入力されたキーワードが空白のみの場合
-  //     if (searchKeywords === null) {
-  //         setFilteredProducts(articles);
-  //         return;
-  //     }
-  //     const result = articles.filter((article: string) =>
-  //         searchKeywords.every(
-  //             (kw) => article.toLowerCase().indexOf(kw) !== -1
-  //         )
-  //     );
-  //     setFilteredProducts(result.length ? result : ["No Item Found"]);
-  // }, [keyword]);
+      articles = _a.articles; // ユーザーの入力キーワードをState化する
 
   var _b = react_1["default"].useState(""),
       searchKeyword = _b[0],
-      updateSearchKeyword = _b[1];
+      updateSearchKeyword = _b[1]; // 入力イベントに反応してStateを更新する
+
 
   var onInput = function onInput(event) {
+    // 入力キーワードをstateに格納する
     updateSearchKeyword(event.currentTarget.value);
   };
 
   var filteredList = articles.filter(function (item) {
-    var escapedText = escape_string_regexp_1["default"](searchKeyword.toLowerCase());
+    // ユーザー入力を安全に正規表現にする（このときすべて小文字化で正規化する）
+    var escapedText = escape_string_regexp_1["default"](searchKeyword.toLowerCase()); // 小文字で比較して部分一致するものだけを残す
+
     return new RegExp(escapedText).test(item.title.toLowerCase());
   });
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
-    className: "min-h-screen bg-yellow-400 text-center"
+    className: "min-h-screen bg-yellow-400 text-center p-10"
   }, react_1["default"].createElement("input", {
     id: "search-keyword",
     type: "text",
     onInput: onInput,
-    placeholder: "input search keyword"
-  }), react_1["default"].createElement("ul", {
-    className: "list"
-  }, filteredList.map(function (item) {
-    return react_1["default"].createElement("li", {
-      key: item.id
-    }, item.title);
-  }))));
+    placeholder: "キーワード検索"
+  }), react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
+  }, filteredList.length ? filteredList.map(function (article) {
+    return react_1["default"].createElement("div", {
+      key: article.id,
+      className: ""
+    }, react_1["default"].createElement("img", {
+      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
+      src: "https://i.imgur.com/lmYYa2s.png"
+    }), react_1["default"].createElement("div", {
+      className: "text-center"
+    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", article.category_id[0].name), react_1["default"].createElement("div", {
+      className: "text-center"
+    }, article.title), react_1["default"].createElement("div", {
+      className: "text-center"
+    }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      as: "button",
+      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
+      href: ziggy_js_1["default"]("show", article.id)
+    }, "\u8A73\u7D30\u3092\u898B\u308B")));
+  }) : react_1["default"].createElement("p", null, "\u8A72\u5F53\u306A\u3057")))));
 }
 
 exports.default = Article;
-{
-  /* <Auth auth={auth}>
-  <section className="min-h-screen bg-yellow-400 text-center p-5">
-  <Search />
-  <Articles auth={auth} articles={articles}></Articles>
-  </section>
-  </Auth> */
-}
 
 /***/ }),
 
