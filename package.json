@@ -37,6 +37,7 @@
         "@fortawesome/fontawesome-svg-core": "^1.2.36",
         "@fortawesome/free-solid-svg-icons": "^5.15.4",
         "@fortawesome/react-fontawesome": "^0.1.16",
+        "escape-string-regexp": "^5.0.0",
         "ziggy-js": "^1.2.0"
     }
 }

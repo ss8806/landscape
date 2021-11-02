@@ -1,11 +1,23 @@
-// import React, { SyntheticEvent, useState, useEffect, useMemo } from "react";
-// import { TextField, ListItem, ListItemText } from "@material-ui/core/";
+import React, { useState } from "react";
 
-// type Props = {
-//     articles: any;
-//     cate: any;
-// };
+type Props = {};
 
-// export default function Search({ articles, cate }: Props) {
-//
-// }
+export default function Search(): any {
+    let [val, setVal] = useState("");
+
+    const handleChange = (e: any) => {
+        e.preventDefault();
+        setVal(e.target.value);
+        //callBackSearch(e.target.value);
+    };
+
+    return (
+        <input
+            type="text"
+            className="searchBox__input"
+            onChange={handleChange}
+            value={val}
+            placeholder="somothing keyword"
+        />
+    );
+}

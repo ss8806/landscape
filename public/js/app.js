@@ -8950,18 +8950,71 @@ exports.default = editArticle;
 /*!***********************************************!*\
   !*** ./resources/js/Pages/Article/Search.tsx ***!
   \***********************************************/
-/***/ (() => {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
- // import React, { SyntheticEvent, useState, useEffect, useMemo } from "react";
-// import { TextField, ListItem, ListItemText } from "@material-ui/core/";
-// type Props = {
-//     articles: any;
-//     cate: any;
-// };
-// export default function Search({ articles, cate }: Props) {
-//
-// }
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+function Search() {
+  var _a = react_1.useState(""),
+      val = _a[0],
+      setVal = _a[1];
+
+  var handleChange = function handleChange(e) {
+    e.preventDefault();
+    setVal(e.target.value); //callBackSearch(e.target.value);
+  };
+
+  return react_1["default"].createElement("input", {
+    type: "text",
+    className: "searchBox__input",
+    onChange: handleChange,
+    value: val,
+    placeholder: "somothing keyword"
+  });
+}
+
+exports.default = Search;
 
 /***/ }),
 
@@ -9054,22 +9107,78 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
-var Articles_1 = __importDefault(__webpack_require__(/*! ./Articles */ "./resources/js/Pages/Article/Articles.tsx"));
+var escape_string_regexp_1 = __importDefault(__webpack_require__(/*! escape-string-regexp */ "./node_modules/escape-string-regexp/index.js"));
 
 function Article(_a) {
+  // // 入力キーワード
+  // const [keyword, setKeyword] = useState("");
+  // // itemsのListを表示・非表示を切替。onClick で true を渡して表示させる
+  // const [showLists, setShowLists] = useState(false);
+  // // List 形式で表示するデータ。初期値では検索キーワードを入力していないので上で定義した
+  // // products を全件渡している
+  // const [filteredProducts, setFilteredProducts] = useState(articles);
   var auth = _a.auth,
-      articles = _a.articles;
+      articles = _a.articles; // useEffect(() => {
+  //     if (keyword === "") {
+  //         setFilteredProducts(articles);
+  //         return;
+  //     }
+  //     const searchKeywords = keyword
+  //         .trim()
+  //         .toLowerCase()
+  //         .match(/[^\s]+/g);
+  //     //入力されたキーワードが空白のみの場合
+  //     if (searchKeywords === null) {
+  //         setFilteredProducts(articles);
+  //         return;
+  //     }
+  //     const result = articles.filter((article: string) =>
+  //         searchKeywords.every(
+  //             (kw) => article.toLowerCase().indexOf(kw) !== -1
+  //         )
+  //     );
+  //     setFilteredProducts(result.length ? result : ["No Item Found"]);
+  // }, [keyword]);
+
+  var _b = react_1["default"].useState(""),
+      searchKeyword = _b[0],
+      updateSearchKeyword = _b[1];
+
+  var onInput = function onInput(event) {
+    updateSearchKeyword(event.currentTarget.value);
+  };
+
+  var filteredList = articles.filter(function (item) {
+    var escapedText = escape_string_regexp_1["default"](searchKeyword.toLowerCase());
+    return new RegExp(escapedText).test(item.title.toLowerCase());
+  });
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
-    className: "min-h-screen bg-yellow-400 text-center p-5"
-  }, "aaaa", react_1["default"].createElement(Articles_1["default"], {
-    auth: auth,
-    articles: articles
-  })));
+    className: "min-h-screen bg-yellow-400 text-center"
+  }, react_1["default"].createElement("input", {
+    id: "search-keyword",
+    type: "text",
+    onInput: onInput,
+    placeholder: "input search keyword"
+  }), react_1["default"].createElement("ul", {
+    className: "list"
+  }, filteredList.map(function (item) {
+    return react_1["default"].createElement("li", {
+      key: item.id
+    }, item.title);
+  }))));
 }
 
 exports.default = Article;
+{
+  /* <Auth auth={auth}>
+  <section className="min-h-screen bg-yellow-400 text-center p-5">
+  <Search />
+  <Articles auth={auth} articles={articles}></Articles>
+  </section>
+  </Auth> */
+}
 
 /***/ }),
 
@@ -11589,6 +11698,32 @@ deepmerge.all = function deepmergeAll(array, options) {
 var deepmerge_1 = deepmerge;
 
 module.exports = deepmerge_1;
+
+
+/***/ }),
+
+/***/ "./node_modules/escape-string-regexp/index.js":
+/*!****************************************************!*\
+  !*** ./node_modules/escape-string-regexp/index.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ escapeStringRegexp)
+/* harmony export */ });
+function escapeStringRegexp(string) {
+	if (typeof string !== 'string') {
+		throw new TypeError('Expected a string');
+	}
+
+	// Escape characters with special meaning either inside or outside character sets.
+	// Use a simple backslash escape when it’s always valid, and a `\xnn` escape when the simpler form would be disallowed by Unicode patterns’ stricter grammar.
+	return string
+		.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
+		.replace(/-/g, '\\x2d');
+}
 
 
 /***/ }),
