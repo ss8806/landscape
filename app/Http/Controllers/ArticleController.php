@@ -15,25 +15,23 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $user = auth()->user();
+    //     $this->middleware('can:, article')->only([
+    //         'edit','update','destroy'
+    //     ]);
+    // }
+
+    // public function __construct()
+    // {
+    // $this->authorizeResource(Article::class, 'article');
+    // }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     return Inertia::render('Article/index', [
-    //         'filters' => Request::all('search', 'role', 'trashed'),
-    //         'articles' => Article::filter(Request::only('search', 'role', 'trashed'))->get()
-    //             ->transform(fn ($article) => [
-    //                 'id' => $article->id,
-    //                 'title' => $article->name,
-    //                 // 'body' => $article->body,
-    //                 'show_url' => URL::route('show', $article),
-    //                 // 'photo' => $user->photo_path ? URL::route('image', ['path' => $user->photo_path, 'w' => 40, 'h' => 40, 'fit' => 'crop']) : null,
-    //             ]),
-    //     ]);
-    // }
 
     public function index()
     {  
@@ -127,19 +125,22 @@ class ArticleController extends Controller
         $category_id = $article->category()->get();
         $categories = Category::orderBy('sort_no')->get();
         //dd($article);
-
-        return Inertia::render('Article/Edit',[
-            'article' => [
-                'id' => $article->id,
-                'title' => $article->title,
-                'body' => $article->body,
-                'pic1' => $article->pic1,
-                'user_id' => $user_id,
-                'c_id' => $article->category_id,
-                'category_id' => $category_id,
-            ],
-            'categories' => $categories
-        ]);
+        if ($user_id === $article->id){
+            return Inertia::render('Article/Edit',[
+                'article' => [
+                    'id' => $article->id,
+                    'title' => $article->title,
+                    'body' => $article->body,
+                    'pic1' => $article->pic1,
+                    'user_id' => $user_id,
+                    'c_id' => $article->category_id,
+                    'category_id' => $category_id,
+                ],
+                'categories' => $categories
+            ]);
+        } else{
+            return App::abort(404); // 404エラーを返す
+        }
     }
 
     /**

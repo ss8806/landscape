@@ -8524,7 +8524,7 @@ function createArticle(_a) {
     type: "text",
     name: "title",
     className: "w-3/4 mt-1 mb-1 block mx-auto",
-    placeholder: "\u30BF\u30A4\u30C8\u30EB",
+    placeholder: "\u30BF\u30A4\u30C8\u30EB\u3092\u691C\u7D22",
     value: data.title,
     required: true,
     handleChange: onHandleChange
@@ -9958,6 +9958,37 @@ function Dashboard(props) {
 }
 
 exports.default = Dashboard;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Error/index.tsx":
+/*!********************************************!*\
+  !*** ./resources/js/Pages/Error/index.tsx ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var NotFoundPage = function NotFoundPage() {
+  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("div", {
+    className: "align-center"
+  }, react_1["default"].createElement("h1", null, "404 NotFound"), react_1["default"].createElement("p", null, "\u304A\u63A2\u3057\u306E\u30DA\u30FC\u30B8\u306F\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3067\u3057\u305F")));
+};
+
+exports.default = NotFoundPage;
 
 /***/ }),
 
@@ -84182,6 +84213,10 @@ var map = {
 	"./Auth/VerifyEmail.tsx": "./resources/js/Pages/Auth/VerifyEmail.tsx",
 	"./Dashboard": "./resources/js/Pages/Dashboard.tsx",
 	"./Dashboard.tsx": "./resources/js/Pages/Dashboard.tsx",
+	"./Error": "./resources/js/Pages/Error/index.tsx",
+	"./Error/": "./resources/js/Pages/Error/index.tsx",
+	"./Error/index": "./resources/js/Pages/Error/index.tsx",
+	"./Error/index.tsx": "./resources/js/Pages/Error/index.tsx",
 	"./Mypage": "./resources/js/Pages/Mypage/index.tsx",
 	"./Mypage/": "./resources/js/Pages/Mypage/index.tsx",
 	"./Mypage/EditEmail": "./resources/js/Pages/Mypage/EditEmail.tsx",

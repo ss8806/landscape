@@ -62,7 +62,7 @@ export default function createArticle({ auth, categories }: Props) {
                                 type="text"
                                 name="title"
                                 className="w-3/4 mt-1 mb-1 block mx-auto"
-                                placeholder="タイトル"
+                                placeholder="タイトルを検索"
                                 value={data.title}
                                 required
                                 handleChange={onHandleChange}
