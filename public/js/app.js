@@ -9112,7 +9112,7 @@ var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_mod
 function Article(_a) {
   var auth = _a.auth,
       articles = _a.articles,
-      categories = _a.categories;
+      categories = _a.categories; // 検索条件
 
   var _b = react_1.useState({}),
       filterQuery = _b[0],
@@ -9122,6 +9122,10 @@ function Article(_a) {
   var _c = react_1.useState({}),
       sort = _c[0],
       setSort = _c[1];
+
+  var _d = react_1.useState(false),
+      isSorted = _d[0],
+      setSorted = _d[1];
 
   var filteredTask = react_1.useMemo(function () {
     var tmpArticles = articles; // 入力した文字は小文字にする
@@ -9169,6 +9173,7 @@ function Article(_a) {
       setSort(__assign(__assign({}, sort), {
         order: -sort.order
       }));
+      setSorted(!isSorted);
     } else {
       setSort({
         key: column,
@@ -9180,16 +9185,17 @@ function Article(_a) {
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
-    className: "min-h-screen bg-yellow-400 text-center p-10"
+    className: "min-h-screen bg-yellow-400 text-center p-10 "
   }, react_1["default"].createElement("input", {
     type: "text",
     name: "title",
-    className: "form-input",
+    className: "m-4 border-solid border border-black",
     placeholder: "\u30BF\u30A4\u30C8\u30EB",
     value: filterQuery.title || "",
     onChange: handleFilter
   }), react_1["default"].createElement("select", {
     name: "c_id",
+    className: "m-4 border-solid border border-black",
     value: filterQuery.c_id,
     onChange: handleFilter
   }, react_1["default"].createElement("option", {
@@ -9199,11 +9205,12 @@ function Article(_a) {
       key: cate.id,
       value: cate.id
     }, cate.name);
-  })), react_1["default"].createElement("div", null, react_1["default"].createElement("button", {
+  })), react_1["default"].createElement("button", {
+    className: "m-4 p-2 bg-white text-base border-solid border border-black",
     onClick: function onClick() {
       return handleSort("id");
     }
-  }, "\u53E4\u3044\u9806\u306B\u4E26\u3079\u66FF\u3048")), react_1["default"].createElement("div", {
+  }, isSorted ? "登録を古い順に並べ替え" : "登録を新しい順に並べ替え"), react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("div", {
     className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"

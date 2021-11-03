@@ -26,9 +26,12 @@ type Category = {
 };
 
 export default function Article({ auth, articles, categories }: Props) {
+    // 検索条件
     const [filterQuery, setFilterQuery] = useState<any>({});
     // ソート条件
     const [sort, setSort] = useState<any>({});
+
+    let [isSorted, setSorted] = useState<boolean>(false);
 
     const filteredTask = useMemo(() => {
         let tmpArticles = articles;
@@ -78,6 +81,7 @@ export default function Article({ auth, articles, categories }: Props) {
         if (sort.key === column) {
             // カラムを設定した場合は逆順になるようにorderをマイナスにします。
             setSort({ ...sort, order: -sort.order });
+            setSorted(!isSorted);
         } else {
             setSort({
                 key: column,
@@ -88,11 +92,11 @@ export default function Article({ auth, articles, categories }: Props) {
 
     return (
         <Auth auth={auth}>
-            <section className="min-h-screen bg-yellow-400 text-center p-10">
+            <section className="min-h-screen bg-yellow-400 text-center p-10 ">
                 <input
                     type="text"
                     name="title"
-                    className="form-input"
+                    className="m-4 border-solid border border-black"
                     placeholder="タイトル"
                     value={filterQuery.title || ""}
                     onChange={handleFilter}
@@ -100,6 +104,7 @@ export default function Article({ auth, articles, categories }: Props) {
 
                 <select
                     name="c_id"
+                    className="m-4 border-solid border border-black"
                     value={filterQuery.c_id}
                     onChange={handleFilter}
                 >
@@ -112,11 +117,15 @@ export default function Article({ auth, articles, categories }: Props) {
                         );
                     })}
                 </select>
-                <div>
-                    <button onClick={() => handleSort("id")}>
-                        古い順に並べ替え
-                    </button>
-                </div>
+
+                <button
+                    className="m-4 p-2 bg-white text-base border-solid border border-black"
+                    onClick={() => handleSort("id")}
+                >
+                    {isSorted
+                        ? "登録を古い順に並べ替え"
+                        : "登録を新しい順に並べ替え"}
+                </button>
 
                 {/* 
                 カテゴリーの並べ替え
