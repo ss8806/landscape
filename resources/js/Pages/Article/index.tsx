@@ -31,7 +31,7 @@ export default function Article({ auth, articles, categories }: Props) {
     // ソート条件
     const [sort, setSort] = useState<any>({});
 
-    let [isSorted, setSorted] = useState<boolean>(false);
+    let [isSorted, setSorted] = useState<boolean>(true);
 
     const filteredTask = useMemo(() => {
         let tmpArticles = articles;
@@ -80,9 +80,10 @@ export default function Article({ auth, articles, categories }: Props) {
     const handleSort = (column: any) => {
         if (sort.key === column) {
             // カラムを設定した場合は逆順になるようにorderをマイナスにします。
-            setSort({ ...sort, order: -sort.order });
             setSorted(!isSorted);
+            setSort({ ...sort, order: -sort.order });
         } else {
+            setSorted(!isSorted);
             setSort({
                 key: column,
                 order: 1,

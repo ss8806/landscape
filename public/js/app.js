@@ -9123,7 +9123,7 @@ function Article(_a) {
       sort = _c[0],
       setSort = _c[1];
 
-  var _d = react_1.useState(false),
+  var _d = react_1.useState(true),
       isSorted = _d[0],
       setSorted = _d[1];
 
@@ -9170,11 +9170,12 @@ function Article(_a) {
   var handleSort = function handleSort(column) {
     if (sort.key === column) {
       // カラムを設定した場合は逆順になるようにorderをマイナスにします。
+      setSorted(!isSorted);
       setSort(__assign(__assign({}, sort), {
         order: -sort.order
       }));
-      setSorted(!isSorted);
     } else {
+      setSorted(!isSorted);
       setSort({
         key: column,
         order: 1
