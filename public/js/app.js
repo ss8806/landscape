@@ -10939,7 +10939,9 @@ function Mypage(_a) {
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
-    className: "pt-6 text-center"
+    className: "p-10 text-center"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("h1", {
     className: "text-2xl mb-6"
   }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("div", {
@@ -10960,7 +10962,7 @@ function Mypage(_a) {
       className: "`inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
       href: ziggy_js_1["default"]("show", like.id)
     }, "\u8A73\u7D30\u3092\u898B\u308B"));
-  }))));
+  })))));
 }
 
 exports.default = Mypage;
@@ -11000,10 +11002,31 @@ function Mypage(_a) {
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
-    className: "pt-6 text-center"
+    className: "p-10 text-center"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("h1", {
     className: "text-2xl mb-6"
-  }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B")));
+  }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
+  }, posts.map(function (post) {
+    return react_1["default"].createElement("div", {
+      key: post.id,
+      className: ""
+    }, react_1["default"].createElement("img", {
+      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
+      src: "https://i.imgur.com/lmYYa2s.png"
+    }), react_1["default"].createElement("div", {
+      className: ""
+    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", post.category_id[0].name), react_1["default"].createElement("div", {
+      className: ""
+    }, post.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      as: "button",
+      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
+      // href={route("edit", post.id)}
+      href: post.show_url
+    }, "\u7DE8\u96C6\u3059\u308B"));
+  })))));
 }
 
 exports.default = Mypage;
