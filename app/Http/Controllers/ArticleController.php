@@ -91,12 +91,10 @@ class ArticleController extends Controller
     public function show(Article $article, $id)
     {
         $article = Article::find($id);
-        $id = $article->id;
         $user_id = $article->user()->get();
         $category_id = $article->category()->get();
         $initial_is_liked= $article->isLiked(Auth::user());
-        // $endpoint = route('like', $article);
-        $endpoint = route('like', $id); // ルートパラメータをid に統一するため
+        $endpoint = route('like', $article);
         //dd($initial_is_liked);
         //dd($endpoint);
 
