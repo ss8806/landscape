@@ -9110,48 +9110,25 @@ var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./nod
 var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
 
 function Article(_a) {
-  // ユーザーの入力キーワードをState化する
-  // const [searchKeyword, updateSearchKeyword] = React.useState("");
   var auth = _a.auth,
       articles = _a.articles,
-      categories = _a.categories; // // 入力イベントに反応してStateを更新する
-  // const onInput = (event: React.FormEvent<HTMLInputElement>) => {
-  //     // 入力キーワードをstateに格納する
-  //     updateSearchKeyword(event.currentTarget.value);
-  // };
-  // const filteredList = articles.filter((item: any) => {
-  //     // ユーザー入力を安全に正規表現にする（このときすべて小文字化で正規化する）
-  //     const escapedText = escapeStringRegexp(searchKeyword.toLowerCase());
-  //     // 小文字で比較して部分一致するものだけを残す
-  //     return new RegExp(escapedText).test(item.title.toLowerCase());
-  // });
-  // タスク
+      categories = _a.categories;
 
-  var _b = react_1.useState(articles),
-      tasks = _b[0],
-      setTasks = _b[1]; // カテゴリー
+  var _b = react_1.useState({}),
+      filterQuery = _b[0],
+      setFilterQuery = _b[1]; // ソート条件
 
 
-  var _c = react_1.useState(categories),
-      cates = _c[0],
-      setCategories = _c[1]; // 検索条件
-
-
-  var _d = react_1.useState({}),
-      filterQuery = _d[0],
-      setFilterQuery = _d[1]; // ソート条件
-
-
-  var _e = react_1.useState({}),
-      sort = _e[0],
-      setSort = _e[1];
+  var _c = react_1.useState({}),
+      sort = _c[0],
+      setSort = _c[1];
 
   var filteredTask = react_1.useMemo(function () {
-    var tmpTasks = tasks; // 入力した文字は小文字にする
+    var tmpArticles = articles; // 入力した文字は小文字にする
 
     var filterTitle = filterQuery.title && filterQuery.title.toLowerCase(); // 絞り込み検索
 
-    tmpTasks = tmpTasks.filter(function (row) {
+    tmpArticles = tmpArticles.filter(function (row) {
       // タイトルで絞り込み
       if (filterQuery.title && String(row.title).toLowerCase().indexOf(filterTitle) === -1) {
         return false;
@@ -9166,15 +9143,15 @@ function Article(_a) {
     }); // ソート
 
     if (sort.key) {
-      tmpTasks = tmpTasks.sort(function (a, b) {
+      tmpArticles = tmpArticles.sort(function (a, b) {
         a = a[sort.key];
         b = b[sort.key];
         return (a === b ? 0 : a > b ? 1 : -1) * sort.order;
       });
     }
 
-    return tmpTasks; //第2引数の配列を指定することで、この変数の変化がある度にこの部分の処理が実行されます。
-  }, [filterQuery, sort, tasks]); // 入力した情報をfilterQueryに入れる
+    return tmpArticles; //第2引数の配列を指定することで、この変数の変化がある度にこの部分の処理が実行されます。
+  }, [filterQuery, sort]); // 入力した情報をfilterQueryに入れる
 
   var handleFilter = function handleFilter(e) {
     var _a;
@@ -9183,18 +9160,22 @@ function Article(_a) {
         name = _b.name,
         value = _b.value;
     setFilterQuery(__assign(__assign({}, filterQuery), (_a = {}, _a[name] = value, _a)));
-  }; // 選択したカラムをSortに入れる
-  // const handleSort = (column: any) => {
-  //     if (sort.key === column) {
-  //         setSort({ ...sort, order: -sort.order });
-  //     } else {
-  //         setSort({
-  //             key: column,
-  //             order: 1,
-  //         });
-  //     }
-  // };
+  }; // 選択したカラムをSortに入れる;
 
+
+  var handleSort = function handleSort(column) {
+    if (sort.key === column) {
+      // カラムを設定した場合は逆順になるようにorderをマイナスにします。
+      setSort(__assign(__assign({}, sort), {
+        order: -sort.order
+      }));
+    } else {
+      setSort({
+        key: column,
+        order: 1
+      });
+    }
+  };
 
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
@@ -9213,12 +9194,16 @@ function Article(_a) {
     onChange: handleFilter
   }, react_1["default"].createElement("option", {
     value: ""
-  }, "\u30AB\u30C6\u30B4\u30EA\u30FC\u9078\u629E"), cates.map(function (cate) {
+  }, "\u30AB\u30C6\u30B4\u30EA\u30FC\u9078\u629E"), categories.map(function (cate) {
     return react_1["default"].createElement("option", {
       key: cate.id,
       value: cate.id
     }, cate.name);
-  })), react_1["default"].createElement("div", {
+  })), react_1["default"].createElement("div", null, react_1["default"].createElement("button", {
+    onClick: function onClick() {
+      return handleSort("id");
+    }
+  }, "\u53E4\u3044\u9806\u306B\u4E26\u3079\u66FF\u3048")), react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("div", {
     className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"

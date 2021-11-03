@@ -38,11 +38,11 @@ class ArticleController extends Controller
     public function index()
     {  
         $categories = Category::orderBy('sort_no')->get();
-
+        $articles = Article::orderBy('id', 'desc')->get();
         return Inertia::render('Article/index',
         [  
             'categories' => $categories,
-            'articles' => Article::all()->map(function ($article) {
+            'articles' => $articles->map(function ($article) {
                 return [
                     'id' => $article->id,
                     'title' => $article->title,

@@ -3,8 +3,6 @@ import Auth from "@/Layouts/Auth";
 import Button from "@/Components/Button";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import route from "ziggy-js";
-import escapeStringRegexp from "escape-string-regexp";
-import Selectbox from "@/Components/Selectbox";
 
 type Props = {
     auth: any;
@@ -28,40 +26,19 @@ type Category = {
 };
 
 export default function Article({ auth, articles, categories }: Props) {
-    // ユーザーの入力キーワードをState化する
-    // const [searchKeyword, updateSearchKeyword] = React.useState("");
-
-    // // 入力イベントに反応してStateを更新する
-    // const onInput = (event: React.FormEvent<HTMLInputElement>) => {
-    //     // 入力キーワードをstateに格納する
-    //     updateSearchKeyword(event.currentTarget.value);
-    // };
-
-    // const filteredList = articles.filter((item: any) => {
-    //     // ユーザー入力を安全に正規表現にする（このときすべて小文字化で正規化する）
-    //     const escapedText = escapeStringRegexp(searchKeyword.toLowerCase());
-    //     // 小文字で比較して部分一致するものだけを残す
-    //     return new RegExp(escapedText).test(item.title.toLowerCase());
-    // });
-
-    // タスク
-    const [tasks, setTasks] = useState<any>(articles);
-    // カテゴリー
-    const [cates, setCategories] = useState<any>(categories);
-    // 検索条件
     const [filterQuery, setFilterQuery] = useState<any>({});
     // ソート条件
     const [sort, setSort] = useState<any>({});
 
     const filteredTask = useMemo(() => {
-        let tmpTasks = tasks;
+        let tmpArticles = articles;
 
         // 入力した文字は小文字にする
         const filterTitle =
             filterQuery.title && filterQuery.title.toLowerCase();
 
         // 絞り込み検索
-        tmpTasks = tmpTasks.filter((row: any) => {
+        tmpArticles = tmpArticles.filter((row: Article) => {
             // タイトルで絞り込み
             if (
                 filterQuery.title &&
@@ -79,16 +56,16 @@ export default function Article({ auth, articles, categories }: Props) {
 
         // ソート
         if (sort.key) {
-            tmpTasks = tmpTasks.sort((a: any, b: any) => {
+            tmpArticles = tmpArticles.sort((a: any, b: any) => {
                 a = a[sort.key];
                 b = b[sort.key];
                 return (a === b ? 0 : a > b ? 1 : -1) * sort.order;
             });
         }
 
-        return tmpTasks;
+        return tmpArticles;
         //第2引数の配列を指定することで、この変数の変化がある度にこの部分の処理が実行されます。
-    }, [filterQuery, sort, tasks]);
+    }, [filterQuery, sort]);
 
     // 入力した情報をfilterQueryに入れる
     const handleFilter = (e: any) => {
@@ -96,17 +73,18 @@ export default function Article({ auth, articles, categories }: Props) {
         setFilterQuery({ ...filterQuery, [name]: value });
     };
 
-    // 選択したカラムをSortに入れる
-    // const handleSort = (column: any) => {
-    //     if (sort.key === column) {
-    //         setSort({ ...sort, order: -sort.order });
-    //     } else {
-    //         setSort({
-    //             key: column,
-    //             order: 1,
-    //         });
-    //     }
-    // };
+    // 選択したカラムをSortに入れる;
+    const handleSort = (column: any) => {
+        if (sort.key === column) {
+            // カラムを設定した場合は逆順になるようにorderをマイナスにします。
+            setSort({ ...sort, order: -sort.order });
+        } else {
+            setSort({
+                key: column,
+                order: 1,
+            });
+        }
+    };
 
     return (
         <Auth auth={auth}>
@@ -126,7 +104,7 @@ export default function Article({ auth, articles, categories }: Props) {
                     onChange={handleFilter}
                 >
                     <option value="">カテゴリー選択</option>
-                    {cates.map((cate: Category) => {
+                    {categories.map((cate: Category) => {
                         return (
                             <option key={cate.id} value={cate.id}>
                                 {cate.name}
@@ -134,6 +112,16 @@ export default function Article({ auth, articles, categories }: Props) {
                         );
                     })}
                 </select>
+                <div>
+                    <button onClick={() => handleSort("id")}>
+                        古い順に並べ替え
+                    </button>
+                </div>
+
+                {/* 
+                カテゴリーの並べ替え
+                <button onClick={() => handleSort("c_id")}>カテゴリー</button> 
+                */}
 
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
                     <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0">
