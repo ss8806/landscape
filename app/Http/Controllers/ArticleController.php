@@ -50,7 +50,7 @@ class ArticleController extends Controller
                     'pic1' => $article->pic1,
                     'c_id' => $article->category_id,
                     'c_name' => $article->category()->get(),
-                    'update' => $article->updated_at,
+                    'create' => $article->created_at,
                     'show_url' => URL::route('show', $article->id),
                 ];
             }),

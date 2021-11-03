@@ -3,6 +3,7 @@ import Auth from "@/Layouts/Auth";
 import Button from "@/Components/Button";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import route from "ziggy-js";
+import moment from "moment";
 
 type Props = {
     auth: any;
@@ -17,7 +18,7 @@ type Article = {
     c_id: number;
     c_name: any;
     pic1: string;
-    update: number;
+    create: number;
 };
 
 type Category = {
@@ -152,7 +153,9 @@ export default function Article({ auth, articles, categories }: Props) {
                                             {article.title}
                                         </div>
                                         <div className="text-center">
-                                            {article.update}
+                                            {moment(article.create).format(
+                                                "YYYY年MM月DD日"
+                                            )}
                                         </div>
                                         <div className="text-center">
                                             <InertiaLink
