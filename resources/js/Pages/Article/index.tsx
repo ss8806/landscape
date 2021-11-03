@@ -17,6 +17,7 @@ type Article = {
     c_id: number;
     c_name: any;
     pic1: string;
+    update: number;
 };
 
 type Category = {
@@ -93,7 +94,7 @@ export default function Article({ auth, articles, categories }: Props) {
 
     return (
         <Auth auth={auth}>
-            <section className="min-h-screen bg-yellow-400 text-center p-10 ">
+            <section className="min-h-screen  text-center pb-10 ">
                 <input
                     type="text"
                     name="title"
@@ -120,7 +121,7 @@ export default function Article({ auth, articles, categories }: Props) {
                 </select>
 
                 <button
-                    className="m-4 p-2 bg-white text-base border-solid border border-black"
+                    className="w-60 m-4 p-2 bg-white text-base border-solid border border-black"
                     onClick={() => handleSort("id")}
                 >
                     {isSorted
@@ -149,6 +150,9 @@ export default function Article({ auth, articles, categories }: Props) {
                                         </div>
                                         <div className="text-center">
                                             {article.title}
+                                        </div>
+                                        <div className="text-center">
+                                            {article.update}
                                         </div>
                                         <div className="text-center">
                                             <InertiaLink

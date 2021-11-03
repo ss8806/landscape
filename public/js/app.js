@@ -7795,7 +7795,7 @@ function ValidationErrors(_a) {
     className: "mb-4"
   }, react_1["default"].createElement("div", {
     className: "font-medium text-red-600"
-  }, "\u30D0\u30EA\u30C7\u30FC\u30B7\u30E7\u30F3\u30A8\u30E9\u30FC"), react_1["default"].createElement("ul", {
+  }, "\u30A8\u30E9\u30FC"), react_1["default"].createElement("ul", {
     className: "mt-3 list-disc list-inside text-sm text-red-600"
   }, Object.keys(errors).map(function (key, index) {
     return react_1["default"].createElement("li", {
@@ -9186,7 +9186,7 @@ function Article(_a) {
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
-    className: "min-h-screen bg-yellow-400 text-center p-10 "
+    className: "min-h-screen  text-center pb-10 "
   }, react_1["default"].createElement("input", {
     type: "text",
     name: "title",
@@ -9207,7 +9207,7 @@ function Article(_a) {
       value: cate.id
     }, cate.name);
   })), react_1["default"].createElement("button", {
-    className: "m-4 p-2 bg-white text-base border-solid border border-black",
+    className: "w-60 m-4 p-2 bg-white text-base border-solid border border-black",
     onClick: function onClick() {
       return handleSort("id");
     }
@@ -9227,6 +9227,8 @@ function Article(_a) {
     }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", article.c_name[0].name), react_1["default"].createElement("div", {
       className: "text-center"
     }, article.title), react_1["default"].createElement("div", {
+      className: "text-center"
+    }, article.update), react_1["default"].createElement("div", {
       className: "text-center"
     }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
       as: "button",
@@ -9402,7 +9404,7 @@ function ForgotPassword(_a) {
   var status = _a.status;
 
   var _b = inertia_react_1.useForm({
-    email: ''
+    email: ""
   }),
       data = _b.data,
       setData = _b.setData,
@@ -9411,17 +9413,17 @@ function ForgotPassword(_a) {
       errors = _b.errors;
 
   var onHandleChange = function onHandleChange(event) {
-    setData('email', event.target.value);
+    setData("email", event.target.value);
   };
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(ziggy_js_1["default"]('password.email'));
+    post(ziggy_js_1["default"]("password.email"));
   };
 
   return react_1["default"].createElement(Guest_1["default"], null, react_1["default"].createElement("div", {
     className: "mb-4 text-sm text-gray-500 leading-normal"
-  }, "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one."), status && react_1["default"].createElement("div", {
+  }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5FD8\u308C\u305F\u5834\u5408 \u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5FD8\u308C\u305F\u5834\u5408 \u3054\u767B\u9332\u3044\u305F\u3060\u3044\u3066\u304A\u308A\u307E\u3059\u3001\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002\u767B\u9332\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9\u306B\u30D1\u30B9\u30EF\u30FC\u30C9\u518D\u8A2D\u5B9A\u7528\u306EURL\u3092\u304A\u9001\u308A\u3044\u305F\u3057\u307E\u3059\u3002"), status && react_1["default"].createElement("div", {
     className: "mb-4 font-medium text-sm text-green-600"
   }, status), react_1["default"].createElement(ValidationErrors_1["default"], {
     errors: errors
@@ -9439,7 +9441,7 @@ function ForgotPassword(_a) {
   }, react_1["default"].createElement(Button_1["default"], {
     className: "ml-4",
     processing: processing
-  }, "Email Password Reset Link"))));
+  }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u518D\u8A2D\u5B9A\u30E1\u30FC\u30EB\u3092\u9001\u308B"))));
 }
 
 exports.default = ForgotPassword;
@@ -9558,7 +9560,7 @@ function Login(_a) {
     onSubmit: submit
   }, react_1["default"].createElement("div", null, react_1["default"].createElement(Label_1["default"], {
     forInput: "email",
-    value: "Email"
+    value: "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9"
   }), react_1["default"].createElement(Input_1["default"], {
     type: "text",
     name: "email",
@@ -9571,7 +9573,7 @@ function Login(_a) {
     className: "mt-4"
   }, react_1["default"].createElement(Label_1["default"], {
     forInput: "password",
-    value: "Password"
+    value: "\u30D1\u30B9\u30EF\u30FC\u30C9"
   }), react_1["default"].createElement(Input_1["default"], {
     type: "password",
     name: "password",
@@ -9589,15 +9591,15 @@ function Login(_a) {
     handleChange: onHandleChange
   }), react_1["default"].createElement("span", {
     className: "ml-2 text-sm text-gray-600"
-  }, "Remember me"))), react_1["default"].createElement("div", {
+  }, "\u30ED\u30B0\u30A4\u30F3\u72B6\u614B\u3092\u4FDD\u6301\u3059\u308B"))), react_1["default"].createElement("div", {
     className: "flex items-center justify-end mt-4"
   }, canResetPassword && react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: ziggy_js_1["default"]("password.request"),
     className: "underline text-sm text-gray-600 hover:text-gray-900"
-  }, "Forgot your password?"), react_1["default"].createElement(Button_1["default"], {
+  }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5FD8\u308C\u305F"), react_1["default"].createElement(Button_1["default"], {
     className: "ml-4",
     processing: processing
-  }, "Log in"))));
+  }, "\u30ED\u30B0\u30A4\u30F3"))));
 }
 
 exports.default = Login;
@@ -9849,8 +9851,8 @@ function ResetPassword(_a) {
   var _b = inertia_react_1.useForm({
     token: token,
     email: email,
-    password: '',
-    password_confirmation: ''
+    password: "",
+    password_confirmation: ""
   }),
       data = _b.data,
       setData = _b.setData,
@@ -9861,7 +9863,7 @@ function ResetPassword(_a) {
 
   react_1.useEffect(function () {
     return function () {
-      reset('password', 'password_confirmation');
+      reset("password", "password_confirmation");
     };
   }, []);
 
@@ -9871,7 +9873,7 @@ function ResetPassword(_a) {
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(ziggy_js_1["default"]('password.update'));
+    post(ziggy_js_1["default"]("password.update"));
   };
 
   return react_1["default"].createElement(Guest_1["default"], null, react_1["default"].createElement(ValidationErrors_1["default"], {
@@ -9880,7 +9882,7 @@ function ResetPassword(_a) {
     onSubmit: submit
   }, react_1["default"].createElement("div", null, react_1["default"].createElement(Label_1["default"], {
     forInput: "email",
-    value: "Email"
+    value: "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9"
   }), react_1["default"].createElement(Input_1["default"], {
     type: "email",
     name: "email",
@@ -9892,7 +9894,7 @@ function ResetPassword(_a) {
     className: "mt-4"
   }, react_1["default"].createElement(Label_1["default"], {
     forInput: "password",
-    value: "Password"
+    value: "\u30D1\u30B9\u30EF\u30FC\u30C9"
   }), react_1["default"].createElement(Input_1["default"], {
     type: "password",
     name: "password",
@@ -9905,7 +9907,7 @@ function ResetPassword(_a) {
     className: "mt-4"
   }, react_1["default"].createElement(Label_1["default"], {
     forInput: "password_confirmation",
-    value: "Confirm Password"
+    value: "\u30D1\u30B9\u30EF\u30FC\u30C9\uFF08\u78BA\u8A8D\u7528\uFF09"
   }), react_1["default"].createElement(Input_1["default"], {
     type: "password",
     name: "password_confirmation",
@@ -9918,7 +9920,7 @@ function ResetPassword(_a) {
   }, react_1["default"].createElement(Button_1["default"], {
     className: "ml-4",
     processing: processing
-  }, "Reset Password"))));
+  }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u30EA\u30BB\u30C3\u30C8"))));
 }
 
 exports.default = ResetPassword;

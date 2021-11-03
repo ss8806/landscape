@@ -1,14 +1,14 @@
-import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Input';
-import Label from '@/Components/Label';
-import React, { useEffect } from 'react';
-import ValidationErrors from '@/Components/ValidationErrors';
-import { useForm } from '@inertiajs/inertia-react';
-import route from 'ziggy-js';
+import Button from "@/Components/Button";
+import Guest from "@/Layouts/Guest";
+import Input from "@/Components/Input";
+import Label from "@/Components/Label";
+import React, { useEffect } from "react";
+import ValidationErrors from "@/Components/ValidationErrors";
+import { useForm } from "@inertiajs/inertia-react";
+import route from "ziggy-js";
 
 interface Props {
-    token: string,
+    token: string;
     email: string;
 }
 
@@ -16,24 +16,31 @@ export default function ResetPassword({ token, email }: Props) {
     const { data, setData, post, processing, errors, reset } = useForm({
         token: token,
         email: email,
-        password: '',
-        password_confirmation: '',
+        password: "",
+        password_confirmation: "",
     });
 
     useEffect(() => {
         return () => {
-            reset('password', 'password_confirmation');
+            reset("password", "password_confirmation");
         };
     }, []);
 
     const onHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setData(event.target.name as "email" | "password" | "password_confirmation" | "token", event.target.value);
+        setData(
+            event.target.name as
+                | "email"
+                | "password"
+                | "password_confirmation"
+                | "token",
+            event.target.value
+        );
     };
 
     const submit = (e: React.SyntheticEvent) => {
         e.preventDefault();
 
-        post(route('password.update'));
+        post(route("password.update"));
     };
 
     return (
@@ -42,7 +49,7 @@ export default function ResetPassword({ token, email }: Props) {
 
             <form onSubmit={submit}>
                 <div>
-                    <Label forInput="email" value="Email" />
+                    <Label forInput="email" value="メールアドレス" />
 
                     <Input
                         type="email"
@@ -55,7 +62,7 @@ export default function ResetPassword({ token, email }: Props) {
                 </div>
 
                 <div className="mt-4">
-                    <Label forInput="password" value="Password" />
+                    <Label forInput="password" value="パスワード" />
 
                     <Input
                         type="password"
@@ -69,7 +76,10 @@ export default function ResetPassword({ token, email }: Props) {
                 </div>
 
                 <div className="mt-4">
-                    <Label forInput="password_confirmation" value="Confirm Password" />
+                    <Label
+                        forInput="password_confirmation"
+                        value="パスワード（確認用）"
+                    />
 
                     <Input
                         type="password"
@@ -83,7 +93,7 @@ export default function ResetPassword({ token, email }: Props) {
 
                 <div className="flex items-center justify-end mt-4">
                     <Button className="ml-4" processing={processing}>
-                        Reset Password
+                        パスワードをリセット
                     </Button>
                 </div>
             </form>

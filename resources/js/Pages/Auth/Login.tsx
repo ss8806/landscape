@@ -54,7 +54,7 @@ export default function Login({ status, canResetPassword }: Props) {
 
             <form onSubmit={submit}>
                 <div>
-                    <Label forInput="email" value="Email" />
+                    <Label forInput="email" value="メールアドレス" />
 
                     <Input
                         type="text"
@@ -68,7 +68,7 @@ export default function Login({ status, canResetPassword }: Props) {
                 </div>
 
                 <div className="mt-4">
-                    <Label forInput="password" value="Password" />
+                    <Label forInput="password" value="パスワード" />
 
                     <Input
                         type="password"
@@ -89,7 +89,7 @@ export default function Login({ status, canResetPassword }: Props) {
                         />
 
                         <span className="ml-2 text-sm text-gray-600">
-                            Remember me
+                            ログイン状態を保持する
                         </span>
                     </label>
                 </div>
@@ -100,12 +100,12 @@ export default function Login({ status, canResetPassword }: Props) {
                             href={route("password.request")}
                             className="underline text-sm text-gray-600 hover:text-gray-900"
                         >
-                            Forgot your password?
+                            パスワードを忘れた
                         </InertiaLink>
                     )}
 
                     <Button className="ml-4" processing={processing}>
-                        Log in
+                        ログイン
                     </Button>
                 </div>
             </form>

@@ -1,10 +1,10 @@
-import Button from '@/Components/Button';
-import Guest from '@/Layouts/Guest';
-import Input from '@/Components/Input';
-import React from 'react';
-import ValidationErrors from '@/Components/ValidationErrors';
-import { useForm } from '@inertiajs/inertia-react';
-import route from 'ziggy-js';
+import Button from "@/Components/Button";
+import Guest from "@/Layouts/Guest";
+import Input from "@/Components/Input";
+import React from "react";
+import ValidationErrors from "@/Components/ValidationErrors";
+import { useForm } from "@inertiajs/inertia-react";
+import route from "ziggy-js";
 
 interface Props {
     status: string;
@@ -12,27 +12,31 @@ interface Props {
 
 export default function ForgotPassword({ status }: Props) {
     const { data, setData, post, processing, errors } = useForm({
-        email: '',
+        email: "",
     });
 
     const onHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setData('email', event.target.value);
+        setData("email", event.target.value);
     };
 
     const submit = (e: React.SyntheticEvent) => {
         e.preventDefault();
 
-        post(route('password.email'));
+        post(route("password.email"));
     };
 
     return (
         <Guest>
             <div className="mb-4 text-sm text-gray-500 leading-normal">
-                Forgot your password? No problem. Just let us know your email address and we will email you a password
-                reset link that will allow you to choose a new one.
+                パスワードを忘れた場合 パスワードを忘れた場合
+                ご登録いただいております、メールアドレスを入力してください。登録メールアドレスにパスワード再設定用のURLをお送りいたします。
             </div>
 
-            {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
+            {status && (
+                <div className="mb-4 font-medium text-sm text-green-600">
+                    {status}
+                </div>
+            )}
 
             <ValidationErrors errors={errors} />
 
@@ -48,7 +52,7 @@ export default function ForgotPassword({ status }: Props) {
 
                 <div className="flex items-center justify-end mt-4">
                     <Button className="ml-4" processing={processing}>
-                        Email Password Reset Link
+                        パスワード再設定メールを送る
                     </Button>
                 </div>
             </form>
