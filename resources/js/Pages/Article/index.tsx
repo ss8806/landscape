@@ -3,9 +3,16 @@ import Auth from "@/Layouts/Auth";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import route from "ziggy-js";
 import moment from "moment";
-import Button from "@material-ui/core/Button";
-import Snackbar from "@material-ui/core/Snackbar";
-import Slide from "@material-ui/core/Slide";
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref
+) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 type Props = {
     auth: any;
@@ -112,12 +119,16 @@ export default function Article({ auth, status, articles, categories }: Props) {
         <Auth auth={auth}>
             <section className="min-h-screen  text-center pb-10  ">
                 {status && (
-                    <div className="App">
-                        <Snackbar
-                            open={open}
-                            message={status}
-                            onClose={handleClose}
-                        />
+                    <div className="">
+                        <Stack spacing={2} sx={{ width: "100%" }}>
+                            <Snackbar
+                                open={open}
+                                autoHideDuration={6000}
+                                onClose={handleClose}
+                            >
+                                <Alert severity="success">{status}</Alert>
+                            </Snackbar>
+                        </Stack>
                     </div>
                 )}
                 <input
