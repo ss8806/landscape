@@ -58,6 +58,7 @@ Route::get('/welcome', function () {
 // // })->middleware(['verified'])->name('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+// ゲストでもログインできる
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');

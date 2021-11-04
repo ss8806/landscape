@@ -1,12 +1,15 @@
 import React, { SyntheticEvent, useState, useEffect, useMemo } from "react";
 import Auth from "@/Layouts/Auth";
-import Button from "@/Components/Button";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import route from "ziggy-js";
 import moment from "moment";
+import Button from "@material-ui/core/Button";
+import Snackbar from "@material-ui/core/Snackbar";
+import Slide from "@material-ui/core/Slide";
 
 type Props = {
     auth: any;
+    status: any;
     articles: any;
     categories: any;
 };
@@ -27,7 +30,7 @@ type Category = {
     c_id: number;
 };
 
-export default function Article({ auth, articles, categories }: Props) {
+export default function Article({ auth, status, articles, categories }: Props) {
     // 検索条件
     const [filterQuery, setFilterQuery] = useState<any>({});
     // ソート条件
@@ -93,9 +96,30 @@ export default function Article({ auth, articles, categories }: Props) {
         }
     };
 
+    const [open, setOpen] = useState<boolean>(true);
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    useEffect(() => {
+        setTimeout(() => {
+            handleClose();
+        }, 3000);
+    }, [status]);
+
     return (
         <Auth auth={auth}>
-            <section className="min-h-screen  text-center pb-10 ">
+            <section className="min-h-screen  text-center pb-10  ">
+                {status && (
+                    <div className="App">
+                        <Snackbar
+                            open={open}
+                            message={status}
+                            onClose={handleClose}
+                        />
+                    </div>
+                )}
                 <input
                     type="text"
                     name="title"

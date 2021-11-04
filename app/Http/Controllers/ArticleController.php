@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    // ポリシーを設定したがうまくいかなかった
     // public function __construct()
     // {
     //     $user = auth()->user();
@@ -39,6 +40,7 @@ class ArticleController extends Controller
         $articles = Article::orderBy('id', 'desc')->get();
         return Inertia::render('Article/index',
         [  
+            'status' => session('status'),
             'categories' => $categories,
             'articles' => $articles->map(function ($article) {
                 return [
@@ -77,7 +79,7 @@ class ArticleController extends Controller
     {
         $article = new Article;
         Auth::user()->articles()->save($article->fill($request->all()));
-        return redirect('/')->with('flash_message', __('Registered.'));
+        return redirect()->route('articles')->with('status', __('Registered'));
     }
 
     /**

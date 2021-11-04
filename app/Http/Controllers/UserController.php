@@ -116,7 +116,7 @@ class UserController extends Controller
         $fileName = Str::random(20).'.jpg';
 
         // 保存するパスを決める
-        // $path = 'mydata/'.$fileName; 
+        $path = 'mydata/'.$fileName; 
 
         // AWS S3 に保存する
         //Storage::disk('s3')->put($path, $fileData, 'public');

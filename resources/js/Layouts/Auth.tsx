@@ -143,6 +143,15 @@ export default function Auth({ auth, children }: Props) {
                                     {auth.user.name}
                                 </div>
                             </div>
+                            <div className="mt-3 space-y-1">
+                                <ResponsiveNavLink
+                                    href={route("mypage")}
+                                    method="get"
+                                    as="button"
+                                >
+                                    マイページ
+                                </ResponsiveNavLink>
+                            </div>
 
                             <div className="mt-3 space-y-1">
                                 <ResponsiveNavLink
