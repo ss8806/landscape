@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
 
-interface Props {
-    flash_message: any;
-}
+type Props = {
+    status: any;
+};
 
-export default function FlashMessage({ flash_message }: Props) {
+export default function FlashMessage({ status }: Props) {
+    const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+        props,
+        ref
+    ) {
+        return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+    });
+    const [open, setOpen] = useState<boolean>(true);
+
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
         <>
-            {Object.keys(flash_message).length > 0 && (
-                <div className="mb-4">
-                    <div className="font-medium text-red-600">エラー</div>
-
-                    <ul className="mt-3 list-disc list-inside text-sm text-red-600">
-                        {Object.keys(flash_message).map(function (key, index) {
-                            return <li key={index}>{flash_message[key]}</li>;
-                        })}
-                    </ul>
-                </div>
-            )}
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert severity="success">{status}</Alert>
+            </Snackbar>
         </>
     );
 }

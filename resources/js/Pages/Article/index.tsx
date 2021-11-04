@@ -1,40 +1,17 @@
 import React, { SyntheticEvent, useState, useEffect, useMemo } from "react";
 import Auth from "@/Layouts/Auth";
+import type { Article } from "@/Types/Article";
+import type { Category } from "@/Types/Category";
+import FlashMessage from "@/Components/FlashMessage";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import route from "ziggy-js";
 import moment from "moment";
-import Stack from "@mui/material/Stack";
-import Snackbar from "@mui/material/Snackbar";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
-
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
-    props,
-    ref
-) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 type Props = {
     auth: any;
     status: any;
     articles: any;
     categories: any;
-};
-
-type Article = {
-    id: number;
-    title: string;
-    show_url: string;
-    c_id: number;
-    c_name: any;
-    pic1: string;
-    create: number;
-};
-
-type Category = {
-    id: number;
-    name: string;
-    c_id: number;
 };
 
 export default function Article({ auth, status, articles, categories }: Props) {
@@ -103,34 +80,10 @@ export default function Article({ auth, status, articles, categories }: Props) {
         }
     };
 
-    const [open, setOpen] = useState<boolean>(true);
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    useEffect(() => {
-        setTimeout(() => {
-            handleClose();
-        }, 3000);
-    }, [status]);
-
     return (
         <Auth auth={auth}>
             <section className="min-h-screen  text-center pb-10  ">
-                {status && (
-                    <div className="">
-                        <Stack spacing={2} sx={{ width: "100%" }}>
-                            <Snackbar
-                                open={open}
-                                autoHideDuration={6000}
-                                onClose={handleClose}
-                            >
-                                <Alert severity="success">{status}</Alert>
-                            </Snackbar>
-                        </Stack>
-                    </div>
-                )}
+                {status && <FlashMessage status={status} />}
                 <input
                     type="text"
                     name="title"

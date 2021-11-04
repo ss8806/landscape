@@ -10111,216 +10111,6 @@ const snackbarContentClasses = (0,_mui_core__WEBPACK_IMPORTED_MODULE_1__.default
 
 /***/ }),
 
-/***/ "./node_modules/@mui/material/Stack/Stack.js":
-/*!***************************************************!*\
-  !*** ./node_modules/@mui/material/Stack/Stack.js ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "style": () => (/* binding */ style),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mui/system */ "./node_modules/@mui/system/esm/breakpoints.js");
-/* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mui/system */ "./node_modules/@mui/system/esm/spacing.js");
-/* harmony import */ var _mui_system__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @mui/system */ "./node_modules/@mui/system/esm/styleFunctionSx/extendSxProp.js");
-/* harmony import */ var _mui_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @mui/utils */ "./node_modules/@mui/utils/esm/deepmerge.js");
-/* harmony import */ var _styles_styled__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../styles/styled */ "./node_modules/@mui/material/styles/styled.js");
-/* harmony import */ var _styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../styles/useThemeProps */ "./node_modules/@mui/material/styles/useThemeProps.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
-const _excluded = ["component", "direction", "spacing", "divider", "children"];
-
-
-
-
-
-
-/**
- * Return an array with the separator React element interspersed between
- * each React node of the input children.
- *
- * > joinChildren([1,2,3], 0)
- * [1,0,2,0,3]
- */
-
-
-
-function joinChildren(children, separator) {
-  const childrenArray = react__WEBPACK_IMPORTED_MODULE_2__.Children.toArray(children).filter(Boolean);
-  return childrenArray.reduce((output, child, index) => {
-    output.push(child);
-
-    if (index < childrenArray.length - 1) {
-      output.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.cloneElement(separator, {
-        key: `separator-${index}`
-      }));
-    }
-
-    return output;
-  }, []);
-}
-
-const getSideFromDirection = direction => {
-  return {
-    row: 'Left',
-    'row-reverse': 'Right',
-    column: 'Top',
-    'column-reverse': 'Bottom'
-  }[direction];
-};
-
-const style = ({
-  ownerState,
-  theme
-}) => {
-  let styles = (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
-    display: 'flex'
-  }, (0,_mui_system__WEBPACK_IMPORTED_MODULE_5__.handleBreakpoints)({
-    theme
-  }, ownerState.direction, propValue => ({
-    flexDirection: propValue
-  })));
-
-  if (ownerState.spacing) {
-    const transformer = (0,_mui_system__WEBPACK_IMPORTED_MODULE_6__.createUnarySpacing)(theme);
-    const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
-      if (ownerState.spacing[breakpoint] != null || ownerState.direction[breakpoint] != null) {
-        acc[breakpoint] = true;
-      }
-
-      return acc;
-    }, {});
-    const directionValues = (0,_mui_system__WEBPACK_IMPORTED_MODULE_5__.resolveBreakpointValues)({
-      values: ownerState.direction,
-      base
-    });
-    const spacingValues = (0,_mui_system__WEBPACK_IMPORTED_MODULE_5__.resolveBreakpointValues)({
-      values: ownerState.spacing,
-      base
-    });
-
-    const styleFromPropValue = (propValue, breakpoint) => {
-      return {
-        '& > :not(style) + :not(style)': {
-          margin: 0,
-          [`margin${getSideFromDirection(breakpoint ? directionValues[breakpoint] : ownerState.direction)}`]: (0,_mui_system__WEBPACK_IMPORTED_MODULE_6__.getValue)(transformer, propValue)
-        }
-      };
-    };
-
-    styles = (0,_mui_utils__WEBPACK_IMPORTED_MODULE_7__.default)(styles, (0,_mui_system__WEBPACK_IMPORTED_MODULE_5__.handleBreakpoints)({
-      theme
-    }, spacingValues, styleFromPropValue));
-  }
-
-  return styles;
-};
-const StackRoot = (0,_styles_styled__WEBPACK_IMPORTED_MODULE_8__.default)('div', {
-  name: 'MuiStack',
-  slot: 'Root',
-  overridesResolver: (props, styles) => {
-    return [styles.root];
-  }
-})(style);
-const Stack = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2__.forwardRef(function Stack(inProps, ref) {
-  const themeProps = (0,_styles_useThemeProps__WEBPACK_IMPORTED_MODULE_9__.default)({
-    props: inProps,
-    name: 'MuiStack'
-  });
-  const props = (0,_mui_system__WEBPACK_IMPORTED_MODULE_10__.default)(themeProps);
-
-  const {
-    component = 'div',
-    direction = 'column',
-    spacing = 0,
-    divider,
-    children
-  } = props,
-        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__.default)(props, _excluded);
-
-  const ownerState = {
-    direction,
-    spacing
-  };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(StackRoot, (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_1__.default)({
-    as: component,
-    ownerState: ownerState,
-    ref: ref
-  }, other, {
-    children: divider ? joinChildren(children, divider) : children
-  }));
-});
- true ? Stack.propTypes
-/* remove-proptypes */
-= {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
-  // ----------------------------------------------------------------------
-
-  /**
-   * The content of the component.
-   */
-  children: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
-
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().elementType),
-
-  /**
-   * Defines the `flex-direction` style property.
-   * It is applied for all screen sizes.
-   * @default 'column'
-   */
-  direction: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['column-reverse', 'column', 'row-reverse', 'row']), prop_types__WEBPACK_IMPORTED_MODULE_3___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOf(['column-reverse', 'column', 'row-reverse', 'row'])), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)]),
-
-  /**
-   * Add an element between each child.
-   */
-  divider: (prop_types__WEBPACK_IMPORTED_MODULE_3___default().node),
-
-  /**
-   * Defines the space between immediate children.
-   * @default 0
-   */
-  spacing: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_3___default().arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().number), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)])), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().number), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().string)]),
-
-  /**
-   * The system prop, which allows defining system overrides as well as additional CSS styles.
-   */
-  sx: prop_types__WEBPACK_IMPORTED_MODULE_3___default().oneOfType([(prop_types__WEBPACK_IMPORTED_MODULE_3___default().func), (prop_types__WEBPACK_IMPORTED_MODULE_3___default().object)])
-} : 0;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Stack);
-
-/***/ }),
-
-/***/ "./node_modules/@mui/material/Stack/index.js":
-/*!***************************************************!*\
-  !*** ./node_modules/@mui/material/Stack/index.js ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _Stack__WEBPACK_IMPORTED_MODULE_0__.default)
-/* harmony export */ });
-/* harmony import */ var _Stack__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Stack */ "./node_modules/@mui/material/Stack/Stack.js");
-
-
-/***/ }),
-
 /***/ "./node_modules/@mui/material/SvgIcon/SvgIcon.js":
 /*!*******************************************************!*\
   !*** ./node_modules/@mui/material/SvgIcon/SvgIcon.js ***!
@@ -14101,57 +13891,6 @@ function style(options) {
 
 /***/ }),
 
-/***/ "./node_modules/@mui/system/esm/styleFunctionSx/extendSxProp.js":
-/*!**********************************************************************!*\
-  !*** ./node_modules/@mui/system/esm/styleFunctionSx/extendSxProp.js ***!
-  \**********************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ extendSxProp)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
-/* harmony import */ var _babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/esm/objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js");
-/* harmony import */ var _getThemeValue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../getThemeValue */ "./node_modules/@mui/system/esm/getThemeValue.js");
-
-
-const _excluded = ["sx"];
-
-
-const splitProps = props => {
-  const result = {
-    systemProps: {},
-    otherProps: {}
-  };
-  Object.keys(props).forEach(prop => {
-    if (_getThemeValue__WEBPACK_IMPORTED_MODULE_2__.propToStyleFunction[prop]) {
-      result.systemProps[prop] = props[prop];
-    } else {
-      result.otherProps[prop] = props[prop];
-    }
-  });
-  return result;
-};
-
-function extendSxProp(props) {
-  const {
-    sx: inSx
-  } = props,
-        other = (0,_babel_runtime_helpers_esm_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__.default)(props, _excluded);
-
-  const {
-    systemProps,
-    otherProps
-  } = splitProps(other);
-  return (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, otherProps, {
-    sx: (0,_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__.default)({}, systemProps, inSx)
-  });
-}
-
-/***/ }),
-
 /***/ "./node_modules/@mui/system/esm/styleFunctionSx/styleFunctionSx.js":
 /*!*************************************************************************!*\
   !*** ./node_modules/@mui/system/esm/styleFunctionSx/styleFunctionSx.js ***!
@@ -17522,6 +17261,112 @@ exports.default = Object.assign(Dropdown, {
 
 /***/ }),
 
+/***/ "./resources/js/Components/FlashMessage.tsx":
+/*!**************************************************!*\
+  !*** ./resources/js/Components/FlashMessage.tsx ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Snackbar_1 = __importDefault(__webpack_require__(/*! @mui/material/Snackbar */ "./node_modules/@mui/material/Snackbar/index.js"));
+
+var Alert_1 = __importDefault(__webpack_require__(/*! @mui/material/Alert */ "./node_modules/@mui/material/Alert/index.js"));
+
+function FlashMessage(_a) {
+  var status = _a.status;
+  var Alert = react_1["default"].forwardRef(function Alert(props, ref) {
+    return react_1["default"].createElement(Alert_1["default"], __assign({
+      elevation: 6,
+      ref: ref,
+      variant: "filled"
+    }, props));
+  });
+
+  var _b = react_1.useState(true),
+      open = _b[0],
+      setOpen = _b[1];
+
+  var handleClose = function handleClose() {
+    setOpen(false);
+  };
+
+  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(Snackbar_1["default"], {
+    open: open,
+    autoHideDuration: 6000,
+    onClose: handleClose
+  }, react_1["default"].createElement(Alert, {
+    severity: "success"
+  }, status)));
+}
+
+exports.default = FlashMessage;
+
+/***/ }),
+
 /***/ "./resources/js/Components/Input.tsx":
 /*!*******************************************!*\
   !*** ./resources/js/Components/Input.tsx ***!
@@ -19478,25 +19323,13 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
+var FlashMessage_1 = __importDefault(__webpack_require__(/*! @/Components/FlashMessage */ "./resources/js/Components/FlashMessage.tsx"));
+
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
 var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
 
 var moment_1 = __importDefault(__webpack_require__(/*! moment */ "./node_modules/moment/moment.js"));
-
-var Stack_1 = __importDefault(__webpack_require__(/*! @mui/material/Stack */ "./node_modules/@mui/material/Stack/index.js"));
-
-var Snackbar_1 = __importDefault(__webpack_require__(/*! @mui/material/Snackbar */ "./node_modules/@mui/material/Snackbar/index.js"));
-
-var Alert_1 = __importDefault(__webpack_require__(/*! @mui/material/Alert */ "./node_modules/@mui/material/Alert/index.js"));
-
-var Alert = react_1["default"].forwardRef(function Alert(props, ref) {
-  return react_1["default"].createElement(Alert_1["default"], __assign({
-    elevation: 6,
-    ref: ref,
-    variant: "filled"
-  }, props));
-});
 
 function Article(_a) {
   var auth = _a.auth,
@@ -19573,37 +19406,13 @@ function Article(_a) {
     }
   };
 
-  var _e = react_1.useState(true),
-      open = _e[0],
-      setOpen = _e[1];
-
-  var handleClose = function handleClose() {
-    setOpen(false);
-  };
-
-  react_1.useEffect(function () {
-    setTimeout(function () {
-      handleClose();
-    }, 3000);
-  }, [status]);
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
     className: "min-h-screen  text-center pb-10  "
-  }, status && react_1["default"].createElement("div", {
-    className: ""
-  }, react_1["default"].createElement(Stack_1["default"], {
-    spacing: 2,
-    sx: {
-      width: "100%"
-    }
-  }, react_1["default"].createElement(Snackbar_1["default"], {
-    open: open,
-    autoHideDuration: 6000,
-    onClose: handleClose
-  }, react_1["default"].createElement(Alert, {
-    severity: "success"
-  }, status)))), react_1["default"].createElement("input", {
+  }, status && react_1["default"].createElement(FlashMessage_1["default"], {
+    status: status
+  }), react_1["default"].createElement("input", {
     type: "text",
     name: "title",
     className: "m-4 border-solid border border-black",
