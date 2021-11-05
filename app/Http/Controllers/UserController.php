@@ -89,7 +89,11 @@ class UserController extends Controller
 
     public function showProfile()
     {
-        return Inertia::render('Mypage/Profile',['user' => Auth::user()]);   
+        return Inertia::render('Mypage/Profile',
+        [
+            'user' => Auth::user(),
+            'success' => session('success'),
+        ]);   
     }
 
     public function editAvatar(Request $request)
@@ -104,7 +108,7 @@ class UserController extends Controller
          $user->save();
  
          return redirect()->back()
-             ->with('status', 'プロフィールを変更しました。');
+             ->with('success', 'プロフィールを変更しました。');
     }
 
     public function editIcon(Request $request)
@@ -136,10 +140,11 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $user->name = $request->input('editName');
-        $user->save();
+        $user->update();
 
-        // return Redirect::route('profile',['status' => '名前を変更']);
-        return redirect()->back()->with('status', 'プロフィールを変更しました。');
+        // return Redirect::route('profile',['success' => '名前を変更']);
+        return redirect()->route('profile')->with('success', '名前を変更しました。');
+        // return redirect()->back()->with('success', '名前を変更しました。');
     }
     
     public function editEmail(EditRequest $request)
@@ -148,7 +153,7 @@ class UserController extends Controller
         $user->email = $request->input('editEmail'); 
         $user->save();
  
-        return redirect()->back()->with('status', 'プロフィールを変更しました。');
+        return redirect()->back()->with('success', 'メールアドレスを変更しました。');
     }
     public function editPassword(Request $request)
     {
@@ -156,6 +161,6 @@ class UserController extends Controller
         $user->password = Hash::make($request->input('editPassword'));
         $user->save();
  
-        return redirect()->back()->with('status', 'パスワードを変更しました。');
+        return redirect()->back()->with('success', 'パスワードを変更しました。');
     }
 }

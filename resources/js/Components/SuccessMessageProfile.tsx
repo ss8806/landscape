@@ -15,12 +15,12 @@ export default function SuccessMessage({ success }: Props) {
     });
     const [open, setOpen] = useState<boolean>(true);
 
-    const handleClose = () => {
-        setOpen(false);
-    };
+    // const handleClose = () => {
+    //     setOpen(false);
+    // };
 
     return (
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Snackbar open={open} autoHideDuration={6000}>
             <Alert severity="success">{success}</Alert>
         </Snackbar>
     );

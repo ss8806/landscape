@@ -1,15 +1,44 @@
-import React, { SyntheticEvent } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import axios from "axios";
 import { useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
 import ValidationErrors from "@/Components/ValidationErrors";
 import Button from "@/Components/Button";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+import Axiosbar from "@/Components/Axiosbar";
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+    props,
+    ref
+) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 type Props = {
     icon: any;
 };
 
 export default function EditIcon({ icon }: Props) {
+    const [success, setSuccess] = useState<boolean>(false);
+
+    const handleOpenSuccess = () => {
+        setSuccess(true);
+    };
+
+    const handleCloseSuccess = () => {
+        setSuccess(false);
+    };
+
+    let [error, setError] = useState<boolean>(false);
+
+    const handleOpenError = () => {
+        setError(true);
+    };
+
+    const handleCloseError = () => {
+        setError(false);
+    };
+
     const { processing } = useForm({});
     const handleSubmitIcon = async (e: SyntheticEvent) => {
         e.preventDefault();
@@ -19,9 +48,11 @@ export default function EditIcon({ icon }: Props) {
             })
             .then(function (response) {
                 console.log(response);
+                handleOpenSuccess();
             })
             .catch(function (response) {
                 console.log(response);
+                handleOpenError();
             });
     };
 
@@ -50,13 +81,13 @@ export default function EditIcon({ icon }: Props) {
                     <img
                         id="preview"
                         src="icon"
-                        className="d-block mx-auto"
+                        className="d-block mx-auto h-60 h-56"
                     ></img>
                 )) || (
                     <img
                         id="preview"
                         src="/images/avatar-default.svg"
-                        className="d-block mx-auto"
+                        className="d-block mx-auto h-60 h-56"
                     />
                 )}
             </div>
@@ -74,6 +105,14 @@ export default function EditIcon({ icon }: Props) {
                     </Button>
                 </div>
             </form>
+
+            <Axiosbar
+                success={success}
+                handleCloseSuccess={handleCloseSuccess}
+                error={error}
+                handleCloseError={handleCloseError}
+                message={"画像"}
+            />
         </section>
     );
 }

@@ -17015,6 +17015,81 @@ exports.default = ApplicationLogo;
 
 /***/ }),
 
+/***/ "./resources/js/Components/Axiosbar.tsx":
+/*!**********************************************!*\
+  !*** ./resources/js/Components/Axiosbar.tsx ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Snackbar_1 = __importDefault(__webpack_require__(/*! @mui/material/Snackbar */ "./node_modules/@mui/material/Snackbar/index.js"));
+
+var Alert_1 = __importDefault(__webpack_require__(/*! @mui/material/Alert */ "./node_modules/@mui/material/Alert/index.js"));
+
+function Axiosbar(_a) {
+  var success = _a.success,
+      handleCloseSuccess = _a.handleCloseSuccess,
+      error = _a.error,
+      handleCloseError = _a.handleCloseError,
+      message = _a.message;
+  var Alert = react_1["default"].forwardRef(function Alert(props, ref) {
+    return react_1["default"].createElement(Alert_1["default"], __assign({
+      elevation: 6,
+      ref: ref,
+      variant: "filled"
+    }, props));
+  });
+  return react_1["default"].createElement("section", {
+    className: "text-center"
+  }, success && react_1["default"].createElement(Snackbar_1["default"], {
+    open: success,
+    autoHideDuration: 3000,
+    onClose: handleCloseSuccess
+  }, react_1["default"].createElement(Alert, {
+    severity: "success"
+  }, message, "\u3092\u767B\u9332\u3057\u307E\u3057\u305F\u3002")), error && react_1["default"].createElement(Snackbar_1["default"], {
+    open: error,
+    autoHideDuration: 3000,
+    onClose: handleCloseError
+  }, react_1["default"].createElement(Alert, {
+    severity: "error"
+  }, message, "\u306E\u767B\u9332\u306B\u5931\u6557\u3057\u307E\u3057\u305F\u3002")));
+}
+
+exports.default = Axiosbar;
+
+/***/ }),
+
 /***/ "./resources/js/Components/Button.tsx":
 /*!********************************************!*\
   !*** ./resources/js/Components/Button.tsx ***!
@@ -18002,18 +18077,117 @@ function SuccessMessage(_a) {
     setOpen(false);
   };
 
-  react_1.useEffect(function () {
-    console.log(success); // setTimeout(() => {
-    //     handleClose();
-    // }, 3000);
-  }, [success]);
-  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(Snackbar_1["default"], {
+  return react_1["default"].createElement(Snackbar_1["default"], {
     open: open,
     autoHideDuration: 6000,
     onClose: handleClose
   }, react_1["default"].createElement(Alert, {
     severity: "success"
-  }, success)));
+  }, success));
+}
+
+exports.default = SuccessMessage;
+
+/***/ }),
+
+/***/ "./resources/js/Components/SuccessMessageProfile.tsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/Components/SuccessMessageProfile.tsx ***!
+  \***********************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Snackbar_1 = __importDefault(__webpack_require__(/*! @mui/material/Snackbar */ "./node_modules/@mui/material/Snackbar/index.js"));
+
+var Alert_1 = __importDefault(__webpack_require__(/*! @mui/material/Alert */ "./node_modules/@mui/material/Alert/index.js"));
+
+function SuccessMessage(_a) {
+  var success = _a.success;
+  var Alert = react_1["default"].forwardRef(function Alert(props, ref) {
+    return react_1["default"].createElement(Alert_1["default"], __assign({
+      elevation: 6,
+      ref: ref,
+      variant: "filled"
+    }, props));
+  });
+
+  var _b = react_1.useState(true),
+      open = _b[0],
+      setOpen = _b[1]; // const handleClose = () => {
+  //     setOpen(false);
+  // };
+
+
+  return react_1["default"].createElement(Snackbar_1["default"], {
+    open: open,
+    autoHideDuration: 6000
+  }, react_1["default"].createElement(Alert, {
+    severity: "success"
+  }, success));
 }
 
 exports.default = SuccessMessage;
@@ -20524,6 +20698,56 @@ exports.default = EditEmail;
 "use strict";
 
 
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
 var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve) {
@@ -20677,7 +20901,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
@@ -20685,10 +20909,47 @@ var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./nod
 
 var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
 
+var Alert_1 = __importDefault(__webpack_require__(/*! @mui/material/Alert */ "./node_modules/@mui/material/Alert/index.js"));
+
+var Axiosbar_1 = __importDefault(__webpack_require__(/*! @/Components/Axiosbar */ "./resources/js/Components/Axiosbar.tsx"));
+
+var Alert = react_1["default"].forwardRef(function Alert(props, ref) {
+  return react_1["default"].createElement(Alert_1["default"], __assign({
+    elevation: 6,
+    ref: ref,
+    variant: "filled"
+  }, props));
+});
+
 function EditIcon(_a) {
   var _this = this;
 
   var icon = _a.icon;
+
+  var _b = react_1.useState(false),
+      success = _b[0],
+      setSuccess = _b[1];
+
+  var handleOpenSuccess = function handleOpenSuccess() {
+    setSuccess(true);
+  };
+
+  var handleCloseSuccess = function handleCloseSuccess() {
+    setSuccess(false);
+  };
+
+  var _c = react_1.useState(false),
+      error = _c[0],
+      setError = _c[1];
+
+  var handleOpenError = function handleOpenError() {
+    setError(true);
+  };
+
+  var handleCloseError = function handleCloseError() {
+    setError(false);
+  };
+
   var processing = inertia_react_1.useForm({}).processing;
 
   var handleSubmitIcon = function handleSubmitIcon(e) {
@@ -20703,8 +20964,10 @@ function EditIcon(_a) {
               icon: icon
             }).then(function (response) {
               console.log(response);
+              handleOpenSuccess();
             })["catch"](function (response) {
               console.log(response);
+              handleOpenError();
             })];
 
           case 1:
@@ -20746,11 +21009,11 @@ function EditIcon(_a) {
   }, react_1["default"].createElement("div", null, icon && react_1["default"].createElement("img", {
     id: "preview",
     src: "icon",
-    className: "d-block mx-auto"
+    className: "d-block mx-auto h-60 h-56"
   }) || react_1["default"].createElement("img", {
     id: "preview",
     src: "/images/avatar-default.svg",
-    className: "d-block mx-auto"
+    className: "d-block mx-auto h-60 h-56"
   })), react_1["default"].createElement("form", {
     onSubmit: handleSubmitIcon
   }, react_1["default"].createElement("input", {
@@ -20762,7 +21025,13 @@ function EditIcon(_a) {
   }), react_1["default"].createElement("div", null, react_1["default"].createElement(Button_1["default"], {
     processing: processing,
     type: "submit"
-  }, "\u30A2\u30A4\u30B3\u30F3\u3092\u5909\u66F4"))));
+  }, "\u30A2\u30A4\u30B3\u30F3\u3092\u5909\u66F4"))), react_1["default"].createElement(Axiosbar_1["default"], {
+    success: success,
+    handleCloseSuccess: handleCloseSuccess,
+    error: error,
+    handleCloseError: handleCloseError,
+    message: "画像"
+  }));
 }
 
 exports.default = EditIcon;
@@ -21367,6 +21636,40 @@ exports.default = Mypage;
 "use strict";
 
 
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -21377,7 +21680,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
@@ -21389,23 +21692,26 @@ var EditIcon_1 = __importDefault(__webpack_require__(/*! ./EditIcon */ "./resour
 
 var EditPassword_1 = __importDefault(__webpack_require__(/*! ./EditPassword */ "./resources/js/Pages/Mypage/EditPassword.tsx"));
 
+var SuccessMessageProfile_1 = __importDefault(__webpack_require__(/*! @/Components/SuccessMessageProfile */ "./resources/js/Components/SuccessMessageProfile.tsx"));
+
 function Profile(_a) {
   var user = _a.user,
       auth = _a.auth,
-      status = _a.status;
+      success = _a.success;
   var name = user.name,
       email = user.email,
       icon = user.icon,
       password = user.password;
+  react_1.useEffect(function () {}, [success]);
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
-    className: "p-10"
-  }, react_1["default"].createElement("div", {
-    className: "container bg-gray-100 rounded-xl"
-  }, status && react_1["default"].createElement("div", {
-    className: "mb-4 font-medium text-sm text-green-600"
-  }, status), react_1["default"].createElement(EditIcon_1["default"], {
+    className: "p-10 text-center"
+  }, success && react_1["default"].createElement(SuccessMessageProfile_1["default"], {
+    success: success
+  }), react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement(EditIcon_1["default"], {
     icon: icon
   }), react_1["default"].createElement(EditName_1["default"], {
     name: name
@@ -21748,37 +22054,6 @@ function Welcome(props) {
 }
 
 exports.default = Welcome;
-
-/***/ }),
-
-/***/ "./resources/js/Pages/error/index.tsx":
-/*!********************************************!*\
-  !*** ./resources/js/Pages/error/index.tsx ***!
-  \********************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var NotFoundPage = function NotFoundPage() {
-  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("div", {
-    className: "align-center"
-  }, react_1["default"].createElement("h1", null, "404 NotFound"), react_1["default"].createElement("p", null, "\u304A\u63A2\u3057\u306E\u30DA\u30FC\u30B8\u306F\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3067\u3057\u305F")));
-};
-
-exports.default = NotFoundPage;
 
 /***/ }),
 
@@ -98242,11 +98517,7 @@ var map = {
 	"./Mypage/index": "./resources/js/Pages/Mypage/index.tsx",
 	"./Mypage/index.tsx": "./resources/js/Pages/Mypage/index.tsx",
 	"./Welcome": "./resources/js/Pages/Welcome.tsx",
-	"./Welcome.tsx": "./resources/js/Pages/Welcome.tsx",
-	"./error": "./resources/js/Pages/error/index.tsx",
-	"./error/": "./resources/js/Pages/error/index.tsx",
-	"./error/index": "./resources/js/Pages/error/index.tsx",
-	"./error/index.tsx": "./resources/js/Pages/error/index.tsx"
+	"./Welcome.tsx": "./resources/js/Pages/Welcome.tsx"
 };
 
 
