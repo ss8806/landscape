@@ -22,7 +22,10 @@ class UserController extends Controller
         $posts = $user->postArticles()->orderBy('id', 'DESC')->take(5)->get();
         $likes = $user->likeArticles()->orderBy('id', 'DESC')->take(5)->get();
 
-        return Inertia::render('Mypage/index',[ 'user' => Auth::user(),
+        return Inertia::render('Mypage/index',
+        [ 
+            'user' => Auth::user(),
+            'success' => session('success'),
             'posts' => $posts->map(function ($post) {
                 return [
                     'id' => $post->id,
@@ -50,7 +53,9 @@ class UserController extends Controller
         $user = Auth::user();
         $posts = $user->postArticles()->orderBy('id', 'DESC')->get();
 
-        return Inertia::render('Mypage/Posts',[ 'user' => Auth::user(),
+        return Inertia::render('Mypage/Posts',
+        [ 
+            'user' => Auth::user(),            
             'posts' => $posts->map(function ($post) {
                 return [
                     'id' => $post->id,
@@ -116,7 +121,7 @@ class UserController extends Controller
         $fileName = Str::random(20).'.jpg';
 
         // 保存するパスを決める
-        $path = 'mydata/'.$fileName; 
+        // $path = 'mydata/'.$fileName; 
 
         // AWS S3 に保存する
         //Storage::disk('s3')->put($path, $fileData, 'public');

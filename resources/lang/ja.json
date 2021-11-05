@@ -8,9 +8,12 @@
     "registered": "登録しました",
     "Invalid operation was performed.": "不正な操作が行われました。",
     "Go Edit": "編集する",
-    "Deleted.": "削除しました",
+    "Deleted": "削除しました",
     "Go Delete": "削除する",
     "Practice": "タイピング練習",
     "Selected": "選択してください",
-    "Registered": "登録しました"
+    "Registered": "登録しました",
+    "Edited": "編集しました",
+    "Liked": "お気に入りに登録しました",
+    "UnLiked": "お気に入りから削除しました"
 }

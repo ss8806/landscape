@@ -12,7 +12,6 @@ import { OperationCanceledException } from "typescript";
 type Props = {
     auth: any;
     categories: any;
-    status: any;
 };
 
 type Category = {
@@ -28,7 +27,7 @@ type Category = {
 //     pic1: string;
 // };
 
-export default function createArticle({ auth, status, categories }: Props) {
+export default function createArticle({ auth, categories }: Props) {
     const { data, setData, post, processing, errors } = useForm({
         title: "",
         body: "",
@@ -57,11 +56,6 @@ export default function createArticle({ auth, status, categories }: Props) {
     return (
         <Auth auth={auth}>
             <section className="min-h-screen bg-yellow-400 py-20">
-                {status && (
-                    <div className="mb-4 font-large text-sm text-green-600">
-                        {status}
-                    </div>
-                )}
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
                     <div className="text-center">
                         <ValidationErrors errors={errors} />

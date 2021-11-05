@@ -2,19 +2,24 @@ import React, { SyntheticEvent, useState, useEffect, useMemo } from "react";
 import Auth from "@/Layouts/Auth";
 import type { Article } from "@/Types/Article";
 import type { Category } from "@/Types/Category";
-import FlashMessage from "@/Components/FlashMessage";
+import SuccessMessage from "@/Components/SuccessMessage";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import route from "ziggy-js";
 import moment from "moment";
 
 type Props = {
     auth: any;
-    status: any;
+    success: any;
     articles: any;
     categories: any;
 };
 
-export default function Article({ auth, status, articles, categories }: Props) {
+export default function Article({
+    auth,
+    success,
+    articles,
+    categories,
+}: Props) {
     // 検索条件
     const [filterQuery, setFilterQuery] = useState<any>({});
     // ソート条件
@@ -83,7 +88,7 @@ export default function Article({ auth, status, articles, categories }: Props) {
     return (
         <Auth auth={auth}>
             <section className="min-h-screen  text-center pb-10  ">
-                {status && <FlashMessage status={status} />}
+                {success && <SuccessMessage success={success} />}
                 <input
                     type="text"
                     name="title"

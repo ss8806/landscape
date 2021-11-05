@@ -3,19 +3,22 @@ import { InertiaLink, useForm } from "@inertiajs/inertia-react";
 import Button from "@/Components/Button";
 import Auth from "@/Layouts/Auth";
 import route from "ziggy-js";
+import SuccessMessage from "@/Components/SuccessMessage";
 
 type Props = {
     auth: any;
     user: any;
+    success: any;
     posts: any;
     likes: any;
 };
 
-export default function Mypage({ auth, user, posts, likes }: Props) {
+export default function Mypage({ auth, user, success, posts, likes }: Props) {
     const { processing } = useForm({});
     return (
         <Auth auth={auth}>
             <section className="p-10 text-center">
+                {success && <SuccessMessage success={success} />}
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
                     <p className="text-center m-5 text-2xl">
                         {user.name}のマイページ

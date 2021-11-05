@@ -40,7 +40,7 @@ class ArticleController extends Controller
         $articles = Article::orderBy('id', 'desc')->get();
         return Inertia::render('Article/index',
         [  
-            'status' => session('status'),
+            'success' => session('success'),
             'categories' => $categories,
             'articles' => $articles->map(function ($article) {
                 return [
@@ -79,7 +79,7 @@ class ArticleController extends Controller
     {
         $article = new Article;
         Auth::user()->articles()->save($article->fill($request->all()));
-        return redirect()->route('articles')->with('status', __('Registered'));
+        return redirect()->route('articles')->with('success', __('Registered'));
     }
 
     /**
@@ -100,7 +100,9 @@ class ArticleController extends Controller
 
 
         //return Inertia::render('Article/show',['article' => $article]);
-        return Inertia::render('Article/Show', [
+        return Inertia::render('Article/Show', 
+        [       
+            'success' => session('success'),
             'article' => [
                 'id' => $article->id,
                 'title' => $article->title,
@@ -122,12 +124,13 @@ class ArticleController extends Controller
      */
     public function edit(Article $article, $id)
     {
+        $user = Auth::user();
         $article = Article::find($id);
         $user_id = $article->user()->get();
         $category_id = $article->category()->get();
         $categories = Category::orderBy('sort_no')->get();
         //dd($article);
-        if ($user_id === $article->id){
+        if ($user->id === $article->user_id){
             return Inertia::render('Article/Edit',[
                 'article' => [
                     'id' => $article->id,
@@ -137,6 +140,7 @@ class ArticleController extends Controller
                     'user_id' => $user_id,
                     'c_id' => $article->category_id,
                     'category_id' => $category_id,
+                    'show_url' => URL::route('edit', $article->id),
                 ],
                 'categories' => $categories
             ]);
@@ -157,7 +161,7 @@ class ArticleController extends Controller
         $article = Article::find($id);
         // dd($article);
         $article->fill($request->all())->update();
-        return redirect('/mypage')->with('flash_message', __('Registered.'));
+        return redirect()->route('mypage')->with('success', __('Edited'));
         
         // articles()->save($article->fill($request->all()));
         // return redirect('/')->with('flash_message', __('Registered.'));
@@ -172,9 +176,8 @@ class ArticleController extends Controller
     public function destroy(Article $article, $id)
     {
         Article::find($id)->delete();
-        // localhost3000の場合はクロスオリジンエラーがでるので注意
-        return Redirect::route('mypage');
-        // return redirect()->back()->with('flash_message', __('Deleted.'));
+        return redirect()->route('mypage')->with('success', __('Deleted'));
+        // return Redirect::route('mypage')->with('flash_message', __('Deleted.'));
     }
 
      public function like(Request $request, Article $article)
@@ -184,9 +187,7 @@ class ArticleController extends Controller
         // モデルを結びつけている中間テーブルにレコードを挿入する。
         $article->likes()->attach($request->user()->id);
 
-        return [
-            'id' => $article->id,
-        ];
+        return ['success', __('Liked')];
     }
 
     // 気になるリストから削除する処理
@@ -194,8 +195,6 @@ class ArticleController extends Controller
     {
         $article->likes()->detach($request->user()->id);
 
-        return [
-            'id' => $article->id,
-        ];
+        return  ['success', __('UnLiked')];
     }   
 }

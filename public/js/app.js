@@ -17261,112 +17261,6 @@ exports.default = Object.assign(Dropdown, {
 
 /***/ }),
 
-/***/ "./resources/js/Components/FlashMessage.tsx":
-/*!**************************************************!*\
-  !*** ./resources/js/Components/FlashMessage.tsx ***!
-  \**************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __assign = this && this.__assign || function () {
-  __assign = Object.assign || function (t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-      s = arguments[i];
-
-      for (var p in s) {
-        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-      }
-    }
-
-    return t;
-  };
-
-  return __assign.apply(this, arguments);
-};
-
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var Snackbar_1 = __importDefault(__webpack_require__(/*! @mui/material/Snackbar */ "./node_modules/@mui/material/Snackbar/index.js"));
-
-var Alert_1 = __importDefault(__webpack_require__(/*! @mui/material/Alert */ "./node_modules/@mui/material/Alert/index.js"));
-
-function FlashMessage(_a) {
-  var status = _a.status;
-  var Alert = react_1["default"].forwardRef(function Alert(props, ref) {
-    return react_1["default"].createElement(Alert_1["default"], __assign({
-      elevation: 6,
-      ref: ref,
-      variant: "filled"
-    }, props));
-  });
-
-  var _b = react_1.useState(true),
-      open = _b[0],
-      setOpen = _b[1];
-
-  var handleClose = function handleClose() {
-    setOpen(false);
-  };
-
-  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(Snackbar_1["default"], {
-    open: open,
-    autoHideDuration: 6000,
-    onClose: handleClose
-  }, react_1["default"].createElement(Alert, {
-    severity: "success"
-  }, status)));
-}
-
-exports.default = FlashMessage;
-
-/***/ }),
-
 /***/ "./resources/js/Components/Input.tsx":
 /*!*******************************************!*\
   !*** ./resources/js/Components/Input.tsx ***!
@@ -17505,6 +17399,22 @@ exports.default = Label;
 
 "use strict";
 
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
@@ -17697,15 +17607,39 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 
 var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
 
+var Snackbar_1 = __importDefault(__webpack_require__(/*! @mui/material/Snackbar */ "./node_modules/@mui/material/Snackbar/index.js"));
+
+var Alert_1 = __importDefault(__webpack_require__(/*! @mui/material/Alert */ "./node_modules/@mui/material/Alert/index.js"));
+
+var Alert = react_1["default"].forwardRef(function Alert(props, ref) {
+  return react_1["default"].createElement(Alert_1["default"], __assign({
+    elevation: 6,
+    ref: ref,
+    variant: "filled"
+  }, props));
+});
+
 function LikeButton(_a) {
   var _this = this;
 
   var initial_is_liked = _a.initial_is_liked,
       endpoint = _a.endpoint;
 
-  var _b = react_1.useState(initial_is_liked),
-      isLiked = _b[0],
-      setLiked = _b[1];
+  var _b = react_1.useState(false),
+      open = _b[0],
+      setOpen = _b[1];
+
+  var handleOpen = function handleOpen() {
+    setOpen(true);
+  };
+
+  var handleClose = function handleClose() {
+    setOpen(false);
+  };
+
+  var _c = react_1.useState(initial_is_liked),
+      isLiked = _c[0],
+      setLiked = _c[1];
 
   var handleLike = function handleLike(e) {
     return __awaiter(_this, void 0, void 0, function () {
@@ -17727,7 +17661,7 @@ function LikeButton(_a) {
 
 
             setLiked(!isLiked);
-            alert("気になるリストに登録しました");
+            handleOpen();
             return [2
             /*return*/
             ];
@@ -17750,7 +17684,7 @@ function LikeButton(_a) {
             _a.sent();
 
             setLiked(!isLiked);
-            alert("気になるリストから削除しました");
+            handleOpen();
             return [2
             /*return*/
             ];
@@ -17764,7 +17698,7 @@ function LikeButton(_a) {
     type: "button",
     className: "c-btn c-btn__like ",
     onClick: handleClickLike
-  }, react_1["default"].createElement("div", null, isLiked ? react_1["default"].createElement("svg", {
+  }, react_1["default"].createElement("div", null, isLiked ? react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("svg", {
     className: "fill-current h-8 w-8 text-red-500",
     fill: "none",
     viewBox: "0 0 24 24",
@@ -17774,7 +17708,13 @@ function LikeButton(_a) {
     strokeLinejoin: "round",
     strokeWidth: "2",
     d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-  })) : react_1["default"].createElement("svg", {
+  })), open && react_1["default"].createElement(Snackbar_1["default"], {
+    open: open,
+    autoHideDuration: 3000,
+    onClose: handleClose
+  }, react_1["default"].createElement(Alert, {
+    severity: "success"
+  }, "\u6C17\u306B\u306A\u308B\u30EA\u30B9\u30C8\u306B\u767B\u9332\u3057\u307E\u3057\u305F"))) : react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("svg", {
     className: "h-8 w-8 text-red-500",
     fill: "none",
     viewBox: "0 0 24 24",
@@ -17784,7 +17724,13 @@ function LikeButton(_a) {
     strokeLinejoin: "round",
     strokeWidth: "2",
     d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-  }))));
+  })), open && react_1["default"].createElement(Snackbar_1["default"], {
+    open: open,
+    autoHideDuration: 3000,
+    onClose: handleClose
+  }, react_1["default"].createElement(Alert, {
+    severity: "success"
+  }, "\u6C17\u306B\u306A\u308B\u30EA\u30B9\u30C8\u304B\u3089\u524A\u9664\u3057\u307E\u3057\u305F")))));
 }
 
 exports.default = LikeButton;
@@ -17960,6 +17906,117 @@ var Selectbox = function Selectbox(_a) {
 };
 
 exports.default = Selectbox;
+
+/***/ }),
+
+/***/ "./resources/js/Components/SuccessMessage.tsx":
+/*!****************************************************!*\
+  !*** ./resources/js/Components/SuccessMessage.tsx ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Snackbar_1 = __importDefault(__webpack_require__(/*! @mui/material/Snackbar */ "./node_modules/@mui/material/Snackbar/index.js"));
+
+var Alert_1 = __importDefault(__webpack_require__(/*! @mui/material/Alert */ "./node_modules/@mui/material/Alert/index.js"));
+
+function SuccessMessage(_a) {
+  var success = _a.success;
+  var Alert = react_1["default"].forwardRef(function Alert(props, ref) {
+    return react_1["default"].createElement(Alert_1["default"], __assign({
+      elevation: 6,
+      ref: ref,
+      variant: "filled"
+    }, props));
+  });
+
+  var _b = react_1.useState(true),
+      open = _b[0],
+      setOpen = _b[1];
+
+  var handleClose = function handleClose() {
+    setOpen(false);
+  };
+
+  react_1.useEffect(function () {
+    console.log(success); // setTimeout(() => {
+    //     handleClose();
+    // }, 3000);
+  }, [success]);
+  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(Snackbar_1["default"], {
+    open: open,
+    autoHideDuration: 6000,
+    onClose: handleClose
+  }, react_1["default"].createElement(Alert, {
+    severity: "success"
+  }, success)));
+}
+
+exports.default = SuccessMessage;
 
 /***/ }),
 
@@ -18765,7 +18822,6 @@ function createArticle(_a) {
   var _this = this;
 
   var auth = _a.auth,
-      status = _a.status,
       categories = _a.categories;
 
   var _b = inertia_react_1.useForm({
@@ -18802,9 +18858,7 @@ function createArticle(_a) {
     auth: auth
   }, react_1["default"].createElement("section", {
     className: "min-h-screen bg-yellow-400 py-20"
-  }, status && react_1["default"].createElement("div", {
-    className: "mb-4 font-large text-sm text-green-600"
-  }, status), react_1["default"].createElement("div", {
+  }, react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("div", {
     className: "text-center"
@@ -19193,6 +19247,40 @@ exports.default = editArticle;
 "use strict";
 
 
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -19203,21 +19291,17 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
-var LikeButton_1 = __importDefault(__webpack_require__(/*! @/Components/LikeButton */ "./resources/js/Components/LikeButton.tsx")); // type Article = {
-//     id: number;
-//     title: string;
-//     pic1: string;
-//     user_id: string;
-//     category_id: string;
-// };
+var LikeButton_1 = __importDefault(__webpack_require__(/*! @/Components/LikeButton */ "./resources/js/Components/LikeButton.tsx"));
 
+var SuccessMessage_1 = __importDefault(__webpack_require__(/*! @/Components/SuccessMessage */ "./resources/js/Components/SuccessMessage.tsx"));
 
 function showArticle(_a) {
   var auth = _a.auth,
+      success = _a.success,
       article = _a.article;
   var title = article.title,
       body = article.body,
@@ -19226,11 +19310,18 @@ function showArticle(_a) {
       category_id = article.category_id,
       initial_is_liked = article.initial_is_liked,
       endpoint = article.endpoint;
+  react_1.useEffect(function () {
+    console.log(success); // setTimeout(() => {
+    //     handleClose();
+    // }, 3000);
+  }, [success]);
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
     className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
-  }, react_1["default"].createElement("div", {
+  }, success && react_1["default"].createElement(SuccessMessage_1["default"], {
+    success: success
+  }), react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("h1", {
     className: "text-4xl font-bold from-current mb-8"
@@ -19323,7 +19414,7 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
-var FlashMessage_1 = __importDefault(__webpack_require__(/*! @/Components/FlashMessage */ "./resources/js/Components/FlashMessage.tsx"));
+var SuccessMessage_1 = __importDefault(__webpack_require__(/*! @/Components/SuccessMessage */ "./resources/js/Components/SuccessMessage.tsx"));
 
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
@@ -19333,7 +19424,7 @@ var moment_1 = __importDefault(__webpack_require__(/*! moment */ "./node_modules
 
 function Article(_a) {
   var auth = _a.auth,
-      status = _a.status,
+      success = _a.success,
       articles = _a.articles,
       categories = _a.categories; // 検索条件
 
@@ -19410,8 +19501,8 @@ function Article(_a) {
     auth: auth
   }, react_1["default"].createElement("section", {
     className: "min-h-screen  text-center pb-10  "
-  }, status && react_1["default"].createElement(FlashMessage_1["default"], {
-    status: status
+  }, success && react_1["default"].createElement(SuccessMessage_1["default"], {
+    success: success
   }), react_1["default"].createElement("input", {
     type: "text",
     name: "title",
@@ -21422,9 +21513,12 @@ var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ ".
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
+var SuccessMessage_1 = __importDefault(__webpack_require__(/*! @/Components/SuccessMessage */ "./resources/js/Components/SuccessMessage.tsx"));
+
 function Mypage(_a) {
   var auth = _a.auth,
       user = _a.user,
+      success = _a.success,
       posts = _a.posts,
       likes = _a.likes;
   var processing = inertia_react_1.useForm({}).processing;
@@ -21432,7 +21526,9 @@ function Mypage(_a) {
     auth: auth
   }, react_1["default"].createElement("section", {
     className: "p-10 text-center"
-  }, react_1["default"].createElement("div", {
+  }, success && react_1["default"].createElement(SuccessMessage_1["default"], {
+    success: success
+  }), react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("p", {
     className: "text-center m-5 text-2xl"
