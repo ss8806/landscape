@@ -21,7 +21,8 @@ type Props = {
 type Category = {
     id: number;
     name: string;
-    category_id: number;
+    c_id: number;
+    c_name: any;
 };
 
 export default function editArticle({ auth, article, categories }: Props) {
@@ -30,13 +31,13 @@ export default function editArticle({ auth, article, categories }: Props) {
         title,
         body,
         c_id,
-        category_id,
+        c_name,
     }: {
         id: any;
         title: string;
         body: string;
         c_id: number;
-        category_id: any;
+        c_name: any;
     } = article;
 
     const { data, setData, put, processing, errors } = useForm({
@@ -44,7 +45,7 @@ export default function editArticle({ auth, article, categories }: Props) {
         title: title,
         body: body,
         c_id: c_id,
-        category_id: "category_id",
+        c_name: "c_name",
         categories: "",
     });
 
@@ -54,25 +55,24 @@ export default function editArticle({ auth, article, categories }: Props) {
         >
     ) => {
         setData(
-            event.target.name as "title" | "body" | "category_id" | "c_id",
+            event.target.name as "title" | "body" | "c_name" | "c_id",
             event.target.value
         );
     };
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        // Inertia.put("/article/{id}/update", [id]);
-        // put(route("update", { id: id }));
+        put(route("update", { id: id }));
 
-        await axios;
-        put(
-            route("update", {
-                id: id,
-                title: title,
-                category_id: category_id[0].id,
-                body: body,
-            })
-        );
+        // await axios;
+        // put(
+        //     route("update", {
+        //         id: id,
+        //         title: title,
+        //         c_name: c_name[0].id,
+        //         body: body,
+        //     })
+        // );
         // .then(function (response) {
         //     console.log(response);
         // })
@@ -109,23 +109,16 @@ export default function editArticle({ auth, article, categories }: Props) {
                             <label htmlFor="inputCategory">カテゴリー</label>
                             <Selectbox
                                 id="inputCategory"
-                                name="category_id"
+                                name="category"
                                 className="w-3/4 mt-1 mb-1 block mx-auto"
                                 // value={data.c_id}
                                 required
                                 multiple={false}
                                 handleChange={onHandleChange}
                             >
-                                <option value="" className="hidden">
-                                    選択してください
+                                <option value={c_name[0].id} className="hidden">
+                                    {c_name[0].name}
                                 </option>
-
-                                {/* <option
-                                    value={category_id[0].id}
-                                    className="hidden"
-                                >
-                                    {category_id[0].name}
-                                </option> */}
                                 {categories.map((category: Category) => {
                                     return (
                                         <option

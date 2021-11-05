@@ -18810,13 +18810,7 @@ var ValidationErrors_1 = __importDefault(__webpack_require__(/*! @/Components/Va
 
 var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
 
-var Selectbox_1 = __importDefault(__webpack_require__(/*! @/Components/Selectbox */ "./resources/js/Components/Selectbox.tsx")); // type Article = {
-//     id: number;
-//     title: string;
-//     category_id: any;
-//     pic1: string;
-// };
-
+var Selectbox_1 = __importDefault(__webpack_require__(/*! @/Components/Selectbox */ "./resources/js/Components/Selectbox.tsx"));
 
 function createArticle(_a) {
   var _this = this;
@@ -18849,10 +18843,7 @@ function createArticle(_a) {
         ];
       });
     });
-  }; // useEffect(() => {
-  //     console.log(status);
-  // }, [status]);
-
+  };
 
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
@@ -19096,8 +19087,6 @@ var Selectbox_1 = __importDefault(__webpack_require__(/*! @/Components/Selectbox
 
 var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
 
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
-
 function editArticle(_a) {
   var _this = this;
 
@@ -19108,14 +19097,14 @@ function editArticle(_a) {
       title = article.title,
       body = article.body,
       c_id = article.c_id,
-      category_id = article.category_id;
+      c_name = article.c_name;
 
   var _b = inertia_react_1.useForm({
     id: id,
     title: title,
     body: body,
     c_id: c_id,
-    category_id: "category_id",
+    c_name: "c_name",
     categories: ""
   }),
       data = _b.data,
@@ -19131,30 +19120,13 @@ function editArticle(_a) {
   var handleSubmit = function handleSubmit(e) {
     return __awaiter(_this, void 0, void 0, function () {
       return __generator(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            e.preventDefault(); // Inertia.put("/article/{id}/update", [id]);
-            // put(route("update", { id: id }));
-
-            return [4
-            /*yield*/
-            , axios_1["default"]];
-
-          case 1:
-            // Inertia.put("/article/{id}/update", [id]);
-            // put(route("update", { id: id }));
-            _a.sent();
-
-            put(ziggy_js_1["default"]("update", {
-              id: id,
-              title: title,
-              category_id: category_id[0].id,
-              body: body
-            }));
-            return [2
-            /*return*/
-            ];
-        }
+        e.preventDefault();
+        put(ziggy_js_1["default"]("update", {
+          id: id
+        }));
+        return [2
+        /*return*/
+        ];
       });
     });
   };
@@ -19199,16 +19171,16 @@ function editArticle(_a) {
     htmlFor: "inputCategory"
   }, "\u30AB\u30C6\u30B4\u30EA\u30FC"), react_1["default"].createElement(Selectbox_1["default"], {
     id: "inputCategory",
-    name: "category_id",
+    name: "category",
     className: "w-3/4 mt-1 mb-1 block mx-auto",
     // value={data.c_id}
     required: true,
     multiple: false,
     handleChange: onHandleChange
   }, react_1["default"].createElement("option", {
-    value: "",
+    value: c_name[0].id,
     className: "hidden"
-  }, "\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044"), categories.map(function (category) {
+  }, c_name[0].name), categories.map(function (category) {
     return react_1["default"].createElement("option", {
       key: category.id,
       value: category.id
@@ -19247,40 +19219,6 @@ exports.default = editArticle;
 "use strict";
 
 
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -19291,17 +19229,14 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
 var LikeButton_1 = __importDefault(__webpack_require__(/*! @/Components/LikeButton */ "./resources/js/Components/LikeButton.tsx"));
 
-var SuccessMessage_1 = __importDefault(__webpack_require__(/*! @/Components/SuccessMessage */ "./resources/js/Components/SuccessMessage.tsx"));
-
 function showArticle(_a) {
   var auth = _a.auth,
-      success = _a.success,
       article = _a.article;
   var title = article.title,
       body = article.body,
@@ -19310,24 +19245,23 @@ function showArticle(_a) {
       category_id = article.category_id,
       initial_is_liked = article.initial_is_liked,
       endpoint = article.endpoint;
-  react_1.useEffect(function () {
-    console.log(success); // setTimeout(() => {
-    //     handleClose();
-    // }, 3000);
-  }, [success]);
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
     className: "min-h-screen bg-yellow-400 flex justify-center items-center py-20"
-  }, success && react_1["default"].createElement(SuccessMessage_1["default"], {
-    success: success
-  }), react_1["default"].createElement("div", {
+  }, react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("h1", {
     className: "text-4xl font-bold from-current mb-8"
   }, react_1["default"].createElement("p", {
     className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
-  }, pic1), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user_id[0].name), react_1["default"].createElement("p", null, body), auth.user ? react_1["default"].createElement(LikeButton_1["default"], {
+  }, pic1 ? react_1["default"].createElement("img", {
+    className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
+    src: "pic1"
+  }) : react_1["default"].createElement("img", {
+    className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
+    src: "https://i.imgur.com/lmYYa2s.png"
+  })), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user_id[0].name), react_1["default"].createElement("p", null, body), auth.user ? react_1["default"].createElement(LikeButton_1["default"], {
     article: article,
     auth: auth,
     initial_is_liked: initial_is_liked,

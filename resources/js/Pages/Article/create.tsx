@@ -8,24 +8,12 @@ import Button from "@/Components/Button";
 import Selectbox from "@/Components/Selectbox";
 import Option from "@/Components/Option";
 import { OperationCanceledException } from "typescript";
+import type { Category } from "@/Types/Category";
 
 type Props = {
     auth: any;
     categories: any;
 };
-
-type Category = {
-    id: number;
-    name: string;
-    category_id: number;
-};
-
-// type Article = {
-//     id: number;
-//     title: string;
-//     category_id: any;
-//     pic1: string;
-// };
 
 export default function createArticle({ auth, categories }: Props) {
     const { data, setData, post, processing, errors } = useForm({
@@ -50,9 +38,6 @@ export default function createArticle({ auth, categories }: Props) {
         post("/article/store");
     };
 
-    // useEffect(() => {
-    //     console.log(status);
-    // }, [status]);
     return (
         <Auth auth={auth}>
             <section className="min-h-screen bg-yellow-400 py-20">

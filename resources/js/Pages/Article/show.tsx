@@ -1,15 +1,13 @@
 import React, { SyntheticEvent, useEffect } from "react";
 import Auth from "@/Layouts/Auth";
 import LikeButton from "@/Components/LikeButton";
-import SuccessMessage from "@/Components/SuccessMessage";
 
 type Props = {
     auth: any;
     article: any;
-    success: any;
 };
 
-export default function showArticle({ auth, success, article }: Props) {
+export default function showArticle({ auth, article }: Props) {
     const {
         title,
         body,
@@ -20,21 +18,23 @@ export default function showArticle({ auth, success, article }: Props) {
         endpoint,
     } = article;
 
-    useEffect(() => {
-        console.log(success);
-        // setTimeout(() => {
-        //     handleClose();
-        // }, 3000);
-    }, [success]);
     return (
         <Auth auth={auth}>
             <section className="min-h-screen bg-yellow-400 flex justify-center items-center py-20">
-                {success && <SuccessMessage success={success} />}
-
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
                     <h1 className="text-4xl font-bold from-current mb-8">
                         <p className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6">
-                            {pic1}
+                            {pic1 ? (
+                                <img
+                                    className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
+                                    src={"pic1"}
+                                />
+                            ) : (
+                                <img
+                                    className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
+                                    src="https://i.imgur.com/lmYYa2s.png"
+                                />
+                            )}
                         </p>
                         <p>タイトル：{title}</p>
                         <p>カテゴリー:{category_id[0].name}</p>

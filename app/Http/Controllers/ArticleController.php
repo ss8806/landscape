@@ -127,7 +127,7 @@ class ArticleController extends Controller
         $user = Auth::user();
         $article = Article::find($id);
         $user_id = $article->user()->get();
-        $category_id = $article->category()->get();
+        $c_name = $article->category()->get();
         $categories = Category::orderBy('sort_no')->get();
         //dd($article);
         if ($user->id === $article->user_id){
@@ -139,7 +139,7 @@ class ArticleController extends Controller
                     'pic1' => $article->pic1,
                     'user_id' => $user_id,
                     'c_id' => $article->category_id,
-                    'category_id' => $category_id,
+                    'c_name' => $c_name,
                     'show_url' => URL::route('edit', $article->id),
                 ],
                 'categories' => $categories
@@ -186,15 +186,11 @@ class ArticleController extends Controller
         //$article->likes()->detach($request->user()->id);
         // モデルを結びつけている中間テーブルにレコードを挿入する。
         $article->likes()->attach($request->user()->id);
-
-        return ['success', __('Liked')];
     }
 
     // 気になるリストから削除する処理
     public function unlike(Request $request, Article $article)
     {
         $article->likes()->detach($request->user()->id);
-
-        return  ['success', __('UnLiked')];
     }   
 }
