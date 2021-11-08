@@ -4,16 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Redirect;
 // use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Article\UseCase\IndexArticleUseCase;
 use App\Article\UseCase\ShowArticleUseCase;
+use App\Article\UseCase\EditArticleUseCase;
 
 class ArticleController extends Controller
 {
@@ -65,7 +64,6 @@ class ArticleController extends Controller
     {  
         return Inertia::render('Article/index',
         [  
-            'success' => session('success'),
             'categories',
             'articles'
         ]+ $useCase->handle());
@@ -135,7 +133,6 @@ class ArticleController extends Controller
     {  
         return Inertia::render('Article/Show',
         [  
-            'success' => session('success'),
             'article'
         ]+ $useCase->handle($id));
     }
@@ -146,33 +143,43 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article, $id)
-    {
-        $user = Auth::user();
-        $article = Article::find($id);
-        $user_id = $article->user()->get();
-        $c_name = $article->category()->get();
-        $categories = Category::orderBy('sort_no')->get();
-        //dd($article);
-        if ($user->id === $article->user_id){
-            return Inertia::render('Article/Edit',[
-                'article' => [
-                    'id' => $article->id,
-                    'title' => $article->title,
-                    'body' => $article->body,
-                    'pic1' => $article->pic1,
-                    'user_id' => $user_id,
-                    'c_id' => $article->category_id,
-                    'c_name' => $c_name,
-                    'show_url' => URL::route('edit', $article->id),
-                ],
-                'categories' => $categories
-            ]);
-        } else{
-            return App::abort(404); // 404エラーを返す
-        }
+    // ファットコントローラー
+        // public function edit(Article $article, $id)
+        // {
+        //     $user = Auth::user();
+        //     $article = Article::find($id);
+        //     $user_id = $article->user()->get();
+        //     $c_name = $article->category()->get();
+        //     $categories = Category::orderBy('sort_no')->get();
+        //     //dd($article);
+        //     if ($user->id === $article->user_id){
+        //         return Inertia::render('Article/Edit',[
+        //             'article' => [
+        //                 'id' => $article->id,
+        //                 'title' => $article->title,
+        //                 'body' => $article->body,
+        //                 'pic1' => $article->pic1,
+        //                 'user_id' => $user_id,
+        //                 'c_id' => $article->category_id,
+        //                 'c_name' => $c_name,
+        //                 'show_url' => URL::route('edit', $article->id),
+        //             ],
+        //             'categories' => $categories
+        //         ]);
+        //     } else{
+        //         return App::abort(404); // 404エラーを返す
+        //     }
+        // }
+    // スリム化
+    public function edit(EditArticleUseCase $useCase, $id)
+    {  
+        return Inertia::render('Article/Edit',
+        [  
+            'article',
+            'categories'
+        ]+ $useCase->handle($id));
     }
-
+    
     /**
      * Update the specified resource in storage.
      *

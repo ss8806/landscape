@@ -4,13 +4,6 @@ namespace App\Article\UseCase;
 
 use App\Models\Article;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\ValidationException;
-use Inertia\Inertia;
-use App\Models\Category;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Http\Request;
-
 
 final class ShowArticleUseCase
 {
