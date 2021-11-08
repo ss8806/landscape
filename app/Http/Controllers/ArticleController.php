@@ -13,28 +13,54 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use App\Article\UseCase\IndexArticleUseCase;
+use App\Article\UseCase\ShowArticleUseCase;
 
 class ArticleController extends Controller
 {
     // ポリシーを設定したがうまくいかなかった
-    // public function __construct()
-    // {
-    //     $user = auth()->user();
-    //     $this->middleware('can:, article')->only([
-    //         'edit','update','destroy'
-    //     ]);
-    // }
+        // public function __construct()
+        // {
+        //     $user = auth()->user();
+        //     $this->middleware('can:, article')->only([
+        //         'edit','update','destroy'
+        //     ]);
+        // }
 
-    // public function __construct()
-    // {
-    // $this->authorizeResource(Article::class, 'article');
-    // }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+        // public function __construct()
+        // {
+        // $this->authorizeResource(Article::class, 'article');
+        // }
+        /**
+         * Display a listing of the resource.
+         *
+         * @return \Illuminate\Http\Response
+         */
 
+    // ファットコントローラー
+        // public function index()
+        // {  
+        //     $categories = Category::orderBy('sort_no')->get();
+        //     $articles = Article::orderBy('id', 'desc')->get();
+        //     return Inertia::render('Article/index',
+        //     [  
+        //         'success' => session('success'),
+        //         'categories' => $categories,
+        //         'articles' => $articles->map(function ($article) {
+        //             return [
+        //                 'id' => $article->id,
+        //                 'title' => $article->title,
+        //                 'body' => $article->body,
+        //                 'pic1' => $article->pic1,
+        //                 'c_id' => $article->category_id,
+        //                 'c_name' => $article->category()->get(),
+        //                 'create' => $article->created_at,
+        //                 'show_url' => URL::route('show', $article->id),
+        //             ];
+        //         }),
+        //     ]);
+        // }
+
+    // useCaseを作成してスリムコントローラー化
     public function index(IndexArticleUseCase $useCase)
     {  
         return Inertia::render('Article/index',
@@ -76,32 +102,42 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article, $id)
-    {
-        $article = Article::find($id);
-        $user = $article->user()->get();
-        $category_id = $article->category()->get();
-        $initial_is_liked= $article->isLiked(Auth::user());
-        $endpoint = route('like', $article);
-        //dd($initial_is_liked);
-        //dd($endpoint);
+    // ファットコントローラー
+        // public function show(Article $article, $id)
+        // {
+        //     $article = Article::find($id);
+        //     $user = $article->user()->get();
+        //     $category_id = $article->category()->get();
+        //     $initial_is_liked= $article->isLiked(Auth::user());
+        //     $endpoint = route('like', $article);
+        //     //dd($initial_is_liked);
+        //     //dd($endpoint);
 
 
-        //return Inertia::render('Article/show',['article' => $article]);
-        return Inertia::render('Article/Show', 
-        [       
+        //     //return Inertia::render('Article/show',['article' => $article]);
+        //     return Inertia::render('Article/Show', 
+        //     [       
+        //         'success' => session('success'),
+        //         'article' => [
+        //             'id' => $article->id,
+        //             'title' => $article->title,
+        //             'body' => $article->body,
+        //             'pic1' => $article->pic1,
+        //             'user' => $user,
+        //             'category_id' => $category_id,
+        //             'initial_is_liked' => $initial_is_liked,
+        //             'endpoint' => $endpoint,
+        //         ],
+        //     ]);
+        // }
+
+    public function show(ShowArticleUseCase $useCase, $id)
+    {  
+        return Inertia::render('Article/Show',
+        [  
             'success' => session('success'),
-            'article' => [
-                'id' => $article->id,
-                'title' => $article->title,
-                'body' => $article->body,
-                'pic1' => $article->pic1,
-                'user' => $user,
-                'category_id' => $category_id,
-                'initial_is_liked' => $initial_is_liked,
-                'endpoint' => $endpoint,
-            ],
-        ]);
+            'article'
+        ]+ $useCase->handle($id));
     }
 
     /**
