@@ -19415,7 +19415,7 @@ function showArticle(_a) {
   var title = article.title,
       body = article.body,
       pic1 = article.pic1,
-      user_id = article.user_id,
+      user = article.user,
       category_id = article.category_id,
       initial_is_liked = article.initial_is_liked,
       endpoint = article.endpoint;
@@ -19435,7 +19435,10 @@ function showArticle(_a) {
   }) : react_1["default"].createElement("img", {
     className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
     src: "https://i.imgur.com/lmYYa2s.png"
-  })), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user_id[0].name), react_1["default"].createElement("p", null, body), auth.user ? react_1["default"].createElement(LikeButton_1["default"], {
+  })), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user.icon ? user.icon : react_1["default"].createElement("img", {
+    src: "/images/avatar-default.svg",
+    className: "inline-block h-20 h-20 p-2"
+  }), user[0].name), react_1["default"].createElement("p", null, body), auth.user ? react_1["default"].createElement(LikeButton_1["default"], {
     article: article,
     auth: auth,
     initial_is_liked: initial_is_liked,

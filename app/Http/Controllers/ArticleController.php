@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
+use App\Article\UseCase\IndexArticleUseCase;
 
 class ArticleController extends Controller
 {
@@ -34,27 +35,14 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function index(IndexArticleUseCase $useCase)
     {  
-        $categories = Category::orderBy('sort_no')->get();
-        $articles = Article::orderBy('id', 'desc')->get();
         return Inertia::render('Article/index',
         [  
             'success' => session('success'),
-            'categories' => $categories,
-            'articles' => $articles->map(function ($article) {
-                return [
-                    'id' => $article->id,
-                    'title' => $article->title,
-                    'body' => $article->body,
-                    'pic1' => $article->pic1,
-                    'c_id' => $article->category_id,
-                    'c_name' => $article->category()->get(),
-                    'create' => $article->created_at,
-                    'show_url' => URL::route('show', $article->id),
-                ];
-            }),
-        ]);
+            'categories',
+            'articles'
+        ]+ $useCase->handle());
     }
 
     /**
@@ -91,7 +79,7 @@ class ArticleController extends Controller
     public function show(Article $article, $id)
     {
         $article = Article::find($id);
-        $user_id = $article->user()->get();
+        $user = $article->user()->get();
         $category_id = $article->category()->get();
         $initial_is_liked= $article->isLiked(Auth::user());
         $endpoint = route('like', $article);
@@ -108,7 +96,7 @@ class ArticleController extends Controller
                 'title' => $article->title,
                 'body' => $article->body,
                 'pic1' => $article->pic1,
-                'user_id' => $user_id,
+                'user' => $user,
                 'category_id' => $category_id,
                 'initial_is_liked' => $initial_is_liked,
                 'endpoint' => $endpoint,

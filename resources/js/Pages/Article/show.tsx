@@ -8,15 +8,8 @@ type Props = {
 };
 
 export default function showArticle({ auth, article }: Props) {
-    const {
-        title,
-        body,
-        pic1,
-        user_id,
-        category_id,
-        initial_is_liked,
-        endpoint,
-    } = article;
+    const { title, body, pic1, user, category_id, initial_is_liked, endpoint } =
+        article;
 
     return (
         <Auth auth={auth}>
@@ -38,7 +31,18 @@ export default function showArticle({ auth, article }: Props) {
                         </p>
                         <p>タイトル：{title}</p>
                         <p>カテゴリー:{category_id[0].name}</p>
-                        <p>投稿者:{user_id[0].name}</p>
+                        <p>
+                            投稿者:
+                            {user.icon ? (
+                                user.icon
+                            ) : (
+                                <img
+                                    src="/images/avatar-default.svg"
+                                    className="inline-block h-20 h-20 p-2"
+                                />
+                            )}
+                            {user[0].name}
+                        </p>
                         <p>{body}</p>
                         {auth.user ? (
                             <LikeButton

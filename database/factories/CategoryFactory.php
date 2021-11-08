@@ -14,6 +14,8 @@ class CategoryFactory extends Factory
      */
     protected $model = Category::class;
 
+    private static int $sort_no = 1;
+
     /**
      * Define the model's default state.
      *
@@ -23,7 +25,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'sort_no' => $this->faker->sort_no(),
+            'sort_no' => self::$sort_no++,
             'created_at' => now(),
             'updated_at' => now()
         ];

@@ -5,6 +5,8 @@ namespace Database\Factories;
 use App\Models\Article;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+
+
 class ArticleFactory extends Factory
 {
     /**
@@ -24,9 +26,8 @@ class ArticleFactory extends Factory
         $user_id = $this->faker->numberBetween(1,3);
         $category_id = $this->faker->numberBetween(1,5);
         return [
-            'title' => $this->faker->realText(rand(20,40)),
+            'title' => $this->faker->realText(rand(15,30)),
             'body' => $this->faker->realText(rand(40,100)),
-            // 'user_id' => $this->faker->numberBetween(1,3),     
             'user_id' => $user_id,
             'category_id' => $category_id,                      
             'created_at' => now(),
