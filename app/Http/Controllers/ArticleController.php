@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Support\Facades\App;
-// use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +12,9 @@ use Illuminate\Http\Request;
 use App\Article\UseCase\IndexArticleUseCase;
 use App\Article\UseCase\ShowArticleUseCase;
 use App\Article\UseCase\EditArticleUseCase;
+use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
 
 class ArticleController extends Controller
 {
@@ -62,11 +64,12 @@ class ArticleController extends Controller
     // useCaseを作成してスリムコントローラー化
     public function index(IndexArticleUseCase $useCase)
     {  
+        $useCase = new IndexArticleUseCase();
         return Inertia::render('Article/index',
-        [  
+        $useCase->handle([  
             'categories',
             'articles'
-        ]+ $useCase->handle());
+        ]));
     }
 
     /**
@@ -87,13 +90,19 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $article = new Article;
-        Auth::user()->articles()->save($article->fill($request->all()));
-        return redirect()->route('articles')->with('success', __('Registered'));
+        try{
+            $article = new Article;
+            Auth::user()->articles()->save($article->fill($request->all()));
+            return redirect()->route('articles')->with('success', __('Registered'));
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            throw ValidationException::withMessages([
+                'url' => 'エラー再度投稿してください'
+            ]);
+        }
     }
-
     /**
      * Display the specified resource.
      *
@@ -132,9 +141,7 @@ class ArticleController extends Controller
     public function show(ShowArticleUseCase $useCase, $id)
     {  
         return Inertia::render('Article/Show',
-        [  
-            'article'
-        ]+ $useCase->handle($id));
+        $useCase->handle($id, ['article']));
     }
 
     /**
@@ -174,10 +181,10 @@ class ArticleController extends Controller
     public function edit(EditArticleUseCase $useCase, $id)
     {  
         return Inertia::render('Article/Edit',
-        [  
+        $useCase->handle($id, [  
             'article',
             'categories'
-        ]+ $useCase->handle($id));
+        ]));
     }
     
     /**
@@ -187,15 +194,12 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
         $article = Article::find($id);
         // dd($article);
         $article->fill($request->all())->update();
-        return redirect()->route('mypage')->with('success', __('Edited'));
-        
-        // articles()->save($article->fill($request->all()));
-        // return redirect('/')->with('flash_message', __('Registered.'));
+        return redirect()->route('mypage')->with('success', __('Edited'));        
     }
 
     /**
@@ -204,17 +208,16 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article, $id)
+    public function destroy($id)
     {
         Article::find($id)->delete();
         return redirect()->route('mypage')->with('success', __('Deleted'));
-        // return Redirect::route('mypage')->with('flash_message', __('Deleted.'));
     }
 
      public function like(Request $request, Article $article)
     {
-        //モデルを結びつけている中間テーブルにレコードを削除する。 
-        //$article->likes()->detach($request->user()->id);
+        //モデルを結びつけている中間テーブルnoレコードを削除する。 
+        $article->likes()->detach($request->user()->id);
         // モデルを結びつけている中間テーブルにレコードを挿入する。
         $article->likes()->attach($request->user()->id);
     }
@@ -222,6 +225,7 @@ class ArticleController extends Controller
     // 気になるリストから削除する処理
     public function unlike(Request $request, Article $article)
     {
+        //モデルを結びつけている中間テーブルnoレコードを削除する。 
         $article->likes()->detach($request->user()->id);
     }   
 }

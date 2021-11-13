@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditRequest extends FormRequest
+class ArticleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,8 @@ class EditRequest extends FormRequest
     public function rules()
     {
         return [
-                'editIcon' => ['file', 'image'],
-                'editName' => ['min:5','max:15'],
-                'editEmail' =>['string','max:100','email'],           
-        ];
-    }
-
-    public function attributes()
-    {
-        return [
-            'editName'        => '名前',
+            'title' => ['min:5','max:20'],
+            'body' => ['min:5','max:200'],
         ];
     }
 }
