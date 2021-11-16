@@ -20,7 +20,6 @@ final class ShowArticleUseCase
             //dd($initial_is_liked);
             //dd($endpoint);
 
-
             //return Inertia::render('Article/show',['article' => $article]);
             return 
             [       

@@ -16,6 +16,7 @@ use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
+
 class ArticleController extends Controller
 {
     // ポリシーを設定したがうまくいかなかった
@@ -120,7 +121,6 @@ class ArticleController extends Controller
         //     //dd($initial_is_liked);
         //     //dd($endpoint);
 
-
         //     //return Inertia::render('Article/show',['article' => $article]);
         //     return Inertia::render('Article/Show', 
         //     [       
@@ -139,7 +139,7 @@ class ArticleController extends Controller
         // }
 
     public function show(ShowArticleUseCase $useCase, $id)
-    {  
+    {
         return Inertia::render('Article/Show',
         $useCase->handle($id, ['article']));
     }
@@ -150,6 +150,7 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
+
     // ファットコントローラー
         // public function edit(Article $article, $id)
         // {
