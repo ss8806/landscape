@@ -39,39 +39,36 @@ class ArticleController extends Controller
          */
 
     // ファットコントローラー
-        // public function index()
-        // {  
-        //     $categories = Category::orderBy('sort_no')->get();
-        //     $articles = Article::orderBy('id', 'desc')->get();
-        //     return Inertia::render('Article/index',
-        //     [  
-        //         'success' => session('success'),
-        //         'categories' => $categories,
-        //         'articles' => $articles->map(function ($article) {
-        //             return [
-        //                 'id' => $article->id,
-        //                 'title' => $article->title,
-        //                 'body' => $article->body,
-        //                 'pic1' => $article->pic1,
-        //                 'c_id' => $article->category_id,
-        //                 'c_name' => $article->category()->get(),
-        //                 'create' => $article->created_at,
-        //                 'show_url' => URL::route('show', $article->id),
-        //             ];
-        //         }),
-        //     ]);
-        // }
+        public function index()
+        {  
+            $categories = Category::orderBy('sort_no')->get();
+            $artcles =  Article::orderBy('id', 'desc')->paginate(5)
+            ->withQueryString()->through(fn ($article) => [
+                'id' => $article->id,
+                'title' => $article->title,
+                'body' => $article->body,
+                'pic1' => $article->pic1,
+                'c_name' => $article->category()->get(),
+            ]);
+            
+            return Inertia::render('Article/index',
+            [  
+                'success' => session('success'),
+                'categories' => $categories,
+                'articles' => $artcles 
+            ]);
+        }
 
     // useCaseを作成してスリムコントローラー化
-    public function index(IndexArticleUseCase $useCase)
-    {  
-        $useCase = new IndexArticleUseCase();
-        return Inertia::render('Article/index',
-        $useCase->handle([  
-            'categories',
-            'articles'
-        ]));
-    }
+    // public function index(IndexArticleUseCase $useCase)
+    // {  
+    //     $useCase = new IndexArticleUseCase();
+    //     return Inertia::render('Article/index',
+    //     $useCase->handle([  
+    //         'categories',
+    //         'articles'
+    //     ]));
+    // }
 
     /**
      * Show the form for creating a new resource.

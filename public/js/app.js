@@ -17212,6 +17212,33 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __read = this && this.__read || function (o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o),
+      r,
+      ar = [],
+      e;
+
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+      ar.push(r.value);
+    }
+  } catch (error) {
+    e = {
+      error: error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+
+  return ar;
+};
+
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -17228,7 +17255,7 @@ var DropDownContext = react_1["default"].createContext({});
 var Dropdown = function Dropdown(_a) {
   var children = _a.children;
 
-  var _b = react_1.useState(false),
+  var _b = __read(react_1.useState(false), 2),
       open = _b[0],
       setOpen = _b[1];
 
@@ -17668,6 +17695,33 @@ var __generator = this && this.__generator || function (thisArg, body) {
   }
 };
 
+var __read = this && this.__read || function (o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o),
+      r,
+      ar = [],
+      e;
+
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+      ar.push(r.value);
+    }
+  } catch (error) {
+    e = {
+      error: error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+
+  return ar;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -17700,7 +17754,7 @@ function LikeButton(_a) {
   var initial_is_liked = _a.initial_is_liked,
       endpoint = _a.endpoint;
 
-  var _b = react_1.useState(false),
+  var _b = __read(react_1.useState(false), 2),
       open = _b[0],
       setOpen = _b[1];
 
@@ -17712,7 +17766,7 @@ function LikeButton(_a) {
     setOpen(false);
   };
 
-  var _c = react_1.useState(initial_is_liked),
+  var _c = __read(react_1.useState(initial_is_liked), 2),
       isLiked = _c[0],
       setLiked = _c[1];
 
@@ -17846,6 +17900,42 @@ function NavLink(_a) {
 }
 
 exports.default = NavLink;
+
+/***/ }),
+
+/***/ "./resources/js/Components/Pager.tsx":
+/*!*******************************************!*\
+  !*** ./resources/js/Components/Pager.tsx ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Pager = function Pager(_a) {
+  var links = _a.links;
+  return react_1["default"].createElement("nav", null, react_1["default"].createElement("ul", null, links.map(function (link, index) {
+    return react_1["default"].createElement("li", null, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      href: link.url || "#"
+    }, link.label));
+  })));
+};
+
+exports.default = Pager;
 
 /***/ }),
 
@@ -18043,6 +18133,33 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __read = this && this.__read || function (o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o),
+      r,
+      ar = [],
+      e;
+
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+      ar.push(r.value);
+    }
+  } catch (error) {
+    e = {
+      error: error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+
+  return ar;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -18069,7 +18186,7 @@ function SuccessMessage(_a) {
     }, props));
   });
 
-  var _b = react_1.useState(true),
+  var _b = __read(react_1.useState(true), 2),
       open = _b[0],
       setOpen = _b[1];
 
@@ -18149,6 +18266,33 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __read = this && this.__read || function (o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o),
+      r,
+      ar = [],
+      e;
+
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+      ar.push(r.value);
+    }
+  } catch (error) {
+    e = {
+      error: error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+
+  return ar;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -18175,7 +18319,7 @@ function SuccessMessage(_a) {
     }, props));
   });
 
-  var _b = react_1.useState(true),
+  var _b = __read(react_1.useState(true), 2),
       open = _b[0],
       setOpen = _b[1]; // const handleClose = () => {
   //     setOpen(false);
@@ -18365,6 +18509,33 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __read = this && this.__read || function (o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o),
+      r,
+      ar = [],
+      e;
+
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+      ar.push(r.value);
+    }
+  } catch (error) {
+    e = {
+      error: error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+
+  return ar;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -18389,7 +18560,7 @@ function Auth(_a) {
   var auth = _a.auth,
       children = _a.children;
 
-  var _b = react_1.useState(false),
+  var _b = __read(react_1.useState(false), 2),
       showingNavigationDropdown = _b[0],
       setShowingNavigationDropdown = _b[1];
 
@@ -18634,6 +18805,33 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __read = this && this.__read || function (o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o),
+      r,
+      ar = [],
+      e;
+
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+      ar.push(r.value);
+    }
+  } catch (error) {
+    e = {
+      error: error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+
+  return ar;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -18663,7 +18861,7 @@ function Authenticated(_a) {
       header = _a.header,
       children = _a.children;
 
-  var _b = react_1.useState(false),
+  var _b = __read(react_1.useState(false), 2),
       showingNavigationDropdown = _b[0],
       setShowingNavigationDropdown = _b[1];
 
@@ -19452,6 +19650,82 @@ exports.default = showArticle;
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Article/index copy.tsx":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/Article/index copy.tsx ***!
+  \***************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+
+var SuccessMessage_1 = __importDefault(__webpack_require__(/*! @/Components/SuccessMessage */ "./resources/js/Components/SuccessMessage.tsx"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+
+var moment_1 = __importDefault(__webpack_require__(/*! moment */ "./node_modules/moment/moment.js"));
+
+var Pager_1 = __importDefault(__webpack_require__(/*! @/Components/Pager */ "./resources/js/Components/Pager.tsx"));
+
+function Article(_a) {
+  var auth = _a.auth,
+      success = _a.success,
+      articles = _a.articles;
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
+    className: "min-h-screen  text-center pb-10  "
+  }, success && react_1["default"].createElement(SuccessMessage_1["default"], {
+    success: success
+  }), react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
+  }, articles.data.map(function (article) {
+    return react_1["default"].createElement("div", {
+      key: article.id,
+      className: ""
+    }, react_1["default"].createElement("img", {
+      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
+      src: "https://i.imgur.com/lmYYa2s.png"
+    }), react_1["default"].createElement("div", {
+      className: "text-center"
+    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", article.c_name[0].name), react_1["default"].createElement("div", {
+      className: "text-center"
+    }, article.title), react_1["default"].createElement("div", {
+      className: "text-center"
+    }, moment_1["default"](article.create).format("YYYY年MM月DD日")), react_1["default"].createElement("div", {
+      className: "text-center"
+    }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      as: "button",
+      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
+      href: ziggy_js_1["default"]("show", article.id)
+    }, "\u8A73\u7D30\u3092\u898B\u308B")));
+  }))), react_1["default"].createElement(Pager_1["default"], {
+    links: articles.links
+  })));
+}
+
+exports.default = Article;
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Article/index.tsx":
 /*!**********************************************!*\
   !*** ./resources/js/Pages/Article/index.tsx ***!
@@ -19511,6 +19785,33 @@ var __importStar = this && this.__importStar || function (mod) {
   return result;
 };
 
+var __read = this && this.__read || function (o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o),
+      r,
+      ar = [],
+      e;
+
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+      ar.push(r.value);
+    }
+  } catch (error) {
+    e = {
+      error: error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+
+  return ar;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -19533,31 +19834,33 @@ var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_mod
 
 var moment_1 = __importDefault(__webpack_require__(/*! moment */ "./node_modules/moment/moment.js"));
 
+var Pager_1 = __importDefault(__webpack_require__(/*! @/Components/Pager */ "./resources/js/Components/Pager.tsx"));
+
 function Article(_a) {
   var auth = _a.auth,
       success = _a.success,
       articles = _a.articles,
       categories = _a.categories; // 検索条件
 
-  var _b = react_1.useState({}),
+  var _b = __read(react_1.useState({}), 2),
       filterQuery = _b[0],
       setFilterQuery = _b[1]; // ソート条件
 
 
-  var _c = react_1.useState({}),
+  var _c = __read(react_1.useState({}), 2),
       sort = _c[0],
       setSort = _c[1];
 
-  var _d = react_1.useState(true),
+  var _d = __read(react_1.useState(true), 2),
       isSorted = _d[0],
       setSorted = _d[1];
 
   var filteredTask = react_1.useMemo(function () {
-    var tmpArticles = articles; // 入力した文字は小文字にする
+    var filteredTask = articles.data; // 入力した文字は小文字にする
 
     var filterTitle = filterQuery.title && filterQuery.title.toLowerCase(); // 絞り込み検索
 
-    tmpArticles = tmpArticles.filter(function (row) {
+    filteredTask = filteredTask.filter(function (row) {
       // タイトルで絞り込み
       if (filterQuery.title && String(row.title).toLowerCase().indexOf(filterTitle) === -1) {
         return false;
@@ -19572,14 +19875,14 @@ function Article(_a) {
     }); // ソート
 
     if (sort.key) {
-      tmpArticles = tmpArticles.sort(function (a, b) {
+      filteredTask = filteredTask.sort(function (a, b) {
         a = a[sort.key];
         b = b[sort.key];
         return (a === b ? 0 : a > b ? 1 : -1) * sort.order;
       });
     }
 
-    return tmpArticles; //第2引数の配列を指定することで、この変数の変化がある度にこの部分の処理が実行されます。
+    return filteredTask; //第2引数の配列を指定することで、この変数の変化がある度にこの部分の処理が実行されます。
   }, [filterQuery, sort]); // 入力した情報をfilterQueryに入れる
 
   var handleFilter = function handleFilter(e) {
@@ -19662,7 +19965,9 @@ function Article(_a) {
       className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
       href: ziggy_js_1["default"]("show", article.id)
     }, "\u8A73\u7D30\u3092\u898B\u308B")));
-  }) : react_1["default"].createElement("p", null, "\u8A72\u5F53\u306A\u3057")))));
+  }) : react_1["default"].createElement("p", null, "\u8A72\u5F53\u306A\u3057"))), react_1["default"].createElement(Pager_1["default"], {
+    links: articles.links
+  })));
 }
 
 exports.default = Article;
@@ -20894,6 +21199,33 @@ var __generator = this && this.__generator || function (thisArg, body) {
   }
 };
 
+var __read = this && this.__read || function (o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o),
+      r,
+      ar = [],
+      e;
+
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+      ar.push(r.value);
+    }
+  } catch (error) {
+    e = {
+      error: error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+
+  return ar;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -20929,7 +21261,7 @@ function EditIcon(_a) {
 
   var icon = _a.icon;
 
-  var _b = react_1.useState(false),
+  var _b = __read(react_1.useState(false), 2),
       success = _b[0],
       setSuccess = _b[1];
 
@@ -20941,7 +21273,7 @@ function EditIcon(_a) {
     setSuccess(false);
   };
 
-  var _c = react_1.useState(false),
+  var _c = __read(react_1.useState(false), 2),
       error = _c[0],
       setError = _c[1];
 
@@ -98486,6 +98818,8 @@ var map = {
 	"./Article/Show": "./resources/js/Pages/Article/Show.tsx",
 	"./Article/Show.tsx": "./resources/js/Pages/Article/Show.tsx",
 	"./Article/index": "./resources/js/Pages/Article/index.tsx",
+	"./Article/index copy": "./resources/js/Pages/Article/index copy.tsx",
+	"./Article/index copy.tsx": "./resources/js/Pages/Article/index copy.tsx",
 	"./Article/index.tsx": "./resources/js/Pages/Article/index.tsx",
 	"./Auth/ConfirmPassword": "./resources/js/Pages/Auth/ConfirmPassword.tsx",
 	"./Auth/ConfirmPassword.tsx": "./resources/js/Pages/Auth/ConfirmPassword.tsx",

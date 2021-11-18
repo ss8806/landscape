@@ -17,6 +17,7 @@
         "@inertiajs/progress": "^0.2.4",
         "@tailwindcss/forms": "^0.3.2",
         "@types/react": "^17.0.9",
+        "@types/react-js-pagination": "^3.0.4",
         "@types/ziggy-js": "^1.0.1",
         "autoprefixer": "^10.2.4",
         "axios": "^0.21.4",
@@ -41,9 +42,11 @@
         "@fortawesome/react-fontawesome": "^0.1.16",
         "@material-ui/lab": "^4.0.0-alpha.60",
         "@mui/material": "^5.0.6",
+        "@types/react-paginate": "^7.1.1",
         "escape-string-regexp": "^5.0.0",
         "material-ui-snackbar-provider": "^1.5.0",
         "moment": "^2.29.1",
+        "pagination-react-hooks": "^1.1.0",
         "watch": "^0.13.0",
         "ziggy-js": "^1.2.0"
     }

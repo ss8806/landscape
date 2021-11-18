@@ -6,12 +6,17 @@ import SuccessMessage from "@/Components/SuccessMessage";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import route from "ziggy-js";
 import moment from "moment";
+import Pager from "@/Components/Pager";
 
 type Props = {
     auth: any;
     success: any;
     articles: any;
     categories: any;
+    pager: any;
+    sum: number;
+    per: number;
+    onChange: (e: { page: number }) => void;
 };
 
 export default function Article({
@@ -28,14 +33,14 @@ export default function Article({
     let [isSorted, setSorted] = useState<boolean>(true);
 
     const filteredTask = useMemo(() => {
-        let tmpArticles = articles;
+        let filteredTask = articles.data;
 
         // 入力した文字は小文字にする
         const filterTitle =
             filterQuery.title && filterQuery.title.toLowerCase();
 
         // 絞り込み検索
-        tmpArticles = tmpArticles.filter((row: Article) => {
+        filteredTask = filteredTask.filter((row: Article) => {
             // タイトルで絞り込み
             if (
                 filterQuery.title &&
@@ -53,14 +58,14 @@ export default function Article({
 
         // ソート
         if (sort.key) {
-            tmpArticles = tmpArticles.sort((a: any, b: any) => {
+            filteredTask = filteredTask.sort((a: any, b: any) => {
                 a = a[sort.key];
                 b = b[sort.key];
                 return (a === b ? 0 : a > b ? 1 : -1) * sort.order;
             });
         }
 
-        return tmpArticles;
+        return filteredTask;
         //第2引数の配列を指定することで、この変数の変化がある度にこの部分の処理が実行されます。
     }, [filterQuery, sort]);
 
@@ -97,7 +102,6 @@ export default function Article({
                     value={filterQuery.title || ""}
                     onChange={handleFilter}
                 />
-
                 <select
                     name="c_id"
                     className="m-4 border-solid border border-black"
@@ -113,7 +117,6 @@ export default function Article({
                         );
                     })}
                 </select>
-
                 <button
                     className="w-60 m-4 p-2 bg-white text-base border-solid border border-black"
                     onClick={() => handleSort("id")}
@@ -122,12 +125,10 @@ export default function Article({
                         ? "登録を古い順に並べ替え"
                         : "登録を新しい順に並べ替え"}
                 </button>
-
                 {/* 
                 カテゴリーの並べ替え
                 <button onClick={() => handleSort("c_id")}>カテゴリー</button> 
                 */}
-
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
                     <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0">
                         {filteredTask.length ? (
@@ -167,6 +168,7 @@ export default function Article({
                         )}
                     </div>
                 </div>
+                <Pager links={articles.links} />
             </section>
         </Auth>
     );
