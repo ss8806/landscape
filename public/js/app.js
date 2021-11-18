@@ -17929,7 +17929,10 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 var Pager = function Pager(_a) {
   var links = _a.links;
   return react_1["default"].createElement("nav", null, react_1["default"].createElement("ul", null, links.map(function (link, index) {
-    return react_1["default"].createElement("li", null, react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    return react_1["default"].createElement("li", {
+      key: index,
+      className: "inline-block mt-3 mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500"
+    }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
       href: link.url || "#"
     }, link.label));
   })));

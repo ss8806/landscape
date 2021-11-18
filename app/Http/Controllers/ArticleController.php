@@ -42,7 +42,7 @@ class ArticleController extends Controller
         public function index()
         {  
             $categories = Category::orderBy('sort_no')->get();
-            $artcles =  Article::orderBy('id', 'desc')->paginate(5)
+            $artcles =  Article::orderBy('id', 'desc')->paginate(6)
             ->withQueryString()->through(fn ($article) => [
                 'id' => $article->id,
                 'title' => $article->title,
