@@ -48,6 +48,7 @@ class ArticleController extends Controller
                 'title' => $article->title,
                 'body' => $article->body,
                 'pic1' => $article->pic1,
+                'c_id' => $article->category_id,
                 'c_name' => $article->category()->get(),
             ]);
             
