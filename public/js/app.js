@@ -19480,7 +19480,7 @@ function editArticle(_a) {
     body: body,
     c_id: c_id,
     c_name: "c_name",
-    categories: ""
+    categories: "categories"
   }),
       data = _b.data,
       setData = _b.setData,
@@ -19496,7 +19496,7 @@ function editArticle(_a) {
     return __awaiter(_this, void 0, void 0, function () {
       return __generator(this, function (_a) {
         e.preventDefault();
-        put(ziggy_js_1["default"]("update", {
+        inertia_1.Inertia.put(ziggy_js_1["default"]("update", {
           id: id
         }));
         return [2
@@ -19509,8 +19509,7 @@ function editArticle(_a) {
   var handleSubmitDelete = function handleSubmitDelete(e) {
     return __awaiter(_this, void 0, void 0, function () {
       return __generator(this, function (_a) {
-        e.preventDefault(); // Inertia.put("/article/{id}/update", [id]);
-
+        e.preventDefault();
         inertia_1.Inertia["delete"](ziggy_js_1["default"]("delete", id));
         return [2
         /*return*/

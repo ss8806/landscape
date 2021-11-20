@@ -46,7 +46,7 @@ export default function editArticle({ auth, article, categories }: Props) {
         body: body,
         c_id: c_id,
         c_name: "c_name",
-        categories: "",
+        categories: "categories",
     });
 
     const onHandleChange = (
@@ -62,7 +62,7 @@ export default function editArticle({ auth, article, categories }: Props) {
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        put(route("update", { id: id }));
+        Inertia.put(route("update", { id: id }));
 
         // await axios;
         // put(
@@ -84,7 +84,6 @@ export default function editArticle({ auth, article, categories }: Props) {
 
     const handleSubmitDelete = async (e: SyntheticEvent) => {
         e.preventDefault();
-        // Inertia.put("/article/{id}/update", [id]);
         Inertia.delete(route("delete", id));
     };
 
