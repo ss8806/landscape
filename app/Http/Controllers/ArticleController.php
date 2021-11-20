@@ -15,7 +15,7 @@ use App\Article\UseCase\EditArticleUseCase;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
-
+// use Illuminate\Support\Facades\Request;
 
 class ArticleController extends Controller
 {
@@ -39,26 +39,50 @@ class ArticleController extends Controller
          */
 
     // ファットコントローラー
-        public function index()
-        {  
-            $categories = Category::orderBy('sort_no')->get();
-            $artcles =  Article::orderBy('id', 'desc')->paginate(6)
-            ->withQueryString()->through(fn ($article) => [
-                'id' => $article->id,
-                'title' => $article->title,
-                'body' => $article->body,
-                'pic1' => $article->pic1,
-                'c_id' => $article->category_id,
-                'c_name' => $article->category()->get(),
-            ]);
-            
-            return Inertia::render('Article/index',
-            [  
-                'success' => session('success'),
-                'categories' => $categories,
-                'articles' => $artcles 
-            ]);
+    public function index(Request $request)
+    {  
+        $query = Article::query();
+        // カテゴリで絞り込み
+        if ($request->filled('category')) {
+            $categoryID = $request->input('category');           
+            $query->where('category_id', $categoryID);
         }
+
+        // キーワードで絞り込み
+        if ($request->filled('keyword')) {
+            $keyword = '%' . $this->escape($request->input('keyword')) . '%';
+            $query->where(function ($query) use ($keyword) {
+                $query->where('title', 'LIKE', $keyword);
+            });
+        }
+
+        $categories = Category::orderBy('sort_no')->get();
+        $artcles = $query->orderBy('id', 'desc')->paginate(8)
+        ->withQueryString()->through(fn ($article) => [
+            'id' => $article->id,
+            'title' => $article->title,
+            'body' => $article->body,
+            'pic1' => $article->pic1,
+            'c_id' => $article->category_id,
+            'c_name' => $article->category()->get(),
+        ]);
+        
+        return Inertia::render('Article/index',
+        [  
+            'success' => session('success'),
+            'categories' => $categories,
+            'articles' => $artcles ,
+        ]);
+    }
+
+    private function escape(string $value)
+    {
+        return str_replace(
+            ['\\', '%', '_'],
+            ['\\\\', '\\%', '\\_'],
+            $value
+        );
+    }
 
     // useCaseを作成してスリムコントローラー化
     // public function index(IndexArticleUseCase $useCase)

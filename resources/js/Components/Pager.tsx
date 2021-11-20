@@ -1,5 +1,5 @@
 import { InertiaLink } from "@inertiajs/inertia-react";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 
 interface Props {
     links: any;

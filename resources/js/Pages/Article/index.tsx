@@ -7,16 +7,18 @@ import { InertiaLink } from "@inertiajs/inertia-react";
 import route from "ziggy-js";
 import moment from "moment";
 import Pager from "@/Components/Pager";
+import { useForm } from "@inertiajs/inertia-react";
+import axios from "axios";
+import Button from "@/Components/Button";
+import Input from "@/Components/Input";
+import Selectbox from "@/Components/Selectbox";
 
 type Props = {
     auth: any;
     success: any;
     articles: any;
     categories: any;
-    pager: any;
-    sum: number;
-    per: number;
-    onChange: (e: { page: number }) => void;
+    requests: any;
 };
 
 export default function Article({
@@ -25,114 +27,76 @@ export default function Article({
     articles,
     categories,
 }: Props) {
-    // 検索条件
-    const [filterQuery, setFilterQuery] = useState<any>({});
-    // ソート条件
-    const [sort, setSort] = useState<any>({});
+    const { data, setData, get, processing, errors } = useForm({
+        search: "",
+    });
 
-    let [isSorted, setSorted] = useState<boolean>(true);
-
-    const filteredTask = useMemo(() => {
-        let filteredTask = articles.data;
-
-        // 入力した文字は小文字にする
-        const filterTitle =
-            filterQuery.title && filterQuery.title.toLowerCase();
-
-        // 絞り込み検索
-        filteredTask = filteredTask.filter((row: Article) => {
-            // タイトルで絞り込み
-            if (
-                filterQuery.title &&
-                String(row.title).toLowerCase().indexOf(filterTitle) === -1
-            ) {
-                return false;
-            }
-
-            // カテゴリーで絞り込み
-            if (filterQuery.c_id && row.c_id !== parseInt(filterQuery.c_id)) {
-                return false;
-            }
-            return row;
-        });
-
-        // ソート
-        if (sort.key) {
-            filteredTask = filteredTask.sort((a: any, b: any) => {
-                a = a[sort.key];
-                b = b[sort.key];
-                return (a === b ? 0 : a > b ? 1 : -1) * sort.order;
-            });
-        }
-
-        return filteredTask;
-        //第2引数の配列を指定することで、この変数の変化がある度にこの部分の処理が実行されます。
-    }, [filterQuery, sort]);
-
-    // 入力した情報をfilterQueryに入れる
-    const handleFilter = (e: any) => {
-        const { name, value } = e.target;
-        setFilterQuery({ ...filterQuery, [name]: value });
+    const onHandleChange = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
+        setData(event.target.name as "search", event.target.value);
     };
 
-    // 選択したカラムをSortに入れる;
-    const handleSort = (column: any) => {
-        if (sort.key === column) {
-            // カラムを設定した場合は逆順になるようにorderをマイナスにします。
-            setSorted(!isSorted);
-            setSort({ ...sort, order: -sort.order });
-        } else {
-            setSorted(!isSorted);
-            setSort({
-                key: column,
-                order: 1,
-            });
-        }
+    const handleSubmit = async (e: SyntheticEvent) => {
+        e.preventDefault();
+        get("/");
     };
+
+    // const handleSubmit = async (e: SyntheticEvent) => {
+    //     e.preventDefault();
+    //     await axios
+    //         .get(route("articles"))
+    //         .then(function (response) {
+    //             console.log(response);
+    //         })
+    //         .catch(function (response) {
+    //             console.log(response);
+    //         });
+    // };
+
+    // useEffect(() => {
+    //     console.log();
+    // }, []);
 
     return (
         <Auth auth={auth}>
             <section className="min-h-screen  text-center pb-10  ">
                 {success && <SuccessMessage success={success} />}
-                <input
-                    type="text"
-                    name="title"
-                    className="m-4 border-solid border border-black"
-                    placeholder="タイトル"
-                    value={filterQuery.title || ""}
-                    onChange={handleFilter}
-                />
-                <select
-                    name="c_id"
-                    className="m-4 border-solid border border-black"
-                    value={filterQuery.c_id}
-                    onChange={handleFilter}
-                >
-                    <option value="">カテゴリー選択</option>
-                    {categories.map((cate: Category) => {
-                        return (
-                            <option key={cate.id} value={cate.id}>
-                                {cate.name}
-                            </option>
-                        );
-                    })}
-                </select>
-                <button
-                    className="w-60 m-4 p-2 bg-white text-base border-solid border border-black"
-                    onClick={() => handleSort("id")}
-                >
-                    {isSorted
-                        ? "登録を古い順に並べ替え"
-                        : "登録を新しい順に並べ替え"}
-                </button>
-                {/* 
-                カテゴリーの並べ替え
-                <button onClick={() => handleSort("c_id")}>カテゴリー</button> 
-                */}
+
+                <form className="" onSubmit={handleSubmit}>
+                    <Input
+                        type="text"
+                        name="keyword"
+                        className="m-4 border-solid border border-black"
+                        placeholder="タイトルを検索"
+                        handleChange={onHandleChange}
+                    />
+                    <Selectbox
+                        name="category"
+                        className="m-4 border-solid border border-black"
+                        handleChange={onHandleChange}
+                    >
+                        <option className="hidden" value="">
+                            カテゴリー選択
+                        </option>
+                        <option value="">全て</option>
+                        {categories.map((cate: Category) => {
+                            return (
+                                <option key={cate.id} value={cate.id}>
+                                    {cate.name}
+                                </option>
+                            );
+                        })}
+                    </Selectbox>
+                    <Button className="" processing={processing}>
+                        検索
+                    </Button>
+                </form>
+
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
                     <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0">
-                        {filteredTask.length ? (
-                            filteredTask.map((article: Article) => {
+                        {articles.data.length ? (
+                            articles.data.map((article: Article) => {
                                 return (
                                     <div key={article.id} className="">
                                         <img
@@ -144,9 +108,11 @@ export default function Article({
                                             {article.c_name[0].name}
                                         </div>
                                         <div className="text-center">
+                                            タイトル：
                                             {article.title}
                                         </div>
                                         <div className="text-center">
+                                            登校日：
                                             {moment(article.create).format(
                                                 "YYYY年MM月DD日"
                                             )}
