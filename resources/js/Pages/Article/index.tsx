@@ -15,6 +15,7 @@ type Props = {
     articles: any;
     categories: any;
     requests: any;
+    page: number;
 };
 
 export default function Article({
@@ -22,6 +23,7 @@ export default function Article({
     success,
     articles,
     categories,
+    page,
 }: Props) {
     const { data, setData, get, errors } = useForm({
         search: "",
@@ -42,7 +44,6 @@ export default function Article({
         <Auth auth={auth}>
             <section className="min-h-screen  text-center pb-10  ">
                 {success && <SuccessMessage success={success} />}
-
                 <form className="" onSubmit={handleSubmit}>
                     <input
                         type="text"
@@ -72,7 +73,6 @@ export default function Article({
                         検索
                     </button>
                 </form>
-
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
                     <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0">
                         {articles.data.length ? (
@@ -114,7 +114,8 @@ export default function Article({
                         )}
                     </div>
                 </div>
-                <Pager links={articles.links} />
+                <Pager links={articles.links} page={page} />
+                {articles.current_page}/{articles.last_page}
             </section>
         </Auth>
     );

@@ -3,9 +3,10 @@ import React, { useEffect } from "react";
 
 interface Props {
     links: any;
+    page: any;
 }
 
-const Pager: React.FC<Props> = ({ links }) => {
+const Pager: React.FC<Props> = ({ links, page }) => {
     return (
         <nav>
             <ul>

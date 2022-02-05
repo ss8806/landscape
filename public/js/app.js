@@ -17932,7 +17932,8 @@ var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./nod
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var Pager = function Pager(_a) {
-  var links = _a.links;
+  var links = _a.links,
+      page = _a.page;
   return react_1["default"].createElement("nav", null, react_1["default"].createElement("ul", null, links.map(function (link, index) {
     return react_1["default"].createElement("li", {
       key: index,
@@ -19662,247 +19663,172 @@ exports.default = showArticle;
 /*!***************************************************!*\
   !*** ./resources/js/Pages/Article/index copy.tsx ***!
   \***************************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+/***/ (() => {
 
 "use strict";
-
-
-var __assign = this && this.__assign || function () {
-  __assign = Object.assign || function (t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-      s = arguments[i];
-
-      for (var p in s) {
-        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-      }
-    }
-
-    return t;
-  };
-
-  return __assign.apply(this, arguments);
-};
-
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
-var __read = this && this.__read || function (o, n) {
-  var m = typeof Symbol === "function" && o[Symbol.iterator];
-  if (!m) return o;
-  var i = m.call(o),
-      r,
-      ar = [],
-      e;
-
-  try {
-    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
-      ar.push(r.value);
-    }
-  } catch (error) {
-    e = {
-      error: error
-    };
-  } finally {
-    try {
-      if (r && !r.done && (m = i["return"])) m.call(i);
-    } finally {
-      if (e) throw e.error;
-    }
-  }
-
-  return ar;
-};
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
-
-var SuccessMessage_1 = __importDefault(__webpack_require__(/*! @/Components/SuccessMessage */ "./resources/js/Components/SuccessMessage.tsx"));
-
-var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-
-var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
-
-var moment_1 = __importDefault(__webpack_require__(/*! moment */ "./node_modules/moment/moment.js"));
-
-var Pager_1 = __importDefault(__webpack_require__(/*! @/Components/Pager */ "./resources/js/Components/Pager.tsx"));
-
-function Article(_a) {
-  var auth = _a.auth,
-      success = _a.success,
-      articles = _a.articles,
-      categories = _a.categories; // 検索条件
-
-  var _b = __read(react_1.useState({}), 2),
-      filterQuery = _b[0],
-      setFilterQuery = _b[1]; // ソート条件
-
-
-  var _c = __read(react_1.useState({}), 2),
-      sort = _c[0],
-      setSort = _c[1];
-
-  var _d = __read(react_1.useState(true), 2),
-      isSorted = _d[0],
-      setSorted = _d[1];
-
-  var filteredTask = react_1.useMemo(function () {
-    var filteredTask = articles.data; // 入力した文字は小文字にする
-
-    var filterTitle = filterQuery.title && filterQuery.title.toLowerCase(); // 絞り込み検索
-
-    filteredTask = filteredTask.filter(function (row) {
-      // タイトルで絞り込み
-      if (filterQuery.title && String(row.title).toLowerCase().indexOf(filterTitle) === -1) {
-        return false;
-      } // カテゴリーで絞り込み
-
-
-      if (filterQuery.c_id && row.c_id !== parseInt(filterQuery.c_id)) {
-        return false;
-      }
-
-      return row;
-    }); // ソート
-
-    if (sort.key) {
-      filteredTask = filteredTask.sort(function (a, b) {
-        a = a[sort.key];
-        b = b[sort.key];
-        return (a === b ? 0 : a > b ? 1 : -1) * sort.order;
-      });
-    }
-
-    return filteredTask; //第2引数の配列を指定することで、この変数の変化がある度にこの部分の処理が実行されます。
-  }, [filterQuery, sort]); // 入力した情報をfilterQueryに入れる
-
-  var handleFilter = function handleFilter(e) {
-    var _a;
-
-    var _b = e.target,
-        name = _b.name,
-        value = _b.value;
-    setFilterQuery(__assign(__assign({}, filterQuery), (_a = {}, _a[name] = value, _a)));
-  }; // 選択したカラムをSortに入れる;
-
-
-  var handleSort = function handleSort(column) {
-    if (sort.key === column) {
-      // カラムを設定した場合は逆順になるようにorderをマイナスにします。
-      setSorted(!isSorted);
-      setSort(__assign(__assign({}, sort), {
-        order: -sort.order
-      }));
-    } else {
-      setSorted(!isSorted);
-      setSort({
-        key: column,
-        order: 1
-      });
-    }
-  };
-
-  return react_1["default"].createElement(Auth_1["default"], {
-    auth: auth
-  }, react_1["default"].createElement("section", {
-    className: "min-h-screen  text-center pb-10  "
-  }, success && react_1["default"].createElement(SuccessMessage_1["default"], {
-    success: success
-  }), react_1["default"].createElement("input", {
-    type: "text",
-    name: "title",
-    className: "m-4 border-solid border border-black",
-    placeholder: "\u30BF\u30A4\u30C8\u30EB",
-    value: filterQuery.title || "",
-    onChange: handleFilter
-  }), react_1["default"].createElement("select", {
-    name: "c_id",
-    className: "m-4 border-solid border border-black",
-    value: filterQuery.c_id,
-    onChange: handleFilter
-  }, react_1["default"].createElement("option", {
-    value: ""
-  }, "\u30AB\u30C6\u30B4\u30EA\u30FC\u9078\u629E"), categories.map(function (cate) {
-    return react_1["default"].createElement("option", {
-      key: cate.id,
-      value: cate.id
-    }, cate.name);
-  })), react_1["default"].createElement("button", {
-    className: "w-60 m-4 p-2 bg-white text-base border-solid border border-black",
-    onClick: function onClick() {
-      return handleSort("id");
-    }
-  }, isSorted ? "登録を古い順に並べ替え" : "登録を新しい順に並べ替え"), react_1["default"].createElement("div", {
-    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
-  }, react_1["default"].createElement("div", {
-    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
-  }, filteredTask.length ? filteredTask.map(function (article) {
-    return react_1["default"].createElement("div", {
-      key: article.id,
-      className: ""
-    }, react_1["default"].createElement("img", {
-      className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
-      src: "https://i.imgur.com/lmYYa2s.png"
-    }), react_1["default"].createElement("div", {
-      className: "text-center"
-    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", article.c_name[0].name), react_1["default"].createElement("div", {
-      className: "text-center"
-    }, article.title), react_1["default"].createElement("div", {
-      className: "text-center"
-    }, moment_1["default"](article.create).format("YYYY年MM月DD日")), react_1["default"].createElement("div", {
-      className: "text-center"
-    }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-      as: "button",
-      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
-      href: ziggy_js_1["default"]("show", article.id)
-    }, "\u8A73\u7D30\u3092\u898B\u308B")));
-  }) : react_1["default"].createElement("p", null, "\u8A72\u5F53\u306A\u3057"))), react_1["default"].createElement(Pager_1["default"], {
-    links: articles.links
-  })));
-}
-
-exports.default = Article;
+ // import React, { SyntheticEvent, useState, useEffect, useMemo } from "react";
+// import Auth from "@/Layouts/Auth";
+// import type { Article } from "@/Types/Article";
+// import type { Category } from "@/Types/Category";
+// import SuccessMessage from "@/Components/SuccessMessage";
+// import { InertiaLink } from "@inertiajs/inertia-react";
+// import route from "ziggy-js";
+// import moment from "moment";
+// import Pager from "@/Components/Pager";
+// type Props = {
+//     auth: any;
+//     success: any;
+//     articles: any;
+//     categories: any;
+//     pager: any;
+//     sum: number;
+//     per: number;
+//     onChange: (e: { page: number }) => void;
+// };
+// export default function Article({
+//     auth,
+//     success,
+//     articles,
+//     categories,
+// }: Props) {
+//     // 検索条件
+//     const [filterQuery, setFilterQuery] = useState<any>({});
+//     // ソート条件
+//     const [sort, setSort] = useState<any>({});
+//     let [isSorted, setSorted] = useState<boolean>(true);
+//     const filteredTask = useMemo(() => {
+//         let filteredTask = articles.data;
+//         // 入力した文字は小文字にする
+//         const filterTitle =
+//             filterQuery.title && filterQuery.title.toLowerCase();
+//         // 絞り込み検索
+//         filteredTask = filteredTask.filter((row: Article) => {
+//             // タイトルで絞り込み
+//             if (
+//                 filterQuery.title &&
+//                 String(row.title).toLowerCase().indexOf(filterTitle) === -1
+//             ) {
+//                 return false;
+//             }
+//             // カテゴリーで絞り込み
+//             if (filterQuery.c_id && row.c_id !== parseInt(filterQuery.c_id)) {
+//                 return false;
+//             }
+//             return row;
+//         });
+//         // ソート
+//         if (sort.key) {
+//             filteredTask = filteredTask.sort((a: any, b: any) => {
+//                 a = a[sort.key];
+//                 b = b[sort.key];
+//                 return (a === b ? 0 : a > b ? 1 : -1) * sort.order;
+//             });
+//         }
+//         return filteredTask;
+//         //第2引数の配列を指定することで、この変数の変化がある度にこの部分の処理が実行されます。
+//     }, [filterQuery, sort]);
+//     // 入力した情報をfilterQueryに入れる
+//     const handleFilter = (e: any) => {
+//         const { name, value } = e.target;
+//         setFilterQuery({ ...filterQuery, [name]: value });
+//     };
+//     // 選択したカラムをSortに入れる;
+//     const handleSort = (column: any) => {
+//         if (sort.key === column) {
+//             // カラムを設定した場合は逆順になるようにorderをマイナスにします。
+//             setSorted(!isSorted);
+//             setSort({ ...sort, order: -sort.order });
+//         } else {
+//             setSorted(!isSorted);
+//             setSort({
+//                 key: column,
+//                 order: 1,
+//             });
+//         }
+//     };
+//     return (
+//         <Auth auth={auth}>
+//             <section className="min-h-screen  text-center pb-10  ">
+//                 {success && <SuccessMessage success={success} />}
+//                 <input
+//                     type="text"
+//                     name="title"
+//                     className="m-4 border-solid border border-black"
+//                     placeholder="タイトル"
+//                     value={filterQuery.title || ""}
+//                     onChange={handleFilter}
+//                 />
+//                 <select
+//                     name="c_id"
+//                     className="m-4 border-solid border border-black"
+//                     value={filterQuery.c_id}
+//                     onChange={handleFilter}
+//                 >
+//                     <option value="">カテゴリー選択</option>
+//                     {categories.map((cate: Category) => {
+//                         return (
+//                             <option key={cate.id} value={cate.id}>
+//                                 {cate.name}
+//                             </option>
+//                         );
+//                     })}
+//                 </select>
+//                 <button
+//                     className="w-60 m-4 p-2 bg-white text-base border-solid border border-black"
+//                     onClick={() => handleSort("id")}
+//                 >
+//                     {isSorted
+//                         ? "登録を古い順に並べ替え"
+//                         : "登録を新しい順に並べ替え"}
+//                 </button>
+//                 {/*
+//                 カテゴリーの並べ替え
+//                 <button onClick={() => handleSort("c_id")}>カテゴリー</button>
+//                 */}
+//                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
+//                     <div className="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0">
+//                         {filteredTask.length ? (
+//                             filteredTask.map((article: Article) => {
+//                                 return (
+//                                     <div key={article.id} className="">
+//                                         <img
+//                                             className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
+//                                             src="https://i.imgur.com/lmYYa2s.png"
+//                                         />
+//                                         <div className="text-center">
+//                                             カテゴリー：
+//                                             {article.c_name[0].name}
+//                                         </div>
+//                                         <div className="text-center">
+//                                             {article.title}
+//                                         </div>
+//                                         <div className="text-center">
+//                                             {moment(article.create).format(
+//                                                 "YYYY年MM月DD日"
+//                                             )}
+//                                         </div>
+//                                         <div className="text-center">
+//                                             <InertiaLink
+//                                                 as="button"
+//                                                 className="inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150"
+//                                                 href={route("show", article.id)}
+//                                             >
+//                                                 詳細を見る
+//                                             </InertiaLink>
+//                                         </div>
+//                                     </div>
+//                                 );
+//                             })
+//                         ) : (
+//                             <p>該当なし</p>
+//                         )}
+//                     </div>
+//                 </div>
+//                 <Pager links={articles.links} />
+//             </section>
+//         </Auth>
+//     );
+// }
 
 /***/ }),
 
@@ -20090,7 +20016,8 @@ function Article(_a) {
   var auth = _a.auth,
       success = _a.success,
       articles = _a.articles,
-      categories = _a.categories;
+      categories = _a.categories,
+      page = _a.page;
 
   var _b = inertia_react_2.useForm({
     search: ""
@@ -20172,8 +20099,9 @@ function Article(_a) {
       href: ziggy_js_1["default"]("show", article.id)
     }, "\u8A73\u7D30\u3092\u898B\u308B")));
   }) : react_1["default"].createElement("p", null, "\u8A72\u5F53\u306A\u3057"))), react_1["default"].createElement(Pager_1["default"], {
-    links: articles.links
-  })));
+    links: articles.links,
+    page: page
+  }), articles.current_page, "/", articles.last_page));
 }
 
 exports.default = Article;
