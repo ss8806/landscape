@@ -7,10 +7,7 @@ import { Inertia } from "@inertiajs/inertia";
 import ValidationErrors from "@/Components/ValidationErrors";
 import Button from "@/Components/Button";
 import Selectbox from "@/Components/Selectbox";
-import Option from "@/Components/Option";
-import { OperationCanceledException, SelectionRange } from "typescript";
 import route from "ziggy-js";
-import axios from "axios";
 
 type Props = {
     auth: any;

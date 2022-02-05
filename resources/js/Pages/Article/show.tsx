@@ -33,8 +33,8 @@ export default function showArticle({ auth, article }: Props) {
                         <p>カテゴリー:{category_id[0].name}</p>
                         <p>
                             投稿者:
-                            {user.icon ? (
-                                user.icon
+                            {user[0].icon ? (
+                                user.icon // awsのurl
                             ) : (
                                 <img
                                     src="/images/avatar-default.svg"

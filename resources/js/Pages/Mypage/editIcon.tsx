@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useReducer, useState } from "react";
 import axios from "axios";
 import { useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
@@ -6,6 +6,7 @@ import ValidationErrors from "@/Components/ValidationErrors";
 import Button from "@/Components/Button";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import Axiosbar from "@/Components/Axiosbar";
+import { margin } from "@mui/system";
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
@@ -19,6 +20,7 @@ type Props = {
 };
 
 export default function EditIcon({ icon }: Props) {
+    const awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
     const [success, setSuccess] = useState<boolean>(false);
 
     const handleOpenSuccess = () => {
@@ -80,7 +82,7 @@ export default function EditIcon({ icon }: Props) {
                 {(icon && (
                     <img
                         id="preview"
-                        src="icon"
+                        src={awspath + icon}
                         className="d-block mx-auto h-60 h-56"
                     ></img>
                 )) || (

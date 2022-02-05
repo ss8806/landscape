@@ -8,10 +8,6 @@ import route from "ziggy-js";
 import moment from "moment";
 import Pager from "@/Components/Pager";
 import { useForm } from "@inertiajs/inertia-react";
-import axios from "axios";
-import Button from "@/Components/Button";
-import Input from "@/Components/Input";
-import Selectbox from "@/Components/Selectbox";
 
 type Props = {
     auth: any;
@@ -27,7 +23,7 @@ export default function Article({
     articles,
     categories,
 }: Props) {
-    const { data, setData, get, processing, errors } = useForm({
+    const { data, setData, get, errors } = useForm({
         search: "",
     });
 
@@ -42,39 +38,23 @@ export default function Article({
         get("/");
     };
 
-    // const handleSubmit = async (e: SyntheticEvent) => {
-    //     e.preventDefault();
-    //     await axios
-    //         .get(route("articles"))
-    //         .then(function (response) {
-    //             console.log(response);
-    //         })
-    //         .catch(function (response) {
-    //             console.log(response);
-    //         });
-    // };
-
-    // useEffect(() => {
-    //     console.log();
-    // }, []);
-
     return (
         <Auth auth={auth}>
             <section className="min-h-screen  text-center pb-10  ">
                 {success && <SuccessMessage success={success} />}
 
                 <form className="" onSubmit={handleSubmit}>
-                    <Input
+                    <input
                         type="text"
                         name="keyword"
                         className="m-4 border-solid border border-black"
                         placeholder="タイトルを検索"
-                        handleChange={onHandleChange}
+                        onChange={onHandleChange}
                     />
-                    <Selectbox
+                    <select
                         name="category"
                         className="m-4 border-solid border border-black"
-                        handleChange={onHandleChange}
+                        onChange={onHandleChange}
                     >
                         <option className="hidden" value="">
                             カテゴリー選択
@@ -87,10 +67,10 @@ export default function Article({
                                 </option>
                             );
                         })}
-                    </Selectbox>
-                    <Button className="" processing={processing}>
+                    </select>
+                    <button className="inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest">
                         検索
-                    </Button>
+                    </button>
                 </form>
 
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">

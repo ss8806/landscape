@@ -17120,8 +17120,13 @@ var Button = function Button(_a) {
       children = _a.children;
   return react_1["default"].createElement("button", {
     type: type,
-    className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 " + (processing && "opacity-25") + " " + className,
-    disabled: processing
+    // className={
+    //     `inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150 ${
+    //         processing && "opacity-25"
+    //     } ` + className
+    // }
+    // disabled={processing}
+    className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150"
   }, children);
 };
 
@@ -19635,7 +19640,8 @@ function showArticle(_a) {
   }) : react_1["default"].createElement("img", {
     className: "g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6",
     src: "https://i.imgur.com/lmYYa2s.png"
-  })), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user.icon ? user.icon : react_1["default"].createElement("img", {
+  })), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user[0].icon ? user.icon // awsのurl
+  : react_1["default"].createElement("img", {
     src: "/images/avatar-default.svg",
     className: "inline-block h-20 h-20 p-2"
   }), user[0].name), react_1["default"].createElement("p", null, body), auth.user ? react_1["default"].createElement(LikeButton_1["default"], {
@@ -20078,12 +20084,6 @@ var Pager_1 = __importDefault(__webpack_require__(/*! @/Components/Pager */ "./r
 
 var inertia_react_2 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
-var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
-
-var Input_1 = __importDefault(__webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.tsx"));
-
-var Selectbox_1 = __importDefault(__webpack_require__(/*! @/Components/Selectbox */ "./resources/js/Components/Selectbox.tsx"));
-
 function Article(_a) {
   var _this = this;
 
@@ -20098,7 +20098,6 @@ function Article(_a) {
       data = _b.data,
       setData = _b.setData,
       get = _b.get,
-      processing = _b.processing,
       errors = _b.errors;
 
   var onHandleChange = function onHandleChange(event) {
@@ -20115,21 +20114,7 @@ function Article(_a) {
         ];
       });
     });
-  }; // const handleSubmit = async (e: SyntheticEvent) => {
-  //     e.preventDefault();
-  //     await axios
-  //         .get(route("articles"))
-  //         .then(function (response) {
-  //             console.log(response);
-  //         })
-  //         .catch(function (response) {
-  //             console.log(response);
-  //         });
-  // };
-  // useEffect(() => {
-  //     console.log();
-  // }, []);
-
+  };
 
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
@@ -20140,16 +20125,16 @@ function Article(_a) {
   }), react_1["default"].createElement("form", {
     className: "",
     onSubmit: handleSubmit
-  }, react_1["default"].createElement(Input_1["default"], {
+  }, react_1["default"].createElement("input", {
     type: "text",
     name: "keyword",
     className: "m-4 border-solid border border-black",
     placeholder: "\u30BF\u30A4\u30C8\u30EB\u3092\u691C\u7D22",
-    handleChange: onHandleChange
-  }), react_1["default"].createElement(Selectbox_1["default"], {
+    onChange: onHandleChange
+  }), react_1["default"].createElement("select", {
     name: "category",
     className: "m-4 border-solid border border-black",
-    handleChange: onHandleChange
+    onChange: onHandleChange
   }, react_1["default"].createElement("option", {
     className: "hidden",
     value: ""
@@ -20160,9 +20145,8 @@ function Article(_a) {
       key: cate.id,
       value: cate.id
     }, cate.name);
-  })), react_1["default"].createElement(Button_1["default"], {
-    className: "",
-    processing: processing
+  })), react_1["default"].createElement("button", {
+    className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest"
   }, "\u691C\u7D22")), react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("div", {
@@ -21482,6 +21466,7 @@ function EditIcon(_a) {
   var _this = this;
 
   var icon = _a.icon;
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
 
   var _b = __read(react_1.useState(false), 2),
       success = _b[0],
@@ -21565,7 +21550,7 @@ function EditIcon(_a) {
     className: "text-center"
   }, react_1["default"].createElement("div", null, icon && react_1["default"].createElement("img", {
     id: "preview",
-    src: "icon",
+    src: awspath + icon,
     className: "d-block mx-auto h-60 h-56"
   }) || react_1["default"].createElement("img", {
     id: "preview",
@@ -22319,6 +22304,7 @@ function Mypage(_a) {
       posts = _a.posts,
       likes = _a.likes;
   var processing = inertia_react_1.useForm({}).processing;
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
@@ -22331,7 +22317,11 @@ function Mypage(_a) {
     className: "text-center m-5 text-2xl"
   }, user.name, "\u306E\u30DE\u30A4\u30DA\u30FC\u30B8"), react_1["default"].createElement("div", {
     className: "text-center"
-  }, user.icon ? user.icon : react_1["default"].createElement("img", {
+  }, user.icon ? react_1["default"].createElement("img", {
+    id: "preview",
+    src: awspath + user.icon,
+    className: "d-block mx-auto h-60 h-56"
+  }) : react_1["default"].createElement("img", {
     src: "/images/avatar-default.svg",
     className: "d-block mx-auto h-60 h-56"
   })), react_1["default"].createElement(Button_1["default"], {

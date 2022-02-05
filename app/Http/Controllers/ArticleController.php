@@ -122,7 +122,7 @@ class ArticleController extends Controller
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             throw ValidationException::withMessages([
-                'url' => 'エラー再度投稿してください'
+                'url' => 'エラー'
             ]);
         }
     }

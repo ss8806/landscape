@@ -6,9 +6,9 @@ import Textarea from "@/Components/Textarea";
 import ValidationErrors from "@/Components/ValidationErrors";
 import Button from "@/Components/Button";
 import Selectbox from "@/Components/Selectbox";
-import Option from "@/Components/Option";
-import { OperationCanceledException } from "typescript";
 import type { Category } from "@/Types/Category";
+import { Inertia } from "@inertiajs/inertia";
+import route from "ziggy-js";
 
 type Props = {
     auth: any;
@@ -36,6 +36,7 @@ export default function createArticle({ auth, categories }: Props) {
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
         post("/article/store");
+        // Inertia.post(route("store"));
     };
 
     return (
