@@ -13,6 +13,7 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -96,20 +97,20 @@ class UserController extends Controller
         ]);   
     }
 
-    public function editAvatar(Request $request)
-    {
-        $user = Auth::user();
+    // public function editAvatar(Request $request)
+    // {
+    //     $user = Auth::user();
          
-         if ($request->has('editicon')) { 
-             $fileName = $this->saveIcon($request->file('editicon')); //アップロードされた画像の情報を取得
-             $user->icon = $fileName; // ファイル名をDBに保存
-         }
+    //      if ($request->has('editicon')) { 
+    //          $fileName = $this->saveIcon($request->file('editicon')); //アップロードされた画像の情報を取得
+    //          $user->icon = $fileName; // ファイル名をDBに保存
+    //      }
 
-         $user->save();
+    //      $user->save();
  
-         return redirect()->back()
-             ->with('success', 'プロフィールを変更しました。');
-    }
+    //      return redirect()->back()
+    //          ->with('success', 'プロフィールを変更しました。');
+    // }
 
     public function editIcon(Request $request)
     {
@@ -128,7 +129,7 @@ class UserController extends Controller
         $path = 'mydata/'.$fileName; 
 
         // AWS S3 に保存する
-        Storage::disk('s3')->put($path, $fileData, 'public');
+        Storage::disk('s3')->put($path, $fileData);
         // DBに保存
         $user->icon = $fileName;
         $user->save();

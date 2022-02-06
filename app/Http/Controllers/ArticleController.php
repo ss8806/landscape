@@ -41,12 +41,15 @@ class ArticleController extends Controller
     // ファットコントローラー
     public function index(Request $request)
     {  
-        $request_params = $request->all();
-        if ($request_params){
-        $page = $request_params['page'];
-        }else{
-            $page = null;
-        }
+        // $request_params = $request->all();
+        // if ($request_params){
+        //     $category = $request_params['category'];
+        // }else{
+        //     $category = null;
+        // }
+
+        $keyword = $request->input('keyword');
+
         $query = Article::query();
         // カテゴリで絞り込み
         if ($request->filled('category')) {
@@ -78,7 +81,7 @@ class ArticleController extends Controller
             'success' => session('success'),
             'categories' => $categories,
             'articles' => $artcles ,
-            'page' => $page ,
+            'keyword' => $keyword ,
         ]);
     }
 

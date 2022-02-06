@@ -17933,11 +17933,11 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 var Pager = function Pager(_a) {
   var links = _a.links,
-      page = _a.page;
+      c_page = _a.c_page;
   return react_1["default"].createElement("nav", null, react_1["default"].createElement("ul", null, links.map(function (link, index) {
     return react_1["default"].createElement("li", {
       key: index,
-      className: "inline-block mt-3 mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500"
+      className: "{c_page inline-block mt-3 mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500}"
     }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
       href: link.url || "#"
     }, link.label));
@@ -19024,6 +19024,40 @@ exports.default = Guest;
 "use strict";
 
 
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
 var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve) {
@@ -19167,6 +19201,33 @@ var __generator = this && this.__generator || function (thisArg, body) {
   }
 };
 
+var __read = this && this.__read || function (o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o),
+      r,
+      ar = [],
+      e;
+
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+      ar.push(r.value);
+    }
+  } catch (error) {
+    e = {
+      error: error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+
+  return ar;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -19177,7 +19238,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
@@ -19193,16 +19254,21 @@ var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ ".
 
 var Selectbox_1 = __importDefault(__webpack_require__(/*! @/Components/Selectbox */ "./resources/js/Components/Selectbox.tsx"));
 
+var Axiosbar_1 = __importDefault(__webpack_require__(/*! @/Components/Axiosbar */ "./resources/js/Components/Axiosbar.tsx"));
+
 function createArticle(_a) {
   var _this = this;
 
   var auth = _a.auth,
       categories = _a.categories;
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
+  var pic1 = "";
 
   var _b = inertia_react_1.useForm({
     title: "",
     body: "",
-    category_id: ""
+    category_id: "",
+    pic1: ""
   }),
       data = _b.data,
       setData = _b.setData,
@@ -19214,16 +19280,68 @@ function createArticle(_a) {
     setData(event.target.name, event.target.value);
   };
 
+  var _c = __read(react_1.useState(false), 2),
+      success = _c[0],
+      setSuccess = _c[1];
+
+  var handleOpenSuccess = function handleOpenSuccess() {
+    setSuccess(true);
+  };
+
+  var handleCloseSuccess = function handleCloseSuccess() {
+    setSuccess(false);
+  };
+
+  var handleCloseError = function handleCloseError() {
+    setError(false);
+  };
+
+  var _d = __read(react_1.useState(false), 2),
+      error = _d[0],
+      setError = _d[1];
+
+  var handleOpenError = function handleOpenError() {
+    setError(true);
+  };
+
   var handleSubmit = function handleSubmit(e) {
     return __awaiter(_this, void 0, void 0, function () {
       return __generator(this, function (_a) {
         e.preventDefault();
-        post("/article/store");
+        post("/article/store").then(function (response) {
+          console.log(response);
+          handleOpenSuccess();
+        })["catch"](function (response) {
+          console.log(response);
+          handleOpenError();
+        });
         return [2
         /*return*/
         ];
       });
     });
+  };
+
+  var imageHander = function imageHander(event) {
+    if (event.target.files === null) {
+      return;
+    }
+
+    var file = event.target.files[0];
+
+    if (file === null) {
+      return;
+    }
+
+    var imgTag = document.getElementById("preview");
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = function () {
+      var result = reader.result;
+      imgTag.src = result;
+      pic1 = result; //console.log(pic1);
+    };
   };
 
   return react_1["default"].createElement(Auth_1["default"], {
@@ -19266,6 +19384,26 @@ function createArticle(_a) {
       key: category.id,
       value: category.id
     }, category.name);
+  })), react_1["default"].createElement("label", {
+    htmlFor: "inputBody"
+  }, "\u753B\u50CF"), react_1["default"].createElement("section", {
+    className: "text-center"
+  }, react_1["default"].createElement("div", null, pic1 || react_1["default"].createElement("img", {
+    id: "preview",
+    src: "/images/avatar-default.svg",
+    className: "d-block mx-auto h-60 h-56"
+  }), react_1["default"].createElement("input", {
+    name: "icon",
+    type: "file",
+    className: "submitIcon",
+    accept: "image/png, image/jpeg, image/gif",
+    onChange: imageHander
+  })), react_1["default"].createElement(Axiosbar_1["default"], {
+    success: success,
+    handleCloseSuccess: handleCloseSuccess,
+    error: error,
+    handleCloseError: handleCloseError,
+    message: "画像"
   })), react_1["default"].createElement("label", {
     htmlFor: "inputBody"
   }, "\u672C\u6587"), react_1["default"].createElement(Textarea_1["default"], {
@@ -20017,7 +20155,8 @@ function Article(_a) {
       success = _a.success,
       articles = _a.articles,
       categories = _a.categories,
-      page = _a.page;
+      keyword = _a.keyword,
+      category = _a.category;
 
   var _b = inertia_react_2.useForm({
     search: ""
@@ -20055,6 +20194,7 @@ function Article(_a) {
   }, react_1["default"].createElement("input", {
     type: "text",
     name: "keyword",
+    value: keyword && keyword.slice(1, -1),
     className: "m-4 border-solid border border-black",
     placeholder: "\u30BF\u30A4\u30C8\u30EB\u3092\u691C\u7D22",
     onChange: onHandleChange
@@ -20100,7 +20240,7 @@ function Article(_a) {
     }, "\u8A73\u7D30\u3092\u898B\u308B")));
   }) : react_1["default"].createElement("p", null, "\u8A72\u5F53\u306A\u3057"))), react_1["default"].createElement(Pager_1["default"], {
     links: articles.links,
-    page: page
+    c_page: articles.current_page
   }), articles.current_page, "/", articles.last_page));
 }
 
@@ -21394,7 +21534,7 @@ function EditIcon(_a) {
   var _this = this;
 
   var icon = _a.icon;
-  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
 
   var _b = __read(react_1.useState(false), 2),
       success = _b[0],
@@ -21469,8 +21609,7 @@ function EditIcon(_a) {
     reader.onload = function () {
       var result = reader.result;
       imgTag.src = result;
-      icon = result;
-      console.log(icon);
+      icon = result; //console.log(icon);
     };
   };
 
@@ -22232,7 +22371,7 @@ function Mypage(_a) {
       posts = _a.posts,
       likes = _a.likes;
   var processing = inertia_react_1.useForm({}).processing;
-  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {

@@ -15,7 +15,8 @@ type Props = {
     articles: any;
     categories: any;
     requests: any;
-    page: number;
+    keyword: any;
+    category: number;
 };
 
 export default function Article({
@@ -23,7 +24,8 @@ export default function Article({
     success,
     articles,
     categories,
-    page,
+    keyword,
+    category,
 }: Props) {
     const { data, setData, get, errors } = useForm({
         search: "",
@@ -48,6 +50,7 @@ export default function Article({
                     <input
                         type="text"
                         name="keyword"
+                        value={keyword && keyword.slice(1, -1)}
                         className="m-4 border-solid border border-black"
                         placeholder="タイトルを検索"
                         onChange={onHandleChange}
@@ -114,7 +117,7 @@ export default function Article({
                         )}
                     </div>
                 </div>
-                <Pager links={articles.links} page={page} />
+                <Pager links={articles.links} c_page={articles.current_page} />
                 {articles.current_page}/{articles.last_page}
             </section>
         </Auth>

@@ -15,7 +15,8 @@ type Props = {
 
 export default function Mypage({ auth, user, success, posts, likes }: Props) {
     const { processing } = useForm({});
-    const awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
+    const awspath =
+        "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
     return (
         <Auth auth={auth}>
             <section className="p-10 text-center">

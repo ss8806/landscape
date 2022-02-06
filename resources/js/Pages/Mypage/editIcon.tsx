@@ -20,7 +20,8 @@ type Props = {
 };
 
 export default function EditIcon({ icon }: Props) {
-    const awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
+    const awspath =
+        "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
     const [success, setSuccess] = useState<boolean>(false);
 
     const handleOpenSuccess = () => {
@@ -73,7 +74,7 @@ export default function EditIcon({ icon }: Props) {
             const result: string = reader.result as string;
             imgTag.src = result;
             icon = result;
-            console.log(icon);
+            //console.log(icon);
         };
     };
     return (

@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import Auth from "@/Layouts/Auth";
 import { useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
@@ -9,17 +9,26 @@ import Selectbox from "@/Components/Selectbox";
 import type { Category } from "@/Types/Category";
 import { Inertia } from "@inertiajs/inertia";
 import route from "ziggy-js";
+import MuiAlert, { AlertProps } from "@mui/material/Alert";
+import Axiosbar from "@/Components/Axiosbar";
+import axios from "axios";
 
 type Props = {
     auth: any;
     categories: any;
+    pic1: any;
 };
 
 export default function createArticle({ auth, categories }: Props) {
+    const awspath =
+        "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
+
+    let pic1 = "";
     const { data, setData, post, processing, errors } = useForm({
         title: "",
         body: "",
         category_id: "",
+        pic1: "",
     });
 
     const onHandleChange = (
@@ -28,15 +37,61 @@ export default function createArticle({ auth, categories }: Props) {
         >
     ) => {
         setData(
-            event.target.name as "title" | "body" | "category_id",
+            event.target.name as "title" | "body" | "category_id" | "pic1",
             event.target.value
         );
     };
 
+    const [success, setSuccess] = useState<boolean>(false);
+
+    const handleOpenSuccess = () => {
+        setSuccess(true);
+    };
+
+    const handleCloseSuccess = () => {
+        setSuccess(false);
+    };
+
+    const handleCloseError = () => {
+        setError(false);
+    };
+
+    let [error, setError] = useState<boolean>(false);
+
+    const handleOpenError = () => {
+        setError(true);
+    };
+
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        post("/article/store");
-        // Inertia.post(route("store"));
+        post("/article/store")
+            .then(function (response) {
+                console.log(response);
+                handleOpenSuccess();
+            })
+            .catch(function (response) {
+                console.log(response);
+                handleOpenError();
+            });
+    };
+
+    const imageHander = (event: any) => {
+        if (event.target.files === null) {
+            return;
+        }
+        const file = event.target.files[0];
+        if (file === null) {
+            return;
+        }
+        let imgTag = document.getElementById("preview") as HTMLImageElement;
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            const result: string = reader.result as string;
+            imgTag.src = result;
+            pic1 = result;
+            //console.log(pic1);
+        };
     };
 
     return (
@@ -80,6 +135,35 @@ export default function createArticle({ auth, categories }: Props) {
                                     );
                                 })}
                             </Selectbox>
+
+                            <label htmlFor="inputBody">画像</label>
+                            <section className="text-center">
+                                <div>
+                                    {pic1 || (
+                                        <img
+                                            id="preview"
+                                            src="/images/avatar-default.svg"
+                                            className="d-block mx-auto h-60 h-56"
+                                        />
+                                    )}
+                                    <input
+                                        name="icon"
+                                        type="file"
+                                        className="submitIcon"
+                                        accept="image/png, image/jpeg, image/gif"
+                                        onChange={imageHander}
+                                    />
+                                </div>
+
+                                <Axiosbar
+                                    success={success}
+                                    handleCloseSuccess={handleCloseSuccess}
+                                    error={error}
+                                    handleCloseError={handleCloseError}
+                                    message={"画像"}
+                                />
+                            </section>
+
                             <label htmlFor="inputBody">本文</label>
                             <Textarea
                                 id="inputBody"
