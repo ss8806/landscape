@@ -19015,10 +19015,10 @@ exports.default = Guest;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Article/Create.tsx":
-/*!***********************************************!*\
-  !*** ./resources/js/Pages/Article/Create.tsx ***!
-  \***********************************************/
+/***/ "./resources/js/Pages/Article/Create copy.tsx":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Article/Create copy.tsx ***!
+  \****************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -19392,13 +19392,13 @@ function createArticle(_a) {
     id: "preview",
     src: "/images/avatar-default.svg",
     className: "d-block mx-auto h-60 h-56"
-  }), react_1["default"].createElement("input", {
-    name: "icon",
+  })), react_1["default"].createElement("input", {
+    name: "pic1",
     type: "file",
-    className: "submitIcon",
+    className: "submitPic1",
     accept: "image/png, image/jpeg, image/gif",
     onChange: imageHander
-  })), react_1["default"].createElement(Axiosbar_1["default"], {
+  }), react_1["default"].createElement(Axiosbar_1["default"], {
     success: success,
     handleCloseSuccess: handleCloseSuccess,
     error: error,
@@ -19421,6 +19421,942 @@ function createArticle(_a) {
 }
 
 exports.default = createArticle;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Article/Create.tsx":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Article/Create.tsx ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+var __generator = this && this.__generator || function (thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function sent() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  },
+      f,
+      y,
+      t,
+      g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+    return this;
+  }), g;
+
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
+
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
+
+          case 7:
+            op = _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
+      }
+    }
+
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var Input_1 = __importDefault(__webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.tsx"));
+
+var Textarea_1 = __importDefault(__webpack_require__(/*! @/Components/Textarea */ "./resources/js/Components/Textarea.tsx"));
+
+var ValidationErrors_1 = __importDefault(__webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.tsx"));
+
+var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
+
+var Selectbox_1 = __importDefault(__webpack_require__(/*! @/Components/Selectbox */ "./resources/js/Components/Selectbox.tsx"));
+
+function createArticle(_a) {
+  var _this = this;
+
+  var auth = _a.auth,
+      categories = _a.categories,
+      pic1 = _a.pic1;
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
+
+  var _b = inertia_react_1.useForm({
+    title: "",
+    body: "",
+    category_id: "",
+    pic1: ""
+  }),
+      data = _b.data,
+      setData = _b.setData,
+      post = _b.post,
+      processing = _b.processing,
+      errors = _b.errors;
+
+  var onHandleChange = function onHandleChange(event) {
+    setData(event.target.name, event.target.value);
+  };
+
+  var handleSubmit = function handleSubmit(e) {
+    return __awaiter(_this, void 0, void 0, function () {
+      return __generator(this, function (_a) {
+        e.preventDefault();
+        post("/article/store");
+        return [2
+        /*return*/
+        ];
+      });
+    });
+  };
+
+  var imageHander = function imageHander(event) {
+    if (event.target.files === null) {
+      return;
+    }
+
+    var file = event.target.files[0];
+
+    if (file === null) {
+      return;
+    }
+
+    var imgTag = document.getElementById("preview");
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = function () {
+      var result = reader.result;
+      imgTag.src = result;
+      pic1 = result; // console.log(pic1);
+    };
+
+    setData(event.target.name, event.target.value);
+  };
+
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
+    className: "min-h-screen bg-yellow-400 py-20"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("div", {
+    className: "text-center"
+  }, react_1["default"].createElement(ValidationErrors_1["default"], {
+    errors: errors
+  }), react_1["default"].createElement("form", {
+    onSubmit: handleSubmit
+  }, react_1["default"].createElement("label", {
+    htmlFor: "inputTitle"
+  }, "\u30BF\u30A4\u30C8\u30EB"), react_1["default"].createElement(Input_1["default"], {
+    id: "inputTitle",
+    type: "text",
+    name: "title",
+    className: "w-3/4 mt-1 mb-1 block mx-auto",
+    placeholder: "\u30BF\u30A4\u30C8\u30EB\u3092\u691C\u7D22",
+    value: data.title,
+    required: true,
+    handleChange: onHandleChange
+  }), react_1["default"].createElement("label", {
+    htmlFor: "inputTitle"
+  }, "\u30AB\u30C6\u30B4\u30EA\u30FC"), react_1["default"].createElement(Selectbox_1["default"], {
+    id: "inputTitle",
+    name: "category_id",
+    className: "w-3/4 mt-1 mb-1 block mx-auto",
+    value: data.category_id,
+    required: true,
+    handleChange: onHandleChange
+  }, react_1["default"].createElement("option", {
+    value: "",
+    className: "hidden"
+  }, "\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044"), categories.map(function (category) {
+    return react_1["default"].createElement("option", {
+      key: category.id,
+      value: category.id
+    }, category.name);
+  })), react_1["default"].createElement("label", {
+    htmlFor: "inputBody"
+  }, "\u753B\u50CF"), react_1["default"].createElement("section", {
+    className: "text-center"
+  }, react_1["default"].createElement("div", null, pic1 || react_1["default"].createElement("img", {
+    id: "preview",
+    src: "/images/avatar-default.svg",
+    className: "d-block mx-auto h-60 h-56"
+  })), react_1["default"].createElement(Input_1["default"], {
+    name: "pic1",
+    type: "file",
+    value: data.pic1,
+    className: "submitIcon",
+    accept: "image/png, image/jpeg, image/gif",
+    // onChange={() => {
+    //     onHandleChange;
+    //     imageHander;
+    // }}
+    handleChange: imageHander
+  })), react_1["default"].createElement("label", {
+    htmlFor: "inputBody"
+  }, "\u672C\u6587"), react_1["default"].createElement(Textarea_1["default"], {
+    id: "inputBody",
+    name: "body",
+    className: "w-3/4 h-64 mt-1 mb-1 block mx-auto",
+    placeholder: "\u672C\u6587",
+    value: data.body,
+    required: true,
+    handleChange: onHandleChange
+  }), react_1["default"].createElement(Button_1["default"], {
+    className: "ml-4",
+    processing: processing,
+    type: "submit"
+  }, "\u6295\u7A3F\u3059\u308B"))))));
+}
+
+exports.default = createArticle;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Article/Create_fail.tsx":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Article/Create_fail.tsx ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+var __generator = this && this.__generator || function (thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function sent() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  },
+      f,
+      y,
+      t,
+      g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+    return this;
+  }), g;
+
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
+
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
+
+          case 7:
+            op = _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
+      }
+    }
+
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
+
+var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+
+function createArticle(_a) {
+  var _this = this;
+
+  var auth = _a.auth,
+      categories = _a.categories;
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
+  var title = "";
+  var body = "";
+  var category_id = "";
+  var pic1 = ""; // const { data, setData, post, processing, errors } = useForm({
+  //     title: "",
+  //     body: "",
+  //     category_id: "",
+  //     pic1: "",
+  // });
+  // const onHandleChange = (
+  //     event: React.ChangeEvent<
+  //         HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  //     >
+  // ) => {
+  //     setData(
+  //         event.target.name as "title" | "body" | "category_id" | "pic1",
+  //         event.target.value
+  //     );
+  // };
+
+  var processing = inertia_react_1.useForm({}).processing;
+
+  var handleSubmit = function handleSubmit(e) {
+    return __awaiter(_this, void 0, void 0, function () {
+      return __generator(this, function (_a) {
+        switch (_a.label) {
+          case 0:
+            e.preventDefault();
+            return [4
+            /*yield*/
+            , axios_1["default"].post("/article/store", {
+              title: title,
+              category_id: category_id,
+              pic1: pic1,
+              body: body
+            })];
+
+          case 1:
+            _a.sent();
+
+            return [2
+            /*return*/
+            ];
+        }
+      });
+    });
+  };
+
+  var imageHander = function imageHander(event) {
+    if (event.target.files === null) {
+      return;
+    }
+
+    var file = event.target.files[0];
+
+    if (file === null) {
+      return;
+    }
+
+    var imgTag = document.getElementById("preview");
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = function () {
+      var result = reader.result;
+      imgTag.src = result;
+      pic1 = result; //console.log(pic1);
+    };
+  };
+
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
+    className: "min-h-screen bg-yellow-400 py-20"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("div", {
+    className: "text-center"
+  }, react_1["default"].createElement("form", {
+    onSubmit: handleSubmit
+  }, react_1["default"].createElement("label", {
+    htmlFor: "inputTitle"
+  }, "\u30BF\u30A4\u30C8\u30EB"), react_1["default"].createElement("input", {
+    id: "inputTitle",
+    type: "text",
+    name: "title",
+    className: "w-3/4 mt-1 mb-1 block mx-auto",
+    placeholder: "\u30BF\u30A4\u30C8\u30EB\u3092\u691C\u7D22",
+    required: true
+  }), react_1["default"].createElement("label", {
+    htmlFor: "inputTitle"
+  }, "\u30AB\u30C6\u30B4\u30EA\u30FC"), react_1["default"].createElement("select", {
+    id: "inputTitle",
+    name: "category_id",
+    className: "w-3/4 mt-1 mb-1 block mx-auto",
+    required: true
+  }, react_1["default"].createElement("option", {
+    value: "",
+    className: "hidden"
+  }, "\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044"), categories.map(function (category) {
+    return react_1["default"].createElement("option", {
+      key: category.id,
+      value: category.id
+    }, category.name);
+  })), react_1["default"].createElement("label", {
+    htmlFor: "inputBody"
+  }, "\u753B\u50CF"), react_1["default"].createElement("section", {
+    className: "text-center"
+  }, react_1["default"].createElement("div", null, pic1 || react_1["default"].createElement("img", {
+    id: "preview",
+    src: "/images/avatar-default.svg",
+    className: "d-block mx-auto h-60 h-56"
+  }))), react_1["default"].createElement("input", {
+    name: "pic1",
+    type: "file",
+    className: "submitPic1",
+    accept: "image/png, image/jpeg, image/gif",
+    onChange: imageHander
+  }), react_1["default"].createElement("label", {
+    htmlFor: "inputBody"
+  }, "\u672C\u6587"), react_1["default"].createElement("textarea", {
+    id: "inputBody",
+    name: "body",
+    className: "w-3/4 h-64 mt-1 mb-1 block mx-auto",
+    placeholder: "\u672C\u6587",
+    required: true
+  }), react_1["default"].createElement(Button_1["default"], {
+    className: "ml-4",
+    processing: processing
+  }, "\u6295\u7A3F\u3059\u308B"))))));
+}
+
+exports.default = createArticle;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Article/Edit copy.tsx":
+/*!**************************************************!*\
+  !*** ./resources/js/Pages/Article/Edit copy.tsx ***!
+  \**************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
+  function adopt(value) {
+    return value instanceof P ? value : new P(function (resolve) {
+      resolve(value);
+    });
+  }
+
+  return new (P || (P = Promise))(function (resolve, reject) {
+    function fulfilled(value) {
+      try {
+        step(generator.next(value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function rejected(value) {
+      try {
+        step(generator["throw"](value));
+      } catch (e) {
+        reject(e);
+      }
+    }
+
+    function step(result) {
+      result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected);
+    }
+
+    step((generator = generator.apply(thisArg, _arguments || [])).next());
+  });
+};
+
+var __generator = this && this.__generator || function (thisArg, body) {
+  var _ = {
+    label: 0,
+    sent: function sent() {
+      if (t[0] & 1) throw t[1];
+      return t[1];
+    },
+    trys: [],
+    ops: []
+  },
+      f,
+      y,
+      t,
+      g;
+  return g = {
+    next: verb(0),
+    "throw": verb(1),
+    "return": verb(2)
+  }, typeof Symbol === "function" && (g[Symbol.iterator] = function () {
+    return this;
+  }), g;
+
+  function verb(n) {
+    return function (v) {
+      return step([n, v]);
+    };
+  }
+
+  function step(op) {
+    if (f) throw new TypeError("Generator is already executing.");
+
+    while (_) {
+      try {
+        if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+        if (y = 0, t) op = [op[0] & 2, t.value];
+
+        switch (op[0]) {
+          case 0:
+          case 1:
+            t = op;
+            break;
+
+          case 4:
+            _.label++;
+            return {
+              value: op[1],
+              done: false
+            };
+
+          case 5:
+            _.label++;
+            y = op[1];
+            op = [0];
+            continue;
+
+          case 7:
+            op = _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+
+          default:
+            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+              _ = 0;
+              continue;
+            }
+
+            if (op[0] === 3 && (!t || op[1] > t[0] && op[1] < t[3])) {
+              _.label = op[1];
+              break;
+            }
+
+            if (op[0] === 6 && _.label < t[1]) {
+              _.label = t[1];
+              t = op;
+              break;
+            }
+
+            if (t && _.label < t[2]) {
+              _.label = t[2];
+
+              _.ops.push(op);
+
+              break;
+            }
+
+            if (t[2]) _.ops.pop();
+
+            _.trys.pop();
+
+            continue;
+        }
+
+        op = body.call(thisArg, _);
+      } catch (e) {
+        op = [6, e];
+        y = 0;
+      } finally {
+        f = t = 0;
+      }
+    }
+
+    if (op[0] & 5) throw op[1];
+    return {
+      value: op[0] ? op[1] : void 0,
+      done: true
+    };
+  }
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var Input_1 = __importDefault(__webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.tsx"));
+
+var Textarea_1 = __importDefault(__webpack_require__(/*! @/Components/Textarea */ "./resources/js/Components/Textarea.tsx"));
+
+var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
+var ValidationErrors_1 = __importDefault(__webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.tsx"));
+
+var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
+
+var Selectbox_1 = __importDefault(__webpack_require__(/*! @/Components/Selectbox */ "./resources/js/Components/Selectbox.tsx"));
+
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+
+function editArticle(_a) {
+  var _this = this;
+
+  var auth = _a.auth,
+      article = _a.article,
+      categories = _a.categories;
+  var id = article.id,
+      title = article.title,
+      body = article.body,
+      c_id = article.c_id,
+      c_name = article.c_name;
+
+  var _b = inertia_react_1.useForm({
+    id: id,
+    title: title,
+    body: body,
+    c_id: c_id,
+    c_name: "c_name",
+    categories: "categories"
+  }),
+      data = _b.data,
+      setData = _b.setData,
+      put = _b.put,
+      processing = _b.processing,
+      errors = _b.errors;
+
+  var onHandleChange = function onHandleChange(event) {
+    setData(event.target.name, event.target.value);
+  };
+
+  var handleSubmit = function handleSubmit(e) {
+    return __awaiter(_this, void 0, void 0, function () {
+      return __generator(this, function (_a) {
+        e.preventDefault();
+        inertia_1.Inertia.put(ziggy_js_1["default"]("update", {
+          id: id
+        }));
+        return [2
+        /*return*/
+        ];
+      });
+    });
+  };
+
+  var handleSubmitDelete = function handleSubmitDelete(e) {
+    return __awaiter(_this, void 0, void 0, function () {
+      return __generator(this, function (_a) {
+        e.preventDefault();
+        inertia_1.Inertia["delete"](ziggy_js_1["default"]("delete", id));
+        return [2
+        /*return*/
+        ];
+      });
+    });
+  };
+
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
+    className: "min-h-screen bg-yellow-400 py-20"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("div", {
+    className: "text-center"
+  }, react_1["default"].createElement(ValidationErrors_1["default"], {
+    errors: errors
+  }), react_1["default"].createElement("form", {
+    onSubmit: handleSubmit
+  }, react_1["default"].createElement("label", {
+    htmlFor: "inputTitle"
+  }, "\u30BF\u30A4\u30C8\u30EB"), react_1["default"].createElement(Input_1["default"], {
+    id: "inputTitle",
+    type: "text",
+    name: "title",
+    className: "w-3/4 mt-1 mb-1 block mx-auto",
+    placeholder: "\u30BF\u30A4\u30C8\u30EB",
+    value: data.title,
+    required: true,
+    handleChange: onHandleChange
+  }), react_1["default"].createElement("label", {
+    htmlFor: "inputCategory"
+  }, "\u30AB\u30C6\u30B4\u30EA\u30FC"), react_1["default"].createElement(Selectbox_1["default"], {
+    id: "inputCategory",
+    name: "category",
+    className: "w-3/4 mt-1 mb-1 block mx-auto",
+    // value={data.c_id}
+    required: true,
+    multiple: false,
+    handleChange: onHandleChange
+  }, react_1["default"].createElement("option", {
+    value: c_name[0].id,
+    className: "hidden"
+  }, c_name[0].name), categories.map(function (category) {
+    return react_1["default"].createElement("option", {
+      key: category.id,
+      value: category.id
+    }, category.name);
+  })), react_1["default"].createElement("label", {
+    htmlFor: "inputBody"
+  }, "\u672C\u6587"), react_1["default"].createElement(Textarea_1["default"], {
+    id: "inputBody",
+    name: "body",
+    className: "w-3/4 h-64 mt-1 mb-1 block mx-auto",
+    placeholder: "\u672C\u6587",
+    value: data.body,
+    required: true,
+    handleChange: onHandleChange
+  }), react_1["default"].createElement(Button_1["default"], {
+    className: "ml-4",
+    processing: processing
+  }, "\u7DE8\u96C6\u3059\u308B")), react_1["default"].createElement("form", {
+    onSubmit: handleSubmitDelete
+  }, react_1["default"].createElement(Button_1["default"], {
+    className: "ml-4",
+    processing: processing
+  }, "\u524A\u9664\u3059\u308B"))))));
+}
+
+exports.default = editArticle;
 
 /***/ }),
 
@@ -99091,8 +100027,14 @@ var map = {
 	"./Article": "./resources/js/Pages/Article/index.tsx",
 	"./Article/": "./resources/js/Pages/Article/index.tsx",
 	"./Article/Create": "./resources/js/Pages/Article/Create.tsx",
+	"./Article/Create copy": "./resources/js/Pages/Article/Create copy.tsx",
+	"./Article/Create copy.tsx": "./resources/js/Pages/Article/Create copy.tsx",
 	"./Article/Create.tsx": "./resources/js/Pages/Article/Create.tsx",
+	"./Article/Create_fail": "./resources/js/Pages/Article/Create_fail.tsx",
+	"./Article/Create_fail.tsx": "./resources/js/Pages/Article/Create_fail.tsx",
 	"./Article/Edit": "./resources/js/Pages/Article/Edit.tsx",
+	"./Article/Edit copy": "./resources/js/Pages/Article/Edit copy.tsx",
+	"./Article/Edit copy.tsx": "./resources/js/Pages/Article/Edit copy.tsx",
 	"./Article/Edit.tsx": "./resources/js/Pages/Article/Edit.tsx",
 	"./Article/Show": "./resources/js/Pages/Article/Show.tsx",
 	"./Article/Show.tsx": "./resources/js/Pages/Article/Show.tsx",

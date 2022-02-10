@@ -19,10 +19,11 @@ type Props = {
     pic1: any;
 };
 
-export default function createArticle({ auth, categories, pic1 }: Props) {
+export default function createArticle({ auth, categories }: Props) {
     const awspath =
         "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
 
+    let pic1 = "";
     const { data, setData, post, processing, errors } = useForm({
         title: "",
         body: "",
@@ -36,14 +37,42 @@ export default function createArticle({ auth, categories, pic1 }: Props) {
         >
     ) => {
         setData(
-            event.target.name as "title" | "body" | "category_id",
+            event.target.name as "title" | "body" | "category_id" | "pic1",
             event.target.value
         );
     };
 
+    const [success, setSuccess] = useState<boolean>(false);
+
+    const handleOpenSuccess = () => {
+        setSuccess(true);
+    };
+
+    const handleCloseSuccess = () => {
+        setSuccess(false);
+    };
+
+    const handleCloseError = () => {
+        setError(false);
+    };
+
+    let [error, setError] = useState<boolean>(false);
+
+    const handleOpenError = () => {
+        setError(true);
+    };
+
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        post("/article/store");
+        post("/article/store")
+            .then(function (response) {
+                console.log(response);
+                handleOpenSuccess();
+            })
+            .catch(function (response) {
+                console.log(response);
+                handleOpenError();
+            });
     };
 
     const imageHander = (event: any) => {
@@ -61,9 +90,8 @@ export default function createArticle({ auth, categories, pic1 }: Props) {
             const result: string = reader.result as string;
             imgTag.src = result;
             pic1 = result;
-            // console.log(pic1);
+            //console.log(pic1);
         };
-        setData(event.target.name as "pic1", event.target.value);
     };
 
     return (
@@ -119,25 +147,20 @@ export default function createArticle({ auth, categories, pic1 }: Props) {
                                         />
                                     )}
                                 </div>
-                                {/* <Input
+                                <input
                                     name="pic1"
                                     type="file"
-                                    value={data.pic1}
                                     className="submitPic1"
                                     accept="image/png, image/jpeg, image/gif"
-                                    handleChange={imageHander}
-                                /> */}
-                                <Input
-                                    name="pic1"
-                                    type="file"
-                                    value={data.pic1}
-                                    className="submitIcon"
-                                    accept="image/png, image/jpeg, image/gif"
-                                    // onChange={() => {
-                                    //     onHandleChange;
-                                    //     imageHander;
-                                    // }}
-                                    handleChange={imageHander}
+                                    onChange={imageHander}
+                                />
+
+                                <Axiosbar
+                                    success={success}
+                                    handleCloseSuccess={handleCloseSuccess}
+                                    error={error}
+                                    handleCloseError={handleCloseError}
+                                    message={"画像"}
                                 />
                             </section>
 
@@ -151,11 +174,7 @@ export default function createArticle({ auth, categories, pic1 }: Props) {
                                 required
                                 handleChange={onHandleChange}
                             />
-                            <Button
-                                className="ml-4"
-                                processing={processing}
-                                type="submit"
-                            >
+                            <Button className="ml-4" processing={processing}>
                                 投稿する
                             </Button>
                         </form>

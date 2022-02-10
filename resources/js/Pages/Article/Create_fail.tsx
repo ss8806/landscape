@@ -7,43 +7,49 @@ import ValidationErrors from "@/Components/ValidationErrors";
 import Button from "@/Components/Button";
 import Selectbox from "@/Components/Selectbox";
 import type { Category } from "@/Types/Category";
-import { Inertia } from "@inertiajs/inertia";
-import route from "ziggy-js";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
-import Axiosbar from "@/Components/Axiosbar";
 import axios from "axios";
 
 type Props = {
     auth: any;
     categories: any;
-    pic1: any;
+    pic1: HTMLImageElement;
 };
 
-export default function createArticle({ auth, categories, pic1 }: Props) {
+export default function createArticle({ auth, categories }: Props) {
     const awspath =
         "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
+    let title = "";
+    let body = "";
+    let category_id = "";
+    let pic1 = "";
+    // const { data, setData, post, processing, errors } = useForm({
+    //     title: "",
+    //     body: "",
+    //     category_id: "",
+    //     pic1: "",
+    // });
 
-    const { data, setData, post, processing, errors } = useForm({
-        title: "",
-        body: "",
-        category_id: "",
-        pic1: "",
-    });
+    // const onHandleChange = (
+    //     event: React.ChangeEvent<
+    //         HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    //     >
+    // ) => {
+    //     setData(
+    //         event.target.name as "title" | "body" | "category_id" | "pic1",
+    //         event.target.value
+    //     );
+    // };
 
-    const onHandleChange = (
-        event: React.ChangeEvent<
-            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-        >
-    ) => {
-        setData(
-            event.target.name as "title" | "body" | "category_id",
-            event.target.value
-        );
-    };
+    const { processing } = useForm({});
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        post("/article/store");
+        await axios.post("/article/store", {
+            title: title,
+            category_id: category_id,
+            pic1: pic1,
+            body: body,
+        });
     };
 
     const imageHander = (event: any) => {
@@ -61,9 +67,8 @@ export default function createArticle({ auth, categories, pic1 }: Props) {
             const result: string = reader.result as string;
             imgTag.src = result;
             pic1 = result;
-            // console.log(pic1);
+            //console.log(pic1);
         };
-        setData(event.target.name as "pic1", event.target.value);
     };
 
     return (
@@ -71,27 +76,23 @@ export default function createArticle({ auth, categories, pic1 }: Props) {
             <section className="min-h-screen bg-yellow-400 py-20">
                 <div className="container mx-auto p-12 bg-gray-100 rounded-xl">
                     <div className="text-center">
-                        <ValidationErrors errors={errors} />
+                        {/* <ValidationErrors errors={errors} /> */}
                         <form onSubmit={handleSubmit}>
                             <label htmlFor="inputTitle">タイトル</label>
-                            <Input
+                            <input
                                 id="inputTitle"
                                 type="text"
                                 name="title"
                                 className="w-3/4 mt-1 mb-1 block mx-auto"
                                 placeholder="タイトルを検索"
-                                value={data.title}
                                 required
-                                handleChange={onHandleChange}
                             />
                             <label htmlFor="inputTitle">カテゴリー</label>
-                            <Selectbox
+                            <select
                                 id="inputTitle"
                                 name="category_id"
                                 className="w-3/4 mt-1 mb-1 block mx-auto"
-                                value={data.category_id}
                                 required
-                                handleChange={onHandleChange}
                             >
                                 <option value="" className="hidden">
                                     選択してください
@@ -106,7 +107,7 @@ export default function createArticle({ auth, categories, pic1 }: Props) {
                                         </option>
                                     );
                                 })}
-                            </Selectbox>
+                            </select>
 
                             <label htmlFor="inputBody">画像</label>
                             <section className="text-center">
@@ -119,43 +120,24 @@ export default function createArticle({ auth, categories, pic1 }: Props) {
                                         />
                                     )}
                                 </div>
-                                {/* <Input
-                                    name="pic1"
-                                    type="file"
-                                    value={data.pic1}
-                                    className="submitPic1"
-                                    accept="image/png, image/jpeg, image/gif"
-                                    handleChange={imageHander}
-                                /> */}
-                                <Input
-                                    name="pic1"
-                                    type="file"
-                                    value={data.pic1}
-                                    className="submitIcon"
-                                    accept="image/png, image/jpeg, image/gif"
-                                    // onChange={() => {
-                                    //     onHandleChange;
-                                    //     imageHander;
-                                    // }}
-                                    handleChange={imageHander}
-                                />
                             </section>
+                            <input
+                                name="pic1"
+                                type="file"
+                                className="submitPic1"
+                                accept="image/png, image/jpeg, image/gif"
+                                onChange={imageHander}
+                            />
 
                             <label htmlFor="inputBody">本文</label>
-                            <Textarea
+                            <textarea
                                 id="inputBody"
                                 name="body"
                                 className="w-3/4 h-64 mt-1 mb-1 block mx-auto"
                                 placeholder="本文"
-                                value={data.body}
                                 required
-                                handleChange={onHandleChange}
                             />
-                            <Button
-                                className="ml-4"
-                                processing={processing}
-                                type="submit"
-                            >
+                            <Button className="ml-4" processing={processing}>
                                 投稿する
                             </Button>
                         </form>

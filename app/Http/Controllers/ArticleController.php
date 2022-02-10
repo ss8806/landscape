@@ -16,6 +16,9 @@ use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 // use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class ArticleController extends Controller
 {
@@ -123,18 +126,49 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticleRequest $request)
+    public function store(ArticleRequest $request, Article $article)
     {
         try{
-            $article = new Article;
-            Auth::user()->articles()->save($article->fill($request->all()));
+            // $article = new Article;
+          
+            // $file_base64 = $request->input('pic1');
+            //  // Base64文字列をデコードしてバイナリに変換
+            // list(, $fileData) = explode(';', $file_base64);
+            // list(, $fileData) = explode(',', $fileData);
+            // $fileData = base64_decode($fileData);
+            // // ランダムなファイル名 + 拡張子
+            // $fileName = Str::random(20).'.jpg';
+            // // // 保存するパスを決める
+            // $path = 'mydata/'.$fileName; 
+
+            // // AWS S3 に保存する
+            // Storage::disk('s3')->put($path, $fileData);
+            
+            // DBに保存
+            $user = Auth::user();
+            $article->user_id   = $user->id;
+            $article->title     = $request->input('title');
+            $article->category_id     = $request->input('category_id');
+            $article->pic1     = $request->input('pic1');
+            $article->body     = $request->input('body');
+            $article->save();
+
+            // Article::where('id', $request->id)->save(['title' => $request->title]);
+            // Article::where('id', $request->id)->save(['body' => $request->body]);
+            // Article::where('id', $request->id)->save(['category_id' => $request->category_id]);
+            // Article::where('id', $request->id)->save(['pic1' => $fileName]);
+
+            // Auth::user()->articles()->save($article->fill($request->all()));
+
             return redirect()->route('articles')->with('success', __('Registered'));
+
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             throw ValidationException::withMessages([
-                'url' => 'エラー'
+                'url' => 'エラー登録できませんでした。'
             ]);
         }
+
     }
     /**
      * Display the specified resource.
