@@ -74,7 +74,7 @@ export default function EditIcon({ icon }: Props) {
             const result: string = reader.result as string;
             imgTag.src = result;
             icon = result;
-            //console.log(icon);
+            console.log(icon);
         };
     };
     return (

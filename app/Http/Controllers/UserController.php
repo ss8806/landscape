@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\EditRequest;
@@ -116,7 +117,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $file_base64 = $request->input('icon');
-
+        Log::info($file_base64);
         // Base64文字列をデコードしてバイナリに変換
         list(, $fileData) = explode(';', $file_base64);
         list(, $fileData) = explode(',', $fileData);

@@ -41,16 +41,8 @@ class ArticleController extends Controller
          * @return \Illuminate\Http\Response
          */
 
-    // ファットコントローラー
     public function index(Request $request)
     {  
-        // $request_params = $request->all();
-        // if ($request_params){
-        //     $category = $request_params['category'];
-        // }else{
-        //     $category = null;
-        // }
-
         $keyword = $request->input('keyword');
 
         $query = Article::query();
@@ -129,27 +121,33 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request, Article $article)
     {
         try{
-            // $article = new Article;
-          
-            // $file_base64 = $request->input('pic1');
-            //  // Base64文字列をデコードしてバイナリに変換
-            // list(, $fileData) = explode(';', $file_base64);
-            // list(, $fileData) = explode(',', $fileData);
-            // $fileData = base64_decode($fileData);
-            // // ランダムなファイル名 + 拡張子
-            // $fileName = Str::random(20).'.jpg';
-            // // // 保存するパスを決める
-            // $path = 'mydata/'.$fileName; 
-
-            // // AWS S3 に保存する
-            // Storage::disk('s3')->put($path, $fileData);
+            //$article = new Article;
             
             // DBに保存
             $user = Auth::user();
             $article->user_id   = $user->id;
             $article->title     = $request->input('title');
             $article->category_id     = $request->input('category_id');
-            $article->pic1     = $request->input('pic1');
+            
+            $file_base64 = $request->input('pic1');
+            // dd($request->input('pic1'));
+            if($file_base64 !== null){
+                Log::info($file_base64);
+                // Base64文字列をデコードしてバイナリに変換
+                // list($fileData) = explode(';', $file_base64);
+                // list($fileData) = explode(',', $fileData);
+                $fileData = base64_decode($file_base64);
+                // ランダムなファイル名 + 拡張子
+                $fileName = Str::random(20).'.jpg';
+                // // 保存するパスを決める
+                $path = 'mydata/'.$fileName; 
+
+                // AWS S3 に保存する
+                Storage::disk('s3')->put($path, $fileData);
+
+                $article->pic1     = $fileName;
+            }
+
             $article->body     = $request->input('body');
             $article->save();
 

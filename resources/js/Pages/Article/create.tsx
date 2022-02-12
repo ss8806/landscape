@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useEffect, useState } from "react";
 import Auth from "@/Layouts/Auth";
-import { useForm } from "@inertiajs/inertia-react";
+import { InertiaLink, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
 import Textarea from "@/Components/Textarea";
 import ValidationErrors from "@/Components/ValidationErrors";
@@ -9,19 +9,27 @@ import Selectbox from "@/Components/Selectbox";
 import type { Category } from "@/Types/Category";
 import { Inertia } from "@inertiajs/inertia";
 import route from "ziggy-js";
-import MuiAlert, { AlertProps } from "@mui/material/Alert";
-import Axiosbar from "@/Components/Axiosbar";
 import axios from "axios";
 
 type Props = {
     auth: any;
     categories: any;
+    title: string;
+    body: string;
+    category_id: number;
     pic1: any;
 };
 
-export default function createArticle({ auth, categories, pic1 }: Props) {
-    const awspath =
-        "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
+export default function createArticle({
+    auth,
+    categories,
+    title,
+    body,
+    category_id,
+    pic1,
+}: Props) {
+    // const awspath =
+    //     "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
 
     const { data, setData, post, processing, errors } = useForm({
         title: "",
@@ -41,9 +49,23 @@ export default function createArticle({ auth, categories, pic1 }: Props) {
         );
     };
 
+    // const onHandleFileChange = (event: React.ChangeEvent<any>) => {
+    //     setData(event.target.name as "pic1", event.target.src);
+    //     console.log(event.target.files[0]);
+    // };
+
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        post("/article/store");
+        // Inertia.post(route("store"));
+        //post("/article/store");
+        post(
+            route("store", {
+                title: title,
+                category_id: category_id,
+                pic1: pic1,
+                body: body,
+            })
+        );
     };
 
     const imageHander = (event: any) => {
@@ -59,11 +81,12 @@ export default function createArticle({ auth, categories, pic1 }: Props) {
         reader.readAsDataURL(file);
         reader.onload = () => {
             const result: string = reader.result as string;
+            // result.replace(/data:.*\/.*;base64,/, "");
             imgTag.src = result;
-            pic1 = result;
-            // console.log(pic1);
+            pic1 = result.replace(/data:.*\/.*;base64,/, "");
+            console.log(pic1);
         };
-        setData(event.target.name as "pic1", event.target.value);
+        setData(event.target.name as "pic1", event.target.src);
     };
 
     return (
@@ -119,24 +142,12 @@ export default function createArticle({ auth, categories, pic1 }: Props) {
                                         />
                                     )}
                                 </div>
-                                {/* <Input
-                                    name="pic1"
-                                    type="file"
-                                    value={data.pic1}
-                                    className="submitPic1"
-                                    accept="image/png, image/jpeg, image/gif"
-                                    handleChange={imageHander}
-                                /> */}
                                 <Input
                                     name="pic1"
                                     type="file"
-                                    value={data.pic1}
-                                    className="submitIcon"
+                                    src={data.pic1}
+                                    className="m-auto"
                                     accept="image/png, image/jpeg, image/gif"
-                                    // onChange={() => {
-                                    //     onHandleChange;
-                                    //     imageHander;
-                                    // }}
                                     handleChange={imageHander}
                                 />
                             </section>

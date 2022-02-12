@@ -23,20 +23,24 @@ type Category = {
 };
 
 export default function editArticle({ auth, article, categories }: Props) {
-    const {
+    let {
         id,
         title,
         body,
         c_id,
         c_name,
+        pic1,
     }: {
-        id: any;
+        id: number;
         title: string;
         body: string;
         c_id: number;
         c_name: any;
+        pic1: any;
     } = article;
 
+    const awspath =
+        "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
     const { data, setData, put, processing, errors } = useForm({
         id: id,
         title: title,
@@ -44,6 +48,7 @@ export default function editArticle({ auth, article, categories }: Props) {
         c_id: c_id,
         c_name: "c_name",
         categories: "categories",
+        pic1: pic1,
     });
 
     const onHandleChange = (
@@ -82,6 +87,26 @@ export default function editArticle({ auth, article, categories }: Props) {
     const handleSubmitDelete = async (e: SyntheticEvent) => {
         e.preventDefault();
         Inertia.delete(route("delete", id));
+    };
+
+    const imageHander = (event: any) => {
+        if (event.target.files === null) {
+            return;
+        }
+        const file = event.target.files[0];
+        if (file === null) {
+            return;
+        }
+        let imgTag = document.getElementById("preview") as HTMLImageElement;
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            const result: string = reader.result as string;
+            imgTag.src = result;
+            pic1 = result;
+            //console.log(pic1);
+        };
+        setData(event.target.name as "pic1", event.target.src);
     };
 
     return (
@@ -126,6 +151,32 @@ export default function editArticle({ auth, article, categories }: Props) {
                                     );
                                 })}
                             </Selectbox>
+                            <label htmlFor="inputBody">画像</label>
+                            <section className="text-center">
+                                <div>
+                                    {(pic1 && (
+                                        <img
+                                            id="preview"
+                                            src={awspath + pic1}
+                                            className="d-block mx-auto h-60 h-56"
+                                        ></img>
+                                    )) || (
+                                        <img
+                                            id="preview"
+                                            src="/images/avatar-default.svg"
+                                            className="d-block mx-auto h-60 h-56"
+                                        />
+                                    )}
+                                </div>
+                            </section>
+                            <input
+                                name="pic1"
+                                type="file"
+                                src={data.pic1}
+                                className="m-auto"
+                                accept="image/png, image/jpeg, image/gif"
+                                onChange={imageHander}
+                            />
                             <label htmlFor="inputBody">本文</label>
                             <Textarea
                                 id="inputBody"

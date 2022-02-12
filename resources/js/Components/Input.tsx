@@ -5,12 +5,14 @@ interface Props {
     id?: string;
     name: string;
     value?: string | any;
+    src?: any;
     className?: string;
     placeholder?: string;
     autoComplete?: string | undefined;
     required?: boolean;
     isFocused?: boolean;
     accept?: string;
+    files?: any;
     handleChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
@@ -20,11 +22,13 @@ const Input: React.FC<Props> = ({
     placeholder,
     name,
     value,
+    src,
     className,
     autoComplete,
     required,
     accept,
     isFocused,
+    files,
     handleChange,
 }) => {
     const input = useRef<HTMLInputElement>(null);
@@ -43,6 +47,7 @@ const Input: React.FC<Props> = ({
                 name={name}
                 placeholder={placeholder}
                 value={value}
+                src={src}
                 className={
                     `border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ` +
                     className

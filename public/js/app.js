@@ -17423,11 +17423,13 @@ var Input = function Input(_a) {
       placeholder = _a.placeholder,
       name = _a.name,
       value = _a.value,
+      src = _a.src,
       className = _a.className,
       autoComplete = _a.autoComplete,
       required = _a.required,
       accept = _a.accept,
       isFocused = _a.isFocused,
+      files = _a.files,
       handleChange = _a.handleChange;
   var input = react_1.useRef(null);
   react_1.useEffect(function () {
@@ -17445,6 +17447,7 @@ var Input = function Input(_a) {
     name: name,
     placeholder: placeholder,
     value: value,
+    src: src,
     className: "border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm " + className,
     accept: accept,
     ref: input,
@@ -19602,13 +19605,19 @@ var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ ".
 
 var Selectbox_1 = __importDefault(__webpack_require__(/*! @/Components/Selectbox */ "./resources/js/Components/Selectbox.tsx"));
 
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+
 function createArticle(_a) {
+  // const awspath =
+  //     "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
   var _this = this;
 
   var auth = _a.auth,
       categories = _a.categories,
+      title = _a.title,
+      body = _a.body,
+      category_id = _a.category_id,
       pic1 = _a.pic1;
-  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
 
   var _b = inertia_react_1.useForm({
     title: "",
@@ -19624,13 +19633,24 @@ function createArticle(_a) {
 
   var onHandleChange = function onHandleChange(event) {
     setData(event.target.name, event.target.value);
-  };
+  }; // const onHandleFileChange = (event: React.ChangeEvent<any>) => {
+  //     setData(event.target.name as "pic1", event.target.src);
+  //     console.log(event.target.files[0]);
+  // };
+
 
   var handleSubmit = function handleSubmit(e) {
     return __awaiter(_this, void 0, void 0, function () {
       return __generator(this, function (_a) {
-        e.preventDefault();
-        post("/article/store");
+        e.preventDefault(); // Inertia.post(route("store"));
+        //post("/article/store");
+
+        post(ziggy_js_1["default"]("store", {
+          title: title,
+          category_id: category_id,
+          pic1: pic1,
+          body: body
+        }));
         return [2
         /*return*/
         ];
@@ -19654,12 +19674,14 @@ function createArticle(_a) {
     reader.readAsDataURL(file);
 
     reader.onload = function () {
-      var result = reader.result;
+      var result = reader.result; // result.replace(/data:.*\/.*;base64,/, "");
+
       imgTag.src = result;
-      pic1 = result; // console.log(pic1);
+      pic1 = result.replace(/data:.*\/.*;base64,/, "");
+      console.log(pic1);
     };
 
-    setData(event.target.name, event.target.value);
+    setData(event.target.name, event.target.src);
   };
 
   return react_1["default"].createElement(Auth_1["default"], {
@@ -19713,13 +19735,9 @@ function createArticle(_a) {
   })), react_1["default"].createElement(Input_1["default"], {
     name: "pic1",
     type: "file",
-    value: data.pic1,
-    className: "submitIcon",
+    src: data.pic1,
+    className: "m-auto",
     accept: "image/png, image/jpeg, image/gif",
-    // onChange={() => {
-    //     onHandleChange;
-    //     imageHander;
-    // }}
     handleChange: imageHander
   })), react_1["default"].createElement("label", {
     htmlFor: "inputBody"
@@ -20552,7 +20570,9 @@ function editArticle(_a) {
       title = article.title,
       body = article.body,
       c_id = article.c_id,
-      c_name = article.c_name;
+      c_name = article.c_name,
+      pic1 = article.pic1;
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
 
   var _b = inertia_react_1.useForm({
     id: id,
@@ -20560,7 +20580,8 @@ function editArticle(_a) {
     body: body,
     c_id: c_id,
     c_name: "c_name",
-    categories: "categories"
+    categories: "categories",
+    pic1: pic1
   }),
       data = _b.data,
       setData = _b.setData,
@@ -20596,6 +20617,30 @@ function editArticle(_a) {
         ];
       });
     });
+  };
+
+  var imageHander = function imageHander(event) {
+    if (event.target.files === null) {
+      return;
+    }
+
+    var file = event.target.files[0];
+
+    if (file === null) {
+      return;
+    }
+
+    var imgTag = document.getElementById("preview");
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = function () {
+      var result = reader.result;
+      imgTag.src = result;
+      pic1 = result; //console.log(pic1);
+    };
+
+    setData(event.target.name, event.target.src);
   };
 
   return react_1["default"].createElement(Auth_1["default"], {
@@ -20640,6 +20685,25 @@ function editArticle(_a) {
       value: category.id
     }, category.name);
   })), react_1["default"].createElement("label", {
+    htmlFor: "inputBody"
+  }, "\u753B\u50CF"), react_1["default"].createElement("section", {
+    className: "text-center"
+  }, react_1["default"].createElement("div", null, pic1 && react_1["default"].createElement("img", {
+    id: "preview",
+    src: awspath + pic1,
+    className: "d-block mx-auto h-60 h-56"
+  }) || react_1["default"].createElement("img", {
+    id: "preview",
+    src: "/images/avatar-default.svg",
+    className: "d-block mx-auto h-60 h-56"
+  }))), react_1["default"].createElement("input", {
+    name: "pic1",
+    type: "file",
+    src: data.pic1,
+    className: "m-auto",
+    accept: "image/png, image/jpeg, image/gif",
+    onChange: imageHander
+  }), react_1["default"].createElement("label", {
     htmlFor: "inputBody"
   }, "\u672C\u6587"), react_1["default"].createElement(Textarea_1["default"], {
     id: "inputBody",
@@ -22545,7 +22609,8 @@ function EditIcon(_a) {
     reader.onload = function () {
       var result = reader.result;
       imgTag.src = result;
-      icon = result; //console.log(icon);
+      icon = result;
+      console.log(icon);
     };
   };
 
