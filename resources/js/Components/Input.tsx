@@ -4,7 +4,7 @@ interface Props {
     type?: string;
     id?: string;
     name: string;
-    value?: string | any;
+    value?: any;
     src?: any;
     className?: string;
     placeholder?: string;

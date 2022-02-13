@@ -121,41 +121,26 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request, Article $article)
     {
         try{
-            //$article = new Article;
-            
             // DBに保存
             $user = Auth::user();
             $article->user_id   = $user->id;
             $article->title     = $request->input('title');
             $article->category_id     = $request->input('category_id');
-            
-            $file_base64 = $request->input('pic1');
-            // dd($request->input('pic1'));
-            if($file_base64 !== null){
-                Log::info($file_base64);
-                // Base64文字列をデコードしてバイナリに変換
-                // list($fileData) = explode(';', $file_base64);
-                // list($fileData) = explode(',', $fileData);
-                $fileData = base64_decode($file_base64);
-                // ランダムなファイル名 + 拡張子
-                $fileName = Str::random(20).'.jpg';
-                // // 保存するパスを決める
-                $path = 'mydata/'.$fileName; 
 
-                // AWS S3 に保存する
-                Storage::disk('s3')->put($path, $fileData);
+            $file = $request->file('pic1');
+            // $file_name = $file->getClientOriginalName();
+            // $file_ex = $file->getClientOriginalExtension();
+            // $file_size = $file->getSize();
+            // $file_name = $file->getFilename();
 
-                $article->pic1     = $fileName;
-            }
+            $path = 'mydata'; 
+            //     // AWS S3 に保存する
+            $s3_file_name = Storage::disk('s3')->put($path, $file);
+            $article->pic1  = $s3_file_name;
 
             $article->body     = $request->input('body');
             $article->save();
-
-            // Article::where('id', $request->id)->save(['title' => $request->title]);
-            // Article::where('id', $request->id)->save(['body' => $request->body]);
-            // Article::where('id', $request->id)->save(['category_id' => $request->category_id]);
-            // Article::where('id', $request->id)->save(['pic1' => $fileName]);
-
+            
             // Auth::user()->articles()->save($article->fill($request->all()));
 
             return redirect()->route('articles')->with('success', __('Registered'));
@@ -262,8 +247,13 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, $id)
     {
         $article = Article::find($id);
-        // dd($article);
-        $article->fill($request->all())->update();
+
+        Article::where('id', $request->id)->save(['title' => $request->title]);
+        Article::where('id', $request->id)->save(['body' => $request->body]);
+        Article::where('id', $request->id)->save(['category_id' => $request->category_id]);
+        // Article::where('id', $request->id)->save(['pic1' => $fileName]);
+
+        // $article->fill($request->all())->update();
         return redirect()->route('mypage')->with('success', __('Edited'));        
     }
 

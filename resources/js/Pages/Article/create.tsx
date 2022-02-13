@@ -49,23 +49,23 @@ export default function createArticle({
         );
     };
 
-    // const onHandleFileChange = (event: React.ChangeEvent<any>) => {
-    //     setData(event.target.name as "pic1", event.target.src);
-    //     console.log(event.target.files[0]);
-    // };
+    const onHandleFileChange = (event: React.ChangeEvent<any>) => {
+        setData("pic1", event.target.files[0]);
+        console.log(event.target.files[0]);
+    };
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
         // Inertia.post(route("store"));
-        //post("/article/store");
-        post(
-            route("store", {
-                title: title,
-                category_id: category_id,
-                pic1: pic1,
-                body: body,
-            })
-        );
+        post("/article/store");
+        // axios.post(
+        //     route("store", {
+        //         title: title,
+        //         category_id: category_id,
+        //         pic1: pic1,
+        //         body: body,
+        //     })
+        // );
     };
 
     const imageHander = (event: any) => {
@@ -84,9 +84,10 @@ export default function createArticle({
             // result.replace(/data:.*\/.*;base64,/, "");
             imgTag.src = result;
             pic1 = result.replace(/data:.*\/.*;base64,/, "");
-            console.log(pic1);
+            console.log(event.target.files[0]);
         };
-        setData(event.target.name as "pic1", event.target.src);
+        // setData(event.target.name as "pic1", event.target.src);
+        setData(event.target.name as "pic1", event.target.files[0]);
     };
 
     return (
@@ -142,13 +143,14 @@ export default function createArticle({
                                         />
                                     )}
                                 </div>
-                                <Input
+                                <input
                                     name="pic1"
                                     type="file"
-                                    src={data.pic1}
+                                    // src={data.pic1}
+                                    // value={data.pic1}
                                     className="m-auto"
-                                    accept="image/png, image/jpeg, image/gif"
-                                    handleChange={imageHander}
+                                    accept="image/*"
+                                    onChange={onHandleFileChange}
                                 />
                             </section>
 
