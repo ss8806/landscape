@@ -20,7 +20,7 @@ type Props = {
 };
 
 export default function EditIcon({ icon }: Props) {
-    const awspath =
+    const awspath_icon =
         "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
     const [success, setSuccess] = useState<boolean>(false);
 
@@ -83,7 +83,7 @@ export default function EditIcon({ icon }: Props) {
                 {(icon && (
                     <img
                         id="preview"
-                        src={awspath + icon}
+                        src={awspath_icon + icon}
                         className="d-block mx-auto h-60 h-56"
                     ></img>
                 )) || (

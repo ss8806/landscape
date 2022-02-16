@@ -28,9 +28,6 @@ export default function createArticle({
     category_id,
     pic1,
 }: Props) {
-    // const awspath =
-    //     "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
-
     const { data, setData, post, processing, errors } = useForm({
         title: "",
         body: "",
@@ -49,10 +46,10 @@ export default function createArticle({
         );
     };
 
-    const onHandleFileChange = (event: React.ChangeEvent<any>) => {
-        setData("pic1", event.target.files[0]);
-        console.log(event.target.files[0]);
-    };
+    // const onHandleFileChange = (event: React.ChangeEvent<any>) => {
+    //     setData("pic1", event.target.files[0]);
+    //     console.log(event.target.files[0]);
+    // };
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
@@ -138,7 +135,7 @@ export default function createArticle({
                                     {pic1 || (
                                         <img
                                             id="preview"
-                                            src="/images/avatar-default.svg"
+                                            src="/images/landscape.svg"
                                             className="d-block mx-auto h-60 h-56"
                                         />
                                     )}
@@ -147,10 +144,9 @@ export default function createArticle({
                                     name="pic1"
                                     type="file"
                                     // src={data.pic1}
-                                    // value={data.pic1}
                                     className="m-auto"
                                     accept="image/*"
-                                    onChange={onHandleFileChange}
+                                    onChange={imageHander}
                                 />
                             </section>
 

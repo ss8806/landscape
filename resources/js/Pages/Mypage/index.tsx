@@ -15,8 +15,10 @@ type Props = {
 
 export default function Mypage({ auth, user, success, posts, likes }: Props) {
     const { processing } = useForm({});
-    const awspath =
+    const awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
+    const awspath_icon =
         "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
+
     return (
         <Auth auth={auth}>
             <section className="p-10 text-center">
@@ -29,7 +31,7 @@ export default function Mypage({ auth, user, success, posts, likes }: Props) {
                         {user.icon ? (
                             <img
                                 id="preview"
-                                src={awspath + user.icon}
+                                src={awspath_icon + user.icon}
                                 className="d-block mx-auto h-60 h-56"
                             ></img>
                         ) : (
@@ -49,10 +51,21 @@ export default function Mypage({ auth, user, success, posts, likes }: Props) {
                         {posts.map((post: any) => {
                             return (
                                 <div key={post.id} className="">
-                                    <img
-                                        className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
-                                        src="https://i.imgur.com/lmYYa2s.png"
-                                    />
+                                    <div>
+                                        {(post.pic1 && (
+                                            <img
+                                                id="preview"
+                                                src={awspath + post.pic1}
+                                                className="d-block mx-auto h-60 h-56"
+                                            ></img>
+                                        )) || (
+                                            <img
+                                                id="preview"
+                                                src="/images/landscape.svg"
+                                                className="d-block mx-auto h-60 h-56"
+                                            />
+                                        )}
+                                    </div>
                                     <div className="">
                                         カテゴリー：
                                         {post.category_id[0].name}
@@ -84,10 +97,21 @@ export default function Mypage({ auth, user, success, posts, likes }: Props) {
                         {likes.map((like: any) => {
                             return (
                                 <div key={like.id} className="">
-                                    <img
-                                        className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
-                                        src="https://i.imgur.com/lmYYa2s.png"
-                                    />
+                                    <div>
+                                        {(like.pic1 && (
+                                            <img
+                                                id="preview"
+                                                src={awspath + like.pic1}
+                                                className="d-block mx-auto h-60 h-56"
+                                            ></img>
+                                        )) || (
+                                            <img
+                                                id="preview"
+                                                src="/images/landscape.svg"
+                                                className="d-block mx-auto h-60 h-56"
+                                            />
+                                        )}
+                                    </div>
                                     <div className="">
                                         カテゴリー：
                                         {like.category_id[0].name}

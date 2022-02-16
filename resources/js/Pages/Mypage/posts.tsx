@@ -12,6 +12,7 @@ type Props = {
 
 export default function Mypage({ auth, user, posts }: Props) {
     const { processing } = useForm({});
+    const awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
     return (
         <Auth auth={auth}>
             <section className="p-10 text-center">
@@ -21,10 +22,21 @@ export default function Mypage({ auth, user, posts }: Props) {
                         {posts.map((post: any) => {
                             return (
                                 <div key={post.id} className="">
-                                    <img
-                                        className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
-                                        src="https://i.imgur.com/lmYYa2s.png"
-                                    />
+                                    <div>
+                                        {(post.pic1 && (
+                                            <img
+                                                id="preview"
+                                                src={awspath + post.pic1}
+                                                className="d-block mx-auto h-60 h-56"
+                                            ></img>
+                                        )) || (
+                                            <img
+                                                id="preview"
+                                                src="/images/landscape.svg"
+                                                className="d-block mx-auto h-60 h-56"
+                                            />
+                                        )}
+                                    </div>
                                     <div className="">
                                         カテゴリー：
                                         {post.category_id[0].name}

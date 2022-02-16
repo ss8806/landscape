@@ -31,6 +31,8 @@ export default function Article({
         search: "",
     });
 
+    const awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
+
     const onHandleChange = (
         event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     ) => {
@@ -82,10 +84,21 @@ export default function Article({
                             articles.data.map((article: Article) => {
                                 return (
                                     <div key={article.id} className="">
-                                        <img
-                                            className="g:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
-                                            src="https://i.imgur.com/lmYYa2s.png"
-                                        />
+                                        <div>
+                                            {(article.pic1 && (
+                                                <img
+                                                    id="preview"
+                                                    src={awspath + article.pic1}
+                                                    className="d-block mx-auto h-60 h-56"
+                                                ></img>
+                                            )) || (
+                                                <img
+                                                    id="preview"
+                                                    src="/images/landscape.svg"
+                                                    className="d-block mx-auto h-60 h-56"
+                                                />
+                                            )}
+                                        </div>
                                         <div className="text-center">
                                             カテゴリー：
                                             {article.c_name[0].name}
