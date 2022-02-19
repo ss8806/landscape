@@ -247,14 +247,15 @@ class ArticleController extends Controller
      */
     public function update(ArticleRequest $request, $id)
     {
-        $article = Article::find($id);
+        // $article = Article::find($id);
+        // $article->fill($request->all())->update();
 
-        // Article::where('id', $request->id)->save(['title' => $request->title]);
-        // Article::where('id', $request->id)->save(['body' => $request->body]);
-        // Article::where('id', $request->id)->save(['category_id' => $request->category_id]);
+        Article::where('id', $request->id)->update(['title' => $request->title]);
+        Article::where('id', $request->id)->update(['body' => $request->body]);
+        Article::where('id', $request->id)->update(['category_id' => $request->category_id]);
+        
         // Article::where('id', $request->id)->save(['pic1' => $fileName]);
 
-        $article->fill($request->all())->update();
         return redirect()->route('mypage')->with('success', __('Edited'));        
     }
 

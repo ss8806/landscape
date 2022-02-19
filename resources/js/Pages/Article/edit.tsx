@@ -46,8 +46,8 @@ export default function editArticle({ auth, article, categories }: Props) {
         title: title,
         body: body,
         c_id: c_id,
-        c_name: "c_name",
-        categories: "categories",
+        c_name: c_name,
+        categories: categories,
         pic1: pic1,
     });
 
@@ -64,7 +64,14 @@ export default function editArticle({ auth, article, categories }: Props) {
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        Inertia.put(route("update", { id: id }));
+        put(
+            route("update", {
+                id: id,
+                title: title,
+                category_id: c_id,
+                body: body,
+            })
+        );
 
         // await axios;
         // put(
@@ -177,16 +184,18 @@ export default function editArticle({ auth, article, categories }: Props) {
                                 accept="image/png, image/jpeg, image/gif"
                                 onChange={imageHander}
                             />
-                            <label htmlFor="inputBody">本文</label>
-                            <Textarea
-                                id="inputBody"
-                                name="body"
-                                className="w-3/4 h-64 mt-1 mb-1 block mx-auto"
-                                placeholder="本文"
-                                value={data.body}
-                                required
-                                handleChange={onHandleChange}
-                            />
+                            <section>
+                                <label htmlFor="inputBody">本文</label>
+                                <Textarea
+                                    id="inputBody"
+                                    name="body"
+                                    className="w-3/4 h-64 mt-1 mb-1 block mx-auto"
+                                    placeholder="本文"
+                                    value={data.body}
+                                    required
+                                    handleChange={onHandleChange}
+                                />
+                            </section>
                             <Button className="ml-4" processing={processing}>
                                 編集する
                             </Button>

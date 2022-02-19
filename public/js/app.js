@@ -19543,8 +19543,8 @@ function editArticle(_a) {
     title: title,
     body: body,
     c_id: c_id,
-    c_name: "c_name",
-    categories: "categories",
+    c_name: c_name,
+    categories: categories,
     pic1: pic1
   }),
       data = _b.data,
@@ -19561,8 +19561,11 @@ function editArticle(_a) {
     return __awaiter(_this, void 0, void 0, function () {
       return __generator(this, function (_a) {
         e.preventDefault();
-        inertia_1.Inertia.put(ziggy_js_1["default"]("update", {
-          id: id
+        put(ziggy_js_1["default"]("update", {
+          id: id,
+          title: title,
+          category_id: c_id,
+          body: body
         }));
         return [2
         /*return*/
@@ -19667,7 +19670,7 @@ function editArticle(_a) {
     className: "m-auto",
     accept: "image/png, image/jpeg, image/gif",
     onChange: imageHander
-  }), react_1["default"].createElement("label", {
+  }), react_1["default"].createElement("section", null, react_1["default"].createElement("label", {
     htmlFor: "inputBody"
   }, "\u672C\u6587"), react_1["default"].createElement(Textarea_1["default"], {
     id: "inputBody",
@@ -19677,7 +19680,7 @@ function editArticle(_a) {
     value: data.body,
     required: true,
     handleChange: onHandleChange
-  }), react_1["default"].createElement(Button_1["default"], {
+  })), react_1["default"].createElement(Button_1["default"], {
     className: "ml-4",
     processing: processing
   }, "\u7DE8\u96C6\u3059\u308B")), react_1["default"].createElement("form", {
