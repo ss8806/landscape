@@ -127,16 +127,17 @@ class ArticleController extends Controller
             $article->title     = $request->input('title');
             $article->category_id     = $request->input('category_id');
 
-            $file = $request->file('pic1');
-            // $file_name = $file->getClientOriginalName();
-            // $file_ex = $file->getClientOriginalExtension();
-            // $file_size = $file->getSize();
-            // $file_name = $file->getFilename();
+            if($file = $request->file('pic1')){
+                // $file_name = $file->getClientOriginalName();
+                // $file_ex = $file->getClientOriginalExtension();
+                // $file_size = $file->getSize();
+                // $file_name = $file->getFilename();
 
-            $path = 'mydata'; 
-            //     // AWS S3 に保存する
-            $s3_file_name = Storage::disk('s3')->put($path, $file);
-            $article->pic1  = $s3_file_name;
+                $path = 'mydata'; 
+                //     // AWS S3 に保存する
+                $s3_file_name = Storage::disk('s3')->put($path, $file);
+                $article->pic1  = $s3_file_name;
+            }
 
             $article->body     = $request->input('body');
             $article->save();
@@ -248,12 +249,12 @@ class ArticleController extends Controller
     {
         $article = Article::find($id);
 
-        Article::where('id', $request->id)->save(['title' => $request->title]);
-        Article::where('id', $request->id)->save(['body' => $request->body]);
-        Article::where('id', $request->id)->save(['category_id' => $request->category_id]);
+        // Article::where('id', $request->id)->save(['title' => $request->title]);
+        // Article::where('id', $request->id)->save(['body' => $request->body]);
+        // Article::where('id', $request->id)->save(['category_id' => $request->category_id]);
         // Article::where('id', $request->id)->save(['pic1' => $fileName]);
 
-        // $article->fill($request->all())->update();
+        $article->fill($request->all())->update();
         return redirect()->route('mypage')->with('success', __('Edited'));        
     }
 

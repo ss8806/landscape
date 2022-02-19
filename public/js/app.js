@@ -19536,7 +19536,7 @@ function editArticle(_a) {
       c_id = article.c_id,
       c_name = article.c_name,
       pic1 = article.pic1;
-  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
 
   var _b = inertia_react_1.useForm({
     id: id,
@@ -19599,15 +19599,12 @@ function editArticle(_a) {
     reader.readAsDataURL(file);
 
     reader.onload = function () {
-      var result = reader.result; // result.replace(/data:.*\/.*;base64,/, "");
-
+      var result = reader.result;
       imgTag.src = result;
-      pic1 = result.replace(/data:.*\/.*;base64,/, "");
-      console.log(event.target.files[0]);
-    }; // setData(event.target.name as "pic1", event.target.src);
+      pic1 = result; //console.log(pic1);
+    };
 
-
-    setData(event.target.name, event.target.files[0]);
+    setData(event.target.name, event.target.src);
   };
 
   return react_1["default"].createElement(Auth_1["default"], {
@@ -19661,14 +19658,14 @@ function editArticle(_a) {
     className: "d-block mx-auto h-60 h-56"
   }) || react_1["default"].createElement("img", {
     id: "preview",
-    src: "/images/landscape.svg",
+    src: "/images/avatar-default.svg",
     className: "d-block mx-auto h-60 h-56"
   }))), react_1["default"].createElement("input", {
     name: "pic1",
     type: "file",
-    // src={data.pic1}
+    src: data.pic1,
     className: "m-auto",
-    accept: "image/*",
+    accept: "image/png, image/jpeg, image/gif",
     onChange: imageHander
   }), react_1["default"].createElement("label", {
     htmlFor: "inputBody"
