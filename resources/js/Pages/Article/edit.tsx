@@ -13,12 +13,13 @@ type Props = {
     auth: any;
     article: any;
     categories: any;
+    category: any;
 };
 
 type Category = {
     id: number;
     name: string;
-    c_id: number;
+    c_id: any;
     c_name: any;
 };
 
@@ -34,20 +35,20 @@ export default function editArticle({ auth, article, categories }: Props) {
         id: number;
         title: string;
         body: string;
-        c_id: number;
+        c_id: any;
         c_name: any;
-        pic1: any;
+        pic1: string;
+        category_id: number;
     } = article;
 
-    const awspath =
-        "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
-    const { data, setData, put, processing, errors } = useForm({
+    const awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
+    const { data, setData, post, put, processing, errors } = useForm({
         id: id,
         title: title,
         body: body,
         c_id: c_id,
-        c_name: c_name,
-        categories: categories,
+        // c_name: c_name,
+        // categories: categories,
         pic1: pic1,
     });
 
@@ -57,19 +58,26 @@ export default function editArticle({ auth, article, categories }: Props) {
         >
     ) => {
         setData(
-            event.target.name as "title" | "body" | "c_name" | "c_id",
+            event.target.name as "title" | "body" | "pic1" | "c_id",
             event.target.value
         );
     };
 
+    const onHandleChangeOption = (
+        event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
+        setData(event.target.name as "c_id", event.target.value);
+    };
+
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
-        put(
+        post(
             route("update", {
                 id: id,
                 title: title,
                 category_id: c_id,
-                body: body,
+                // body: body,
+                pic1: pic1,
             })
         );
 
@@ -110,10 +118,10 @@ export default function editArticle({ auth, article, categories }: Props) {
         reader.onload = () => {
             const result: string = reader.result as string;
             imgTag.src = result;
-            pic1 = result;
-            //console.log(pic1);
+            pic1 = result.replace(/data:.*\/.*;base64,/, "");
+            // console.log(pic1);
         };
-        setData(event.target.name as "pic1", event.target.src);
+        setData(event.target.name as "pic1", event.target.files[0]);
     };
 
     return (
@@ -139,26 +147,30 @@ export default function editArticle({ auth, article, categories }: Props) {
                                 id="inputCategory"
                                 name="category"
                                 className="w-3/4 mt-1 mb-1 block mx-auto"
-                                // value={data.c_id}
+                                //value={data.category_id}
+                                //value={data.c_id}
                                 required
                                 multiple={false}
-                                handleChange={onHandleChange}
+                                handleChange={onHandleChangeOption}
                             >
                                 <option value={c_name[0].id} className="hidden">
                                     {c_name[0].name}
                                 </option>
-                                {categories.map((category: Category) => {
-                                    return (
-                                        <option
-                                            key={category.id}
-                                            value={category.id}
-                                        >
-                                            {category.name}
-                                        </option>
-                                    );
-                                })}
+                                {categories.map(
+                                    (category: any, index: number) => {
+                                        return (
+                                            <option
+                                                key={category.id}
+                                                value={category.id}
+                                            >
+                                                {category.name}
+                                            </option>
+                                        );
+                                    }
+                                )}
                             </Selectbox>
                             <label htmlFor="inputBody">画像</label>
+
                             <section className="text-center">
                                 <div>
                                     {(pic1 && (
@@ -170,7 +182,7 @@ export default function editArticle({ auth, article, categories }: Props) {
                                     )) || (
                                         <img
                                             id="preview"
-                                            src="/images/avatar-default.svg"
+                                            src="/images/landscape.svg"
                                             className="d-block mx-auto h-60 h-56"
                                         />
                                     )}

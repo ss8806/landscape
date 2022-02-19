@@ -37,7 +37,7 @@ Route::middleware('auth')
         Route::get('/article/create', [ArticleController::class, 'create'])->name('create');
         Route::post('/article/store', [ArticleController::class, 'store'])->name('store');
         Route::get('/article/{id}/edit', [ArticleController::class, 'edit'])->name('edit');
-        Route::put('/article/{id}/update', [ArticleController::class, 'update'])->name('update');
+        Route::post('/article/{id}/update', [ArticleController::class, 'update'])->name('update');
         Route::delete('/article/{id}/delete',  [ArticleController::class, 'destroy'])->name('delete');
         // like
         Route::put('article/{article}/like', [ArticleController::class, 'like'])->name('like');

@@ -245,17 +245,23 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleRequest $request, $id)
+    public function update(ArticleRequest $request, Article $article, $id)
     {
-        // $article = Article::find($id);
-        // $article->fill($request->all())->update();
+        $article = Article::find($id);
+        $article->title = $request->input('title');
+        $article->category_id = $request->input('category_id');
 
-        Article::where('id', $request->id)->update(['title' => $request->title]);
-        Article::where('id', $request->id)->update(['body' => $request->body]);
-        Article::where('id', $request->id)->update(['category_id' => $request->category_id]);
+        if($file = $request->file('pic1')){
+            $path = 'mydata'; 
+            //     // AWS S3 に保存する
+            $s3_file_name = Storage::disk('s3')->put($path, $file);
+            $article->pic1  = $s3_file_name;
+        }
+
+        $article->body = $request->input('body');
         
-        // Article::where('id', $request->id)->save(['pic1' => $fileName]);
-
+        // $article->fill($request->all())->update();
+        $article->update();
         return redirect()->route('mypage')->with('success', __('Edited'));        
     }
 

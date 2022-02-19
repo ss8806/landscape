@@ -19295,7 +19295,7 @@ function createArticle(_a) {
     id: "inputTitle",
     name: "category_id",
     className: "w-3/4 mt-1 mb-1 block mx-auto",
-    value: data.category_id,
+    // value={data.category_id}
     required: true,
     handleChange: onHandleChange
   }, react_1["default"].createElement("option", {
@@ -19536,19 +19536,20 @@ function editArticle(_a) {
       c_id = article.c_id,
       c_name = article.c_name,
       pic1 = article.pic1;
-  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
 
   var _b = inertia_react_1.useForm({
     id: id,
     title: title,
     body: body,
     c_id: c_id,
-    c_name: c_name,
-    categories: categories,
+    // c_name: c_name,
+    // categories: categories,
     pic1: pic1
   }),
       data = _b.data,
       setData = _b.setData,
+      post = _b.post,
       put = _b.put,
       processing = _b.processing,
       errors = _b.errors;
@@ -19557,15 +19558,20 @@ function editArticle(_a) {
     setData(event.target.name, event.target.value);
   };
 
+  var onHandleChangeOption = function onHandleChangeOption(event) {
+    setData(event.target.name, event.target.value);
+  };
+
   var handleSubmit = function handleSubmit(e) {
     return __awaiter(_this, void 0, void 0, function () {
       return __generator(this, function (_a) {
         e.preventDefault();
-        put(ziggy_js_1["default"]("update", {
+        post(ziggy_js_1["default"]("update", {
           id: id,
           title: title,
           category_id: c_id,
-          body: body
+          // body: body,
+          pic1: pic1
         }));
         return [2
         /*return*/
@@ -19604,10 +19610,10 @@ function editArticle(_a) {
     reader.onload = function () {
       var result = reader.result;
       imgTag.src = result;
-      pic1 = result; //console.log(pic1);
+      pic1 = result.replace(/data:.*\/.*;base64,/, ""); // console.log(pic1);
     };
 
-    setData(event.target.name, event.target.src);
+    setData(event.target.name, event.target.files[0]);
   };
 
   return react_1["default"].createElement(Auth_1["default"], {
@@ -19639,14 +19645,15 @@ function editArticle(_a) {
     id: "inputCategory",
     name: "category",
     className: "w-3/4 mt-1 mb-1 block mx-auto",
-    // value={data.c_id}
+    //value={data.category_id}
+    //value={data.c_id}
     required: true,
     multiple: false,
-    handleChange: onHandleChange
+    handleChange: onHandleChangeOption
   }, react_1["default"].createElement("option", {
     value: c_name[0].id,
     className: "hidden"
-  }, c_name[0].name), categories.map(function (category) {
+  }, c_name[0].name), categories.map(function (category, index) {
     return react_1["default"].createElement("option", {
       key: category.id,
       value: category.id
@@ -19661,7 +19668,7 @@ function editArticle(_a) {
     className: "d-block mx-auto h-60 h-56"
   }) || react_1["default"].createElement("img", {
     id: "preview",
-    src: "/images/avatar-default.svg",
+    src: "/images/landscape.svg",
     className: "d-block mx-auto h-60 h-56"
   }))), react_1["default"].createElement("input", {
     name: "pic1",

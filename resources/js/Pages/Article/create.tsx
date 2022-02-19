@@ -110,7 +110,7 @@ export default function createArticle({
                                 id="inputTitle"
                                 name="category_id"
                                 className="w-3/4 mt-1 mb-1 block mx-auto"
-                                value={data.category_id}
+                                // value={data.category_id}
                                 required
                                 handleChange={onHandleChange}
                             >
