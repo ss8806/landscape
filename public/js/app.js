@@ -18599,7 +18599,7 @@ function Auth(_a) {
     className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: "/article/create"
-  }, "\u8A18\u4E8B\u3092\u6295\u7A3F\u3059\u308B"))), react_1["default"].createElement("div", {
+  }, "\u6295\u7A3F\u3059\u308B"))), react_1["default"].createElement("div", {
     className: "hidden sm:flex sm:items-center sm:ml-6"
   }, react_1["default"].createElement("div", {
     className: "ml-3 relative"
@@ -18693,7 +18693,7 @@ function Auth(_a) {
     className: "inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: "/article/create"
-  }, "\u8A18\u4E8B\u3092\u6295\u7A3F\u3059\u308B"))), react_1["default"].createElement("div", {
+  }, "\u6295\u7A3F\u3059\u308B"))), react_1["default"].createElement("div", {
     className: "hidden sm:flex sm:items-center sm:ml-6"
   }, react_1["default"].createElement("div", {
     className: "ml-3 relative"
@@ -19351,6 +19351,40 @@ exports.default = createArticle;
 "use strict";
 
 
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
 var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve) {
@@ -19494,6 +19528,33 @@ var __generator = this && this.__generator || function (thisArg, body) {
   }
 };
 
+var __read = this && this.__read || function (o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o),
+      r,
+      ar = [],
+      e;
+
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+      ar.push(r.value);
+    }
+  } catch (error) {
+    e = {
+      error: error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+
+  return ar;
+};
+
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -19504,7 +19565,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
@@ -19536,41 +19597,48 @@ function editArticle(_a) {
       c_id = article.c_id,
       c_name = article.c_name,
       pic1 = article.pic1;
+
+  var _b = __read(react_1.useState(c_id), 2),
+      cate = _b[0],
+      setCate = _b[1];
+
   var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
 
-  var _b = inertia_react_1.useForm({
+  var _c = inertia_react_1.useForm({
     id: id,
     title: title,
     body: body,
     c_id: c_id,
     // c_name: c_name,
     // categories: categories,
-    pic1: pic1
+    pic1: pic1,
+    cate: cate
   }),
-      data = _b.data,
-      setData = _b.setData,
-      post = _b.post,
-      put = _b.put,
-      processing = _b.processing,
-      errors = _b.errors;
+      data = _c.data,
+      setData = _c.setData,
+      post = _c.post,
+      put = _c.put,
+      processing = _c.processing,
+      errors = _c.errors;
 
   var onHandleChange = function onHandleChange(event) {
     setData(event.target.name, event.target.value);
   };
 
   var onHandleChangeOption = function onHandleChangeOption(event) {
-    setData(event.target.name, event.target.value);
+    setData(event.target.name, setCate(event.target.value));
   };
 
   var handleSubmit = function handleSubmit(e) {
     return __awaiter(_this, void 0, void 0, function () {
       return __generator(this, function (_a) {
-        e.preventDefault();
+        e.preventDefault(); // putだとpicをアップロードできない
+
         post(ziggy_js_1["default"]("update", {
           id: id,
           title: title,
-          category_id: c_id,
-          // body: body,
+          category_id: cate,
+          body: body,
           pic1: pic1
         }));
         return [2
@@ -19645,8 +19713,7 @@ function editArticle(_a) {
     id: "inputCategory",
     name: "category",
     className: "w-3/4 mt-1 mb-1 block mx-auto",
-    //value={data.category_id}
-    //value={data.c_id}
+    value: cate,
     required: true,
     multiple: false,
     handleChange: onHandleChangeOption

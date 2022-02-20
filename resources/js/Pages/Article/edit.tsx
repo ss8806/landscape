@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import Auth from "@/Layouts/Auth";
 import { useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
@@ -41,6 +41,7 @@ export default function editArticle({ auth, article, categories }: Props) {
         category_id: number;
     } = article;
 
+    let [cate, setCate] = useState(c_id);
     const awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
     const { data, setData, post, put, processing, errors } = useForm({
         id: id,
@@ -50,6 +51,7 @@ export default function editArticle({ auth, article, categories }: Props) {
         // c_name: c_name,
         // categories: categories,
         pic1: pic1,
+        cate: cate,
     });
 
     const onHandleChange = (
@@ -58,7 +60,7 @@ export default function editArticle({ auth, article, categories }: Props) {
         >
     ) => {
         setData(
-            event.target.name as "title" | "body" | "pic1" | "c_id",
+            event.target.name as "title" | "body" | "pic1",
             event.target.value
         );
     };
@@ -66,37 +68,21 @@ export default function editArticle({ auth, article, categories }: Props) {
     const onHandleChangeOption = (
         event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     ) => {
-        setData(event.target.name as "c_id", event.target.value);
+        setData(event.target.name as "cate", setCate(event.target.value));
     };
 
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
+        // putだとpicをアップロードできない
         post(
             route("update", {
                 id: id,
                 title: title,
-                category_id: c_id,
-                // body: body,
+                category_id: cate,
+                body: body,
                 pic1: pic1,
             })
         );
-
-        // await axios;
-        // put(
-        //     route("update", {
-        //         id: id,
-        //         title: title,
-        //         c_name: c_name[0].id,
-        //         body: body,
-        //     })
-        // );
-        // .then(function (response) {
-        //     console.log(response);
-        // })
-        // .catch(function (response) {
-        //     console.log(response);
-        // }
-        // );
     };
 
     const handleSubmitDelete = async (e: SyntheticEvent) => {
@@ -147,8 +133,7 @@ export default function editArticle({ auth, article, categories }: Props) {
                                 id="inputCategory"
                                 name="category"
                                 className="w-3/4 mt-1 mb-1 block mx-auto"
-                                //value={data.category_id}
-                                //value={data.c_id}
+                                value={cate}
                                 required
                                 multiple={false}
                                 handleChange={onHandleChangeOption}
