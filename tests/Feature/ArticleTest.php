@@ -95,7 +95,7 @@ class ArticleTest extends TestCase
             'body' => 'b',
             'category_id' => '2',
         ];
-        $response = $this->from('/article/1/edit')->put('/article/1/update', $data);
+        $response = $this->from('/article/1/edit')->post('/article/1/update', $data);
         $response->assertStatus(302);
     }
 
