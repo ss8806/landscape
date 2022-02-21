@@ -22361,13 +22361,13 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 
 var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
 
-var EditName_1 = __importDefault(__webpack_require__(/*! ./EditName */ "./resources/js/Pages/Mypage/EditName.tsx"));
+var EditName_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/EditName */ "./resources/js/Pages/Mypage/EditName.tsx"));
 
-var EditEmail_1 = __importDefault(__webpack_require__(/*! ./EditEmail */ "./resources/js/Pages/Mypage/EditEmail.tsx"));
+var EditEmail_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/EditEmail */ "./resources/js/Pages/Mypage/EditEmail.tsx"));
 
-var EditIcon_1 = __importDefault(__webpack_require__(/*! ./EditIcon */ "./resources/js/Pages/Mypage/EditIcon.tsx"));
+var EditIcon_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/EditIcon */ "./resources/js/Pages/Mypage/EditIcon.tsx"));
 
-var EditPassword_1 = __importDefault(__webpack_require__(/*! ./EditPassword */ "./resources/js/Pages/Mypage/EditPassword.tsx"));
+var EditPassword_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/EditPassword */ "./resources/js/Pages/Mypage/EditPassword.tsx"));
 
 var SuccessMessageProfile_1 = __importDefault(__webpack_require__(/*! @/Components/SuccessMessageProfile */ "./resources/js/Components/SuccessMessageProfile.tsx"));
 
