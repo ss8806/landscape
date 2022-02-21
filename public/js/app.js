@@ -18591,7 +18591,7 @@ function Auth(_a) {
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: "/",
     className: "font-serif text-2xl"
-  }, "Articles"))), react_1["default"].createElement("div", {
+  }, "Landscape"))), react_1["default"].createElement("div", {
     className: "flex justify-between h-16"
   }, react_1["default"].createElement("div", {
     className: "flex"
@@ -18685,7 +18685,7 @@ function Auth(_a) {
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: "/",
     className: "font-serif text-2xl"
-  }, "Articles"))), react_1["default"].createElement("div", {
+  }, "Landscape"))), react_1["default"].createElement("div", {
     className: "flex justify-between h-16"
   }, react_1["default"].createElement("div", {
     className: "flex"
@@ -19805,6 +19805,7 @@ function showArticle(_a) {
       initial_is_liked = article.initial_is_liked,
       endpoint = article.endpoint;
   var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
+  var awspath_icon = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
@@ -19823,8 +19824,11 @@ function showArticle(_a) {
     id: "preview",
     src: "/images/landscape.svg",
     className: "d-block mx-auto h-60 h-56"
-  }))), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user[0].icon ? user.icon // awsのurl
-  : react_1["default"].createElement("img", {
+  }))), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user[0].icon ? react_1["default"].createElement("img", {
+    id: "preview",
+    src: awspath_icon + user[0].icon,
+    className: "inline-block h-20 h-20 p-2"
+  }) : react_1["default"].createElement("img", {
     src: "/images/avatar-default.svg",
     className: "inline-block h-20 h-20 p-2"
   }), user[0].name), react_1["default"].createElement("p", null, body), auth.user ? react_1["default"].createElement(LikeButton_1["default"], {

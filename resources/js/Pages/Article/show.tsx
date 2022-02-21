@@ -12,6 +12,9 @@ export default function showArticle({ auth, article }: Props) {
         article;
     const awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
 
+    const awspath_icon =
+        "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
+
     return (
         <Auth auth={auth}>
             <section className="min-h-screen bg-yellow-400 flex justify-center items-center py-20">
@@ -39,7 +42,11 @@ export default function showArticle({ auth, article }: Props) {
                         <p>
                             投稿者:
                             {user[0].icon ? (
-                                user.icon // awsのurl
+                                <img
+                                    id="preview"
+                                    src={awspath_icon + user[0].icon}
+                                    className="inline-block h-20 h-20 p-2"
+                                ></img>
                             ) : (
                                 <img
                                     src="/images/avatar-default.svg"

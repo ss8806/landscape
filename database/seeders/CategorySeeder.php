@@ -15,35 +15,47 @@ class CategorySeeder extends Seeder
     {
         \DB::table('categories')->insert([
             [
-                'name' => 'パン・惣菜',
+                'name' => '山',
                 'sort_no' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => '弁当',
+                'name' => '海',
                 'sort_no' => 2,
                 'created_at' => now(),
                 'updated_at' => now(),
             ], 
             [
-                'name' => '飲料',
+                'name' => '空',
                 'sort_no' => 3,
                 'created_at' => now(),
                 'updated_at' => now(),
             ], 
             [
-                'name' => 'スイーツ',
+                'name' => '大地',
                 'sort_no' => 4,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'その他',
+                'name' => '川',
                 'sort_no' => 5,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],    
+            ],
+            [
+                'name' => '森',
+                'sort_no' => 6,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'その他',
+                'sort_no' => 7,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],               
         ]);
     }
 }

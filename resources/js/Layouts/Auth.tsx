@@ -26,7 +26,7 @@ export default function Auth({ auth, children }: Props) {
                                         href="/"
                                         className="font-serif text-2xl"
                                     >
-                                        Articles
+                                        Landscape
                                     </InertiaLink>
                                 </div>
                             </div>
@@ -177,7 +177,7 @@ export default function Auth({ auth, children }: Props) {
                                         href="/"
                                         className="font-serif text-2xl"
                                     >
-                                        Articles
+                                        Landscape
                                     </InertiaLink>
                                 </div>
                             </div>
