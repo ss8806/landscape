@@ -21097,10 +21097,250 @@ exports.default = Dashboard;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Mypage/EditEmail.tsx":
-/*!*************************************************!*\
-  !*** ./resources/js/Pages/Mypage/EditEmail.tsx ***!
-  \*************************************************/
+/***/ "./resources/js/Pages/Mypage/Likes.tsx":
+/*!*********************************************!*\
+  !*** ./resources/js/Pages/Mypage/Likes.tsx ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
+
+function Mypage(_a) {
+  var auth = _a.auth,
+      user = _a.user,
+      likes = _a.likes;
+  var processing = inertia_react_1.useForm({}).processing;
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
+    className: "p-10 text-center"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("h1", {
+    className: "text-2xl mb-6"
+  }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
+  }, likes.map(function (like) {
+    return react_1["default"].createElement("div", {
+      key: like.id,
+      className: ""
+    }, react_1["default"].createElement("div", null, like.pic1 && react_1["default"].createElement("img", {
+      id: "preview",
+      src: awspath + like.pic1,
+      className: "d-block mx-auto h-60 h-56"
+    }) || react_1["default"].createElement("img", {
+      id: "preview",
+      src: "/images/landscape.svg",
+      className: "d-block mx-auto h-60 h-56"
+    })), react_1["default"].createElement("div", {
+      className: ""
+    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", like.category_id[0].name), react_1["default"].createElement("div", {
+      className: ""
+    }, like.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      as: "button",
+      className: "`inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
+      href: ziggy_js_1["default"]("show", like.id)
+    }, "\u8A73\u7D30\u3092\u898B\u308B"));
+  })))));
+}
+
+exports.default = Mypage;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Mypage/Posts.tsx":
+/*!*********************************************!*\
+  !*** ./resources/js/Pages/Mypage/Posts.tsx ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+
+function Mypage(_a) {
+  var auth = _a.auth,
+      user = _a.user,
+      posts = _a.posts;
+  var processing = inertia_react_1.useForm({}).processing;
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
+    className: "p-10 text-center"
+  }, react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement("h1", {
+    className: "text-2xl mb-6"
+  }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("div", {
+    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
+  }, posts.map(function (post) {
+    return react_1["default"].createElement("div", {
+      key: post.id,
+      className: ""
+    }, react_1["default"].createElement("div", null, post.pic1 && react_1["default"].createElement("img", {
+      id: "preview",
+      src: awspath + post.pic1,
+      className: "d-block mx-auto h-60 h-56"
+    }) || react_1["default"].createElement("img", {
+      id: "preview",
+      src: "/images/landscape.svg",
+      className: "d-block mx-auto h-60 h-56"
+    })), react_1["default"].createElement("div", {
+      className: ""
+    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", post.category_id[0].name), react_1["default"].createElement("div", {
+      className: ""
+    }, post.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+      as: "button",
+      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
+      // href={route("edit", post.id)}
+      href: post.show_url
+    }, "\u7DE8\u96C6\u3059\u308B"));
+  })))));
+}
+
+exports.default = Mypage;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Mypage/Profile.tsx":
+/*!***********************************************!*\
+  !*** ./resources/js/Pages/Mypage/Profile.tsx ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
+
+var EditName_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/Profile/EditName */ "./resources/js/Pages/Mypage/Profile/EditName.tsx"));
+
+var EditEmail_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/Profile/EditEmail */ "./resources/js/Pages/Mypage/Profile/EditEmail.tsx"));
+
+var EditIcon_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/Profile/EditIcon */ "./resources/js/Pages/Mypage/Profile/EditIcon.tsx"));
+
+var EditPassword_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/Profile/EditPassword */ "./resources/js/Pages/Mypage/Profile/EditPassword.tsx"));
+
+var SuccessMessageProfile_1 = __importDefault(__webpack_require__(/*! @/Components/SuccessMessageProfile */ "./resources/js/Components/SuccessMessageProfile.tsx"));
+
+function Profile(_a) {
+  var user = _a.user,
+      auth = _a.auth,
+      success = _a.success;
+  var name = user.name,
+      email = user.email,
+      icon = user.icon,
+      password = user.password;
+  react_1.useEffect(function () {}, [success]);
+  return react_1["default"].createElement(Auth_1["default"], {
+    auth: auth
+  }, react_1["default"].createElement("section", {
+    className: "p-10 text-center"
+  }, success && react_1["default"].createElement(SuccessMessageProfile_1["default"], {
+    success: success
+  }), react_1["default"].createElement("div", {
+    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
+  }, react_1["default"].createElement(EditIcon_1["default"], {
+    icon: icon
+  }), react_1["default"].createElement(EditName_1["default"], {
+    name: name
+  }), react_1["default"].createElement(EditEmail_1["default"], {
+    email: email
+  }), react_1["default"].createElement(EditPassword_1["default"], {
+    password: password
+  }))));
+}
+
+exports.default = Profile;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Mypage/Profile/EditEmail.tsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/Pages/Mypage/Profile/EditEmail.tsx ***!
+  \*********************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -21326,10 +21566,10 @@ exports.default = EditEmail;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Mypage/EditIcon.tsx":
-/*!************************************************!*\
-  !*** ./resources/js/Pages/Mypage/EditIcon.tsx ***!
-  \************************************************/
+/***/ "./resources/js/Pages/Mypage/Profile/EditIcon.tsx":
+/*!********************************************************!*\
+  !*** ./resources/js/Pages/Mypage/Profile/EditIcon.tsx ***!
+  \********************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -21703,10 +21943,10 @@ exports.default = EditIcon;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Mypage/EditName.tsx":
-/*!************************************************!*\
-  !*** ./resources/js/Pages/Mypage/EditName.tsx ***!
-  \************************************************/
+/***/ "./resources/js/Pages/Mypage/Profile/EditName.tsx":
+/*!********************************************************!*\
+  !*** ./resources/js/Pages/Mypage/Profile/EditName.tsx ***!
+  \********************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -21934,10 +22174,10 @@ exports.default = EditName;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Mypage/EditPassword.tsx":
-/*!****************************************************!*\
-  !*** ./resources/js/Pages/Mypage/EditPassword.tsx ***!
-  \****************************************************/
+/***/ "./resources/js/Pages/Mypage/Profile/EditPassword.tsx":
+/*!************************************************************!*\
+  !*** ./resources/js/Pages/Mypage/Profile/EditPassword.tsx ***!
+  \************************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -22160,246 +22400,6 @@ function EditPassword(_a) {
 }
 
 exports.default = EditPassword;
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Mypage/Likes.tsx":
-/*!*********************************************!*\
-  !*** ./resources/js/Pages/Mypage/Likes.tsx ***!
-  \*********************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-
-var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
-
-var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
-
-function Mypage(_a) {
-  var auth = _a.auth,
-      user = _a.user,
-      likes = _a.likes;
-  var processing = inertia_react_1.useForm({}).processing;
-  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
-  return react_1["default"].createElement(Auth_1["default"], {
-    auth: auth
-  }, react_1["default"].createElement("section", {
-    className: "p-10 text-center"
-  }, react_1["default"].createElement("div", {
-    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
-  }, react_1["default"].createElement("h1", {
-    className: "text-2xl mb-6"
-  }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("div", {
-    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
-  }, likes.map(function (like) {
-    return react_1["default"].createElement("div", {
-      key: like.id,
-      className: ""
-    }, react_1["default"].createElement("div", null, like.pic1 && react_1["default"].createElement("img", {
-      id: "preview",
-      src: awspath + like.pic1,
-      className: "d-block mx-auto h-60 h-56"
-    }) || react_1["default"].createElement("img", {
-      id: "preview",
-      src: "/images/landscape.svg",
-      className: "d-block mx-auto h-60 h-56"
-    })), react_1["default"].createElement("div", {
-      className: ""
-    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", like.category_id[0].name), react_1["default"].createElement("div", {
-      className: ""
-    }, like.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
-      as: "button",
-      className: "`inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
-      href: ziggy_js_1["default"]("show", like.id)
-    }, "\u8A73\u7D30\u3092\u898B\u308B"));
-  })))));
-}
-
-exports.default = Mypage;
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Mypage/Posts.tsx":
-/*!*********************************************!*\
-  !*** ./resources/js/Pages/Mypage/Posts.tsx ***!
-  \*********************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-
-var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
-
-function Mypage(_a) {
-  var auth = _a.auth,
-      user = _a.user,
-      posts = _a.posts;
-  var processing = inertia_react_1.useForm({}).processing;
-  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
-  return react_1["default"].createElement(Auth_1["default"], {
-    auth: auth
-  }, react_1["default"].createElement("section", {
-    className: "p-10 text-center"
-  }, react_1["default"].createElement("div", {
-    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
-  }, react_1["default"].createElement("h1", {
-    className: "text-2xl mb-6"
-  }, "\u6295\u7A3F\u3057\u305F\u8A18\u4E8B"), react_1["default"].createElement("div", {
-    className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
-  }, posts.map(function (post) {
-    return react_1["default"].createElement("div", {
-      key: post.id,
-      className: ""
-    }, react_1["default"].createElement("div", null, post.pic1 && react_1["default"].createElement("img", {
-      id: "preview",
-      src: awspath + post.pic1,
-      className: "d-block mx-auto h-60 h-56"
-    }) || react_1["default"].createElement("img", {
-      id: "preview",
-      src: "/images/landscape.svg",
-      className: "d-block mx-auto h-60 h-56"
-    })), react_1["default"].createElement("div", {
-      className: ""
-    }, "\u30AB\u30C6\u30B4\u30EA\u30FC\uFF1A", post.category_id[0].name), react_1["default"].createElement("div", {
-      className: ""
-    }, post.title), react_1["default"].createElement(inertia_react_1.InertiaLink, {
-      as: "button",
-      className: "inline-flex items-center m-2 px-4 py-2 bg-gray-900 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest active:bg-gray-900 transition ease-in-out duration-150",
-      // href={route("edit", post.id)}
-      href: post.show_url
-    }, "\u7DE8\u96C6\u3059\u308B"));
-  })))));
-}
-
-exports.default = Mypage;
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Mypage/Profile.tsx":
-/*!***********************************************!*\
-  !*** ./resources/js/Pages/Mypage/Profile.tsx ***!
-  \***********************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var Auth_1 = __importDefault(__webpack_require__(/*! @/Layouts/Auth */ "./resources/js/Layouts/Auth.tsx"));
-
-var EditName_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/EditName */ "./resources/js/Pages/Mypage/EditName.tsx"));
-
-var EditEmail_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/EditEmail */ "./resources/js/Pages/Mypage/EditEmail.tsx"));
-
-var EditIcon_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/EditIcon */ "./resources/js/Pages/Mypage/EditIcon.tsx"));
-
-var EditPassword_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/EditPassword */ "./resources/js/Pages/Mypage/EditPassword.tsx"));
-
-var SuccessMessageProfile_1 = __importDefault(__webpack_require__(/*! @/Components/SuccessMessageProfile */ "./resources/js/Components/SuccessMessageProfile.tsx"));
-
-function Profile(_a) {
-  var user = _a.user,
-      auth = _a.auth,
-      success = _a.success;
-  var name = user.name,
-      email = user.email,
-      icon = user.icon,
-      password = user.password;
-  react_1.useEffect(function () {}, [success]);
-  return react_1["default"].createElement(Auth_1["default"], {
-    auth: auth
-  }, react_1["default"].createElement("section", {
-    className: "p-10 text-center"
-  }, success && react_1["default"].createElement(SuccessMessageProfile_1["default"], {
-    success: success
-  }), react_1["default"].createElement("div", {
-    className: "container mx-auto p-12 bg-gray-100 rounded-xl"
-  }, react_1["default"].createElement(EditIcon_1["default"], {
-    icon: icon
-  }), react_1["default"].createElement(EditName_1["default"], {
-    name: name
-  }), react_1["default"].createElement(EditEmail_1["default"], {
-    email: email
-  }), react_1["default"].createElement(EditPassword_1["default"], {
-    password: password
-  }))));
-}
-
-exports.default = Profile;
 
 /***/ }),
 
@@ -99195,20 +99195,20 @@ var map = {
 	"./Dashboard.tsx": "./resources/js/Pages/Dashboard.tsx",
 	"./Mypage": "./resources/js/Pages/Mypage/index.tsx",
 	"./Mypage/": "./resources/js/Pages/Mypage/index.tsx",
-	"./Mypage/EditEmail": "./resources/js/Pages/Mypage/EditEmail.tsx",
-	"./Mypage/EditEmail.tsx": "./resources/js/Pages/Mypage/EditEmail.tsx",
-	"./Mypage/EditIcon": "./resources/js/Pages/Mypage/EditIcon.tsx",
-	"./Mypage/EditIcon.tsx": "./resources/js/Pages/Mypage/EditIcon.tsx",
-	"./Mypage/EditName": "./resources/js/Pages/Mypage/EditName.tsx",
-	"./Mypage/EditName.tsx": "./resources/js/Pages/Mypage/EditName.tsx",
-	"./Mypage/EditPassword": "./resources/js/Pages/Mypage/EditPassword.tsx",
-	"./Mypage/EditPassword.tsx": "./resources/js/Pages/Mypage/EditPassword.tsx",
 	"./Mypage/Likes": "./resources/js/Pages/Mypage/Likes.tsx",
 	"./Mypage/Likes.tsx": "./resources/js/Pages/Mypage/Likes.tsx",
 	"./Mypage/Posts": "./resources/js/Pages/Mypage/Posts.tsx",
 	"./Mypage/Posts.tsx": "./resources/js/Pages/Mypage/Posts.tsx",
 	"./Mypage/Profile": "./resources/js/Pages/Mypage/Profile.tsx",
 	"./Mypage/Profile.tsx": "./resources/js/Pages/Mypage/Profile.tsx",
+	"./Mypage/Profile/EditEmail": "./resources/js/Pages/Mypage/Profile/EditEmail.tsx",
+	"./Mypage/Profile/EditEmail.tsx": "./resources/js/Pages/Mypage/Profile/EditEmail.tsx",
+	"./Mypage/Profile/EditIcon": "./resources/js/Pages/Mypage/Profile/EditIcon.tsx",
+	"./Mypage/Profile/EditIcon.tsx": "./resources/js/Pages/Mypage/Profile/EditIcon.tsx",
+	"./Mypage/Profile/EditName": "./resources/js/Pages/Mypage/Profile/EditName.tsx",
+	"./Mypage/Profile/EditName.tsx": "./resources/js/Pages/Mypage/Profile/EditName.tsx",
+	"./Mypage/Profile/EditPassword": "./resources/js/Pages/Mypage/Profile/EditPassword.tsx",
+	"./Mypage/Profile/EditPassword.tsx": "./resources/js/Pages/Mypage/Profile/EditPassword.tsx",
 	"./Mypage/index": "./resources/js/Pages/Mypage/index.tsx",
 	"./Mypage/index.tsx": "./resources/js/Pages/Mypage/index.tsx",
 	"./Welcome": "./resources/js/Pages/Welcome.tsx",
