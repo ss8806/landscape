@@ -1,10 +1,10 @@
 import React, { SyntheticEvent, useEffect } from "react";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import Auth from "@/Layouts/Auth";
-import EditName from "./EditName";
-import EditEmail from "./EditEmail";
-import EditIcon from "./EditIcon";
-import EditPassword from "./EditPassword";
+import EditName from "@/Pages/Mypage/EditName";
+import EditEmail from "@/Pages/Mypage/EditEmail";
+import EditIcon from "@/Pages/Mypage/EditIcon";
+import EditPassword from "@/Pages/Mypage/EditPassword";
 import SuccessMessage from "@/Components/SuccessMessageProfile";
 
 type Props = {
