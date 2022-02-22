@@ -18715,7 +18715,11 @@ function Auth(_a) {
     href: ziggy_js_1["default"]("login"),
     method: "get",
     as: "button"
-  }, "\u30ED\u30B0\u30A4\u30F3"))))), react_1["default"].createElement("div", {
+  }, "\u30ED\u30B0\u30A4\u30F3"), react_1["default"].createElement(Dropdown_1["default"].Link, {
+    href: ziggy_js_1["default"]("register"),
+    method: "get",
+    as: "button"
+  }, "\u767B\u9332\u3059\u308B"))))), react_1["default"].createElement("div", {
     className: "-mr-2 flex items-center sm:hidden"
   }, react_1["default"].createElement("button", {
     onClick: function onClick() {
@@ -19009,7 +19013,7 @@ function Guest(_a) {
   }, react_1["default"].createElement("div", null, react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: "/",
     className: "font-serif text-4xl"
-  }, "Articles")), react_1["default"].createElement("div", {
+  }, "Landscape")), react_1["default"].createElement("div", {
     className: "w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"
   }, children));
 }
@@ -20740,10 +20744,10 @@ var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_mod
 
 function Register() {
   var _a = inertia_react_2.useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: ''
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: ""
   }),
       data = _a.data,
       setData = _a.setData,
@@ -20754,17 +20758,17 @@ function Register() {
 
   react_1.useEffect(function () {
     return function () {
-      reset('password', 'password_confirmation');
+      reset("password", "password_confirmation");
     };
   }, []);
 
   var onHandleChange = function onHandleChange(event) {
-    setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked + '' : event.target.value);
+    setData(event.target.name, event.target.type === "checkbox" ? event.target.checked + "" : event.target.value);
   };
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(ziggy_js_1["default"]('register'));
+    post(ziggy_js_1["default"]("register"));
   };
 
   return react_1["default"].createElement(Guest_1["default"], null, react_1["default"].createElement(ValidationErrors_1["default"], {
@@ -20773,7 +20777,7 @@ function Register() {
     onSubmit: submit
   }, react_1["default"].createElement("div", null, react_1["default"].createElement(Label_1["default"], {
     forInput: "name",
-    value: "Name"
+    value: "\u304A\u540D\u524D"
   }), react_1["default"].createElement(Input_1["default"], {
     type: "text",
     name: "name",
@@ -20787,7 +20791,7 @@ function Register() {
     className: "mt-4"
   }, react_1["default"].createElement(Label_1["default"], {
     forInput: "email",
-    value: "Email"
+    value: "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9"
   }), react_1["default"].createElement(Input_1["default"], {
     type: "email",
     name: "email",
@@ -20800,7 +20804,7 @@ function Register() {
     className: "mt-4"
   }, react_1["default"].createElement(Label_1["default"], {
     forInput: "password",
-    value: "Password"
+    value: "\u30D1\u30B9\u30EF\u30FC\u30C9"
   }), react_1["default"].createElement(Input_1["default"], {
     type: "password",
     name: "password",
@@ -20813,7 +20817,7 @@ function Register() {
     className: "mt-4"
   }, react_1["default"].createElement(Label_1["default"], {
     forInput: "password_confirmation",
-    value: "Confirm Password"
+    value: "\u30D1\u30B9\u30EF\u30FC\u30C9\uFF08\u78BA\u8A8D\u7528\uFF09"
   }), react_1["default"].createElement(Input_1["default"], {
     type: "password",
     name: "password_confirmation",
@@ -20824,12 +20828,12 @@ function Register() {
   })), react_1["default"].createElement("div", {
     className: "flex items-center justify-end mt-4"
   }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
-    href: ziggy_js_1["default"]('login'),
+    href: ziggy_js_1["default"]("login"),
     className: "underline text-sm text-gray-600 hover:text-gray-900"
-  }, "Already registered?"), react_1["default"].createElement(Button_1["default"], {
+  }, "\u767B\u9332\u6E08\u307F\u306E\u65B9\u306F\u3053\u3061\u3089"), react_1["default"].createElement(Button_1["default"], {
     className: "ml-4",
     processing: processing
-  }, "Register"))));
+  }, "\u767B\u9332"))));
 }
 
 exports.default = Register;

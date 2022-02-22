@@ -225,6 +225,13 @@ export default function Auth({ auth, children }: Props) {
                                                 >
                                                     ログイン
                                                 </Dropdown.Link>
+                                                <Dropdown.Link
+                                                    href={route("register")}
+                                                    method="get"
+                                                    as="button"
+                                                >
+                                                    登録する
+                                                </Dropdown.Link>
                                             </Dropdown.Content>
                                         </Dropdown>
                                     </div>

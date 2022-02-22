@@ -11,7 +11,7 @@ export default function Guest({ children }: Props) {
         <div className="min-h-100 flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
             <div>
                 <InertiaLink href="/" className="font-serif text-4xl">
-                    Articles
+                    Landscape
                 </InertiaLink>
             </div>
 
