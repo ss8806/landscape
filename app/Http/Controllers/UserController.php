@@ -113,29 +113,42 @@ class UserController extends Controller
     //          ->with('success', 'プロフィールを変更しました。');
     // }
 
-    public function editIcon(Request $request)
+    // public function editIcon(Request $request)
+    // {
+    //     $user = Auth::user();
+    //     $file_base64 = $request->input('icon');
+    //     Log::info($file_base64);
+    //     // Base64文字列をデコードしてバイナリに変換
+    //     list(, $fileData) = explode(';', $file_base64);
+    //     list(, $fileData) = explode(',', $fileData);
+    //     $fileData = base64_decode($fileData);
+
+    //     // ランダムなファイル名 + 拡張子
+    //     $fileName = Str::random(20).'.jpg';
+
+    //     // 保存するパスを決める
+    //     $path = 'mydata/'.$fileName; 
+
+    //     // AWS S3 に保存する
+    //     Storage::disk('s3')->put($path, $fileData);
+    //     // DBに保存
+    //     $user->icon = $fileName;
+    //     $user->save();
+    //     User::where('id', $request->id)->update(['icon' => $fileName]);
+    //     return redirect()->back();
+    // }
+
+    public function editIcon(EditRequest $request)
     {
         $user = Auth::user();
-        $file_base64 = $request->input('icon');
-        Log::info($file_base64);
-        // Base64文字列をデコードしてバイナリに変換
-        list(, $fileData) = explode(';', $file_base64);
-        list(, $fileData) = explode(',', $fileData);
-        $fileData = base64_decode($fileData);
-
-        // ランダムなファイル名 + 拡張子
-        $fileName = Str::random(20).'.jpg';
-
-        // 保存するパスを決める
-        $path = 'mydata/'.$fileName; 
-
-        // AWS S3 に保存する
-        Storage::disk('s3')->put($path, $fileData);
-        // DBに保存
-        $user->icon = $fileName;
-        $user->save();
-        User::where('id', $request->id)->update(['icon' => $fileName]);
-        return redirect()->back();
+        if($file = $request->file('icon')){
+            $path = 'mydata'; 
+            //     // AWS S3 に保存する
+            $s3_file_name = Storage::disk('s3')->put($path, $file);
+            $user->icon  = $s3_file_name;
+        }
+        $user->update();
+        return back()->with('success', 'アイコンを変更しました。');
     }
 
     public function editName(EditRequest $request)
@@ -144,25 +157,30 @@ class UserController extends Controller
         $user->name = $request->input('editName');
         $user->update();
 
+        return back()->with('success', '名前を変更しました。');
         // return Redirect::route('profile',['success' => '名前を変更']);
-        return redirect()->route('profile')->with('success', '名前を変更しました。');
-        // return redirect()->back()->with('success', '名前を変更しました。');
+        //return redirect()->route('profile')->with('success', '名前を変更しました。');
     }
     
     public function editEmail(EditRequest $request)
     {
         $user = Auth::user();
         $user->email = $request->input('editEmail'); 
-        $user->save();
- 
-        return redirect()->back()->with('success', 'メールアドレスを変更しました。');
+        $user->update();
+        return back()->with('success', 'メールアドレスを変更しました。'); 
     }
     public function editPassword(Request $request)
     {
         $user = Auth::user();
+        $inputPass = $request->input('editPassword');
+        $length = strlen($inputPass);
+
+        if($length >= 4 ){
         $user->password = Hash::make($request->input('editPassword'));
-        $user->save();
- 
-        return redirect()->back()->with('success', 'パスワードを変更しました。');
+        $user->update();
+            return back()->with('success', 'パスワードを変更しました。');
+        }else{
+            return back()->with('success', 'パスワードの変更に失敗しました');
+        }
     }
 }

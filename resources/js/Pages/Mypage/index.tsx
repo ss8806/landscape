@@ -16,8 +16,6 @@ type Props = {
 export default function Mypage({ auth, user, success, posts, likes }: Props) {
     const { processing } = useForm({});
     const awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
-    const awspath_icon =
-        "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
 
     return (
         <Auth auth={auth}>
@@ -31,7 +29,7 @@ export default function Mypage({ auth, user, success, posts, likes }: Props) {
                         {user.icon ? (
                             <img
                                 id="preview"
-                                src={awspath_icon + user.icon}
+                                src={awspath + user.icon}
                                 className="d-block mx-auto h-60 h-56"
                             ></img>
                         ) : (

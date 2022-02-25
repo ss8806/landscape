@@ -17015,81 +17015,6 @@ exports.default = ApplicationLogo;
 
 /***/ }),
 
-/***/ "./resources/js/Components/Axiosbar.tsx":
-/*!**********************************************!*\
-  !*** ./resources/js/Components/Axiosbar.tsx ***!
-  \**********************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __assign = this && this.__assign || function () {
-  __assign = Object.assign || function (t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-      s = arguments[i];
-
-      for (var p in s) {
-        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-      }
-    }
-
-    return t;
-  };
-
-  return __assign.apply(this, arguments);
-};
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var Snackbar_1 = __importDefault(__webpack_require__(/*! @mui/material/Snackbar */ "./node_modules/@mui/material/Snackbar/index.js"));
-
-var Alert_1 = __importDefault(__webpack_require__(/*! @mui/material/Alert */ "./node_modules/@mui/material/Alert/index.js"));
-
-function Axiosbar(_a) {
-  var success = _a.success,
-      handleCloseSuccess = _a.handleCloseSuccess,
-      error = _a.error,
-      handleCloseError = _a.handleCloseError,
-      message = _a.message;
-  var Alert = react_1["default"].forwardRef(function Alert(props, ref) {
-    return react_1["default"].createElement(Alert_1["default"], __assign({
-      elevation: 6,
-      ref: ref,
-      variant: "filled"
-    }, props));
-  });
-  return react_1["default"].createElement("section", {
-    className: "text-center"
-  }, success && react_1["default"].createElement(Snackbar_1["default"], {
-    open: success,
-    autoHideDuration: 3000,
-    onClose: handleCloseSuccess
-  }, react_1["default"].createElement(Alert, {
-    severity: "success"
-  }, message, "\u3092\u767B\u9332\u3057\u307E\u3057\u305F\u3002")), error && react_1["default"].createElement(Snackbar_1["default"], {
-    open: error,
-    autoHideDuration: 3000,
-    onClose: handleCloseError
-  }, react_1["default"].createElement(Alert, {
-    severity: "error"
-  }, message, "\u306E\u767B\u9332\u306B\u5931\u6557\u3057\u307E\u3057\u305F\u3002")));
-}
-
-exports.default = Axiosbar;
-
-/***/ }),
-
 /***/ "./resources/js/Components/Button.tsx":
 /*!********************************************!*\
   !*** ./resources/js/Components/Button.tsx ***!
@@ -19613,15 +19538,12 @@ function editArticle(_a) {
     title: title,
     body: body,
     c_id: c_id,
-    // c_name: c_name,
-    // categories: categories,
     pic1: pic1,
     cate: cate
   }),
       data = _c.data,
       setData = _c.setData,
       post = _c.post,
-      put = _c.put,
       processing = _c.processing,
       errors = _c.errors;
 
@@ -19630,6 +19552,7 @@ function editArticle(_a) {
   };
 
   var onHandleChangeOption = function onHandleChangeOption(event) {
+    // useStateのsetCateをここで使う
     setData(event.target.name, setCate(event.target.value));
   };
 
@@ -20290,7 +20213,7 @@ function Article(_a) {
       className: "text-center"
     }, "\u30BF\u30A4\u30C8\u30EB\uFF1A", article.title), react_1["default"].createElement("div", {
       className: "text-center"
-    }, "\u767B\u6821\u65E5\uFF1A", moment_1["default"](article.create).format("YYYY年MM月DD日")), react_1["default"].createElement("div", {
+    }, "\u6295\u7A3F\u65E5\uFF1A", moment_1["default"](article.create).format("YYYY年MM月DD日")), react_1["default"].createElement("div", {
       className: "text-center"
     }, react_1["default"].createElement(inertia_react_1.InertiaLink, {
       as: "button",
@@ -21579,56 +21502,6 @@ exports.default = EditEmail;
 "use strict";
 
 
-var __assign = this && this.__assign || function () {
-  __assign = Object.assign || function (t) {
-    for (var s, i = 1, n = arguments.length; i < n; i++) {
-      s = arguments[i];
-
-      for (var p in s) {
-        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-      }
-    }
-
-    return t;
-  };
-
-  return __assign.apply(this, arguments);
-};
-
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
 var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve) {
@@ -21772,33 +21645,6 @@ var __generator = this && this.__generator || function (thisArg, body) {
   }
 };
 
-var __read = this && this.__read || function (o, n) {
-  var m = typeof Symbol === "function" && o[Symbol.iterator];
-  if (!m) return o;
-  var i = m.call(o),
-      r,
-      ar = [],
-      e;
-
-  try {
-    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
-      ar.push(r.value);
-    }
-  } catch (error) {
-    e = {
-      error: error
-    };
-  } finally {
-    try {
-      if (r && !r.done && (m = i["return"])) m.call(i);
-    } finally {
-      if (e) throw e.error;
-    }
-  }
-
-  return ar;
-};
-
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
     "default": mod
@@ -21809,86 +21655,31 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var axios_1 = __importDefault(__webpack_require__(/*! axios */ "./node_modules/axios/index.js"));
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
+var ValidationErrors_1 = __importDefault(__webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.tsx"));
+
 var Button_1 = __importDefault(__webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.tsx"));
 
-var Alert_1 = __importDefault(__webpack_require__(/*! @mui/material/Alert */ "./node_modules/@mui/material/Alert/index.js"));
-
-var Axiosbar_1 = __importDefault(__webpack_require__(/*! @/Components/Axiosbar */ "./resources/js/Components/Axiosbar.tsx"));
-
-var Alert = react_1["default"].forwardRef(function Alert(props, ref) {
-  return react_1["default"].createElement(Alert_1["default"], __assign({
-    elevation: 6,
-    ref: ref,
-    variant: "filled"
-  }, props));
-});
+var ziggy_js_1 = __importDefault(__webpack_require__(/*! ziggy-js */ "./node_modules/ziggy-js/dist/index.js"));
 
 function EditIcon(_a) {
   var _this = this;
 
   var icon = _a.icon;
-  var awspath_icon = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
+  var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
 
-  var _b = __read(react_1.useState(false), 2),
-      success = _b[0],
-      setSuccess = _b[1];
+  var _b = inertia_react_1.useForm({
+    icon: icon // 初期値は分割代入したものを入れる
 
-  var handleOpenSuccess = function handleOpenSuccess() {
-    setSuccess(true);
-  };
-
-  var handleCloseSuccess = function handleCloseSuccess() {
-    setSuccess(false);
-  };
-
-  var _c = __read(react_1.useState(false), 2),
-      error = _c[0],
-      setError = _c[1];
-
-  var handleOpenError = function handleOpenError() {
-    setError(true);
-  };
-
-  var handleCloseError = function handleCloseError() {
-    setError(false);
-  };
-
-  var processing = inertia_react_1.useForm({}).processing;
-
-  var handleSubmitIcon = function handleSubmitIcon(e) {
-    return __awaiter(_this, void 0, void 0, function () {
-      return __generator(this, function (_a) {
-        switch (_a.label) {
-          case 0:
-            e.preventDefault();
-            return [4
-            /*yield*/
-            , axios_1["default"].post("editIcon", {
-              icon: icon
-            }).then(function (response) {
-              console.log(response);
-              handleOpenSuccess();
-            })["catch"](function (response) {
-              console.log(response);
-              handleOpenError();
-            })];
-
-          case 1:
-            _a.sent();
-
-            return [2
-            /*return*/
-            ];
-        }
-      });
-    });
-  };
+  }),
+      data = _b.data,
+      setData = _b.setData,
+      post = _b.post,
+      processing = _b.processing,
+      errors = _b.errors;
 
   var imageHander = function imageHander(event) {
     if (event.target.files === null) {
@@ -21908,16 +21699,33 @@ function EditIcon(_a) {
     reader.onload = function () {
       var result = reader.result;
       imgTag.src = result;
-      icon = result;
-      console.log(icon);
+      icon = result.replace(/data:.*\/.*;base64,/, ""); // console.log(icon);
     };
+
+    setData(event.target.name, event.target.files[0]);
+  };
+
+  var handleSubmitIcon = function handleSubmitIcon(e) {
+    return __awaiter(_this, void 0, void 0, function () {
+      return __generator(this, function (_a) {
+        e.preventDefault();
+        post(ziggy_js_1["default"]("editIcon", {
+          icon: icon
+        }));
+        return [2
+        /*return*/
+        ];
+      });
+    });
   };
 
   return react_1["default"].createElement("section", {
     className: "text-center"
-  }, react_1["default"].createElement("div", null, icon && react_1["default"].createElement("img", {
+  }, react_1["default"].createElement(ValidationErrors_1["default"], {
+    errors: errors
+  }), react_1["default"].createElement("div", null, icon && react_1["default"].createElement("img", {
     id: "preview",
-    src: awspath_icon + icon,
+    src: awspath + icon,
     className: "d-block mx-auto h-60 h-56"
   }) || react_1["default"].createElement("img", {
     id: "preview",
@@ -21926,24 +21734,140 @@ function EditIcon(_a) {
   })), react_1["default"].createElement("form", {
     onSubmit: handleSubmitIcon
   }, react_1["default"].createElement("input", {
-    name: "icon",
+    name: "icon" // nameを間違えると画像がS3に送信されないので注意
+    ,
     type: "file",
-    className: "submitIcon",
+    src: data.icon,
+    className: "m-auto",
     accept: "image/png, image/jpeg, image/gif",
     onChange: imageHander
   }), react_1["default"].createElement("div", null, react_1["default"].createElement(Button_1["default"], {
     processing: processing,
     type: "submit"
-  }, "\u30A2\u30A4\u30B3\u30F3\u3092\u5909\u66F4"))), react_1["default"].createElement(Axiosbar_1["default"], {
-    success: success,
-    handleCloseSuccess: handleCloseSuccess,
-    error: error,
-    handleCloseError: handleCloseError,
-    message: "画像"
-  }));
+  }, "\u30A2\u30A4\u30B3\u30F3\u3092\u5909\u66F4"))));
 }
 
 exports.default = EditIcon;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Mypage/Profile/EditIcon_fail.tsx":
+/*!*************************************************************!*\
+  !*** ./resources/js/Pages/Mypage/Profile/EditIcon_fail.tsx ***!
+  \*************************************************************/
+/***/ (() => {
+
+"use strict";
+ // import React, { SyntheticEvent, useReducer, useState } from "react";
+// import axios from "axios";
+// import { useForm } from "@inertiajs/inertia-react";
+// import Input from "@/Components/Input";
+// import ValidationErrors from "@/Components/ValidationErrors";
+// import Button from "@/Components/Button";
+// import MuiAlert, { AlertProps } from "@mui/material/Alert";
+// import Axiosbar from "@/Components/Axiosbar";
+// import { margin } from "@mui/system";
+// const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
+//     props,
+//     ref
+// ) {
+//     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+// });
+// type Props = {
+//     icon: any;
+// };
+// export default function EditIcon({ icon }: Props) {
+//     const awspath_icon =
+//         "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
+//     const [success, setSuccess] = useState<boolean>(false);
+//     const handleOpenSuccess = () => {
+//         setSuccess(true);
+//     };
+//     const handleCloseSuccess = () => {
+//         setSuccess(false);
+//     };
+//     let [error, setError] = useState<boolean>(false);
+//     const handleOpenError = () => {
+//         setError(true);
+//     };
+//     const handleCloseError = () => {
+//         setError(false);
+//     };
+//     const { processing } = useForm({});
+//     const handleSubmitIcon = async (e: SyntheticEvent) => {
+//         e.preventDefault();
+//         await axios
+//             .post("editIcon", {
+//                 icon: icon,
+//             })
+//             .then(function (response) {
+//                 console.log(response);
+//                 handleOpenSuccess();
+//             })
+//             .catch(function (response) {
+//                 console.log(response);
+//                 handleOpenError();
+//             });
+//     };
+//     const imageHander = (event: any) => {
+//         if (event.target.files === null) {
+//             return;
+//         }
+//         const file = event.target.files[0];
+//         if (file === null) {
+//             return;
+//         }
+//         let imgTag = document.getElementById("preview") as HTMLImageElement;
+//         const reader = new FileReader();
+//         reader.readAsDataURL(file);
+//         reader.onload = () => {
+//             const result: string = reader.result as string;
+//             imgTag.src = result;
+//             icon = result;
+//             console.log(icon);
+//         };
+//     };
+//     return (
+//         <section className="text-center">
+//             <div>
+//                 {(icon && (
+//                     <img
+//                         id="preview"
+//                         src={awspath_icon + icon}
+//                         className="d-block mx-auto h-60 h-56"
+//                     ></img>
+//                 )) || (
+//                     <img
+//                         id="preview"
+//                         src="/images/avatar-default.svg"
+//                         className="d-block mx-auto h-60 h-56"
+//                     />
+//                 )}
+//             </div>
+//             <form onSubmit={handleSubmitIcon}>
+//                 <input
+//                     name="icon"
+//                     type="file"
+//                     className="submitIcon"
+//                     accept="image/png, image/jpeg, image/gif"
+//                     onChange={imageHander}
+//                 />
+//                 <div>
+//                     <Button processing={processing} type="submit">
+//                         アイコンを変更
+//                     </Button>
+//                 </div>
+//             </form>
+//             <Axiosbar
+//                 success={success}
+//                 handleCloseSuccess={handleCloseSuccess}
+//                 error={error}
+//                 handleCloseError={handleCloseError}
+//                 message={"画像"}
+//             />
+//         </section>
+//     );
+// }
 
 /***/ }),
 
@@ -22444,7 +22368,6 @@ function Mypage(_a) {
       likes = _a.likes;
   var processing = inertia_react_1.useForm({}).processing;
   var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
-  var awspath_icon = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
@@ -22459,7 +22382,7 @@ function Mypage(_a) {
     className: "text-center"
   }, user.icon ? react_1["default"].createElement("img", {
     id: "preview",
-    src: awspath_icon + user.icon,
+    src: awspath + user.icon,
     className: "d-block mx-auto h-60 h-56"
   }) : react_1["default"].createElement("img", {
     src: "/images/avatar-default.svg",
@@ -99209,6 +99132,8 @@ var map = {
 	"./Mypage/Profile/EditEmail.tsx": "./resources/js/Pages/Mypage/Profile/EditEmail.tsx",
 	"./Mypage/Profile/EditIcon": "./resources/js/Pages/Mypage/Profile/EditIcon.tsx",
 	"./Mypage/Profile/EditIcon.tsx": "./resources/js/Pages/Mypage/Profile/EditIcon.tsx",
+	"./Mypage/Profile/EditIcon_fail": "./resources/js/Pages/Mypage/Profile/EditIcon_fail.tsx",
+	"./Mypage/Profile/EditIcon_fail.tsx": "./resources/js/Pages/Mypage/Profile/EditIcon_fail.tsx",
 	"./Mypage/Profile/EditName": "./resources/js/Pages/Mypage/Profile/EditName.tsx",
 	"./Mypage/Profile/EditName.tsx": "./resources/js/Pages/Mypage/Profile/EditName.tsx",
 	"./Mypage/Profile/EditPassword": "./resources/js/Pages/Mypage/Profile/EditPassword.tsx",

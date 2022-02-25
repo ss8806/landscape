@@ -24,16 +24,20 @@ class EditRequest extends FormRequest
     public function rules()
     {
         return [
-                'editIcon' => ['file', 'image'],
-                'editName' => ['min:5','max:15'],
-                'editEmail' =>['string','max:100','email'],           
+            'editIcon'  => 'require|file|image',
+            'editName'  => 'min:5|max:100',
+            'editEmail' => 'min:1|max:30|email',
+            'editPassword' => 'min:4|max:20|email',
         ];
     }
 
     public function attributes()
     {
         return [
-            'editName'        => '名前',
+            'editIcon'  => 'アイコン',
+            'editName'  => '名前',
+            'editEmail'  => 'メールアドレス',
+            'editPassword'  => 'パスワード',
         ];
     }
 }

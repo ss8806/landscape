@@ -43,13 +43,11 @@ export default function editArticle({ auth, article, categories }: Props) {
 
     let [cate, setCate] = useState(c_id);
     const awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
-    const { data, setData, post, put, processing, errors } = useForm({
+    const { data, setData, post, processing, errors } = useForm({
         id: id,
         title: title,
         body: body,
         c_id: c_id,
-        // c_name: c_name,
-        // categories: categories,
         pic1: pic1,
         cate: cate,
     });
@@ -59,15 +57,13 @@ export default function editArticle({ auth, article, categories }: Props) {
             HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
         >
     ) => {
-        setData(
-            event.target.name as "title" | "body" | "pic1",
-            event.target.value
-        );
+        setData(event.target.name as "title" | "body", event.target.value);
     };
 
     const onHandleChangeOption = (
         event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     ) => {
+        // useStateのsetCateをここで使う
         setData(event.target.name as "cate", setCate(event.target.value));
     };
 

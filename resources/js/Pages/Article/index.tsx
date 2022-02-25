@@ -108,7 +108,7 @@ export default function Article({
                                             {article.title}
                                         </div>
                                         <div className="text-center">
-                                            登校日：
+                                            投稿日：
                                             {moment(article.create).format(
                                                 "YYYY年MM月DD日"
                                             )}
