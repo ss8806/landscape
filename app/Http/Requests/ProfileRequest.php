@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules;
 
-class EditRequest extends FormRequest
+class ProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class EditRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -25,18 +25,19 @@ class EditRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['min:5|max:20'],
-            'body' => ['min:5|max:200'],
-            // 'pic1' => ['mimes:jpg,jpeg,png'],
+            'editIcon'  => 'require|file|image',
+            'editName'  => 'min:5|max:100',
+            'editEmail' => 'min:1|max:30|email',
+            'password' => ['confirmed', Rules\Password::defaults()],
         ];
     }
-
     public function attributes()
     {
         return [
-            'title'  => 'タイトル',
-            'body'  => '本文',
-            'pic1'  => '写真',
+            'editIcon'  => 'アイコン',
+            'editName'  => '名前',
+            'editEmail'  => 'メールアドレス',
+            'password'  => 'パスワード',
         ];
     }
 }

@@ -94,21 +94,26 @@ export default function Login({ status, canResetPassword }: Props) {
                     </label>
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
-                        <InertiaLink
-                            href={route("password.request")}
-                            className="underline text-sm text-gray-600 hover:text-gray-900"
-                        >
-                            パスワードを忘れた
-                        </InertiaLink>
-                    )}
-
-                    <Button className="ml-4" processing={processing}>
+                <div className="mt-4 mb-4">
+                    <Button className="" processing={processing}>
                         ログイン
                     </Button>
                 </div>
             </form>
+            <InertiaLink
+                href={route("register")}
+                className="pr-5 underline text-sm text-gray-600 hover:text-gray-900"
+            >
+                登録してない方はこちら
+            </InertiaLink>
+            {canResetPassword && (
+                <InertiaLink
+                    href={route("password.request")}
+                    className="underline text-sm text-gray-600 hover:text-gray-900"
+                >
+                    パスワードを忘れた方はこちら
+                </InertiaLink>
+            )}
         </Guest>
     );
 }

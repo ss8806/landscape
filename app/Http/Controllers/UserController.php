@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\EditRequest;
+use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\UploadedFile;
@@ -140,7 +140,7 @@ class UserController extends Controller
     //     return redirect()->back();
     // }
 
-    public function editIcon(EditRequest $request)
+    public function editIcon(ProfileRequest $request)
     {
         $user = Auth::user();
         if($file = $request->file('icon')){
@@ -153,7 +153,7 @@ class UserController extends Controller
         return back()->with('success', 'アイコンを変更しました。');
     }
 
-    public function editName(EditRequest $request)
+    public function editName(ProfileRequest $request)
     {
         $user = Auth::user();
         $user->name = $request->input('editName');
@@ -164,14 +164,14 @@ class UserController extends Controller
         //return redirect()->route('profile')->with('success', '名前を変更しました。');
     }
     
-    public function editEmail(EditRequest $request)
+    public function editEmail(ProfileRequest $request)
     {
         $user = Auth::user();
         $user->email = $request->input('editEmail'); 
         $user->update();
         return back()->with('success', 'メールアドレスを変更しました。'); 
     }
-    public function editPassword(EditRequest $request)
+    public function editPassword(ProfileRequest $request)
     {
         // $request->validate([
         //     'password' => ['required', 'confirmed', Rules\Password::defaults()],

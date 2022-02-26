@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use phpDocumentor\Reflection\Types\Nullable;
 
-class ArticleRequest extends FormRequest
+class CreateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +27,9 @@ class ArticleRequest extends FormRequest
         return [
             'title' => ['min:5|max:20'],
             'body' => ['min:5|max:200'],
-            'pic1' => ['mimes:jpg,jpeg,png'],
-            // 'pic1' => ['required|image|mimes:jpeg,jpg,png,gif,svg|max:2048']
+            'pic1' => ['mimes:jpg,jpeg,png|max:3072'],
         ];
     }
-
     public function attributes()
     {
         return [

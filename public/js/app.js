@@ -20710,14 +20710,17 @@ function Login(_a) {
   }), react_1["default"].createElement("span", {
     className: "ml-2 text-sm text-gray-600"
   }, "\u30ED\u30B0\u30A4\u30F3\u72B6\u614B\u3092\u4FDD\u6301\u3059\u308B"))), react_1["default"].createElement("div", {
-    className: "flex items-center justify-end mt-4"
-  }, canResetPassword && react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    className: "mt-4 mb-4"
+  }, react_1["default"].createElement(Button_1["default"], {
+    className: "",
+    processing: processing
+  }, "\u30ED\u30B0\u30A4\u30F3"))), react_1["default"].createElement(inertia_react_1.InertiaLink, {
+    href: ziggy_js_1["default"]("register"),
+    className: "pr-5 underline text-sm text-gray-600 hover:text-gray-900"
+  }, "\u767B\u9332\u3057\u3066\u306A\u3044\u65B9\u306F\u3053\u3061\u3089"), canResetPassword && react_1["default"].createElement(inertia_react_1.InertiaLink, {
     href: ziggy_js_1["default"]("password.request"),
     className: "underline text-sm text-gray-600 hover:text-gray-900"
-  }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5FD8\u308C\u305F"), react_1["default"].createElement(Button_1["default"], {
-    className: "ml-4",
-    processing: processing
-  }, "\u30ED\u30B0\u30A4\u30F3"))));
+  }, "\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5FD8\u308C\u305F\u65B9\u306F\u3053\u3061\u3089"));
 }
 
 exports.default = Login;

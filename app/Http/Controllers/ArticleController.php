@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 use App\Article\UseCase\IndexArticleUseCase;
 use App\Article\UseCase\ShowArticleUseCase;
 use App\Article\UseCase\EditArticleUseCase;
-use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\CreateRequest;
+use App\Http\Requests\EditRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 // use Illuminate\Support\Facades\Request;
@@ -118,7 +119,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticleRequest $request, Article $article)
+    public function store(CreateRequest $request, Article $article)
     {
         try{
             // DBに保存
@@ -245,7 +246,7 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleRequest $request, Article $article, $id)
+    public function update(EditRequest $request, Article $article, $id)
     {
         $article = Article::find($id);
         $article->title = $request->input('title');
