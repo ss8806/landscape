@@ -17293,6 +17293,137 @@ exports.default = Object.assign(Dropdown, {
 
 /***/ }),
 
+/***/ "./resources/js/Components/ErrorMessageProfile.tsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/Components/ErrorMessageProfile.tsx ***!
+  \*********************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __read = this && this.__read || function (o, n) {
+  var m = typeof Symbol === "function" && o[Symbol.iterator];
+  if (!m) return o;
+  var i = m.call(o),
+      r,
+      ar = [],
+      e;
+
+  try {
+    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+      ar.push(r.value);
+    }
+  } catch (error) {
+    e = {
+      error: error
+    };
+  } finally {
+    try {
+      if (r && !r.done && (m = i["return"])) m.call(i);
+    } finally {
+      if (e) throw e.error;
+    }
+  }
+
+  return ar;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var Snackbar_1 = __importDefault(__webpack_require__(/*! @mui/material/Snackbar */ "./node_modules/@mui/material/Snackbar/index.js"));
+
+var Alert_1 = __importDefault(__webpack_require__(/*! @mui/material/Alert */ "./node_modules/@mui/material/Alert/index.js"));
+
+function ErrorMessage(_a) {
+  var error = _a.error;
+  var Alert = react_1["default"].forwardRef(function Alert(props, ref) {
+    return react_1["default"].createElement(Alert_1["default"], __assign({
+      elevation: 6,
+      ref: ref,
+      variant: "filled"
+    }, props));
+  });
+
+  var _b = __read(react_1.useState(true), 2),
+      open = _b[0],
+      setOpen = _b[1]; // const handleClose = () => {
+  //     setOpen(false);
+  // };
+
+
+  return react_1["default"].createElement(Snackbar_1["default"], {
+    open: open,
+    autoHideDuration: 6000
+  }, react_1["default"].createElement(Alert, {
+    severity: "error"
+  }, error));
+}
+
+exports.default = ErrorMessage;
+
+/***/ }),
+
 /***/ "./resources/js/Components/Input.tsx":
 /*!*******************************************!*\
   !*** ./resources/js/Components/Input.tsx ***!
@@ -19732,7 +19863,6 @@ function showArticle(_a) {
       initial_is_liked = article.initial_is_liked,
       endpoint = article.endpoint;
   var awspath = "https://backend0622.s3.ap-northeast-1.amazonaws.com/";
-  var awspath_icon = "https://backend0622.s3.ap-northeast-1.amazonaws.com/mydata/";
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
@@ -19753,7 +19883,7 @@ function showArticle(_a) {
     className: "d-block mx-auto h-60 h-56"
   }))), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user[0].icon ? react_1["default"].createElement("img", {
     id: "preview",
-    src: awspath_icon + user[0].icon,
+    src: awspath + user[0].icon,
     className: "inline-block h-20 h-20 p-2"
   }) : react_1["default"].createElement("img", {
     src: "/images/avatar-default.svg",
@@ -21232,21 +21362,27 @@ var EditPassword_1 = __importDefault(__webpack_require__(/*! @/Pages/Mypage/Prof
 
 var SuccessMessageProfile_1 = __importDefault(__webpack_require__(/*! @/Components/SuccessMessageProfile */ "./resources/js/Components/SuccessMessageProfile.tsx"));
 
+var ErrorMessageProfile_1 = __importDefault(__webpack_require__(/*! @/Components/ErrorMessageProfile */ "./resources/js/Components/ErrorMessageProfile.tsx"));
+
 function Profile(_a) {
   var user = _a.user,
       auth = _a.auth,
-      success = _a.success;
+      success = _a.success,
+      error = _a.error;
   var name = user.name,
       email = user.email,
       icon = user.icon,
       password = user.password;
   react_1.useEffect(function () {}, [success]);
+  react_1.useEffect(function () {}, [error]);
   return react_1["default"].createElement(Auth_1["default"], {
     auth: auth
   }, react_1["default"].createElement("section", {
     className: "p-10 text-center"
   }, success && react_1["default"].createElement(SuccessMessageProfile_1["default"], {
     success: success
+  }), error && react_1["default"].createElement(ErrorMessageProfile_1["default"], {
+    error: error
   }), react_1["default"].createElement("div", {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement(EditIcon_1["default"], {
@@ -22111,6 +22247,40 @@ exports.default = EditName;
 "use strict";
 
 
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
 var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve) {
@@ -22264,7 +22434,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
@@ -22280,16 +22450,24 @@ function EditPassword(_a) {
   var password = _a.password;
 
   var _b = inertia_react_1.useForm({
-    editPassword: password
+    password: "",
+    password_confirmation: ""
   }),
       data = _b.data,
       setData = _b.setData,
       put = _b.put,
       processing = _b.processing,
-      errors = _b.errors;
+      errors = _b.errors,
+      reset = _b.reset;
+
+  react_1.useEffect(function () {
+    return function () {
+      reset("password", "password_confirmation");
+    };
+  }, []);
 
   var onHandleChangePassword = function onHandleChangePassword(event) {
-    setData("editPassword", event.target.value);
+    setData(event.target.name, event.target.value);
   };
 
   var handleSubmitPassword = function handleSubmitPassword(e) {
@@ -22311,16 +22489,24 @@ function EditPassword(_a) {
   }), react_1["default"].createElement("form", {
     onSubmit: handleSubmitPassword
   }, react_1["default"].createElement("label", {
-    htmlFor: "inputPassword"
+    htmlFor: "editPassword"
   }, "\u30D1\u30B9\u30EF\u30FC\u30C9"), react_1["default"].createElement(Input_1["default"], {
-    id: "inputPassword",
+    id: "editPassword",
     type: "password",
-    name: "editPassword",
+    name: "password",
     className: "mt-1 block mx-auto",
     placeholder: "\u30D1\u30B9\u30EF\u30FC\u30C9",
-    value: data.editPassword,
+    value: data.password,
     required: true,
     handleChange: onHandleChangePassword
+  }), react_1["default"].createElement(Input_1["default"], {
+    type: "password",
+    name: "password_confirmation",
+    value: data.password_confirmation,
+    className: "mt-1 block mx-auto",
+    placeholder: "\u30D1\u30B9\u30EF\u30FC\u30C9\u78BA\u8A8D",
+    handleChange: onHandleChangePassword,
+    required: true
   }), react_1["default"].createElement(Button_1["default"], {
     className: "ml-4",
     processing: processing

@@ -28,6 +28,7 @@ class UserController extends Controller
         [ 
             'user' => Auth::user(),
             'success' => session('success'),
+            'error' => session('error'),
             'posts' => $posts->map(function ($post) {
                 return [
                     'id' => $post->id,
@@ -95,6 +96,7 @@ class UserController extends Controller
         [
             'user' => Auth::user(),
             'success' => session('success'),
+            'error' => session('error'),
         ]);   
     }
 
@@ -169,18 +171,21 @@ class UserController extends Controller
         $user->update();
         return back()->with('success', 'メールアドレスを変更しました。'); 
     }
-    public function editPassword(Request $request)
+    public function editPassword(EditRequest $request)
     {
+        // $request->validate([
+        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        // ]);
         $user = Auth::user();
-        $inputPass = $request->input('editPassword');
+        $inputPass = $request->input('password');
         $length = strlen($inputPass);
 
         if($length >= 4 ){
-        $user->password = Hash::make($request->input('editPassword'));
+        // $user->password = Hash::make($request->input('editPassword'));
         $user->update();
             return back()->with('success', 'パスワードを変更しました。');
         }else{
-            return back()->with('success', 'パスワードの変更に失敗しました');
+            return back()->with('error', 'パスワードの変更に失敗しました');
         }
     }
 }

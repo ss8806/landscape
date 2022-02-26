@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules;
 
 class EditRequest extends FormRequest
 {
@@ -27,7 +28,8 @@ class EditRequest extends FormRequest
             'editIcon'  => 'require|file|image',
             'editName'  => 'min:5|max:100',
             'editEmail' => 'min:1|max:30|email',
-            'editPassword' => 'min:4|max:20|email',
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+
         ];
     }
 
@@ -37,7 +39,7 @@ class EditRequest extends FormRequest
             'editIcon'  => 'アイコン',
             'editName'  => '名前',
             'editEmail'  => 'メールアドレス',
-            'editPassword'  => 'パスワード',
+            'password'  => 'パスワード',
         ];
     }
 }

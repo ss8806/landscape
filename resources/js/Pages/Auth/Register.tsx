@@ -37,7 +37,6 @@ export default function Register() {
 
     const submit = (e: React.SyntheticEvent) => {
         e.preventDefault();
-
         post(route("register"));
     };
 

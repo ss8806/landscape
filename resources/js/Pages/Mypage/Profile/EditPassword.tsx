@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from "react";
+import React, { SyntheticEvent, useEffect } from "react";
 import { useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
 import ValidationErrors from "@/Components/ValidationErrors";
@@ -9,14 +9,24 @@ type Props = {
 };
 
 export default function EditPassword({ password }: Props) {
-    const { data, setData, put, processing, errors } = useForm({
-        editPassword: password,
+    const { data, setData, put, processing, errors, reset } = useForm({
+        password: "",
+        password_confirmation: "",
     });
+
+    useEffect(() => {
+        return () => {
+            reset("password", "password_confirmation");
+        };
+    }, []);
 
     const onHandleChangePassword = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        setData("editPassword", event.target.value);
+        setData(
+            event.target.name as "password" | "password_confirmation",
+            event.target.value
+        );
     };
 
     const handleSubmitPassword = async (e: SyntheticEvent) => {
@@ -27,16 +37,25 @@ export default function EditPassword({ password }: Props) {
         <section className="text-center">
             <ValidationErrors errors={errors} />
             <form onSubmit={handleSubmitPassword}>
-                <label htmlFor="inputPassword">パスワード</label>
+                <label htmlFor="editPassword">パスワード</label>
                 <Input
-                    id="inputPassword"
+                    id="editPassword"
                     type="password"
-                    name="editPassword"
+                    name="password"
                     className="mt-1 block mx-auto"
                     placeholder="パスワード"
-                    value={data.editPassword}
+                    value={data.password}
                     required
                     handleChange={onHandleChangePassword}
+                />
+                <Input
+                    type="password"
+                    name="password_confirmation"
+                    value={data.password_confirmation}
+                    className="mt-1 block mx-auto"
+                    placeholder="パスワード確認"
+                    handleChange={onHandleChangePassword}
+                    required
                 />
                 <Button className="ml-4" processing={processing}>
                     パスワードを変更

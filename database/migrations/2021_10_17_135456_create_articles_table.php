@@ -17,9 +17,9 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('body');
-            $table->string('pic1')->nullable();
-            $table->string('pic2')->nullable();
-            $table->string('pic3')->nullable();
+            $table->string('pic1');
+            // $table->string('pic2')->nullable();
+            // $table->string('pic3')->nullable();
             $table->foreignId('user_id')->onDelete('cascade');
             $table->foreignId('category_id')->onDelete('cascade');
             $table->timestamps();

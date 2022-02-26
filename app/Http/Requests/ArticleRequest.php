@@ -24,9 +24,19 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['min:5','max:20'],
-            'body' => ['min:5','max:200'],
-            // 'pic1' => 'image|mimes:jpeg,jpg,png,gif,svg|max:2048'
+            'title' => ['min:5|max:20'],
+            'body' => ['min:5|max:200'],
+            'pic1' => ['mimes:jpg,jpeg,png'],
+            // 'pic1' => ['required|image|mimes:jpeg,jpg,png,gif,svg|max:2048']
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'title'  => 'タイトル',
+            'body'  => '本文',
+            'pic1'  => '写真',
         ];
     }
 }
