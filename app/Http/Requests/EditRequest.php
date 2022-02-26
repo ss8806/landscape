@@ -28,7 +28,7 @@ class EditRequest extends FormRequest
             'editIcon'  => 'require|file|image',
             'editName'  => 'min:5|max:100',
             'editEmail' => 'min:1|max:30|email',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['confirmed', Rules\Password::defaults()],
 
         ];
     }
