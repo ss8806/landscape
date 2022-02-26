@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    // 'ses' => [
+    //     'key' => env('SES_KEY'),
+    //     'secret' => env('SES_SECRET'),
+    //     'region' => env('SES_REGION', 'us-east-1'),
+    // ],
+
 ];

@@ -18,5 +18,10 @@
     "UnLiked": "お気に入りから削除しました",
     "title": "タイトル",
     "body": "内容",
-    "category": "カテゴリー"
+    "category": "カテゴリー",
+    "Regards": "よろしくお願いします",
+    "You are receiving this email because we received a password reset request for your account.": "パスワード再設定のリクエストを受け付けました。",
+    "This password reset link will expire in :count minutes.": "このパスワード再設定リンクの有効期限は:count分です。",
+    "If you did not request a password reset, no further action is required.": "パスワード再設定のリクエストにお心当たりがない場合は、このメールを無視してください。",
+    "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser:": "\":actionText\"ボタンがクリックできない場合は以下のURLを直接入力してください。[:displayableActionUrl](:actionURL)"
 }

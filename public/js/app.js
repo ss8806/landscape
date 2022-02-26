@@ -18632,6 +18632,7 @@ function Auth(_a) {
       showingNavigationDropdown = _b[0],
       setShowingNavigationDropdown = _b[1];
 
+  var today = new Date();
   return react_1["default"].createElement("div", {
     className: "min-h-screen bg-gray-100"
   }, auth.user ? react_1["default"].createElement("nav", {
@@ -18827,7 +18828,7 @@ function Auth(_a) {
     className: "flex"
   }, react_1["default"].createElement("div", {
     className: "flex-shrink-0 flex items-center"
-  }, "\xA9 2021. All rights reserved."))))));
+  }, "\xA9 ", today.getFullYear(), ". Landscape."))))));
 }
 
 exports.default = Auth;

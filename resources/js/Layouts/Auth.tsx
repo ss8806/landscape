@@ -14,6 +14,8 @@ export default function Auth({ auth, children }: Props) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
+    const today = new Date();
+
     return (
         <div className="min-h-screen bg-gray-100">
             {auth.user ? (
@@ -314,7 +316,7 @@ export default function Auth({ auth, children }: Props) {
                     <div className="flex justify-end h-16">
                         <div className="flex">
                             <div className="flex-shrink-0 flex items-center">
-                                © 2021. All rights reserved.
+                                © {today.getFullYear()}. Landscape.
                             </div>
                         </div>
                     </div>
