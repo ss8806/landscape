@@ -11,22 +11,19 @@ type Props = {
 export default function EditPassword({ password }: Props) {
     const { data, setData, put, processing, errors, reset } = useForm({
         password: "",
-        password_confirmation: "",
+        // password_confirmation: "",
     });
 
-    useEffect(() => {
-        return () => {
-            reset("password", "password_confirmation");
-        };
-    }, []);
+    // useEffect(() => {
+    //     return () => {
+    //         reset("password", "password_confirmation");
+    //     };
+    // }, []);
 
     const onHandleChangePassword = (
         event: React.ChangeEvent<HTMLInputElement>
     ) => {
-        setData(
-            event.target.name as "password" | "password_confirmation",
-            event.target.value
-        );
+        setData(event.target.name as "password", event.target.value);
     };
 
     const handleSubmitPassword = async (e: SyntheticEvent) => {
@@ -51,7 +48,7 @@ export default function EditPassword({ password }: Props) {
                 <Input
                     type="password"
                     name="password_confirmation"
-                    value={data.password_confirmation}
+                    // value={data.password_confirmation}
                     className="mt-1 block mx-auto"
                     placeholder="パスワード確認"
                     handleChange={onHandleChangePassword}

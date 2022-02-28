@@ -28,7 +28,8 @@ class ProfileRequest extends FormRequest
             'editIcon'  => 'require|file|image',
             'editName'  => 'min:5|max:100',
             'editEmail' => 'min:1|max:30|email',
-            'password' => ['confirmed', Rules\Password::defaults()],
+            'password' => 'confirmed|min:4|max:8',
+            // 'password' => ['confirmed', Rules\Password::defaults()],
         ];
     }
     public function attributes()

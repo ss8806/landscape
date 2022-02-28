@@ -15,6 +15,8 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 use App\Models\User;
+use Illuminate\Validation\Rules;
+
 
 class UserController extends Controller
 {
@@ -171,18 +173,19 @@ class UserController extends Controller
         $user->update();
         return back()->with('success', 'メールアドレスを変更しました。'); 
     }
-    public function editPassword(ProfileRequest $request)
+    public function editPassword(Request $request)
     {
-        // $request->validate([
-        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        // ]);
+        $request->validate([
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
         $user = Auth::user();
         $inputPass = $request->input('password');
         $length = strlen($inputPass);
 
         if($length >= 4 ){
-        // $user->password = Hash::make($request->input('editPassword'));
-        $user->update();
+        $user->password = Hash::make($request->password);
+        $user->save();
             return back()->with('success', 'パスワードを変更しました。');
         }else{
             return back()->with('error', 'パスワードの変更に失敗しました');
