@@ -64,8 +64,8 @@ class User extends Authenticatable
     //  Has Many Through （〜経由で多数へ紐づく）
     // hasManyThroughメソッドの第一引数は最終的にアクセスしたいモデル名で、第２引数は仲介するモデル名
     {
-        return $this->hasManyThrough('App\Models\Article',
-                                    'App\Models\Like',
+        return $this->hasManyThrough('App\Models\Article', //つなげる先のテーブルクラス
+                                    'App\Models\Like', //中間テーブルクラス
                                     'user_id', //仲介するモデルの外部キー名
                                     'id', // 最終的に取得したいモデルのローカルキー名
                                     null, // 

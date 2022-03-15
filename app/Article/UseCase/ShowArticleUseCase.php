@@ -16,7 +16,7 @@ final class ShowArticleUseCase
             $user = $article->user()->get();
             $category_id = $article->category()->get();
             $initial_is_liked= $article->isLiked(Auth::user());
-            $endpoint = route('like', $article);
+            $endpoint = route('like', $article); // web.phpの約43行目のlike 
             //dd($initial_is_liked);
             //dd($endpoint);
 

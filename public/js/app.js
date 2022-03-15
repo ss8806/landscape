@@ -19872,29 +19872,29 @@ function showArticle(_a) {
     className: "container mx-auto p-12 bg-gray-100 rounded-xl"
   }, react_1["default"].createElement("h1", {
     className: "text-4xl font-bold from-current mb-8"
-  }, react_1["default"].createElement("section", {
-    className: "text-center"
-  }, react_1["default"].createElement("div", null, pic1 && react_1["default"].createElement("img", {
+  }, react_1["default"].createElement("section", null, react_1["default"].createElement("div", null, pic1 && react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("img", {
     id: "preview",
     src: awspath + pic1,
-    className: "d-block mx-auto h-60 h-56"
-  }) || react_1["default"].createElement("img", {
+    className: "d-block mb-10 ml-40 h-96 display: inline-block"
+  })) || react_1["default"].createElement("img", {
     id: "preview",
     src: "/images/landscape.svg",
-    className: "d-block mx-auto h-60 h-56"
-  }))), react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user[0].icon ? react_1["default"].createElement("img", {
+    className: "d-block mb-10 ml-40 h-96 display: inline-block"
+  }))), react_1["default"].createElement("section", {
+    className: "ml-40"
+  }, react_1["default"].createElement("p", null, "\u30BF\u30A4\u30C8\u30EB\uFF1A", title), react_1["default"].createElement("p", null, "\u30AB\u30C6\u30B4\u30EA\u30FC:", category_id[0].name), react_1["default"].createElement("p", null, "\u6295\u7A3F\u8005:", user[0].icon ? react_1["default"].createElement("img", {
     id: "preview",
     src: awspath + user[0].icon,
-    className: "inline-block h-20 h-20 p-2"
+    className: "inline-block h-20 p-2"
   }) : react_1["default"].createElement("img", {
     src: "/images/avatar-default.svg",
-    className: "inline-block h-20 h-20 p-2"
+    className: "inline-block h-20 p-2"
   }), user[0].name), react_1["default"].createElement("p", null, body), auth.user ? react_1["default"].createElement(LikeButton_1["default"], {
     article: article,
     auth: auth,
     initial_is_liked: initial_is_liked,
     endpoint: endpoint
-  }) : ""), react_1["default"].createElement("div", {
+  }) : "")), react_1["default"].createElement("div", {
     className: "sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0"
   }))));
 }
@@ -22251,40 +22251,6 @@ exports.default = EditName;
 "use strict";
 
 
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
 var __awaiter = this && this.__awaiter || function (thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function (resolve) {
@@ -22438,7 +22404,7 @@ Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
 
-var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
@@ -22454,21 +22420,20 @@ function EditPassword(_a) {
   var password = _a.password;
 
   var _b = inertia_react_1.useForm({
-    password: "",
-    password_confirmation: ""
+    password: "" // password_confirmation: "",
+
   }),
       data = _b.data,
       setData = _b.setData,
       put = _b.put,
       processing = _b.processing,
       errors = _b.errors,
-      reset = _b.reset;
+      reset = _b.reset; // useEffect(() => {
+  //     return () => {
+  //         reset("password", "password_confirmation");
+  //     };
+  // }, []);
 
-  react_1.useEffect(function () {
-    return function () {
-      reset("password", "password_confirmation");
-    };
-  }, []);
 
   var onHandleChangePassword = function onHandleChangePassword(event) {
     setData(event.target.name, event.target.value);
@@ -22506,7 +22471,7 @@ function EditPassword(_a) {
   }), react_1["default"].createElement(Input_1["default"], {
     type: "password",
     name: "password_confirmation",
-    value: data.password_confirmation,
+    // value={data.password_confirmation}
     className: "mt-1 block mx-auto",
     placeholder: "\u30D1\u30B9\u30EF\u30FC\u30C9\u78BA\u8A8D",
     handleChange: onHandleChangePassword,
